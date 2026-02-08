@@ -200,23 +200,23 @@ document.addEventListener('DOMContentLoaded', function(){
     });
   }
 
-  // Certifications pagination (show 4, +4 per click) - 4 columns layout
+  // Certifications pagination (show 4, +4 per click) - 2 columns layout
   var certItems = Array.from(document.querySelectorAll('.cert-item'));
   var CERT_INITIAL = 4;
   var CERT_INCREMENT = 4;
   var certVisible = CERT_INITIAL;
 
-  function renderCerts(){
-    certItems.forEach(function(it, idx){
+  function renderCerts() {
+    certItems.forEach(function (it, idx) {
       it.style.display = idx < certVisible ? '' : 'none';
     });
     var btn = document.getElementById('certShowMore');
-    if(!btn) return;
-    if(certItems.length <= CERT_INITIAL){
+    if (!btn) return;
+    if (certItems.length <= CERT_INITIAL) {
       btn.style.display = 'none';
     } else {
       btn.style.display = '';
-      if(certVisible < certItems.length){
+      if (certVisible < certItems.length) {
         var left = certItems.length - certVisible;
         btn.textContent = 'Show more (' + Math.min(CERT_INCREMENT, left) + ' more)';
       } else {
@@ -226,12 +226,16 @@ document.addEventListener('DOMContentLoaded', function(){
   }
 
   var certBtn = document.getElementById('certShowMore');
-  if(certBtn){
-    certBtn.addEventListener('click', function(){
-      if(certVisible < certItems.length) certVisible += CERT_INCREMENT;
-      else certVisible = CERT_INITIAL;
+  if (certBtn) {
+    certBtn.addEventListener('click', function () {
+      if (certVisible < certItems.length) {
+        certVisible += CERT_INCREMENT;
+        if (certVisible > certItems.length) certVisible = certItems.length;
+      } else {
+        certVisible = CERT_INITIAL;
+      }
       renderCerts();
-      if(certVisible === CERT_INITIAL) document.getElementById('certifications').scrollIntoView({behavior:'smooth', block:'start'});
+      if (certVisible === CERT_INITIAL) document.getElementById('certifications').scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
   }
 
