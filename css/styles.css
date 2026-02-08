@@ -48,13 +48,6 @@
   --section-awards:linear-gradient(90deg,#23243a 0%,#3a1a2a 100%);
   --section-certifications:linear-gradient(90deg,#23243a 0%,#1a1a3a 100%);
 }
-.section-hero { background: var(--section-hero); }
-.section-education { background: var(--section-education); }
-.section-publications { background: var(--section-publications); }
-.section-projects { background: var(--section-projects); }
-.section-skills { background: var(--section-skills); }
-.section-awards { background: var(--section-awards); }
-.section-certifications { background: var(--section-certifications); }
 body{font-family:var(--font);background:var(--bg);color:var(--text);overflow-x:hidden;transition:background-color .28s ease,color .28s ease} 
 /* Subtle animated background layers */
 body::before{
@@ -130,7 +123,7 @@ section h2:hover::after{width:80px}
 .hero .social-icons .btn, .social-icons .btn{
   width:44px;height:44px;padding:0;display:inline-flex;align-items:center;justify-content:center;border-radius:.65rem;font-size:1.05rem;line-height:1;color:var(--muted);border-width:1px
   /* Removed per-section card and section backgrounds for unified look */
-.navbar .navbar-brand, .navbar .nav-link{color:#fff !important}
+.navbar .navbar-brand, .navbar .nav-link{color:#fff !important;}
 .navbar .nav-link{opacity:.95;transition:opacity .18s ease,transform .18s ease}
 .navbar .nav-link:hover{opacity:1;transform:translateY(-2px)}
 .navbar .nav-link.active{font-weight:700}
