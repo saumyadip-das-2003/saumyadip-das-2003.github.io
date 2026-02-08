@@ -309,4 +309,28 @@ document.addEventListener('DOMContentLoaded', function(){
   // In case some skill bars are outside .reveal containers, restore them once DOM is ready (graceful fallback)
   setTimeout(function(){ document.querySelectorAll('.skill-fill').forEach(function(s){ if(s.style.width === '0') s.style.width = s.dataset.level || '70%'; }); }, 1500);
 
+  // Theme toggle logic
+  var themeBtn = document.getElementById('themeToggleBtn');
+  var themeText = document.getElementById('themeToggleText');
+  function setTheme(theme) {
+    if(theme === 'dark') {
+      document.documentElement.setAttribute('data-theme','dark');
+      localStorage.setItem('theme','dark');
+      if(themeText) themeText.textContent = 'Light';
+    } else {
+      document.documentElement.removeAttribute('data-theme');
+      localStorage.setItem('theme','light');
+      if(themeText) themeText.textContent = 'Dark';
+    }
+  }
+  // Init theme from storage or OS
+  var savedTheme = localStorage.getItem('theme');
+  if(savedTheme) setTheme(savedTheme);
+  else if(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) setTheme('dark');
+  else setTheme('light');
+  if(themeBtn) themeBtn.onclick = function() {
+    var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    setTheme(isDark ? 'light' : 'dark');
+  };
+
 });
