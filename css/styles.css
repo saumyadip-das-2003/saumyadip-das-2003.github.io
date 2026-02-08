@@ -28,6 +28,22 @@ h1,h2,h3{font-weight:600}
 /* Skill badges */
 .badge-skill{background:#f8f9fa;border:1px solid #e9ecef;color:#495057;font-weight:600}
 
+/* Skill proficiency compact layout */
+.skill-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:.5rem}
+.skill-name{font-weight:600;color:#222}
+.skill-meta{display:flex;align-items:center;gap:.5rem}
+.skill-bar{width:140px;height:8px;background:#e9ecef;border-radius:6px;overflow:hidden}
+.skill-fill{height:100%;border-radius:6px}
+.skill-adv{background:var(--brand)}
+.skill-int{background:#ffb020}
+.skill-fam{background:#6c757d}
+.skill-label{font-size:.8rem;color:#6c757d;min-width:70px;text-align:right}
+
+@media (max-width:768px){
+  .skill-bar{width:110px}
+  .skill-label{min-width:58px}
+}
+
 /* Simple reveal animation */
 .reveal{opacity:0;transform:translateY(6px);transition:all .36s ease}
 .reveal.visible{opacity:1;transform:none}
