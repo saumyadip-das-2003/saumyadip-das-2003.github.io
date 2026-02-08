@@ -138,6 +138,80 @@ document.addEventListener('DOMContentLoaded', function(){
   // initial render for projects
   renderProjects();
 
+  // Awards pagination (show 4, +4 per click) - display in 2 columns (handled by Bootstrap)
+  var awardItems = Array.from(document.querySelectorAll('.award-item'));
+  var AWARD_INITIAL = 4;
+  var AWARD_INCREMENT = 4;
+  var awardVisible = AWARD_INITIAL;
+
+  function renderAwards(){
+    awardItems.forEach(function(it, idx){
+      it.style.display = idx < awardVisible ? '' : 'none';
+    });
+    var btn = document.getElementById('awardShowMore');
+    if(!btn) return;
+    if(awardItems.length <= AWARD_INITIAL){
+      btn.style.display = 'none';
+    } else {
+      btn.style.display = '';
+      if(awardVisible < awardItems.length){
+        var left = awardItems.length - awardVisible;
+        btn.textContent = 'Show more (' + Math.min(AWARD_INCREMENT, left) + ' more)';
+      } else {
+        btn.textContent = 'Show less';
+      }
+    }
+  }
+
+  var awardBtn = document.getElementById('awardShowMore');
+  if(awardBtn){
+    awardBtn.addEventListener('click', function(){
+      if(awardVisible < awardItems.length) awardVisible += AWARD_INCREMENT;
+      else awardVisible = AWARD_INITIAL;
+      renderAwards();
+      if(awardVisible === AWARD_INITIAL) document.getElementById('awards').scrollIntoView({behavior:'smooth', block:'start'});
+    });
+  }
+
+  // Certifications pagination (show 4, +4 per click) - 4 columns layout
+  var certItems = Array.from(document.querySelectorAll('.cert-item'));
+  var CERT_INITIAL = 4;
+  var CERT_INCREMENT = 4;
+  var certVisible = CERT_INITIAL;
+
+  function renderCerts(){
+    certItems.forEach(function(it, idx){
+      it.style.display = idx < certVisible ? '' : 'none';
+    });
+    var btn = document.getElementById('certShowMore');
+    if(!btn) return;
+    if(certItems.length <= CERT_INITIAL){
+      btn.style.display = 'none';
+    } else {
+      btn.style.display = '';
+      if(certVisible < certItems.length){
+        var left = certItems.length - certVisible;
+        btn.textContent = 'Show more (' + Math.min(CERT_INCREMENT, left) + ' more)';
+      } else {
+        btn.textContent = 'Show less';
+      }
+    }
+  }
+
+  var certBtn = document.getElementById('certShowMore');
+  if(certBtn){
+    certBtn.addEventListener('click', function(){
+      if(certVisible < certItems.length) certVisible += CERT_INCREMENT;
+      else certVisible = CERT_INITIAL;
+      renderCerts();
+      if(certVisible === CERT_INITIAL) document.getElementById('certifications').scrollIntoView({behavior:'smooth', block:'start'});
+    });
+  }
+
+  // initial render for awards and certs
+  renderAwards();
+  renderCerts();
+
   // Publication modal population
   var pubModal = document.getElementById('pubModal');
   if(pubModal){
