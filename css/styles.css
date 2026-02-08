@@ -156,7 +156,6 @@ section h2:hover::after{width:80px}
   min-width: 90px;
 }
 .skill-bar {
-  position: relative;
   flex: 1 1 120px;
   height: 8px;
   background: #e9ecef;
@@ -165,14 +164,10 @@ section h2:hover::after{width:80px}
   margin: 0 0.5rem;
 }
 .skill-fill {
-  position: absolute;
-  left: 0; top: 0; bottom: 0;
+  position: relative;
+  display: block;
   height: 100%;
   border-radius: 6px;
-  z-index: 1;
-  width: inherit;
-  min-width: 0;
-  background: #2563eb; /* fallback, will be overridden by .skill-adv etc. */
   transition: width .6s cubic-bezier(.4,0,.2,1);
 }
 .skill-adv {
