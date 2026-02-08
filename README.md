@@ -1,6 +1,6 @@
 # saumyadip-das-2003.github.io
 
-This repository contains a personal E-Portfolio for **Saumyadip Das**. The site is a multi-page static website with a focus on research, publications, projects, and contact options.
+This repository contains a single‑page E‑Portfolio for **Saumyadip Das** (all content is on `index.html`) with a focus on research, publications, projects, and contact options. Legacy multi-page versions are backed up in the `/archive` folder.
 
 ## What I added
 - `index.html`, `about.html` (inline About content on Home), `publications.html`, `projects.html`, `videos.html`, `contact.html`
