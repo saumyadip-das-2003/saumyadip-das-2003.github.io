@@ -148,9 +148,15 @@ section h2:hover::after{width:80px}
 .skill-name{font-weight:600;color:#222}
 .skill-meta{display:flex;align-items:center;gap:.5rem}
 .skill-fill{height:100%;border-radius:6px}
-.skill-adv{background:var(--brand)}
-.skill-int{background:#ffb020}
-.skill-fam{background:#6c757d}
+.skill-adv {
+  background: #2563eb !important; /* blue for Advanced */
+}
+.skill-int {
+  background: #ffb020 !important; /* orange for Intermediate */
+}
+.skill-fam {
+  background: #b0b4ba !important; /* gray for Familiar */
+}
 .skill-label{font-size:.8rem;color:#6c757d;min-width:70px;text-align:right}
 
 /* Legend for proficiency */
