@@ -129,20 +129,7 @@ section h2:hover::after{width:80px}
 /* Larger, touch-friendly social buttons (hero + footer) */
 .hero .social-icons .btn, .social-icons .btn{
   width:44px;height:44px;padding:0;display:inline-flex;align-items:center;justify-content:center;border-radius:.65rem;font-size:1.05rem;line-height:1;color:var(--muted);border-width:1px
-}
-.hero .social-icons .btn i, .social-icons .btn i{font-size:1.05rem}
-.footer .social-icons a, footer .text-muted a{font-size:1rem;padding:.25rem .5rem}
-
-/* Make social buttons more visible on hover */
-.hero .social-icons .btn:hover, .social-icons .btn:hover{color:#fff;background:linear-gradient(90deg,var(--brand),var(--accent));border-color:transparent;transform:translateY(-3px)}
-
-
-/* Cards hover effect */
-.card{transition:transform .18s ease,box-shadow .18s ease}
-.card:hover{transform:translateY(-6px);box-shadow:0 8px 24px rgba(11,94,215,0.08)}
-
-/* Navbar theme: single solid color, matches brand */
-.navbar{background:var(--brand) !important;color:#fff;box-shadow:0 6px 18px rgba(11,94,215,0.12);transition:padding .25s ease,box-shadow .25s ease,background .25s ease}
+  /* Removed per-section card and section backgrounds for unified look */
 .navbar .navbar-brand, .navbar .nav-link{color:#fff !important}
 .navbar .nav-link{opacity:.95;transition:opacity .18s ease,transform .18s ease}
 .navbar .nav-link:hover{opacity:1;transform:translateY(-2px)}
@@ -152,20 +139,7 @@ section h2:hover::after{width:80px}
 .navbar-toggler-icon{filter:invert(1) brightness(2.6) contrast(1.05)}
 .navbar-collapse{background:var(--brand)}
 .navbar.nav-scrolled{padding-top:.35rem;padding-bottom:.35rem;box-shadow:0 12px 30px rgba(11,94,215,0.16);backdrop-filter:blur(3px)}
-
-/* Section divider subtle band */
-section::before{content:'';display:block;height:28px;margin-top:-28px;background:linear-gradient(180deg,transparent,rgba(11,94,215,0.02))}
-
-/* Subtle card surface gradient */
-/* Section-specific card backgrounds */
-.section-hero .card { background: var(--card-hero); }
-.section-education .card { background: var(--card-education); }
-.section-publications .card { background: var(--card-publications); }
-.section-projects .card { background: var(--card-projects); }
-.section-skills .card { background: var(--card-skills); }
-.section-awards .card { background: var(--card-awards); }
-.section-certifications .card { background: var(--card-certifications); }
-.card { background: var(--card-surface); }
+  /* Removed per-section card and section backgrounds for unified look */
 
 /* Skill badges */
 .badge-skill{background:#f8f9fa;border:1px solid #e9ecef;color:#495057;font-weight:600}
@@ -174,7 +148,6 @@ section::before{content:'';display:block;height:28px;margin-top:-28px;background
 .skill-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:.5rem}
 .skill-name{font-weight:600;color:#222}
 .skill-meta{display:flex;align-items:center;gap:.5rem}
-.skill-bar{width:140px;height:8px;background:#e9ecef;border-radius:6px;overflow:hidden}
 .skill-fill{height:100%;border-radius:6px}
 .skill-adv{background:var(--brand)}
 .skill-int{background:#ffb020}
