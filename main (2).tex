@@ -1,0 +1,511 @@
+
+\documentclass[a4paper,11pt]{article}
+
+% Package imports
+\usepackage{latexsym}
+\usepackage{xcolor}
+\usepackage{float}
+\usepackage{ragged2e}
+\usepackage[empty]{fullpage}
+\usepackage{wrapfig}
+\usepackage{lipsum}
+\usepackage{tabularx}
+\usepackage{titlesec}
+\usepackage{geometry}
+\usepackage{marvosym}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{multicol}
+\usepackage{graphicx}
+\usepackage{cfr-lm}
+\usepackage[T1]{fontenc}
+\usepackage{fontawesome5}
+
+% Color definitions
+\definecolor{darkblue}{RGB}{0,0,139}
+
+% Page layout
+\setlength{\multicolsep}{0pt} 
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\geometry{left=1.4cm, top=0.8cm, right=1.2cm, bottom=1cm}
+\setlength{\footskip}{5pt} % Addressing fancyhdr warning
+
+% Hyperlink setup (moved after fancyhdr to address warning)
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=darkblue,
+    filecolor=darkblue,
+    urlcolor=darkblue,
+}
+
+% Custom box settings
+\usepackage[most]{tcolorbox}
+\tcbset{
+    frame code={},
+    center title,
+    left=0pt,
+    right=0pt,
+    top=0pt,
+    bottom=0pt,
+    colback=gray!20,
+    colframe=white,
+    width=\dimexpr\textwidth\relax,
+    enlarge left by=-2mm,
+    boxsep=4pt,
+    arc=0pt,outer arc=0pt,
+}
+
+% URL style
+\urlstyle{same}
+
+% Text alignment
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Section formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-7pt}]
+
+% Custom commands
+\newcommand{\resumeItem}[2]{
+  \item{
+    \textbf{#1}{\hspace{0.5mm}#2 \vspace{-0.5mm}}
+  }
+}
+
+\newcommand{\resumePOR}[3]{
+\vspace{0.5mm}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+        \textbf{#1}\hspace{0.3mm}#2 & \textit{\small{#3}} 
+    \end{tabular*}
+    \vspace{-2mm}
+}
+
+\newcommand{\resumeSubheading}[4]{
+\vspace{0.5mm}\item
+    \begin{tabular*}{0.98\textwidth}[t]{l@{\extracolsep{\fill}}r}
+        \textbf{#1} & \textit{\footnotesize{#4}} \\
+        \textit{\footnotesize{#3}} &  \footnotesize{#2}\\
+    \end{tabular*}
+    \vspace{-2.4mm}
+}
+
+\newcommand{\resumeProject}[4]{
+\vspace{0.5mm}\item
+    \begin{tabular*}{0.98\textwidth}[t]{l@{\extracolsep{\fill}}r}
+        \textbf{#1} & \textit{\footnotesize{#3}} \\
+        \footnotesize{\textit{#2}} & \footnotesize{#4}
+    \end{tabular*}
+    \vspace{-2.4mm}
+}
+
+\newcommand{\resumeSubItem}[2]{\resumeItem{#1}{#2}\vspace{-4pt}}
+
+\renewcommand{\labelitemi}{$\vcenter{\hbox{\tiny$\bullet$}}$}
+\renewcommand{\labelitemii}{$\vcenter{\hbox{\tiny$\circ$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=*,labelsep=1mm]}
+\newcommand{\resumeHeadingSkillStart}{\begin{itemize}[leftmargin=*,itemsep=1.7mm, rightmargin=2ex]}
+\newcommand{\resumeItemListStart}{\begin{itemize}[leftmargin=*,labelsep=1mm,itemsep=0.5mm]}
+
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}\vspace{2mm}}
+\newcommand{\resumeHeadingSkillEnd}{\end{itemize}\vspace{-2mm}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-2mm}}
+\newcommand{\cvsection}[1]{%
+\vspace{2mm}
+\begin{tcolorbox}
+    \textbf{\large #1}
+\end{tcolorbox}
+    \vspace{-4mm}
+}
+
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}%
+\newcolumntype{R}{>{\raggedleft\arraybackslash}X}%
+\newcolumntype{C}{>{\centering\arraybackslash}X}%
+
+% Commands for icon sizing and positioning
+\newcommand{\socialicon}[1]{\raisebox{-0.05em}{\resizebox{!}{1em}{#1}}}
+\newcommand{\ieeeicon}[1]{\raisebox{-0.3em}{\resizebox{!}{1.3em}{#1}}}
+
+% Font options
+\newcommand{\headerfonti}{\fontfamily{phv}\selectfont} % Helvetica-like (similar to Arial/Calibri)
+\newcommand{\headerfontii}{\fontfamily{ptm}\selectfont} % Times-like (similar to Times New Roman)
+\newcommand{\headerfontiii}{\fontfamily{ppl}\selectfont} % Palatino (elegant serif)
+\newcommand{\headerfontiv}{\fontfamily{pbk}\selectfont} % Bookman (readable serif)
+\newcommand{\headerfontv}{\fontfamily{pag}\selectfont} % Avant Garde-like (similar to Trebuchet MS)
+\newcommand{\headerfontvi}{\fontfamily{cmss}\selectfont} % Computer Modern Sans Serif
+\newcommand{\headerfontvii}{\fontfamily{qhv}\selectfont} % Quasi-Helvetica (another Arial/Calibri alternative)
+\newcommand{\headerfontviii}{\fontfamily{qpl}\selectfont} % Quasi-Palatino (another elegant serif option)
+\newcommand{\headerfontix}{\fontfamily{qtm}\selectfont} % Quasi-Times (another Times New Roman alternative)
+\newcommand{\headerfontx}{\fontfamily{bch}\selectfont} % Charter (clean serif font)
+
+\begin{document}
+\headerfontiii
+
+% Header
+\begin{center}
+    {\Huge\textbf{SAUMYADIP DAS}}
+\end{center}
+\vspace{-6mm}
+
+\begin{center}
+    \small{
+    +8801646-891418 | \href{mailto:das.saumyadip.cse@gmail.com}{das.saumyadip.cse@gmail.com} | 
+    \href{https://saumyadipsohom.wixsite.com/sohom}{saumyadipsohom.wixsite.com/sohom}
+    }
+\end{center}
+\vspace{-6mm}
+
+\begin{center}
+    \small{
+    \socialicon{\faLinkedin} \href{https://www.linkedin.com/in/saumyadip-sohom/}{Saumyadip Das} | 
+    \socialicon{\faGithub} \href{https://github.com/saumyadip-das-2003}{saumyadip-das-2003} | 
+    \socialicon{\includegraphics[height=1.3em]{rg.png}} \href{https://www.researchgate.net/profile/Saumyadip-Das-2}{Saumyadip Das}
+    %\ieeeicon{\includegraphics[height=1.3em]{ieee_collabratec_icon.png}} \href{https://ieee-collabratec.ieee.org/app/p/your-profile}{your-profile} |
+    %\socialicon{\faTwitter} \href{https://twitter.com/your-handle}{your-handle}
+    }
+\end{center}
+\vspace{-6mm}
+\begin{center}
+    \small{Kuril Chowrasta, Dhaka - 1329, Bangladesh}
+\end{center}
+
+\vspace{-4mm}
+
+\section{\textbf{Objective}}
+\vspace{1mm}
+\small{
+Dedicated Computer Science undergraduate with a strong foundation in AI-driven research and IoT development, evidenced by multiple peer-reviewed publications. Seeking to apply expertise in Machine Learning, Data Science, and data-centric solutions. Committed to bridging the gap between theoretical academic research and practical, scalable problem-solving.
+}
+\vspace{-2mm}
+
+
+
+
+
+
+
+\section{\textbf{Education}}
+\vspace{-0.4mm}
+\resumeSubHeadingListStart
+
+\resumeSubheading
+{American International University-Bangladesh}{Dhaka, Bangladesh}
+{Bachelor of Science in Computer Science and Engineering}{January 2023 - December 2026 (Expected)}
+\resumeItemListStart
+\item CGPA: 3.99/4.00 (Up to 10th Semester)
+\resumeItemListEnd
+
+\resumeSubheading
+{Birshreshtha Munshi Abdur Rouf Public College}{Dhaka, Bangladesh}
+{Higher Secondary Certificate (Science)}{2021}
+\resumeItemListStart
+\item GPA: 5.00/5.00
+\resumeItemListEnd
+
+\resumeSubheading
+{Moulvibazar Government High School}{Moulvibazar, Bangladesh}
+{Secondary School Certificate (Science)}{2019}
+\resumeItemListStart
+\item GPA: 5.00/5.00
+\resumeItemListEnd
+
+\resumeSubHeadingListEnd
+\vspace{-6mm}
+
+
+\section{\textbf{Skills}}
+\vspace{-0.4mm}
+ \resumeHeadingSkillStart
+  \resumeSubItem{Programming Languages:}
+    {C, C++, JAVA, C\#, Python, R}
+  \resumeSubItem{Web Technologies:}
+    {HTML5, CSS, JavaScript, PHP}
+  \resumeSubItem{Database Systems:}
+    {Oracle SQL Database, MS SQL, MySQL}
+  \resumeSubItem{Data Science \& Machine Learning:}
+    {Google Colab, R Studio, Microsoft Power BI, Python, R, NumPy, Panda, Matplotlib, Seaborn, PyTorch, TensorFlow, Joblib}
+\resumeSubItem{Cloud Technologies:}
+    {Microsoft Azure}
+  \resumeSubItem{DevOps \& Version Control:}
+    {GitHub}
+  \resumeSubItem{Specialized Area:}
+    {Skill 1, Skill 2, Skill 3, Skill 4}
+  \resumeSubItem{Mathematical \& Statistical Tools:}
+    {MatLab, SPSS}
+  \resumeSubItem{Other Tools \& Technologies:}
+    {Autodesk AutoCAD, Microsoft Office Apps, Microsoft Project}
+  \resumeSubItem{Research Skills:}{Critical thinking, Attention to detail, Problem-solving, Collaboration, Time management, Communication}
+ \resumeHeadingSkillEnd
+
+
+\section{\textbf{Patents and Publications} \hfill \textcolor{darkblue}{\scriptsize C=Conference, J=Journal, P=Patent, S=In Submission, T=Thesis}}
+\vspace{0.2mm}
+\small{
+\begin{enumerate}[leftmargin=*, labelsep=0.5em, align=left, widest={[\textbf{S.1}]}, itemindent=0em, label={\textbf{[\arabic*]}]}]
+
+\item[\textbf{[C.1]}] \textbf{Saumyadip Das}, Nur-E Sarjina Khan, Md. Ahasan Habib Alif, Raiyan Bin Alam, Mahima Afroz, Niloy Paul, Md Sajid Hossain (2025). \href{https://doi.org/10.1109/EICT68394.2025.11355612}{\textbf{SoilSense: An IoT-Based Soil Health Monitoring System for Smallholder Farmers in Bangladesh to Support Sustainable Agriculture}}. In \textit{7th International Conference on
+Electrical Information and Communication Technology}, IEEE. 18-20 December 2025, Khulna, Bangladesh. DOI: 10.1109/EICT68394.2025.11355612
+
+\item[\textbf{[S.1]}] Nur-E Sarjina Khan, \textbf{Saumyadip Das}, Sazia Sharmin, Kamruddin Nur (2026). \textbf{A Comparison of State-Space Model and CNN Baselines: MambaOut-tiny vs ResNet-50 and MobileNetV2 for Rice Leaf Disease Classification}. Manuscript submitted for acceptance in \textit{2026 IEEE 2nd International Conference on Quantum Photonics, Artificial Intelligence \& Networking}.
+
+\item[\textbf{[S.2]}] Ranak Debnath, Ariful Islam, Nur-E Sarjina Khan, \textbf{Saumyadip Das}, Anik Kumar Saha, Firoz Ahmed (2026). \textbf{LLM-Driven Cardiovascular Disease Risk Prediction and the Predominant Influence of Smoking}. Manuscript submitted for publication in \textit{IET Information Security}.
+
+\item[\textbf{[S.3]}] Samin Yasir, Nur-E Sarjina Khan, \textbf{Saumyadip Das}, Md. Nafi Al Tahosin Khan, Munif Shahrier Niloy, Anika Tahmina Chowdhury, Anik Kumar Saha (2026). \textbf{Reasoning Drift in Compressed Transformers: An Explainability Analysis of
+BERT, DistilBERT, and TinyBERT}. Manuscript submitted for publication in \textit{International Journal of Modern Education and Computer Science (IJMECS)}.
+
+\item[\textbf{[C.2]}] Nur-E Sarjina Khan, \textbf{Saumyadip Das}, Md. Mahtab Habib, Md. Sadman Sanim, Md. Mahbubor Rahman, Dr. Jannatul Fardus (2025). \href{https://www.researchgate.net/publication/400525770_The_Future_of_Textile_Waste_Sustainable_Solutions_through_Eco-Friendly_Products_and_Renewable_Energy_from_Post-Consumer_Textiles?_tp=eyJjb250ZXh0Ijp7InBhZ2UiOiJwcm9maWxlIiwicHJldmlvdXNQYWdlIjpudWxsLCJwb3NpdGlvbiI6InBhZ2VDb250ZW50In19}{\textbf{The Future of Textile Waste: Sustainable Solutions through Eco-Friendly Products and Renewable Energy from Post-Consumer Textiles}}. In \textit{3rd International Conference on Textile Science and Engineering}. 24 May 2025, BUTEX, Dhaka, Bangladesh. 
+
+\item[\textbf{[C.3]}] Nur-E Sarjina Khan, \textbf{Saumyadip Das}, Raiyan Bin Alam, Abtahi Islam, Md. Mahbubor Rahman, Jannatul Fardus (2025). \href{https://www.researchgate.net/publication/400526019_Artificial_Intelligence_in_Textile_Waste_Management_Exploring_Predictive_Modelling_Recycling_Innovations_and_Sustainable_Solutions}{\textbf{Artificial Intelligence in Textile Waste Management: Exploring Predictive Modelling, Recycling Innovations, and Sustainable Solutions}}. In \textit{3rd International Conference on Textile Science and Engineering}. 24 May 2025, BUTEX, Dhaka, Bangladesh. 
+
+\item[\textbf{[C.4]}] Nur-E Sarjina Khan, \textbf{Saumyadip Das}, Arpon Paul Amit, Jannatul Fardus, Md. Mahbubor Rahman (2025). \href{https://www.researchgate.net/publication/400525785_AI-Driven_Transformations_in_Textile_Waste_Management_Challenges_and_Opportunities}{\textbf{AI-Driven Transformations in Textile Waste Management: Challenges and Opportunities}}. In \textit{1st International Conference on Engineering and Technology for Sustainable Development (ICETSD 2025)}. 22-23 February 2025, JUST, Jashore, Bangladesh. 
+
+%\item[\textbf{[P.1]}] Inventor 1, Your Name, Inventor 3, et al. (Year). \href{https://patentoffice.gov/patent/XXXXXXXXX}{\textbf{Title of Patent}}. Patent Office, Patent No. XXXXXXXXX. Registration Date: Date, Grant Date: Date, Publication Date: Date.
+
+%\item[\textbf{[J.1]}] Author 1, Your Name, Author 3, et al. (Year). \href{https://doi.org/XX.XXXX/XXXXX.XXXX.XXXXXXX}{\textbf{Title of Journal Article}}. \textit{Journal Name}, Vol. XX, Issue X, pp. XXX-XXX. DOI: XX.XXXX/XXXXX.XXXX.XXXXXXX
+\end{enumerate}
+}
+
+
+
+
+
+\section{\textbf{Projects}}
+\vspace{-0.4mm}
+\resumeSubHeadingListStart
+
+\resumeProject
+  {SafePath-Community Safety Extremism Monitoring System}
+  {Tools: [HTML5, CSS, JavaScript, PHP, MySQL]}
+  {August 2025 - September 2025}
+  {{}[\href{https://github.com/saumyadip-das-2003/SafePath---Community-Safety-Extremism-Monitoring-System}{\textcolor{darkblue}{\faGithub}}]}
+\resumeItemListStart
+  \item Developed a web based system for citizens to register incidents happening near them, and giving vote to their nearing incidents. An authority body is also created to manage the incidents and resolve them. An admin system to control and manage the whole systems. This project helped to strengthen the basics of Web development. 
+\resumeItemListEnd
+
+\resumeProject
+  {SoilSense: An IoT Based Soil Health Monitoring System}
+  {Tools: [Microcontroller, Wireless System, ESP32, Sensorsl]}
+  {August 2025 - September 2025}
+  {{}[\href{https://github.com/saumyadip-das-2003/SoilSense-Codes}{\textcolor{darkblue}{\faGithub}}]}
+\resumeItemListStart
+  \item A ESP32 based IoT project with machine learning integrated system for sensing soil health from environmental factors like temp, humidity, rain and soil moisture. From these environmental factors the NPK values of the soild is predicted via machine learning. This project is further accepted at an IEEE conference and added at IEEE Xplore.   
+\resumeItemListEnd
+
+\resumeProject
+  {Bank Management System}
+  {Tools: [C\#, Dot Net Framework, MSSql]}
+  {August 2025 - September 2025}
+  {{}[\href{https://github.com/saumyadip-das-2003/Bank-Management-System}{\textcolor{darkblue}{\faGithub}}]}
+\resumeItemListStart
+  \item A bank management system for "Global Trust Bank" using dot net framework and MSSql. From registering new customer to making transactions via customer alongside different designated bank employees. This projects demonstrates a hands on experience on a real life software. 
+\resumeItemListEnd
+
+\resumeProject
+  {University Resource Management System}
+  {Tools: [UML]}
+  {August 2025 - September 2025}
+  {{}[\href{https://github.com/saumyadip-das-2003/University-Resource-Management-System-URMS---OOAD}{\textcolor{darkblue}{\faGithub}}]}
+\resumeItemListStart
+  \item This is an Unified Model Language (UML) based project, to showcase different techniques of software development via diagrams like Use Case, Activity, Class diagrams etc.
+\resumeItemListEnd
+
+\resumeProject
+  {University Resource Management System}
+  {Tools: [Oracle 10G Express Edition]}
+  {August 2025 - September 2025}
+  {{}[\href{https://github.com/saumyadip-das-2003/University-Resource-Booking-System--Oracle-Database-Project}{\textcolor{darkblue}{\faGithub}}]}
+\resumeItemListStart
+  \item This is a Sql database project based on Oracle 10G Express Edition. Showing relationships and applications of different entities of the system. 
+\resumeItemListEnd
+
+\resumeProject
+  {University Resource Management System}
+  {Tools: [JAVA, JAVA Swing Framework]}
+  {August 2025 - September 2025}
+  {{}[\href{https://github.com/saumyadip-das-2003/Resource-Booking-System-JAVA-Swing-Project-}{\textcolor{darkblue}{\faGithub}}]}
+\resumeItemListStart
+  \item This is a JAVA Swing based project for university students and faculties to manage and book the resources like class rooms, playgrounds etc conveniently.  
+\resumeItemListEnd
+
+
+
+\resumeSubHeadingListEnd
+
+
+
+\section{\textbf{Honors and Awards}}
+\vspace{-0.4mm}
+
+\resumeSubHeadingListStart
+
+\resumeProject
+  {Dean’s List Honors}
+  {American International University-Bangladesh}
+  {Month Year}
+  {{}[\href{https://www.linkedin.com/in/saumyadip-sohom/details/certifications/1751205611507/single-media-viewer/?profileId=ACoAADKXZpoBpZdhyaO1FQKPaNB87Js95mYXTPY}{\textcolor{darkblue}{\faIcon{globe}}}]}
+\resumeItemListStart
+  \item For Academic Excellence in Fall 2024-25 Semester
+\resumeItemListEnd
+
+\resumeProject
+  {Dean’s List Honors}
+  {American International University-Bangladesh}
+  {Month Year}
+  {{}[\href{https://www.linkedin.com/in/saumyadip-sohom/details/certifications/1751205666715/single-media-viewer/?profileId=ACoAADKXZpoBpZdhyaO1FQKPaNB87Js95mYXTPY}{\textcolor{darkblue}{\faIcon{globe}}}]}
+\resumeItemListStart
+  \item For Academic Excellence in Spring 2024-25 Semester
+\resumeItemListEnd
+
+
+
+\resumeSubHeadingListEnd
+
+%\vspace{-6mm}
+%\section{\textbf{Leadership Experience}}
+%\vspace{-0.4mm}
+%\resumeSubHeadingListStart
+%\resumeProject
+%  {Leadership Role A}
+%  {Organization/Institution Name}
+%  {Month Year - Month Year}
+%  {{}[\href{https://organization-a-link.com}{\textcolor{darkblue}{\faIcon{globe}}}]}
+%\resumeItemListStart
+%  \item Key responsibility or achievement in this role
+%  \item Quantifiable impact or improvement made during tenure
+%  \item Initiative taken or project led
+%\resumeItemListEnd
+
+%\resumeProject
+%  {Leadership Role B}
+%  {Organization/Institution Name}
+%  {Month Year - Month Year}
+%  {{}[\href{https://organization-b-link.com}{\textcolor{darkblue}{\faIcon{globe}}}]}
+%\resumeItemListStart
+%  \item Key responsibility or achievement in this role
+%  \item Quantifiable impact or improvement made during tenure
+%  \item Initiative taken or project led
+%\resumeItemListEnd
+
+%\resumeSubHeadingListEnd
+
+\section{\textbf{Experience}}
+\resumeSubHeadingListStart
+
+  \resumeSubheading
+      {Freelance .NET Developer}{Remote}
+      {Self-Employed}{2024 -- Present}
+      \resumeItemListStart
+        \item Developed various small-scale .NET framework applications for diverse clients, focusing on functional requirements and user-centered design.
+      \resumeItemListEnd 
+
+  \resumeSubheading
+      {Private Educator (Class 8–12)}{Dhaka, Bangladesh}
+      {Freelance}{2019 -- 2024}
+      \resumeItemListStart
+        \item Developed and delivered customized lesson plans in Physics, Chemistry, and Mathematics, simplifying advanced scientific principles to improve student comprehension and academic performance.
+      \resumeItemListEnd
+
+\resumeSubHeadingListEnd
+\vspace{-2mm}
+
+
+
+
+
+
+\section{\textbf{Volunteer Experience}}
+\vspace{-0.4mm}
+\resumeSubHeadingListStart
+\resumeProject
+  {Peer Academic \& Technical Mentor}
+  {At University}
+  {2023 - 2026}
+  {{}}
+\resumeItemListStart
+  \item Mentored fellow undergraduates by explaining advanced CS topics and providing technical oversight during the development and troubleshooting of course projects.
+  \item Soft Skills developed and applied during this experience
+\resumeItemListEnd
+
+
+
+ \resumeSubHeadingListEnd
+ \vspace{-6mm}
+ \section{\textbf{Professional Memberships}}
+ \vspace{-0.4mm}
+ \resumeSubHeadingListStart
+ \resumePOR{General Member}
+     {, AIUB Community of Engineering Students (ACES)}
+     {January 2023 - Present}
+% \resumePOR{Professional Organization B}
+%     {, \href{https://membership-certificate-link.com}{Membership ID: XXXXXXXX}}
+%     {Month Year - Present}
+% \resumePOR{Professional Organization C}
+%     {, \href{https://membership-certificate-link.com}{Membership ID: XXXXXXXX}}
+%     {Month Year - Present}
+ \resumeSubHeadingListEnd
+% \vspace{-6mm}
+
+% \section{\textbf{Certifications}}
+% \vspace{-0.2mm}
+% \resumeSubHeadingListStart
+% \resumePOR{}{\href{https://certification-link-a.com}{
+% \textbf{Certification A}
+% }}{Month Year}
+% \resumePOR{}{
+% \textbf{Certifying Body:} {{\href{https://certification-link-b.com}% {Certification B}}}}{Month Year}
+% \resumePOR{}{
+% \textbf{Certifying Body:} {{\href{https://certification-link-c.com}
+% {Certification C}}}}{Month Year}
+% \resumePOR{}{\href{https://certification-link-d.com}{
+% \textbf{Certification D}
+% }}{Month Year}
+
+%\resumeSubHeadingListEnd
+\vspace{-6mm}
+
+\section{\textbf{Additional Information}}
+\vspace{-0.4mm}
+\small{
+\textbf{Languages:} Bengali (Native), English (Duolingo Score 130)
+
+\textbf{Interests:} Talking to Madam, Watching Movies, Playing Video Games, Solving Math and Puzzle
+}
+\vspace{-4mm}
+
+
+% \section{\textbf{References}}
+% \vspace{-0.2mm}
+% \small{
+% \begin{enumerate}[leftmargin=*,labelsep=2mm]
+% \item \textbf{Reference Person 1}\\
+%   Job Title, Department\\
+%   Organization/Institution Name\\
+%   Email: email1@example.com\\
+%   Phone: +X-XXX-XXX-XXXX\\
+%   \textit{Relationship: [e.g., Thesis Advisor, Manager, etc.]}
+
+% \item \textbf{Reference Person 2}\\
+%   Job Title, Department\\
+%   Organization/Institution Name\\
+%   Email: email2@example.com\\
+%   Phone: +X-XXX-XXX-XXXX\\
+%   \textit{Relationship: [e.g., Project Supervisor, Colleague, etc.]}
+
+% \item \textbf{Reference Person 3}\\
+%   Job Title, Department\\
+%   Organization/Institution Name\\
+%   Email: email3@example.com\\
+%   Phone: +X-XXX-XXX-XXXX\\
+%   \textit{Relationship: [e.g., Mentor, Collaborator, etc.]}
+% \end{enumerate}
+% }
+
+\end{document}
