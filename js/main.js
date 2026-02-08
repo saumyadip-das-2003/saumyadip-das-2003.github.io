@@ -157,13 +157,14 @@ document.addEventListener('DOMContentLoaded', function(){
   document.querySelectorAll('.edu-transcript-btn').forEach(function(btn){
     btn.addEventListener('click', function(e){
       var pdf = this.getAttribute('data-pdf');
+      var pdfUrl = pdf ? encodeURI(pdf) : '';
       var title = this.closest('.card').querySelector('.card-title').textContent || 'Transcript';
       document.getElementById('transcriptModalLabel').textContent = title + ' — Transcript';
       var content = document.getElementById('transcriptContent');
       var download = document.getElementById('transcriptDownload');
       if(pdf && pdf.trim()){
-        content.innerHTML = '<div class="ratio ratio-16x9"><iframe src="'+pdf+'" width="100%" height="600" frameborder="0">Loading…</iframe></div>';
-        download.href = pdf; download.style.display = '';
+        content.innerHTML = '<div class="ratio ratio-16x9"><iframe src="'+pdfUrl+'" width="100%" height="600" frameborder="0">Loading…</iframe></div>';
+        download.href = pdfUrl; download.style.display = '';
       } else {
         content.innerHTML = '<p class="text-muted">Transcript PDF not uploaded yet. You can add the PDF to the repository and set the button\'s <code>data-pdf</code> attribute to the file path, or send me the file and I will add it.</p>';
         download.style.display = 'none';
