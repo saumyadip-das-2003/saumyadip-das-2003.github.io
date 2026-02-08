@@ -248,6 +248,20 @@ document.addEventListener('DOMContentLoaded', function(){
     });
   });
 
+  // Video modal iframe handling
+  var videoModalEl = document.getElementById('videoModal');
+  if(videoModalEl){
+    videoModalEl.addEventListener('show.bs.modal', function(e){
+      var iframe = document.getElementById('videoIframe');
+      // Use YouTube embed URL (video ID: -tJYN-eG1zk)
+      iframe.src = 'https://www.youtube.com/embed/-tJYN-eG1zk?rel=0';
+    });
+    videoModalEl.addEventListener('hidden.bs.modal', function(e){
+      var iframe = document.getElementById('videoIframe');
+      iframe.src = '';
+    });
+  }
+
   // reveal animation
   document.querySelectorAll('.reveal').forEach(function(el,i){ setTimeout(()=>el.classList.add('visible'), 80*i) });
 });
