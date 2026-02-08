@@ -4,9 +4,9 @@
   --max-width:1100px;
   font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
 }
-body{font-family:var(--font);}
-.hero{background:linear-gradient(180deg, rgba(11,94,215,0.03), rgba(0,0,0,0));}
-.portrait{object-fit:cover;}
+body{font-family:var(--font);background:#fff;color:#222}
+.hero{background:linear-gradient(180deg, rgba(11,94,215,0.04), rgba(0,0,0,0));padding:40px 0}
+.portrait{object-fit:cover;border:6px solid #fff}
 main{max-width:var(--max-width);} 
 .placeholder-video{background:#f8f9fa;border:2px dashed #dee2e6;height:200px;display:flex;align-items:center;justify-content:center;color:#6c757d}
 .card .badge{font-weight:600}
@@ -15,6 +15,22 @@ h1,h2,h3{font-weight:600}
 /* Publications highlight */
 .card .card-title{font-size:1.05rem}
 
+/* Social icons */
+.social-icons a{color:var(--muted);transition:all .18s ease}
+.social-icons a:hover{color:var(--brand);transform:translateY(-2px)}
+
+/* Cards hover effect */
+.card{transition:transform .18s ease,box-shadow .18s ease}
+.card:hover{transform:translateY(-6px);box-shadow:0 8px 24px rgba(11,94,215,0.08)}
+
+/* Skill badges */
+.badge-skill{background:#f8f9fa;border:1px solid #e9ecef;color:#495057;font-weight:600}
+
+/* Simple reveal animation */
+.reveal{opacity:0;transform:translateY(6px);animation:reveal .6s ease forwards}
+@keyframes reveal{to{opacity:1;transform:none}}
+
 @media (max-width:576px){
   .portrait{width:120px;height:120px}
 }
+

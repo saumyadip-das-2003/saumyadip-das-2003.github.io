@@ -19,6 +19,8 @@ This repository contains a personal E-Portfolio for **Saumyadip Das**. The site 
 
 ## Next steps (optional)
 - Replace the embedded Google Form `src` in `contact.html` with your form's embed URL (make sure "anyone with the link" is allowed).
-- The LaTeX source `main (2).tex` is included in the repository — I can parse it to extract links, citations and regenerate a publication list if you want.
+- The LaTeX source `main (2).tex` is included in the repository — I parsed it and added ResearchGate links for your conference papers on `publications.html`.
+- Placeholders for **Google Scholar** and **IEEE author profile** are present in the header/footer — replace the `href="#"` links with your profiles when ready.
+
 - Add video links to `videos.html` and I will embed them for you.
 - If you want server-side features (PHP contact endpoints), let me know and we can add a simple backend or use serverless endpoints.
