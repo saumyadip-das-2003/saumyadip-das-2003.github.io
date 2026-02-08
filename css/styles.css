@@ -27,7 +27,8 @@ h1,h2,h3{font-weight:600}
 .badge-skill{background:#f8f9fa;border:1px solid #e9ecef;color:#495057;font-weight:600}
 
 /* Simple reveal animation */
-.reveal{opacity:0;transform:translateY(6px);animation:reveal .6s ease forwards}
+.reveal{opacity:0;transform:translateY(6px);transition:all .36s ease}
+.reveal.visible{opacity:1;transform:none}
 @keyframes reveal{to{opacity:1;transform:none}}
 
 @media (max-width:576px){

@@ -12,20 +12,20 @@
   <meta name="theme-color" content="#0b5ed7">
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
   <div class="container">
-    <a class="navbar-brand fw-bold" href="/">Saumyadip Das</a>
+    <a class="navbar-brand fw-bold" href="/#home">Saumyadip Das</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav" aria-controls="nav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="nav">
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-        <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-        <li class="nav-item"><a class="nav-link" href="/about.html">About</a></li>
-        <li class="nav-item"><a class="nav-link" href="/publications.html">Publications</a></li>
-        <li class="nav-item"><a class="nav-link" href="/projects.html">Projects</a></li>
-        <li class="nav-item"><a class="nav-link" href="/videos.html">Videos</a></li>
-        <li class="nav-item"><a class="nav-link" href="/contact.html">Contact</a></li>
+        <li class="nav-item"><a class="nav-link" href="/#home">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="/#about">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="/#publications">Publications</a></li>
+        <li class="nav-item"><a class="nav-link" href="/#projects">Projects</a></li>
+        <li class="nav-item"><a class="nav-link" href="/#videos">Videos</a></li>
+        <li class="nav-item"><a class="nav-link" href="/#contact">Contact</a></li>
       </ul>
       <div class="d-none d-lg-flex align-items-center ms-3 social-icons">
         <a class="text-muted me-2" href="https://github.com/saumyadip-das-2003" target="_blank" aria-label="GitHub"><i class="fab fa-github fa-lg"></i></a>
@@ -57,48 +57,211 @@
   </div>
 </header>
 
-<main class="container py-5">
-  <section class="mb-4">
-    <div class="card border-start border-4 border-primary mb-3 shadow-sm">
-      <div class="card-body">
-        <h5 class="card-title mb-1">Featured research: SoilSense</h5>
-        <p class="mb-0 text-muted">An IEEE conference paper on IoT-based soil health monitoring. <a href="/publications.html">More details</a> • <a href="https://doi.org/10.1109/EICT68394.2025.11355612" target="_blank">DOI</a></p>
+<main class="container" id="home" style="padding-top:90px;padding-bottom:40px;">
+  <!-- About -->
+  <section id="about" class="py-5">
+    <div class="row align-items-center">
+      <div class="col-md-4 text-center">
+        <img src="Saumyadip%20Das.png" alt="Saumyadip Das" class="rounded-circle portrait shadow-lg reveal" width="180" height="180">
+      </div>
+      <div class="col-md-8">
+        <h2 class="reveal">About</h2>
+        <p class="lead text-muted reveal">Aspiring Computer Science researcher focusing on AI, ML, explainability, and IoT. I convert research into practical systems and publish in conferences and journals.</p>
+        <p class="reveal">CGPA: <strong>3.99 / 4.00</strong> • BSc CSE — American International University-Bangladesh</p>
+        <p class="reveal"><a class="btn btn-primary me-2" href="Saumyadip_Das%20(2).pdf" target="_blank">Download CV</a> <a class="btn btn-outline-secondary" href="#contact">Contact</a></p>
       </div>
     </div>
   </section>
 
-  <section class="mb-5">
-    <h2>About</h2>
-    <p>Dedicated Computer Science undergraduate with a strong foundation in AI-driven research and IoT development. Interested in machine learning, explainability, and practical, scalable solutions. Currently pursuing research work and contributing to publications and open-source projects.</p>
+  <!-- Publications -->
+  <section id="publications" class="py-5">
+    <h2 class="mb-3">Publications</h2>
+
+    <div class="mb-3">
+      <div class="btn-group" role="group" aria-label="filter">
+        <button class="btn btn-outline-primary active" data-filter="all">All</button>
+        <button class="btn btn-outline-primary" data-filter="peer-reviewed">Peer-reviewed</button>
+        <button class="btn btn-outline-primary" data-filter="submitted">Submitted</button>
+        <button class="btn btn-outline-primary" data-filter="conference">Conference</button>
+      </div>
+    </div>
+
+    <div id="pub-list" class="row g-3">
+      <!-- SoilSense (featured) -->
+      <div class="col-md-6 pub-item" data-tags="peer-reviewed,conference">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">SoilSense: An IoT-Based Soil Health Monitoring System</h5>
+            <p class="text-muted mb-1">Saumyadip Das et al. — IEEE EICT, 2025</p>
+            <div>
+              <a href="#" class="card-link" data-bs-toggle="modal" data-bs-target="#pubModal" data-title="SoilSense" data-authors="Saumyadip Das, N-E Sarjina Khan, ..." data-detail="IoT-based soil monitoring, ML predicted NPK values" data-links="https://doi.org/10.1109/EICT68394.2025.11355612">Details</a>
+              <a href="https://doi.org/10.1109/EICT68394.2025.11355612" target="_blank" class="card-link">DOI</a>
+              <span class="badge bg-success ms-2">Peer-reviewed</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Conference papers from LaTeX (ResearchGate links) -->
+      <div class="col-md-6 pub-item" data-tags="conference">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">The Future of Textile Waste</h5>
+            <p class="text-muted mb-1">Nur-E Sarjina Khan, Saumyadip Das, et al. — BUTEX 2025</p>
+            <div>
+              <a href="https://www.researchgate.net/publication/400525770_The_Future_of_Textile_Waste_Sustainable_Solutions_through_Eco-Friendly_Products_and_Renewable_Energy_from_Post-Consumer-Textiles?_tp=eyJjb250ZXh0Ijp7InBhZ2UiOiJwcm9maWxlIiwicHJldmlvdXNQYWdlIjpudWxsLCJwb3NpdGlvbiI6InBhZ2VDb250ZW50In19" target="_blank" class="card-link">ResearchGate</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 pub-item" data-tags="conference">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">Artificial Intelligence in Textile Waste Management</h5>
+            <p class="text-muted mb-1">Nur-E Sarjina Khan, Saumyadip Das, et al. — BUTEX 2025</p>
+            <div>
+              <a href="https://www.researchgate.net/publication/400526019_Artificial_Intelligence_in_Textile_Waste_Management_Exploring_Predictive_Modelling_Recycling_Innovations_and_Sustainable_Solutions" target="_blank" class="card-link">ResearchGate</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 pub-item" data-tags="conference">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">AI-Driven Transformations in Textile Waste Management</h5>
+            <p class="text-muted mb-1">Nur-E Sarjina Khan, Saumyadip Das, et al. — ICETSD 2025</p>
+            <div>
+              <a href="https://www.researchgate.net/publication/400525785_AI-Driven_Transformations_in_Textile_Waste_Management_Challenges_and_Opportunities" target="_blank" class="card-link">ResearchGate</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Submitted / In-review entries -->
+      <div class="col-md-6 pub-item" data-tags="submitted">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">MambaOut-tiny vs ResNet-50 and MobileNetV2</h5>
+            <p class="text-muted mb-1">Manuscript submitted (2026)</p>
+            <div>
+              <a href="#" class="card-link">Preprint / details on request</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 pub-item" data-tags="submitted">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">LLM-Driven Cardiovascular Disease Risk Prediction</h5>
+            <p class="text-muted mb-1">Manuscript submitted (2026)</p>
+            <div>
+              <a href="#" class="card-link">Preprint / details on request</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
   </section>
 
-  <section class="row">
-    <div class="col-md-6">
-      <h3>Research Interests</h3>
-      <ul>
-        <li>Machine Learning & Deep Learning</li>
-        <li>Explainability & Model Compression</li>
-        <li>IoT for Sustainable Agriculture</li>
-        <li>Applied Data Science</li>
-      </ul>
-    </div>
-    <div class="col-md-6">
-      <h3>Highlights</h3>
-      <ul>
-        <li>CGPA: 3.99 / 4.00 (AIUB)</li>
-        <li>Publications in IEEE & conference proceedings</li>
-        <li>Experience building full-stack systems & IoT prototypes</li>
-      </ul>
-      <div class="mt-3">
-        <span class="badge bg-light text-muted badge-skill me-1">Python</span>
-        <span class="badge bg-light text-muted badge-skill me-1">PyTorch</span>
-        <span class="badge bg-light text-muted badge-skill me-1">TensorFlow</span>
-        <span class="badge bg-light text-muted badge-skill me-1">IoT</span>
-        <span class="badge bg-light text-muted badge-skill me-1">Data Science</span>
+  <!-- Projects -->
+  <section id="projects" class="py-5">
+    <h2 class="mb-3">Projects</h2>
+    <div class="row g-3">
+      <div class="col-md-6">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">SafePath — Community Safety Monitoring</h5>
+            <p class="card-text">HTML, PHP, MySQL. Citizens report incidents, authority management & admin panel.</p>
+            <a href="https://github.com/saumyadip-das-2003/SafePath---Community-Safety-Extremism-Monitoring-System" target="_blank" class="btn btn-sm btn-outline-primary">View on GitHub</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">SoilSense — IoT + ML</h5>
+            <p class="card-text">ESP32 sensors + ML to predict NPK values. Accepted to IEEE (DOI available).</p>
+            <a href="https://github.com/saumyadip-das-2003/SoilSense-Codes" target="_blank" class="btn btn-sm btn-outline-primary">View Code</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">University Resource Booking — Java / UML / Oracle DB</h5>
+            <p class="card-text">UML design, Java Swing UI, and Oracle DB backend for booking resources.</p>
+            <a href="https://github.com/saumyadip-das-2003/University-Resource-Booking-System--Oracle-Database-Project" target="_blank" class="btn btn-sm btn-outline-primary">Oracle DB</a>
+            <a href="https://github.com/saumyadip-das-2003/University-Resource-Management-System-URMS---OOAD" target="_blank" class="btn btn-sm btn-outline-secondary ms-2">UML</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">Bank Management System</h5>
+            <p class="card-text">C#, .NET Framework, MSSQL — typical banking flows & roles.</p>
+            <a href="https://github.com/saumyadip-das-2003/Bank-Management-System" target="_blank" class="btn btn-sm btn-outline-primary">View Code</a>
+          </div>
+        </div>
       </div>
     </div>
   </section>
+
+  <!-- Videos -->
+  <section id="videos" class="py-5">
+    <h2 class="mb-3">Video Portfolio</h2>
+    <p class="text-muted">Add YouTube/Vimeo links and they will be embedded here.</p>
+    <div class="row g-3">
+      <div class="col-md-6">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body text-center placeholder-video">No video yet</div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body text-center placeholder-video">No video yet</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="py-5">
+    <h2 class="mb-3">Contact</h2>
+    <p class="text-muted">For research collaborations or project inquiries — email <a href="mailto:das.saumyadip.cse@gmail.com">das.saumyadip.cse@gmail.com</a> or use the form below.</p>
+
+    <div class="ratio ratio-16x9 shadow-sm">
+      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfDUMMY/viewform?embedded=true" width="100%" height="100%" frameborder="0">Loading…</iframe>
+    </div>
+
+    <p class="mt-3">If the embed does not work, open <a href="https://docs.google.com/forms/d/e/1FAIpQLSfDUMMY/viewform" target="_blank">the form</a> in a new tab.</p>
+  </section>
+
 </main>
+
+<!-- Publication modal -->
+<div class="modal fade" id="pubModal" tabindex="-1" aria-labelledby="pubModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="pubModalLabel">Publication</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p id="pubDetail">Loading...</p>
+        <p id="pubLinks"></p>
+      </div>
+    </div>
+  </div>
+</div>
 
 <footer class="bg-light py-4 mt-5">
   <div class="container text-center small text-muted">

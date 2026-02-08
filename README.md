@@ -18,7 +18,7 @@ This repository contains a personal E-Portfolio for **Saumyadip Das**. The site 
 3. Your site should be available at `https://saumyadip-das-2003.github.io` after a few minutes.
 
 ## Next steps (optional)
-- Replace the embedded Google Form `src` in `contact.html` with your form's embed URL (make sure "anyone with the link" is allowed).
+- Replace the embedded Google Form `src` in the Contact section of `index.html` with your form's embed URL (make sure "anyone with the link" is allowed); paste the link here and I’ll replace it for you.
 - The LaTeX source `main (2).tex` is included in the repository — I parsed it and added ResearchGate links for your conference papers on `publications.html`.
 - Placeholders for **Google Scholar** and **IEEE author profile** are present in the header/footer — replace the `href="#"` links with your profiles when ready.
 
