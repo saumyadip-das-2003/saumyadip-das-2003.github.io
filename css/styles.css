@@ -75,7 +75,13 @@ section h2::after{content:'';position:absolute;left:0;bottom:0;height:3px;width:
 section h2:hover::after{width:80px}
 
 /* Cards and ornaments */
-.card{transition:transform .22s ease,box-shadow .22s ease;border-radius:.6rem}
+.card{
+  background: #fff;
+  border: 1px solid #e9ecef;
+  box-shadow: 0 2px 12px rgba(11,94,215,0.04);
+  border-radius: .6rem;
+  transition: transform .22s cubic-bezier(.4,0,.2,1), box-shadow .22s cubic-bezier(.4,0,.2,1), background .3s, color .3s, border-color .3s;
+}
 .card:hover{transform:translateY(-8px);box-shadow:0 20px 60px rgba(11,94,215,0.06)}
 .card .card-body{position:relative}
 .card .card-orn{position:absolute;right:12px;top:12px;width:40px;height:40px;opacity:.9}
