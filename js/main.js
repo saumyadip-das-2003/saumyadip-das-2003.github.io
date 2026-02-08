@@ -100,6 +100,44 @@ document.addEventListener('DOMContentLoaded', function(){
   // initial render
   renderPubs();
 
+  // Projects pagination (show 4, +4 per click)
+  var projItems = Array.from(document.querySelectorAll('.project-item'));
+  var PROJ_INITIAL = 4;
+  var PROJ_INCREMENT = 4;
+  var projVisible = PROJ_INITIAL;
+
+  function renderProjects(){
+    projItems.forEach(function(it, idx){
+      it.style.display = idx < projVisible ? '' : 'none';
+    });
+    var btn = document.getElementById('projShowMore');
+    if(!btn) return;
+    if(projItems.length <= PROJ_INITIAL){
+      btn.style.display = 'none';
+    } else {
+      btn.style.display = '';
+      if(projVisible < projItems.length){
+        var left = projItems.length - projVisible;
+        btn.textContent = 'Show more (' + Math.min(PROJ_INCREMENT, left) + ' more)';
+      } else {
+        btn.textContent = 'Show less';
+      }
+    }
+  }
+
+  var projBtn = document.getElementById('projShowMore');
+  if(projBtn){
+    projBtn.addEventListener('click', function(){
+      if(projVisible < projItems.length) projVisible += PROJ_INCREMENT;
+      else projVisible = PROJ_INITIAL;
+      renderProjects();
+      if(projVisible === PROJ_INITIAL) document.getElementById('projects').scrollIntoView({behavior:'smooth', block:'start'});
+    });
+  }
+
+  // initial render for projects
+  renderProjects();
+
   // Publication modal population
   var pubModal = document.getElementById('pubModal');
   if(pubModal){
