@@ -6,6 +6,13 @@
   --bg:linear-gradient(180deg,#fbfdff 0%, #ffffff 100%);
   --text:#222;
   --card-surface: linear-gradient(180deg,#ffffff, #fbfdff);
+  --card-hero: linear-gradient(135deg, #e3f0ff 80%, #f8f9ff 100%);
+  --card-education: linear-gradient(135deg, #e3f7ff 80%, #f8f9ff 100%);
+  --card-publications: linear-gradient(135deg, #fffbe3 80%, #f8f9ff 100%);
+  --card-projects: linear-gradient(135deg, #e3fff7 80%, #f8f9ff 100%);
+  --card-skills: linear-gradient(135deg, #e3ffe7 80%, #f8f9ff 100%);
+  --card-awards: linear-gradient(135deg, #ffe3f7 80%, #f8f9ff 100%);
+  --card-certifications: linear-gradient(135deg, #e3eaff 80%, #f8f9ff 100%);
   --card-accent: linear-gradient(90deg,#ff7a7a,#ffd166,#9be15d,#00d4ff,#6c63ff);
   --section-hero:linear-gradient(90deg,#e3f0ff 0%,#f8f9ff 100%);
   --section-education:linear-gradient(90deg,#f8f9ff 0%,#e3f7ff 100%);
@@ -25,6 +32,13 @@
   --bg:linear-gradient(180deg,#071022 0%, #041025 100%);
   --text:#e6eef8;
   --card-surface: linear-gradient(180deg,#071022,#071826);
+  --card-hero: linear-gradient(135deg, #1a233a 80%, #23243a 100%);
+  --card-education: linear-gradient(135deg, #23243a 80%, #1a233a 100%);
+  --card-publications: linear-gradient(135deg, #2a2a1a 80%, #23243a 100%);
+  --card-projects: linear-gradient(135deg, #1a3a2a 80%, #23243a 100%);
+  --card-skills: linear-gradient(135deg, #1a3a23 80%, #23243a 100%);
+  --card-awards: linear-gradient(135deg, #3a1a2a 80%, #23243a 100%);
+  --card-certifications: linear-gradient(135deg, #1a1a3a 80%, #23243a 100%);
   --card-accent: linear-gradient(90deg,#7bfbff,#7aadff,#d6a1ff,#ff8fb8);
   --section-hero:linear-gradient(90deg,#1a233a 0%,#23243a 100%);
   --section-education:linear-gradient(90deg,#23243a 0%,#1a233a 100%);
@@ -143,7 +157,15 @@ section h2:hover::after{width:80px}
 section::before{content:'';display:block;height:28px;margin-top:-28px;background:linear-gradient(180deg,transparent,rgba(11,94,215,0.02))}
 
 /* Subtle card surface gradient */
-.card{background:linear-gradient(180deg,#ffffff, #fbfdff)}
+/* Section-specific card backgrounds */
+.section-hero .card { background: var(--card-hero); }
+.section-education .card { background: var(--card-education); }
+.section-publications .card { background: var(--card-publications); }
+.section-projects .card { background: var(--card-projects); }
+.section-skills .card { background: var(--card-skills); }
+.section-awards .card { background: var(--card-awards); }
+.section-certifications .card { background: var(--card-certifications); }
+.card { background: var(--card-surface); }
 
 /* Skill badges */
 .badge-skill{background:#f8f9fa;border:1px solid #e9ecef;color:#495057;font-weight:600}
