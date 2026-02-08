@@ -28,11 +28,8 @@
 .cert-item .card {
   border-radius: 12px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-  min-height: 340px;
 }
 .cert-item .card-body {
-  min-height: 420px;
-  height: 420px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
