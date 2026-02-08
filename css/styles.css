@@ -144,10 +144,33 @@ section h2:hover::after{width:80px}
 .badge-skill{background:#f8f9fa;border:1px solid #e9ecef;color:#495057;font-weight:600}
 
 /* Skill proficiency compact layout */
-.skill-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:.5rem}
-.skill-name{font-weight:600;color:#222}
-.skill-meta{display:flex;align-items:center;gap:.5rem}
-.skill-fill{height:100%;border-radius:6px}
+.skill-row {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin-bottom: .5rem;
+}
+.skill-name {
+  font-weight: 600;
+  color: #222;
+  min-width: 90px;
+}
+.skill-bar {
+  position: relative;
+  flex: 1 1 120px;
+  height: 8px;
+  background: #e9ecef;
+  border-radius: 6px;
+  overflow: hidden;
+  margin: 0 0.5rem;
+}
+.skill-fill {
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  height: 100%;
+  border-radius: 6px;
+  z-index: 1;
+}
 .skill-adv {
   background: #2563eb !important; /* blue for Advanced */
 }
@@ -157,7 +180,13 @@ section h2:hover::after{width:80px}
 .skill-fam {
   background: #b0b4ba !important; /* gray for Familiar */
 }
-.skill-label{font-size:.8rem;color:#6c757d;min-width:70px;text-align:right}
+.skill-label {
+  font-size: .9rem;
+  color: #6c757d;
+  min-width: 70px;
+  text-align: left;
+  margin-left: 0.5rem;
+}
 
 /* Legend for proficiency */
 .skill-legend{display:flex;gap:1.2rem;align-items:center;font-size:.95rem;color:#6c757d}
