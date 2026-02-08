@@ -43,6 +43,32 @@ document.addEventListener('DOMContentLoaded', function(){
   window.addEventListener('scroll', checkNavbar);
   checkNavbar();
 
+  // Theme toggle: dark/light with persistence (button displays the action target)
+  var themeBtn = document.getElementById('themeToggleBtn');
+  function setTheme(theme){
+    if(theme === 'dark'){
+      document.documentElement.setAttribute('data-theme','dark');
+      if(themeBtn){ themeBtn.textContent = 'Light'; themeBtn.setAttribute('aria-pressed','true'); themeBtn.classList.remove('btn-outline-light'); themeBtn.classList.add('btn-light','text-dark'); }
+      localStorage.setItem('theme','dark');
+    } else {
+      document.documentElement.removeAttribute('data-theme');
+      if(themeBtn){ themeBtn.textContent = 'Dark'; themeBtn.setAttribute('aria-pressed','false'); themeBtn.classList.remove('btn-light','text-dark'); themeBtn.classList.add('btn-outline-light'); }
+      localStorage.setItem('theme','light');
+    }
+  }
+  // initialize theme from storage or OS preference
+  var savedTheme = localStorage.getItem('theme');
+  if(savedTheme) setTheme(savedTheme);
+  else if(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) setTheme('dark');
+  else setTheme('light');
+
+  if(themeBtn){
+    themeBtn.addEventListener('click', function(){
+      var active = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+      setTheme(active === 'dark' ? 'light' : 'dark');
+    });
+  }
+
   // Publication filters with pagination (show 4, +5 per click)
   var buttons = document.querySelectorAll('[data-filter]');
   var items = Array.from(document.querySelectorAll('.pub-item'));
