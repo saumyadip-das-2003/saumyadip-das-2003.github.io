@@ -4,8 +4,9 @@
   margin: 0;
   padding: 0.5rem 0 0.5rem 0;
 }
-.award-img-full {
+.award-img {
   width: 100%;
+  max-width: 420px;
   max-height: 260px;
   height: auto;
   display: block;
