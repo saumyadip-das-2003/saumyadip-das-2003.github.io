@@ -39,9 +39,17 @@ h1,h2,h3{font-weight:600}
 .skill-fam{background:#6c757d}
 .skill-label{font-size:.8rem;color:#6c757d;min-width:70px;text-align:right}
 
+/* Legend for proficiency */
+.skill-legend{display:flex;gap:1.2rem;align-items:center;font-size:.95rem;color:#6c757d}
+.skill-legend-swatch{display:inline-block;width:14px;height:12px;border-radius:3px;border:1px solid #e9ecef;vertical-align:middle}
+.skill-legend-swatch.skill-adv{background:var(--brand)}
+.skill-legend-swatch.skill-int{background:#ffb020}
+.skill-legend-swatch.skill-fam{background:#6c757d}
+
 @media (max-width:768px){
   .skill-bar{width:110px}
   .skill-label{min-width:58px}
+  .skill-legend{font-size:.9rem}
 }
 
 /* Simple reveal animation */
