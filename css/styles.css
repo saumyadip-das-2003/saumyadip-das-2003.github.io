@@ -6,7 +6,9 @@
 }
 body{font-family:var(--font);background:#fff;color:#222}
 .hero{background:linear-gradient(180deg, rgba(11,94,215,0.04), rgba(0,0,0,0));padding:40px 0}
+.hero-center{text-align:center;padding:50px 0}
 .portrait{object-fit:cover;border:6px solid #fff}
+.portrait{width:200px;height:200px}
 main{max-width:var(--max-width);} 
 .placeholder-video{background:#f8f9fa;border:2px dashed #dee2e6;height:200px;display:flex;align-items:center;justify-content:center;color:#6c757d}
 .card .badge{font-weight:600}

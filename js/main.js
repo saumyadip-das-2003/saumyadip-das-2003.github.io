@@ -12,6 +12,8 @@ document.addEventListener('DOMContentLoaded', function(){
         // close nav on mobile
         var bs = bootstrap && bootstrap.Collapse ? bootstrap.Collapse.getInstance(document.getElementById('nav')) : null;
         if(bs) bs.hide();
+        // ensure active nav update after scroll
+        setTimeout(function(){ window.dispatchEvent(new Event('scroll')); }, 300);
       }
     });
   });
