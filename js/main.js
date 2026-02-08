@@ -43,17 +43,35 @@ document.addEventListener('DOMContentLoaded', function(){
   window.addEventListener('scroll', checkNavbar);
   checkNavbar();
 
-  // Theme toggle: dark/light with persistence (button displays the action target)
+  // Theme toggle: dark/light with persistence (buttons show CURRENT theme)
   var themeBtn = document.getElementById('themeToggleBtn');
+  // also attempt to find mobile toggle if present
+  var themeBtnMobile = document.getElementById('themeToggleBtnMobile');
+
+  function _updateThemeButtons(label, pressed){
+    [themeBtn, themeBtnMobile].forEach(function(btn){
+      if(!btn) return;
+      btn.textContent = label;
+      btn.setAttribute('aria-pressed', pressed ? 'true' : 'false');
+      if(pressed){
+        btn.classList.remove('btn-outline-light');
+        btn.classList.add('btn-light','text-dark');
+      } else {
+        btn.classList.remove('btn-light','text-dark');
+        btn.classList.add('btn-outline-light');
+      }
+    });
+  }
+
   function setTheme(theme){
     if(theme === 'dark'){
       document.documentElement.setAttribute('data-theme','dark');
-      if(themeBtn){ themeBtn.textContent = 'Light'; themeBtn.setAttribute('aria-pressed','true'); themeBtn.classList.remove('btn-outline-light'); themeBtn.classList.add('btn-light','text-dark'); }
       localStorage.setItem('theme','dark');
+      _updateThemeButtons('Light', true); // show label for current mode
     } else {
       document.documentElement.removeAttribute('data-theme');
-      if(themeBtn){ themeBtn.textContent = 'Dark'; themeBtn.setAttribute('aria-pressed','false'); themeBtn.classList.remove('btn-light','text-dark'); themeBtn.classList.add('btn-outline-light'); }
       localStorage.setItem('theme','light');
+      _updateThemeButtons('Dark', false);
     }
   }
   // initialize theme from storage or OS preference
@@ -62,12 +80,10 @@ document.addEventListener('DOMContentLoaded', function(){
   else if(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) setTheme('dark');
   else setTheme('light');
 
-  // wire desktop and mobile theme buttons and show CURRENT theme on the button
-  var themeBtnMobile = document.getElementById('themeToggleBtnMobile');
-  function bindThemeButton(el){ if(!el) return; el.addEventListener('click', function(){ var active = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light'; setTheme(active === 'dark' ? 'light' : 'dark'); }); }
+  // bind desktop + mobile theme buttons
+  function bindThemeButton(el){ if(!el) return el.addEventListener('click', function(){ var active = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light'; setTheme(active === 'dark' ? 'light' : 'dark'); }); }
   bindThemeButton(themeBtn); bindThemeButton(themeBtnMobile);
 
-  // Update both buttons to reflect current theme in setTheme: (already handled above)
 
   // Section highlight using IntersectionObserver
   var sectionsToObserve = document.querySelectorAll('main section');
