@@ -28,11 +28,13 @@
 .cert-item .card {
   border-radius: 12px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  height: 100%;
 }
 .cert-item .card-body {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  height: 100%;
 }
 .cert-item iframe {
   width: 100%;
