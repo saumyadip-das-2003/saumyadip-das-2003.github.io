@@ -13,7 +13,7 @@
   border-radius: 12px;
   cursor: pointer;
   box-shadow: none;
-  object-fit: cover;
+  object-fit: contain;
   margin: 0;
 }
 .award-item .card-body {
