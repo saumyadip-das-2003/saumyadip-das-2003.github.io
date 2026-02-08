@@ -33,6 +33,16 @@ document.addEventListener('DOMContentLoaded', function(){
   window.addEventListener('scroll', onScroll);
   onScroll();
 
+  // navbar shrink on scroll
+  var navbarEl = document.querySelector('.navbar');
+  function checkNavbar(){
+    if(!navbarEl) return;
+    if(window.scrollY > 40) navbarEl.classList.add('nav-scrolled');
+    else navbarEl.classList.remove('nav-scrolled');
+  }
+  window.addEventListener('scroll', checkNavbar);
+  checkNavbar();
+
   // Publication filters with pagination (show 4, +5 per click)
   var buttons = document.querySelectorAll('[data-filter]');
   var items = Array.from(document.querySelectorAll('.pub-item'));

@@ -81,6 +81,24 @@ section h2:hover::after{width:80px}
 .card{transition:transform .18s ease,box-shadow .18s ease}
 .card:hover{transform:translateY(-6px);box-shadow:0 8px 24px rgba(11,94,215,0.08)}
 
+/* Navbar theme: single solid color, matches brand */
+.navbar{background:var(--brand) !important;color:#fff;box-shadow:0 6px 18px rgba(11,94,215,0.12);transition:padding .25s ease,box-shadow .25s ease,background .25s ease}
+.navbar .navbar-brand, .navbar .nav-link{color:#fff !important}
+.navbar .nav-link{opacity:.95;transition:opacity .18s ease,transform .18s ease}
+.navbar .nav-link:hover{opacity:1;transform:translateY(-2px)}
+.navbar .nav-link.active{font-weight:700}
+.navbar::after{content:'';position:absolute;left:0;right:0;bottom:-4px;height:4px;background:linear-gradient(90deg,var(--accent),var(--brand));pointer-events:none}
+.navbar .navbar-toggler{border-color:rgba(255,255,255,0.12) !important}
+.navbar-toggler-icon{filter:invert(1) brightness(2.6) contrast(1.05)}
+.navbar-collapse{background:var(--brand)}
+.navbar.nav-scrolled{padding-top:.35rem;padding-bottom:.35rem;box-shadow:0 12px 30px rgba(11,94,215,0.16);backdrop-filter:blur(3px)}
+
+/* Section divider subtle band */
+section::before{content:'';display:block;height:28px;margin-top:-28px;background:linear-gradient(180deg,transparent,rgba(11,94,215,0.02))}
+
+/* Subtle card surface gradient */
+.card{background:linear-gradient(180deg,#ffffff, #fbfdff)}
+
 /* Skill badges */
 .badge-skill{background:#f8f9fa;border:1px solid #e9ecef;color:#495057;font-weight:600}
 
