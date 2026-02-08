@@ -1,6 +1,6 @@
 .cert-item {
   width: 100%;
-}
+/* Removed extra closing brace */
 .cert-item .card {
   min-width: 340px;
   margin-bottom: 1.2rem;
@@ -10,7 +10,7 @@
   height: 420px;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  /* Let Bootstrap control width for columns */
 }
 .cert-item iframe {
   width: 100%;
@@ -19,8 +19,7 @@
   border-radius: 6px;
   display: block;
   margin: 0 auto;
-  background: #fff;
-}
+  /* Remove width and display overrides */
 .cert-item .card-body {
   min-height: 420px;
   height: 420px;
@@ -283,3 +282,6 @@ body, main, section, .section-hero, .section-education, .section-publications, .
   transition: background .3s, color .3s, border-color .3s, box-shadow .3s;
 }
 
+}
+
+}
