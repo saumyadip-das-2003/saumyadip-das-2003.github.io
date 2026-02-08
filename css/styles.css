@@ -170,6 +170,10 @@ section h2:hover::after{width:80px}
   height: 100%;
   border-radius: 6px;
   z-index: 1;
+  width: inherit;
+  min-width: 0;
+  background: #2563eb; /* fallback, will be overridden by .skill-adv etc. */
+  transition: width .6s cubic-bezier(.4,0,.2,1);
 }
 .skill-adv {
   background: #2563eb !important; /* blue for Advanced */
