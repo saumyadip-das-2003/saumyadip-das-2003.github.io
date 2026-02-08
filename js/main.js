@@ -262,6 +262,24 @@ document.addEventListener('DOMContentLoaded', function(){
     });
   }
 
-  // reveal animation
-  document.querySelectorAll('.reveal').forEach(function(el,i){ setTimeout(()=>el.classList.add('visible'), 80*i) });
+  // initialize skill bars: store original percentages and collapse them so they animate on reveal
+  document.querySelectorAll('.skill-fill').forEach(function(s){
+    var w = s.style.width || '';
+    s.dataset.level = w;
+    s.style.width = '0';
+  });
+
+  // reveal animation with skill bar restore inside revealed blocks
+  document.querySelectorAll('.reveal').forEach(function(el,i){
+    setTimeout(function(){
+      el.classList.add('visible');
+      // animate skill fills inside this element (staggered)
+      var fills = el.querySelectorAll ? el.querySelectorAll('.skill-fill') : [];
+      fills.forEach(function(s,j){ setTimeout(function(){ s.style.width = s.dataset.level || '70%'; }, 120 + j*70); });
+    }, 80*i);
+  });
+
+  // In case some skill bars are outside .reveal containers, restore them once DOM is ready (graceful fallback)
+  setTimeout(function(){ document.querySelectorAll('.skill-fill').forEach(function(s){ if(s.style.width === '0') s.style.width = s.dataset.level || '70%'; }); }, 1500);
+
 });
