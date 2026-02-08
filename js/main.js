@@ -311,16 +311,13 @@ document.addEventListener('DOMContentLoaded', function(){
 
   // Theme toggle logic
   var themeBtn = document.getElementById('themeToggleBtn');
-  var themeText = document.getElementById('themeToggleText');
   function setTheme(theme) {
     if(theme === 'dark') {
       document.documentElement.setAttribute('data-theme','dark');
       localStorage.setItem('theme','dark');
-      if(themeText) themeText.textContent = 'Light';
     } else {
       document.documentElement.removeAttribute('data-theme');
       localStorage.setItem('theme','light');
-      if(themeText) themeText.textContent = 'Dark';
     }
   }
   // Init theme from storage or OS

@@ -194,3 +194,29 @@ section::before{content:'';display:block;height:28px;margin-top:-28px;background
 [data-theme="dark"] .btn-theme { background: #23243a; color: #fff; border-color: var(--accent); }
 [data-theme="dark"] .btn-theme:hover, [data-theme="dark"] .btn-theme:focus { background: var(--accent); color: #fff; border-color: var(--brand); }
 
+.section-hero h2, .section-hero .card-title { color: #0b5ed7; }
+.section-education h2, .section-education .card-title { color: #0097a7; }
+.section-publications h2, .section-publications .card-title { color: #e6a700; }
+.section-projects h2, .section-projects .card-title { color: #00b894; }
+.section-skills h2, .section-skills .card-title { color: #388e3c; }
+.section-awards h2, .section-awards .card-title { color: #c2185b; }
+.section-certifications h2, .section-certifications .card-title { color: #3949ab; }
+
+[data-theme="dark"] .section-hero h2, [data-theme="dark"] .section-hero .card-title { color: #6ba6ff; }
+[data-theme="dark"] .section-education h2, [data-theme="dark"] .section-education .card-title { color: #4dd0e1; }
+[data-theme="dark"] .section-publications h2, [data-theme="dark"] .section-publications .card-title { color: #ffd166; }
+[data-theme="dark"] .section-projects h2, [data-theme="dark"] .section-projects .card-title { color: #00e6b8; }
+[data-theme="dark"] .section-skills h2, [data-theme="dark"] .section-skills .card-title { color: #81c784; }
+[data-theme="dark"] .section-awards h2, [data-theme="dark"] .section-awards .card-title { color: #ff8fb8; }
+[data-theme="dark"] .section-certifications h2, [data-theme="dark"] .section-certifications .card-title { color: #8e7bff; }
+
+.navbar, .navbar .navbar-brand, .navbar .nav-link, .navbar .navbar-toggler, .navbar .navbar-toggler-icon {
+  transition: background-color .3s, color .3s, border-color .3s, box-shadow .3s;
+}
+.card, .card-title, .btn, .btn-primary, .btn-outline-primary, .btn-theme, .form-control, .form-label, .lead, .social-icons a, .skill-label, .skill-bar, .skill-fill {
+  transition: background-color .3s, color .3s, border-color .3s, box-shadow .3s;
+}
+body, main, section, .section-hero, .section-education, .section-publications, .section-projects, .section-skills, .section-awards, .section-certifications {
+  transition: background .3s, color .3s, border-color .3s, box-shadow .3s;
+}
+
