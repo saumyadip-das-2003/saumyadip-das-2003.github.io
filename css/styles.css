@@ -1,3 +1,23 @@
+
+/* Make award images fill the card */
+.award-image-wrapper {
+  margin: 0 -1.25rem -1.25rem -1.25rem; /* negative margin to fill card edge-to-edge */
+  padding: 0;
+}
+.award-img-full {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 0 0 12px 12px;
+  cursor: pointer;
+  box-shadow: none;
+}
+.award-item .card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding-bottom: 0.25rem;
+}
 /* Certificate card improvements */
 .cert-item {
   margin-bottom: 24px;
