@@ -81,8 +81,9 @@ document.addEventListener('DOMContentLoaded', function(){
   else setTheme('light');
 
   // bind desktop + mobile theme buttons
-  function bindThemeButton(el){ if(!el) return el.addEventListener('click', function(){ var active = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light'; setTheme(active === 'dark' ? 'light' : 'dark'); }); }
-  bindThemeButton(themeBtn); bindThemeButton(themeBtnMobile);
+  function bindThemeButton(el){ if(!el) return; el.addEventListener('click', function(){ var active = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light'; setTheme(active === 'dark' ? 'light' : 'dark'); }); }
+  bindThemeButton(themeBtn);
+  bindThemeButton(themeBtnMobile);
 
 
   // Section highlight using IntersectionObserver
