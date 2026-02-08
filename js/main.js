@@ -62,11 +62,26 @@ document.addEventListener('DOMContentLoaded', function(){
   else if(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) setTheme('dark');
   else setTheme('light');
 
-  if(themeBtn){
-    themeBtn.addEventListener('click', function(){
-      var active = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
-      setTheme(active === 'dark' ? 'light' : 'dark');
-    });
+  // wire desktop and mobile theme buttons and show CURRENT theme on the button
+  var themeBtnMobile = document.getElementById('themeToggleBtnMobile');
+  function bindThemeButton(el){ if(!el) return; el.addEventListener('click', function(){ var active = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light'; setTheme(active === 'dark' ? 'light' : 'dark'); }); }
+  bindThemeButton(themeBtn); bindThemeButton(themeBtnMobile);
+
+  // Update both buttons to reflect current theme in setTheme: (already handled above)
+
+  // Section highlight using IntersectionObserver
+  var sectionsToObserve = document.querySelectorAll('main section');
+  if(window.IntersectionObserver){
+    var observer = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ e.target.classList.add('section-active'); }
+        else { e.target.classList.remove('section-active'); }
+      });
+    }, {threshold:0.35});
+    sectionsToObserve.forEach(function(s){ observer.observe(s); });
+  } else {
+    // Fallback: add highlight to first section
+    if(sectionsToObserve[0]) sectionsToObserve[0].classList.add('section-active');
   }
 
   // Publication filters with pagination (show 4, +5 per click)
