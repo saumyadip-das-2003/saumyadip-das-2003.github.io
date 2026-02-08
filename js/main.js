@@ -153,6 +153,26 @@ document.addEventListener('DOMContentLoaded', function(){
     });
   }
 
+  // Transcript modal population (education)
+  document.querySelectorAll('.edu-transcript-btn').forEach(function(btn){
+    btn.addEventListener('click', function(e){
+      var pdf = this.getAttribute('data-pdf');
+      var title = this.closest('.card').querySelector('.card-title').textContent || 'Transcript';
+      document.getElementById('transcriptModalLabel').textContent = title + ' — Transcript';
+      var content = document.getElementById('transcriptContent');
+      var download = document.getElementById('transcriptDownload');
+      if(pdf && pdf.trim()){
+        content.innerHTML = '<div class="ratio ratio-16x9"><iframe src="'+pdf+'" width="100%" height="600" frameborder="0">Loading…</iframe></div>';
+        download.href = pdf; download.style.display = '';
+      } else {
+        content.innerHTML = '<p class="text-muted">Transcript PDF not uploaded yet. You can add the PDF to the repository and set the button\'s <code>data-pdf</code> attribute to the file path, or send me the file and I will add it.</p>';
+        download.style.display = 'none';
+      }
+      var modal = new bootstrap.Modal(document.getElementById('transcriptModal'));
+      modal.show();
+    });
+  });
+
   // reveal animation
   document.querySelectorAll('.reveal').forEach(function(el,i){ setTimeout(()=>el.classList.add('visible'), 80*i) });
 });
