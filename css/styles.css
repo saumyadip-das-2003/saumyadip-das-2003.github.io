@@ -146,10 +146,19 @@ section h2:hover::after{width:80px}
 .card .card-title{font-size:1.05rem}
 /* Certificate card improvements */
 .cert-item .card-body {
-  min-height: 420px;
+  /* Remove fixed min-height to avoid large empty gaps around images */
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  gap: 0.6rem;
+  padding: 1rem;
+  align-items: flex-start;
+}
+.cert-item .cert-img {
+  /* keep certificate images constrained but centered without extra whitespace */
+  max-height: 220px;
+  width: auto;
+  align-self: center;
 }
 .cert-item iframe {
   width: 100%;
