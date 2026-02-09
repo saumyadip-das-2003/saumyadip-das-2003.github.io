@@ -566,7 +566,7 @@
             </div>
             <!-- Show more button inside the grid, after the last visible card -->
             <div class="col-12 text-center" id="cert-showmore-row">
-              <button id="certShowMore" class="btn btn-outline-primary">Show more <span id="certShowMoreCount"></span></button>
+              <button id="certShowMore" class="btn btn-outline-primary"><span id="certShowMoreText">Show more</span> <span id="certShowMoreCount"></span></button>
             </div>
           </div>
             </div>
@@ -720,9 +720,11 @@ document.addEventListener('DOMContentLoaded', function() {
   const certItems = Array.from(document.querySelectorAll('#cert-list .cert-item'));
   const showMoreRow = document.getElementById('cert-showmore-row');
   const showMoreBtn = document.getElementById('certShowMore');
+  const showMoreText = document.getElementById('certShowMoreText');
   const showMoreCount = document.getElementById('certShowMoreCount');
   const INITIAL_VISIBLE = 4;
   let visibleCount = INITIAL_VISIBLE;
+  let expanded = false;
 
   function updateCertVisibility() {
     certItems.forEach((item, idx) => {
@@ -733,11 +735,17 @@ document.addEventListener('DOMContentLoaded', function() {
     if (lastVisible && showMoreRow) {
       lastVisible.parentNode.insertBefore(showMoreRow, lastVisible.nextSibling);
     }
-    // Update button or hide if all shown
     const remaining = certItems.length - visibleCount;
-    if (remaining > 0) {
-      showMoreRow.style.display = '';
+    if (visibleCount < certItems.length) {
+      showMoreText.textContent = 'Show more';
       showMoreCount.textContent = `(${remaining} more)`;
+      showMoreRow.style.display = '';
+      expanded = false;
+    } else if (certItems.length > INITIAL_VISIBLE) {
+      showMoreText.textContent = 'Show less';
+      showMoreCount.textContent = '';
+      showMoreRow.style.display = '';
+      expanded = true;
     } else {
       showMoreRow.style.display = 'none';
     }
@@ -745,7 +753,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
   if (showMoreBtn) {
     showMoreBtn.addEventListener('click', function() {
-      visibleCount += 4;
+      if (!expanded) {
+        visibleCount = certItems.length;
+      } else {
+        visibleCount = INITIAL_VISIBLE;
+      }
       updateCertVisibility();
     });
   }
