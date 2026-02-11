@@ -1059,6 +1059,11 @@
 
 </main>
 
+<div class="text-center small text-muted mt-2">
+  Views: <span id="viewCount">—</span>
+</div>
+
+
 <footer class="bg-light py-4 mt-5">
   <div class="container text-center small text-muted">
     <div class="mb-2 social-icons">
@@ -1467,6 +1472,29 @@ document.addEventListener('DOMContentLoaded', function () {
 
 });
 </script>
+<script>
+  (function () {
+    // Change this to something unique to you
+    const NAMESPACE = "saumyadipdas-portfolio";
+    // Count per page (home/about/projects etc.)
+    const KEY = (location.pathname || "home").replace(/\W+/g, "_");
+
+    // "hit" increments and returns the updated value
+    fetch(`https://api.countapi.xyz/hit/${NAMESPACE}/${KEY}`)
+      .then(r => r.json())
+      .then(d => {
+        const el = document.getElementById("viewCount");
+        if (el) el.textContent = d.value ?? "0";
+      })
+      .catch(() => {
+        const el = document.getElementById("viewCount");
+        if (el) el.textContent = "—";
+      });
+  })();
+</script>
+
+
+
 
 </body>
 </html>
