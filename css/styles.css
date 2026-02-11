@@ -363,6 +363,12 @@ section h2:hover::after{
   color: var(--text);
   min-width: 92px;
 }
+
+.skill-fill.skill-adv { width: 90%; }
+.skill-fill.skill-int { width: 70%; }
+.skill-fill.skill-fam { width: 50%; }
+
+
 .skill-bar{
   flex: 1 1 120px;
   height: 8px;
