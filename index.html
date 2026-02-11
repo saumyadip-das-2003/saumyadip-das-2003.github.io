@@ -4,20 +4,28 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Saumyadip Das — Researcher in AI & ML</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="/css/styles.css">
+
   <meta name="description" content="Saumyadip Das — Computer Science researcher focusing on AI, ML and IoT.">
   <meta name="theme-color" content="#0b5ed7">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="/css/styles.css">
 </head>
+
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg fixed-top">
   <div class="container">
-    <a class="navbar-brand fw-bold" href="/#home">Saumyadip Das</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav" aria-controls="nav" aria-expanded="false" aria-label="Toggle navigation">
+    <a class="navbar-brand" href="/#home">Saumyadip Das</a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav"
+            aria-controls="nav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
+
     <div class="collapse navbar-collapse" id="nav">
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
         <li class="nav-item"><a class="nav-link" href="/#home">Home</a></li>
@@ -28,30 +36,39 @@
         <li class="nav-item"><a class="nav-link" href="/#awards">Awards</a></li>
         <li class="nav-item"><a class="nav-link" href="/#certifications">Certifications</a></li>
         <li class="nav-item"><a class="nav-link" href="/#contact">Contact</a></li>
-        <!-- Theme toggle for small screens -->
-
       </ul>
+
       <div class="d-none d-lg-flex align-items-center ms-3 social-icons">
-        <a class="text-muted me-2" href="https://github.com/saumyadip-das-2003" target="_blank" aria-label="GitHub"><i class="fab fa-github fa-lg"></i></a>
-        <a class="text-muted me-2" href="https://www.linkedin.com/in/saumyadip-sohom/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin fa-lg"></i></a>
-        <a class="text-muted me-2" href="https://www.researchgate.net/profile/Saumyadip-Das-2" target="_blank" aria-label="ResearchGate">RG</a>
-        <a class="text-muted" href="#" target="_blank" aria-label="Google Scholar">GS</a>
+        <a class="btn btn-outline-secondary me-2" href="https://github.com/saumyadip-das-2003" target="_blank" aria-label="GitHub">
+          <i class="fab fa-github"></i>
+        </a>
+        <a class="btn btn-outline-secondary me-2" href="https://www.linkedin.com/in/saumyadip-sohom/" target="_blank" aria-label="LinkedIn">
+          <i class="fab fa-linkedin"></i>
+        </a>
+        <a class="btn btn-outline-secondary me-2" href="https://www.researchgate.net/profile/Saumyadip-Das-2" target="_blank" aria-label="ResearchGate">
+          RG
+        </a>
+        <a class="btn btn-outline-secondary" href="#" target="_blank" aria-label="Google Scholar">GS</a>
       </div>
     </div>
   </div>
 </nav>
 
 <main class="container" id="home" style="padding-top:90px;padding-bottom:40px;">
-  <!-- Hero (centered portrait + headline) -->
+
+  <!-- HERO -->
   <section class="hero-center text-center py-5 section-hero">
-    <img src="Saumyadip%20Das.png" alt="Saumyadip Das" class="rounded-circle portrait shadow-lg reveal" width="200" height="200">
+    <img src="Saumyadip%20Das.png" alt="Saumyadip Das" class="rounded-circle portrait shadow-lg reveal">
+
     <h1 class="mt-3 mb-1 reveal">Saumyadip Das</h1>
-    <p class="lead text-muted mb-3 reveal">Computer Science Researcher • AI / ML • IoT • Data Science</p>
+    <p class="lead mb-3 reveal">Computer Science Researcher • AI / ML • IoT • Data Science</p>
+
     <p class="reveal">
-      <a class="btn btn-primary me-2" href="Saumyadip_Das%20(2).pdf" target="_blank">Download CV</a>
-      <button class="btn btn-outline-primary me-2" id="videoPortfolioBtn" data-bs-toggle="modal" data-bs-target="#videoModal" type="button">Video Portfolio</button>
+      <a class="btn btn-primary me-2" href="Saumyadip_Das%20(2).pdf" target="_blank" rel="noopener">Download CV</a>
+      <button class="btn btn-outline-primary me-2" data-bs-toggle="modal" data-bs-target="#videoModal" type="button">Video Portfolio</button>
       <a class="btn btn-outline-primary" href="/#publications">View Publications</a>
     </p>
+
     <div class="mt-3 social-icons reveal">
       <a class="btn btn-outline-secondary btn-sm me-2" href="https://github.com/saumyadip-das-2003" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
       <a class="btn btn-outline-secondary btn-sm me-2" href="https://www.linkedin.com/in/saumyadip-sohom/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
@@ -59,7 +76,7 @@
       <a class="btn btn-outline-secondary btn-sm" href="#" target="_blank" aria-label="Google Scholar">GS</a>
     </div>
 
-    <!-- Floating ornament (subtle, accessible as decorative art) -->
+    <!-- ornament -->
     <div class="hero-orn" aria-hidden="true">
       <svg viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
         <defs>
@@ -75,57 +92,63 @@
       </svg>
     </div>
 
-    <!-- Biography card -->
+    <!-- biography -->
     <div class="card mt-4 mx-auto shadow-sm" style="max-width:920px;">
       <div class="card-body text-start">
-        <p class="mb-0">Saumyadip Das, originally from Moulvibazar, Bangladesh, relocated to Dhaka in 2019 and is currently pursuing a Bachelor of Science in Computer Science and Engineering at American International University–Bangladesh (AIUB), with an expected graduation in late 2026; he is actively seeking opportunities in the Data Science field and intends to pursue higher studies (a Master's or research degree) in a related discipline.</p>
+        <p class="mb-0">
+          Saumyadip Das, originally from Moulvibazar, Bangladesh, relocated to Dhaka in 2019 and is currently pursuing a Bachelor of Science in Computer Science and Engineering at American International University–Bangladesh (AIUB), with an expected graduation in late 2026; he is actively seeking opportunities in the Data Science field and intends to pursue higher studies (a Master's or research degree) in a related discipline.
+        </p>
       </div>
     </div>
-
   </section>
 
-  <!-- Education -->
+  <!-- EDUCATION -->
   <section id="education" class="py-5 section-education">
     <h2 class="mb-3">Education</h2>
+
     <div class="row g-3">
       <div class="col-12">
-        <div class="card h-100 shadow-sm">
+        <div class="card h-100">
           <div class="card-body">
             <h5 class="card-title">American International University-Bangladesh</h5>
-            <p class="text-muted mb-1">Bachelor of Science in Computer Science and Engineering — January 2023 - December 2026 (Expected)</p>
+            <p class="text-muted mb-1">Bachelor of Science in Computer Science and Engineering — Jan 2023 - Dec 2026 (Expected)</p>
             <p class="mb-0"><strong>CGPA:</strong> 3.99 / 4.00 (Up to 10th Semester)</p>
             <div class="mt-3">
-              <button class="btn btn-sm btn-outline-secondary edu-transcript-btn" data-pdf="GradeReportBySemester23-50404-1.pdf">View transcript</button>
+              <button class="btn btn-sm btn-outline-primary edu-transcript-btn" data-pdf="GradeReportBySemester23-50404-1.pdf">View transcript</button>
             </div>
           </div>
         </div>
       </div>
 
       <div class="col-12">
-        <div class="card h-100 shadow-sm">
+        <div class="card h-100">
           <div class="card-body">
             <h5 class="card-title">Birshreshtha Munshi Abdur Rouf Public College</h5>
             <p class="text-muted mb-1">Higher Secondary Certificate (Science) — 2021</p>
-            <p class="mb-0">GPA: 5.00 / 5.00</p>            <div class="mt-3">
-              <button class="btn btn-sm btn-outline-secondary edu-transcript-btn" data-pdf="HSC Transcript.pdf">View transcript</button>
-            </div>          </div>
+            <p class="mb-0">GPA: 5.00 / 5.00</p>
+            <div class="mt-3">
+              <button class="btn btn-sm btn-outline-primary edu-transcript-btn" data-pdf="HSC Transcript.pdf">View transcript</button>
+            </div>
+          </div>
         </div>
       </div>
 
       <div class="col-12">
-        <div class="card h-100 shadow-sm">
+        <div class="card h-100">
           <div class="card-body">
             <h5 class="card-title">Moulvibazar Government High School</h5>
             <p class="text-muted mb-1">Secondary School Certificate (Science) — 2019</p>
-            <p class="mb-0">GPA: 5.00 / 5.00</p>            <div class="mt-3">
-              <button class="btn btn-sm btn-outline-secondary edu-transcript-btn" data-pdf="SSC Transcript.pdf">View transcript</button>
-            </div>          </div>
+            <p class="mb-0">GPA: 5.00 / 5.00</p>
+            <div class="mt-3">
+              <button class="btn btn-sm btn-outline-primary edu-transcript-btn" data-pdf="SSC Transcript.pdf">View transcript</button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Publications -->
+  <!-- PUBLICATIONS -->
   <section id="publications" class="py-5 section-publications">
     <h2 class="mb-3">Publications</h2>
 
@@ -140,271 +163,265 @@
     </div>
 
     <div id="pub-list" class="row g-3">
-      <!-- SoilSense (featured) -->
       <div class="col-12 pub-item" data-tags="peer-reviewed,conference">
-        <div class="card h-100 shadow-sm">
+        <div class="card h-100">
           <div class="card-body">
             <h5 class="card-title">SoilSense: An IoT-Based Soil Health Monitoring System for Smallholder Farmers in Bangladesh to Support Sustainable Agriculture</h5>
             <p class="text-muted mb-1">Saumyadip Das et al. — IEEE EICT, 2025</p>
             <div>
-              <a href="#" class="card-link" data-bs-toggle="modal" data-bs-target="#pubModal" data-title="SoilSense" data-authors="Saumyadip Das, N-E Sarjina Khan, ..." data-detail="IoT-based soil monitoring, ML predicted NPK values" data-links="https://doi.org/10.1109/EICT68394.2025.11355612">Details</a>
-              <a href="https://doi.org/10.1109/EICT68394.2025.11355612" target="_blank" class="card-link">DOI</a>
+              <a href="#" class="card-link" data-bs-toggle="modal" data-bs-target="#pubModal"
+                 data-title="SoilSense"
+                 data-authors="Saumyadip Das, N-E Sarjina Khan, ..."
+                 data-detail="IoT-based soil monitoring; ML predicted NPK values."
+                 data-links="https://doi.org/10.1109/EICT68394.2025.11355612">Details</a>
+              <a href="https://doi.org/10.1109/EICT68394.2025.11355612" target="_blank" class="card-link" rel="noopener">DOI</a>
               <span class="badge bg-success ms-2">Peer-reviewed</span>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Conference papers from LaTeX (ResearchGate links) -->
       <div class="col-12 pub-item" data-tags="conference">
-        <div class="card h-100 shadow-sm">
+        <div class="card h-100">
           <div class="card-body">
             <h5 class="card-title">The Future of Textile Waste: Sustainable Solutions through Eco-Friendly Products and Renewable Energy from Post-Consumer Textiles</h5>
             <p class="text-muted mb-1">Nur-E Sarjina Khan, Saumyadip Das, et al. — ICTSE, BUTEX 2025</p>
             <div>
-              <a href="https://www.researchgate.net/publication/400525770_The_Future_of_Textile_Waste_Sustainable_Solutions_through_Eco-Friendly_Products_and_Renewable_Energy_from_Post-Consumer-Textiles?_tp=eyJjb250ZXh0Ijp7InBhZ2UiOiJwcm9maWxlIiwicHJldmlvdXNQYWdlIjpudWxsLCJwb3NpdGlvbiI6InBhZ2VDb250ZW50In19" target="_blank" class="card-link">ResearchGate</a>
+              <a href="https://www.researchgate.net/profile/Saumyadip-Das-2" target="_blank" class="card-link" rel="noopener">ResearchGate</a>
             </div>
           </div>
         </div>
       </div>
 
       <div class="col-12 pub-item" data-tags="conference">
-        <div class="card h-100 shadow-sm">
+        <div class="card h-100">
           <div class="card-body">
             <h5 class="card-title">Artificial Intelligence in Textile Waste Management: Exploring Predictive Modelling, Recycling Innovations, and Sustainable Solutions</h5>
             <p class="text-muted mb-1">Nur-E Sarjina Khan, Saumyadip Das, et al. — ICTSE, BUTEX 2025</p>
             <div>
-              <a href="https://www.researchgate.net/publication/400526019_Artificial_Intelligence_in_Textile_Waste_Management_Exploring_Predictive_Modelling_Recycling_Innovations_and_Sustainable_Solutions" target="_blank" class="card-link">ResearchGate</a>
+              <a href="https://www.researchgate.net/profile/Saumyadip-Das-2" target="_blank" class="card-link" rel="noopener">ResearchGate</a>
             </div>
           </div>
         </div>
       </div>
 
       <div class="col-12 pub-item" data-tags="conference">
-        <div class="card h-100 shadow-sm">
+        <div class="card h-100">
           <div class="card-body">
             <h5 class="card-title">AI-Driven Transformations in Textile Waste Management: Challenges and Opportunities</h5>
             <p class="text-muted mb-1">Nur-E Sarjina Khan, Saumyadip Das, et al. — ICETSD 2025</p>
             <div>
-              <a href="https://www.researchgate.net/publication/400525785_AI-Driven_Transformations_in_Textile_Waste_Management_Challenges_and_Opportunities" target="_blank" class="card-link">ResearchGate</a>
+              <a href="https://www.researchgate.net/profile/Saumyadip-Das-2" target="_blank" class="card-link" rel="noopener">ResearchGate</a>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Submitted / In-review entries -->
       <div class="col-12 pub-item" data-tags="submitted">
-        <div class="card h-100 shadow-sm">
+        <div class="card h-100">
           <div class="card-body">
             <h5 class="card-title">MambaOut-tiny vs ResNet-50 and MobileNetV2</h5>
             <p class="text-muted mb-1">Manuscript submitted (2026)</p>
-            <div>
-              <a href="#" class="card-link">Preprint / details on request</a>
-            </div>
+            <div><span class="text-muted small">Preprint / details on request</span></div>
           </div>
         </div>
       </div>
 
       <div class="col-12 pub-item" data-tags="submitted">
-        <div class="card h-100 shadow-sm">
+        <div class="card h-100">
           <div class="card-body">
             <h5 class="card-title">LLM-Driven Cardiovascular Disease Risk Prediction</h5>
             <p class="text-muted mb-1">Manuscript submitted (2026)</p>
-            <div>
-              <a href="#" class="card-link">Preprint / details on request</a>
-            </div>
+            <div><span class="text-muted small">Preprint / details on request</span></div>
           </div>
         </div>
       </div>
 
       <div class="col-12 pub-item" data-tags="submitted">
-        <div class="card h-100 shadow-sm">
+        <div class="card h-100">
           <div class="card-body">
             <h5 class="card-title">Reasoning Drift in Compressed Transformers: An Explainability Analysis of BERT, DistilBERT, and TinyBERT</h5>
             <p class="text-muted mb-1">Manuscript submitted (2026)</p>
-            <div>
-              <a href="#" class="card-link">Preprint / details on request</a>
-            </div>
+            <div><span class="text-muted small">Preprint / details on request</span></div>
           </div>
         </div>
       </div>
 
       <div class="col-12 pub-item" data-tags="journal">
-        <div class="card h-100 shadow-sm">
+        <div class="card h-100">
           <div class="card-body">
             <h5 class="card-title">Journal publications — coming soon</h5>
             <p class="text-muted mb-1">No journal entries yet. They will be added here when available.</p>
           </div>
         </div>
       </div>
-
     </div>
 
-  <div class="text-center mt-4">
-    <button id="pubShowMore" class="btn btn-outline-primary">Show more</button>
-  </div>
-
+    <div class="text-center mt-4">
+      <button id="pubShowMore" class="btn btn-outline-primary" type="button">Show more</button>
+    </div>
   </section>
 
-  <!-- Projects -->
+  <!-- PROJECTS -->
   <section id="projects" class="py-5 section-projects">
     <h2 class="mb-3">Projects</h2>
     <div class="row g-3">
       <div class="col-md-6 project-item">
-        <div class="card h-100 shadow-sm">
+        <div class="card h-100">
           <div class="card-body">
             <h5 class="card-title">SafePath — Community Safety Monitoring</h5>
             <p class="card-text">HTML, PHP, MySQL. Citizens report incidents, authority management & admin panel.</p>
-            <a href="https://github.com/saumyadip-das-2003/SafePath---Community-Safety-Extremism-Monitoring-System" target="_blank" class="btn btn-sm btn-outline-primary">View on GitHub</a>
+            <a href="https://github.com/saumyadip-das-2003/SafePath---Community-Safety-Extremism-Monitoring-System" target="_blank" class="btn btn-sm btn-outline-primary" rel="noopener">View on GitHub</a>
           </div>
         </div>
       </div>
 
       <div class="col-md-6 project-item">
-        <div class="card h-100 shadow-sm">
+        <div class="card h-100">
           <div class="card-body">
             <h5 class="card-title">SoilSense — IoT + ML</h5>
             <p class="card-text">ESP32 sensors + ML to predict NPK values. Accepted to IEEE (DOI available).</p>
-            <a href="https://github.com/saumyadip-das-2003/SoilSense-Codes" target="_blank" class="btn btn-sm btn-outline-primary">View Code</a>
+            <a href="https://github.com/saumyadip-das-2003/SoilSense-Codes" target="_blank" class="btn btn-sm btn-outline-primary" rel="noopener">View Code</a>
           </div>
         </div>
       </div>
 
       <div class="col-md-6 project-item">
-        <div class="card h-100 shadow-sm">
+        <div class="card h-100">
           <div class="card-body">
             <h5 class="card-title">Bank Management System</h5>
             <p class="card-text">C#, .NET Framework, MSSQL — typical banking flows & roles.</p>
-            <a href="https://github.com/saumyadip-das-2003/Bank-Management-System" target="_blank" class="btn btn-sm btn-outline-primary">View Code</a>
+            <a href="https://github.com/saumyadip-das-2003/Bank-Management-System" target="_blank" class="btn btn-sm btn-outline-primary" rel="noopener">View Code</a>
           </div>
         </div>
       </div>
 
       <div class="col-md-6 project-item">
-        <div class="card h-100 shadow-sm">
+        <div class="card h-100">
           <div class="card-body">
             <h5 class="card-title">University Resource Management System — Java / UML / Oracle DB</h5>
             <p class="card-text">Java Swing UI, UML design, and Oracle DB backend for booking university resources.</p>
-            <a href="https://github.com/saumyadip-das-2003/Resource-Booking-System-JAVA-Swing-Project-" target="_blank" class="btn btn-sm btn-outline-primary">Java Swing</a>
-            <a href="https://github.com/saumyadip-das-2003/University-Resource-Booking-System--Oracle-Database-Project" target="_blank" class="btn btn-sm btn-outline-secondary ms-2">Oracle DB</a>
-            <a href="https://github.com/saumyadip-das-2003/University-Resource-Management-System-URMS---OOAD" target="_blank" class="btn btn-sm btn-outline-secondary ms-2">UML</a>
+            <a href="https://github.com/saumyadip-das-2003/Resource-Booking-System-JAVA-Swing-Project-" target="_blank" class="btn btn-sm btn-outline-primary" rel="noopener">Java Swing</a>
+            <a href="https://github.com/saumyadip-das-2003/University-Resource-Booking-System--Oracle-Database-Project" target="_blank" class="btn btn-sm btn-outline-secondary ms-2" rel="noopener">Oracle DB</a>
+            <a href="https://github.com/saumyadip-das-2003/University-Resource-Management-System-URMS---OOAD" target="_blank" class="btn btn-sm btn-outline-secondary ms-2" rel="noopener">UML</a>
           </div>
         </div>
       </div>
 
       <div class="col-md-6 project-item">
-        <div class="card h-100 shadow-sm">
+        <div class="card h-100">
           <div class="card-body">
             <h5 class="card-title">Life of a River — Computer Graphics (GLUT, C++)</h5>
             <p class="card-text">Interactive computer graphics project using GLUT and C++ to visualize river flow and ecosystems.</p>
-            <a href="#" target="_blank" class="btn btn-sm btn-outline-primary">Project link (placeholder)</a>
+            <a href="#" class="btn btn-sm btn-outline-primary">Project link (placeholder)</a>
           </div>
         </div>
       </div>
+
     </div>
 
-  <div class="text-center mt-4">
-    <button id="projShowMore" class="btn btn-outline-primary">Show more</button>
-  </div>
+    <div class="text-center mt-4">
+      <button id="projShowMore" class="btn btn-outline-primary" type="button">Show more</button>
+    </div>
   </section>
 
-  <!-- Skills -->
+  <!-- SKILLS -->
   <section id="skills" class="py-5 section-skills">
     <h2 class="mb-3 reveal">Skills</h2>
 
     <div class="skill-legend mb-3">
-      <div><span class="skill-legend-swatch skill-adv me-2"></span>Advanced</div>
-      <div><span class="skill-legend-swatch skill-int me-2"></span>Intermediate</div>
-      <div><span class="skill-legend-swatch skill-fam me-2"></span>Familiar</div>
+      <div><span class="skill-legend-swatch" style="background:#2563eb"></span> Advanced</div>
+      <div><span class="skill-legend-swatch" style="background:#ffb020"></span> Intermediate</div>
+      <div><span class="skill-legend-swatch" style="background:#b0b4ba"></span> Familiar</div>
     </div>
 
     <div class="row g-4 mt-3">
 
       <div class="col-md-6 col-lg-4">
-        <div class="card h-100 shadow-sm reveal">
+        <div class="card h-100 reveal">
           <div class="card-body">
             <h5 class="card-title">Programming Languages</h5>
             <div class="mb-3">
-              <div class="skill-row"><div class="skill-name">Python</div><div class="skill-meta"><div class="skill-bar"><div class="skill-fill skill-adv" style="width:92%"></div></div><div class="skill-label">Advanced</div></div></div>
-              <div class="skill-row"><div class="skill-name">C / C++</div><div class="skill-meta"><div class="skill-bar"><div class="skill-fill skill-adv" style="width:90%"></div></div><div class="skill-label">Advanced</div></div></div>
-              <div class="skill-row"><div class="skill-name">Java</div><div class="skill-meta"><div class="skill-bar"><div class="skill-fill skill-adv" style="width:88%"></div></div><div class="skill-label">Advanced</div></div></div>
-              <div class="skill-row"><div class="skill-name">C#</div><div class="skill-meta"><div class="skill-bar"><div class="skill-fill skill-adv" style="width:85%"></div></div><div class="skill-label">Advanced</div></div></div>
-              <div class="skill-row"><div class="skill-name">R</div><div class="skill-meta"><div class="skill-bar"><div class="skill-fill skill-int" style="width:72%"></div></div><div class="skill-label">Intermediate</div></div></div>
+              <div class="skill-row">
+                <div class="skill-name">Python</div>
+                <div class="skill-bar"><div class="skill-fill skill-adv" style="width:92%"></div></div>
+                <div class="skill-label">Advanced</div>
+              </div>
+              <div class="skill-row">
+                <div class="skill-name">C / C++</div>
+                <div class="skill-bar"><div class="skill-fill skill-adv" style="width:90%"></div></div>
+                <div class="skill-label">Advanced</div>
+              </div>
+              <div class="skill-row">
+                <div class="skill-name">Java</div>
+                <div class="skill-bar"><div class="skill-fill skill-adv" style="width:88%"></div></div>
+                <div class="skill-label">Advanced</div>
+              </div>
+              <div class="skill-row">
+                <div class="skill-name">C#</div>
+                <div class="skill-bar"><div class="skill-fill skill-adv" style="width:85%"></div></div>
+                <div class="skill-label">Advanced</div>
+              </div>
+              <div class="skill-row">
+                <div class="skill-name">R</div>
+                <div class="skill-bar"><div class="skill-fill skill-int" style="width:72%"></div></div>
+                <div class="skill-label">Intermediate</div>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
       <div class="col-md-6 col-lg-4">
-        <div class="card h-100 shadow-sm reveal">
+        <div class="card h-100 reveal">
           <div class="card-body">
             <h5 class="card-title">Database Systems</h5>
             <div>
-              <div class="skill-row"><div class="skill-name">Oracle</div><div class="skill-meta"><div class="skill-bar"><div class="skill-fill skill-int" style="width:72%"></div></div><div class="skill-label">Intermediate</div></div></div>
-              <div class="skill-row"><div class="skill-name">MS SQL</div><div class="skill-meta"><div class="skill-bar"><div class="skill-fill skill-int" style="width:68%"></div></div><div class="skill-label">Intermediate</div></div></div>
-              <div class="skill-row"><div class="skill-name">MySQL</div><div class="skill-meta"><div class="skill-bar"><div class="skill-fill skill-int" style="width:68%"></div></div><div class="skill-label">Intermediate</div></div></div>
+              <div class="skill-row">
+                <div class="skill-name">Oracle</div>
+                <div class="skill-bar"><div class="skill-fill skill-int" style="width:72%"></div></div>
+                <div class="skill-label">Intermediate</div>
+              </div>
+              <div class="skill-row">
+                <div class="skill-name">MS SQL</div>
+                <div class="skill-bar"><div class="skill-fill skill-int" style="width:68%"></div></div>
+                <div class="skill-label">Intermediate</div>
+              </div>
+              <div class="skill-row">
+                <div class="skill-name">MySQL</div>
+                <div class="skill-bar"><div class="skill-fill skill-int" style="width:68%"></div></div>
+                <div class="skill-label">Intermediate</div>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
       <div class="col-md-6 col-lg-4">
-        <div class="card h-100 shadow-sm reveal">
+        <div class="card h-100 reveal">
           <div class="card-body">
             <h5 class="card-title">Web Technologies</h5>
             <div class="mb-3">
-              <div class="skill-row"><div class="skill-name">HTML5</div><div class="skill-meta"><div class="skill-bar"><div class="skill-fill skill-adv" style="width:90%"></div></div><div class="skill-label">Advanced</div></div></div>
-              <div class="skill-row"><div class="skill-name">CSS</div><div class="skill-meta"><div class="skill-bar"><div class="skill-fill skill-adv" style="width:88%"></div></div><div class="skill-label">Advanced</div></div></div>
-              <div class="skill-row"><div class="skill-name">JavaScript</div><div class="skill-meta"><div class="skill-bar"><div class="skill-fill skill-int" style="width:72%"></div></div><div class="skill-label">Intermediate</div></div></div>
-              <div class="skill-row"><div class="skill-name">PHP</div><div class="skill-meta"><div class="skill-bar"><div class="skill-fill skill-adv" style="width:85%"></div></div><div class="skill-label">Advanced</div></div></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-6 col-lg-4">
-        <div class="card h-100 shadow-sm reveal">
-          <div class="card-body">
-            <h5 class="card-title">Data Science & Machine Learning</h5>
-            <div class="mb-3">
-              <div class="skill-row"><div class="skill-name">NumPy / Pandas</div><div class="skill-meta"><div class="skill-bar"><div class="skill-fill skill-adv" style="width:92%"></div></div><div class="skill-label">Advanced</div></div></div>
-              <div class="skill-row"><div class="skill-name">Matplotlib / Seaborn</div><div class="skill-meta"><div class="skill-bar"><div class="skill-fill skill-adv" style="width:86%"></div></div><div class="skill-label">Advanced</div></div></div>
-              <div class="skill-row"><div class="skill-name">PyTorch</div><div class="skill-meta"><div class="skill-bar"><div class="skill-fill skill-int" style="width:72%"></div></div><div class="skill-label">Intermediate</div></div></div>
-              <div class="skill-row"><div class="skill-name">TensorFlow</div><div class="skill-meta"><div class="skill-bar"><div class="skill-fill skill-int" style="width:72%"></div></div><div class="skill-label">Intermediate</div></div></div>
-              <div class="skill-row"><div class="skill-name">Google Colab / RStudio / Kaggle Notebook</div><div class="skill-meta"><div class="skill-bar"><div class="skill-fill skill-adv" style="width:90%"></div></div><div class="skill-label">Advanced</div></div></div>
-              <div class="skill-row"><div class="skill-name">Microsoft Power BI</div><div class="skill-meta"><div class="skill-bar"><div class="skill-fill skill-int" style="width:66%"></div></div><div class="skill-label">Intermediate</div></div></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-6 col-lg-4">
-        <div class="card h-100 shadow-sm reveal">
-          <div class="card-body">
-            <h5 class="card-title">Cloud & DevOps</h5>
-            <div class="mb-3">
-              <div class="skill-row"><div class="skill-name">Microsoft Azure</div><div class="skill-meta"><div class="skill-bar"><div class="skill-fill skill-fam" style="width:50%"></div></div><div class="skill-label">Familiar</div></div></div>
-              <div class="skill-row"><div class="skill-name">GitHub</div><div class="skill-meta"><div class="skill-bar"><div class="skill-fill skill-adv" style="width:90%"></div></div><div class="skill-label">Advanced</div></div></div>
-            </div>
-            <h5 class="card-title mt-3">Mathematical & Statistical Tools</h5>
-            <div>
-              <div class="skill-row"><div class="skill-name">MATLAB</div><div class="skill-meta"><div class="skill-bar"><div class="skill-fill skill-int" style="width:68%"></div></div><div class="skill-label">Intermediate</div></div></div>
-              <div class="skill-row"><div class="skill-name">SPSS</div><div class="skill-meta"><div class="skill-bar"><div class="skill-fill skill-int" style="width:68%"></div></div><div class="skill-label">Intermediate</div></div></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-6 col-lg-4">
-        <div class="card h-100 shadow-sm reveal">
-          <div class="card-body">
-            <h5 class="card-title">Other Tools</h5>
-            <div class="mb-3">
-              <div class="skill-row"><div class="skill-name">Microsoft Office</div><div class="skill-meta"><div class="skill-bar"><div class="skill-fill skill-adv" style="width:88%"></div></div><div class="skill-label">Advanced</div></div></div>
-              <div class="skill-row"><div class="skill-name">Wondershare Filmora</div><div class="skill-meta"><div class="skill-bar"><div class="skill-fill skill-int" style="width:70%"></div></div><div class="skill-label">Intermediate</div></div></div>
-              <div class="skill-row"><div class="skill-name">Adobe Creative Cloud</div><div class="skill-meta"><div class="skill-bar"><div class="skill-fill skill-int" style="width:70%"></div></div><div class="skill-label">Intermediate</div></div></div>
-              <div class="skill-row"><div class="skill-name">Microsoft Project</div><div class="skill-meta"><div class="skill-bar"><div class="skill-fill skill-fam" style="width:50%"></div></div><div class="skill-label">Familiar</div></div></div>
-              <div class="skill-row"><div class="skill-name">Autodesk AutoCAD</div><div class="skill-meta"><div class="skill-bar"><div class="skill-fill skill-fam" style="width:50%"></div></div><div class="skill-label">Familiar</div></div></div>
+              <div class="skill-row">
+                <div class="skill-name">HTML5</div>
+                <div class="skill-bar"><div class="skill-fill skill-adv" style="width:90%"></div></div>
+                <div class="skill-label">Advanced</div>
+              </div>
+              <div class="skill-row">
+                <div class="skill-name">CSS</div>
+                <div class="skill-bar"><div class="skill-fill skill-adv" style="width:88%"></div></div>
+                <div class="skill-label">Advanced</div>
+              </div>
+              <div class="skill-row">
+                <div class="skill-name">JavaScript</div>
+                <div class="skill-bar"><div class="skill-fill skill-int" style="width:72%"></div></div>
+                <div class="skill-label">Intermediate</div>
+              </div>
+              <div class="skill-row">
+                <div class="skill-name">PHP</div>
+                <div class="skill-bar"><div class="skill-fill skill-adv" style="width:85%"></div></div>
+                <div class="skill-label">Advanced</div>
+              </div>
             </div>
           </div>
         </div>
@@ -413,17 +430,17 @@
     </div>
   </section>
 
-  <!-- Awards & Achievements -->
+  <!-- AWARDS -->
   <section id="awards" class="py-5 section-awards">
     <h2 class="mb-3">Awards & Achievements</h2>
-    <p class="text-muted">Selected awards and honors. Click "View" to see certificates/documentation.</p>
+    <p class="text-muted">Selected awards and honors. Click on the image to view the PDF.</p>
 
     <div class="row g-3" id="award-list">
       <div class="col-md-6 award-item">
-        <div class="card h-100 shadow-sm">
+        <div class="card h-100">
           <div class="card-body">
             <h5 class="card-title">Dean’s List — Fall 2024–25</h5>
-            <p class="text-muted mb-1">Awarded by American International University–Bangladesh for outstanding academic performance in the Fall 2024–25 semester.</p>
+            <p class="text-muted mb-1">Awarded by AIUB for outstanding academic performance in the Fall 2024–25 semester.</p>
             <div class="award-image-wrapper">
               <img src="Awards/Fall 24-25.jpg" alt="Dean’s List — Fall 2024–25" class="award-img" data-pdf="Awards/Fall 24-25.pdf">
             </div>
@@ -432,10 +449,10 @@
       </div>
 
       <div class="col-md-6 award-item">
-        <div class="card h-100 shadow-sm">
+        <div class="card h-100">
           <div class="card-body">
             <h5 class="card-title">Dean’s List — Spring 2023–24</h5>
-            <p class="text-muted mb-1">Awarded by American International University–Bangladesh in recognition of high academic achievement during the Spring 2023–24 semester.</p>
+            <p class="text-muted mb-1">Awarded by AIUB in recognition of high academic achievement during the Spring 2023–24 semester.</p>
             <div class="award-image-wrapper">
               <img src="Awards/Spring 23-24.jpg" alt="Dean’s List — Spring 2023–24" class="award-img" data-pdf="Awards/Spring 23-24.pdf">
             </div>
@@ -445,366 +462,576 @@
     </div>
 
     <div class="text-center mt-4">
-      <button id="awardShowMore" class="btn btn-outline-primary">Show more</button>
+      <button id="awardShowMore" class="btn btn-outline-primary" type="button">Show more</button>
     </div>
   </section>
 
- <!-- Certifications -->
-<section id="certifications" class="py-5 section-certifications">
-  <h2 class="mb-3">Certifications & Courses</h2>
-  <p class="text-muted">Selected certificates, prioritized by technical relevancy and recency.</p>
+  <!-- CERTIFICATIONS -->
+  <section id="certifications" class="py-5 section-certifications">
+    <h2 class="mb-3">Certifications & Courses</h2>
+    <p class="text-muted">Selected certificates, prioritized by technical relevancy and recency.</p>
 
-  <div class="container">
-    <div class="row g-3 align-items-stretch" id="cert-list">
+    <div class="container px-0">
+      <div class="row g-3 align-items-stretch" id="cert-list">
 
-      <!-- cert cards -->
-      <div class="col-12 col-md-6 cert-item">
-        <div class="card h-100 shadow-sm">
-          <div class="card-body">
-            <h6 class="card-title">Machine Learning — Fundamentals</h6>
-            <p class="text-muted small mb-2">Introductory course covering supervised learning and basic ML models.</p>
-            <img src="Certificates/ML For beginners_page-0001.jpg"
-                 alt="Machine Learning — Fundamentals"
-                 class="img-fluid rounded shadow-sm cert-img"
-                 style="max-height:220px;cursor:pointer"
-                 data-pdf="Certificates/ML For beginners.pdf">
+        <div class="col-12 col-md-6 cert-item">
+          <div class="card h-100">
+            <div class="card-body">
+              <h6 class="card-title">Machine Learning — Fundamentals</h6>
+              <p class="text-muted small mb-2">Introductory course covering supervised learning and basic ML models.</p>
+              <img src="Certificates/ML For beginners_page-0001.jpg" alt="Machine Learning — Fundamentals" class="img-fluid cert-img" data-pdf="Certificates/ML For beginners.pdf">
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="col-12 col-md-6 cert-item">
-        <div class="card h-100 shadow-sm">
-          <div class="card-body">
-            <h6 class="card-title">Python for Data & Scripting</h6>
-            <p class="text-muted small mb-2">Certificate in Python programming with emphasis on data manipulation and automation.</p>
-            <img src="Certificates/Python_page-0001.jpg"
-                 alt="Python for Data & Scripting"
-                 class="img-fluid rounded shadow-sm cert-img"
-                 style="max-height:220px;cursor:pointer"
-                 data-pdf="Certificates/Python.pdf">
+        <div class="col-12 col-md-6 cert-item">
+          <div class="card h-100">
+            <div class="card-body">
+              <h6 class="card-title">Python for Data & Scripting</h6>
+              <p class="text-muted small mb-2">Certificate in Python programming with emphasis on data manipulation and automation.</p>
+              <img src="Certificates/Python_page-0001.jpg" alt="Python for Data & Scripting" class="img-fluid cert-img" data-pdf="Certificates/Python.pdf">
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="col-12 col-md-6 cert-item">
-        <div class="card h-100 shadow-sm">
-          <div class="card-body">
-            <h6 class="card-title">Java — Core Concepts</h6>
-            <p class="text-muted small mb-2">Certificate covering object-oriented programming and Java fundamentals.</p>
-            <img src="Certificates/Certificate Word_page-0001.jpg"
-                 alt="Java — Core Concepts"
-                 class="img-fluid rounded shadow-sm cert-img"
-                 style="max-height:220px;cursor:pointer"
-                 data-pdf="Certificates/java.pdf">
+        <div class="col-12 col-md-6 cert-item">
+          <div class="card h-100">
+            <div class="card-body">
+              <h6 class="card-title">Java — Core Concepts</h6>
+              <p class="text-muted small mb-2">Certificate covering object-oriented programming and Java fundamentals.</p>
+              <img src="Certificates/Certificate Word_page-0001.jpg" alt="Java — Core Concepts" class="img-fluid cert-img" data-pdf="Certificates/java.pdf">
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="col-12 col-md-6 cert-item">
-        <div class="card h-100 shadow-sm">
-          <div class="card-body">
-            <h6 class="card-title">HTML5 — Web Foundations</h6>
-            <p class="text-muted small mb-2">Certificate in HTML5 and foundational web development techniques.</p>
-            <img src="Certificates/HTML_page-0001.jpg"
-                 alt="HTML5 — Web Foundations"
-                 class="img-fluid rounded shadow-sm cert-img"
-                 style="max-height:220px;cursor:pointer"
-                 data-pdf="Certificates/HTML.pdf">
+        <div class="col-12 col-md-6 cert-item">
+          <div class="card h-100">
+            <div class="card-body">
+              <h6 class="card-title">HTML5 — Web Foundations</h6>
+              <p class="text-muted small mb-2">Certificate in HTML5 and foundational web development techniques.</p>
+              <img src="Certificates/HTML_page-0001.jpg" alt="HTML5 — Web Foundations" class="img-fluid cert-img" data-pdf="Certificates/HTML.pdf">
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="col-12 col-md-6 cert-item">
-        <div class="card h-100 shadow-sm">
-          <div class="card-body">
-            <h6 class="card-title">Microsoft Excel — Data Analysis</h6>
-            <p class="text-muted small mb-2">Skills in formulas, pivot tables and data analysis workflows.</p>
-            <img src="Certificates/Certificate Excel_page-0001.jpg"
-                 alt="Microsoft Excel — Data Analysis"
-                 class="img-fluid rounded shadow-sm cert-img"
-                 style="max-height:220px;cursor:pointer"
-                 data-pdf="Certificates/Certificate Excel.pdf">
+        <div class="col-12 col-md-6 cert-item">
+          <div class="card h-100">
+            <div class="card-body">
+              <h6 class="card-title">Microsoft Excel — Data Analysis</h6>
+              <p class="text-muted small mb-2">Skills in formulas, pivot tables and data analysis workflows.</p>
+              <img src="Certificates/Certificate Excel_page-0001.jpg" alt="Microsoft Excel — Data Analysis" class="img-fluid cert-img" data-pdf="Certificates/Certificate Excel.pdf">
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="col-12 col-md-6 cert-item">
-        <div class="card h-100 shadow-sm">
-          <div class="card-body">
-            <h6 class="card-title">Microsoft PowerPoint — Presentation</h6>
-            <p class="text-muted small mb-2">Certificate in presentation design and effective slide creation.</p>
-            <img src="Certificates/Certificate Powerpoint_page-0001.jpg"
-                 alt="Microsoft PowerPoint — Presentation"
-                 class="img-fluid rounded shadow-sm cert-img"
-                 style="max-height:220px;cursor:pointer"
-                 data-pdf="Certificates/Certificate Powerpoint.pdf">
+        <div class="col-12 col-md-6 cert-item">
+          <div class="card h-100">
+            <div class="card-body">
+              <h6 class="card-title">Microsoft PowerPoint — Presentation</h6>
+              <p class="text-muted small mb-2">Certificate in presentation design and effective slide creation.</p>
+              <img src="Certificates/Certificate Powerpoint_page-0001.jpg" alt="Microsoft PowerPoint — Presentation" class="img-fluid cert-img" data-pdf="Certificates/Certificate Powerpoint.pdf">
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="col-12 col-md-6 cert-item">
-        <div class="card h-100 shadow-sm">
-          <div class="card-body">
-            <h6 class="card-title">Microsoft Word — Documentation</h6>
-            <p class="text-muted small mb-2">Certificate in professional document preparation and formatting.</p>
-            <img src="Certificates/Certificate Word_page-0001.jpg"
-                 alt="Microsoft Word — Documentation"
-                 class="img-fluid rounded shadow-sm cert-img"
-                 style="max-height:220px;cursor:pointer"
-                 data-pdf="Certificates/Certificate Word.pdf">
+        <div class="col-12 col-md-6 cert-item">
+          <div class="card h-100">
+            <div class="card-body">
+              <h6 class="card-title">Microsoft Word — Documentation</h6>
+              <p class="text-muted small mb-2">Certificate in professional document preparation and formatting.</p>
+              <img src="Certificates/Certificate Word_page-0001.jpg" alt="Microsoft Word — Documentation" class="img-fluid cert-img" data-pdf="Certificates/Certificate Word.pdf">
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="col-12 col-md-6 cert-item">
-        <div class="card h-100 shadow-sm">
-          <div class="card-body">
-            <h6 class="card-title">Google Analytics — Fundamentals</h6>
-            <p class="text-muted small mb-2">Certificate in web analytics, reporting and measurement basics.</p>
-            <img src="Certificates/Certificate google analitycs_page-0001.jpg"
-                 alt="Google Analytics — Fundamentals"
-                 class="img-fluid rounded shadow-sm cert-img"
-                 style="max-height:220px;cursor:pointer"
-                 data-pdf="Certificates/Certificate google analitycs.pdf">
+        <div class="col-12 col-md-6 cert-item">
+          <div class="card h-100">
+            <div class="card-body">
+              <h6 class="card-title">Google Analytics — Fundamentals</h6>
+              <p class="text-muted small mb-2">Certificate in web analytics, reporting and measurement basics.</p>
+              <img src="Certificates/Certificate google analitycs_page-0001.jpg" alt="Google Analytics — Fundamentals" class="img-fluid cert-img" data-pdf="Certificates/Certificate google analitycs.pdf">
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="col-12 col-md-6 cert-item">
-        <div class="card h-100 shadow-sm">
-          <div class="card-body">
-            <h6 class="card-title">LinkedIn Learning Certificate</h6>
-            <p class="text-muted small mb-2">Professional development and profile optimization course.</p>
-            <img src="Certificates/Certificate linkedin_page-0001.jpg"
-                 alt="LinkedIn Learning Certificate"
-                 class="img-fluid rounded shadow-sm cert-img"
-                 style="max-height:220px;cursor:pointer"
-                 data-pdf="Certificates/Certificate linkedin.pdf">
+        <div class="col-12 col-md-6 cert-item">
+          <div class="card h-100">
+            <div class="card-body">
+              <h6 class="card-title">LinkedIn Learning Certificate</h6>
+              <p class="text-muted small mb-2">Professional development and profile optimization course.</p>
+              <img src="Certificates/Certificate linkedin_page-0001.jpg" alt="LinkedIn Learning Certificate" class="img-fluid cert-img" data-pdf="Certificates/Certificate linkedin.pdf">
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="col-12 col-md-6 cert-item">
-        <div class="card h-100 shadow-sm">
-          <div class="card-body">
-            <h6 class="card-title">YouTube Creator Certificate</h6>
-            <p class="text-muted small mb-2">Fundamentals of content creation and channel management.</p>
-            <img src="Certificates/Certificate youtube_page-0001.jpg"
-                 alt="YouTube Creator Certificate"
-                 class="img-fluid rounded shadow-sm cert-img"
-                 style="max-height:220px;cursor:pointer"
-                 data-pdf="Certificates/Certificate youtube.pdf">
+        <div class="col-12 col-md-6 cert-item">
+          <div class="card h-100">
+            <div class="card-body">
+              <h6 class="card-title">YouTube Creator Certificate</h6>
+              <p class="text-muted small mb-2">Fundamentals of content creation and channel management.</p>
+              <img src="Certificates/Certificate youtube_page-0001.jpg" alt="YouTube Creator Certificate" class="img-fluid cert-img" data-pdf="Certificates/Certificate youtube.pdf">
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="col-12 col-md-6 cert-item">
-        <div class="card h-100 shadow-sm">
-          <div class="card-body">
-            <h6 class="card-title">English Fundamentals</h6>
-            <p class="text-muted small mb-2">Certificate in English language skills and communication fundamentals.</p>
-            <img src="Certificates/English Fundamentals_page-0001.jpg"
-                 alt="English Fundamentals"
-                 class="img-fluid rounded shadow-sm cert-img"
-                 style="max-height:220px;cursor:pointer"
-                 data-pdf="Certificates/English Fundamentals.pdf">
+        <div class="col-12 col-md-6 cert-item">
+          <div class="card h-100">
+            <div class="card-body">
+              <h6 class="card-title">English Fundamentals</h6>
+              <p class="text-muted small mb-2">Certificate in English language skills and communication fundamentals.</p>
+              <img src="Certificates/English Fundamentals_page-0001.jpg" alt="English Fundamentals" class="img-fluid cert-img" data-pdf="Certificates/English Fundamentals.pdf">
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="col-12 col-md-6 cert-item">
-        <div class="card h-100 shadow-sm">
-          <div class="card-body">
-            <h6 class="card-title">Zoom Training</h6>
-            <p class="text-muted small mb-2">Certificate in virtual meeting etiquette and platform usage.</p>
-            <img src="Certificates/Zoom Training_page-0001.jpg"
-                 alt="Zoom Training"
-                 class="img-fluid rounded shadow-sm cert-img"
-                 style="max-height:220px;cursor:pointer"
-                 data-pdf="Certificates/Zoom Training.pdf">
+        <div class="col-12 col-md-6 cert-item">
+          <div class="card h-100">
+            <div class="card-body">
+              <h6 class="card-title">Zoom Training</h6>
+              <p class="text-muted small mb-2">Certificate in virtual meeting etiquette and platform usage.</p>
+              <img src="Certificates/Zoom Training_page-0001.jpg" alt="Zoom Training" class="img-fluid cert-img" data-pdf="Certificates/Zoom Training.pdf">
+            </div>
           </div>
         </div>
-      </div>
 
-      <!-- ONE Show More button (only this) -->
-      <div class="col-12 text-center" id="cert-showmore-row">
-        <button id="certShowMore" class="btn btn-outline-primary" type="button">
-          <span id="certShowMoreText">Show more</span>
-          <span id="certShowMoreCount"></span>
-        </button>
-      </div>
+        <!-- ONE show more row (no duplicates) -->
+        <div class="col-12 text-center" id="cert-showmore-row">
+          <button id="certShowMore" class="btn btn-outline-primary" type="button">
+            <span id="certShowMoreText">Show more</span>
+            <span id="certShowMoreCount"></span>
+          </button>
+        </div>
 
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-
-
-  <!-- Contact -->
+  <!-- CONTACT -->
   <section id="contact" class="py-5">
     <h2 class="mb-3">Contact</h2>
-    <p class="text-muted">For research collaborations or project inquiries — email <a href="mailto:das.saumyadip.cse@gmail.com">das.saumyadip.cse@gmail.com</a> or use the form below.</p>
+    <p class="text-muted">For research collaborations or project inquiries — email
+      <a href="mailto:das.saumyadip.cse@gmail.com">das.saumyadip.cse@gmail.com</a> or use the form below.</p>
 
     <div class="ratio ratio-16x9 shadow-sm">
-      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdTSatfsZ5hw2IqkvLztaMROtICf11VPxa7IgteRfASbpzycA/viewform?embedded=true" width="100%" height="100%" frameborder="0" title="Contact form">Loading…</iframe>
-    </div>    
+      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdTSatfsZ5hw2IqkvLztaMROtICf11VPxa7IgteRfASbpzycA/viewform?embedded=true"
+              width="100%" height="100%" frameborder="0" title="Contact form">Loading…</iframe>
+    </div>
 
-    <p class="mt-3">If the embed does not work in your browser, open <a href="https://docs.google.com/forms/d/e/1FAIpQLSdTSatfsZ5hw2IqkvLztaMROtICf11VPxa7IgteRfASbpzycA/viewform" target="_blank" rel="noopener">the form</a> in a new tab.</p>
+    <p class="mt-3">
+      If the embed does not work, open the form in a new tab.
+    </p>
   </section>
 
 </main>
 
-<!-- Publication modal -->
-<div class="modal fade" id="pubModal" tabindex="-1" aria-labelledby="pubModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg modal-dialog-centered">
-    <div class="modal-content">
-      <div class="container">
-        <div class="row">
-          <div class="col-12 col-md-6 cert-item">
-            <div class="card">
-              <div class="card-body">
-                <h6 class="card-title"><a href="#" target="_blank">Machine Learning — Fundamentals</a></h6>
-                <iframe src="certificates/ml-fundamentals.pdf" frameborder="0"></iframe>
-              </div>
-            </div>
-          </div>
-          <div class="col-12 col-md-6 cert-item">
-            <div class="card">
-              <div class="card-body">
-                <h6 class="card-title"><a href="#" target="_blank">Python for Data & Scripting</a></h6>
-                <iframe src="certificates/python-data.pdf" frameborder="0"></iframe>
-              </div>
-            </div>
-          </div>
-          <div class="col-12 col-md-6 cert-item">
-            <div class="card">
-              <div class="card-body">
-                <h6 class="card-title"><a href="#" target="_blank">Java — Core Concepts</a></h6>
-                <iframe src="certificates/java-core.pdf" frameborder="0"></iframe>
-              </div>
-            </div>
-          </div>
-          <div class="col-12 col-md-6 cert-item">
-            <div class="card">
-              <div class="card-body">
-                <h6 class="card-title"><a href="#" target="_blank">HTML5 — Web Foundations</a></h6>
-                <iframe src="certificates/html5-foundations.pdf" frameborder="0"></iframe>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-        <div class="col-12 col-md-6 cert-item">
-          <div class="card">
-            <div class="card-body">
-              <h6 class="card-title"><a href="#" target="_blank">Machine Learning — Fundamentals</a></h6>
-              <iframe src="certificates/ml-fundamentals.pdf" frameborder="0"></iframe>
-            </div>
-          </div>
-        </div>
-        <div class="col-12 col-md-6 cert-item">
-          <div class="card">
-            <div class="card-body">
-              <h6 class="card-title"><a href="#" target="_blank">Python for Data & Scripting</a></h6>
-              <iframe src="certificates/python-data.pdf" frameborder="0"></iframe>
-            </div>
-          </div>
-        </div>
-        <div class="col-12 col-md-6 cert-item">
-          <div class="card">
-            <div class="card-body">
-              <h6 class="card-title"><a href="#" target="_blank">Java — Core Concepts</a></h6>
-              <iframe src="certificates/java-core.pdf" frameborder="0"></iframe>
-            </div>
-          </div>
-        </div>
-        <div class="col-12 col-md-6 cert-item">
-          <div class="card">
-            <div class="card-body">
-              <h6 class="card-title"><a href="#" target="_blank">HTML5 — Web Foundations</a></h6>
-              <iframe src="certificates/html5-foundations.pdf" frameborder="0"></iframe>
-            </div>
-          </div>
-        </div>
-      </div>
+<footer class="bg-light py-4 mt-5">
+  <div class="container text-center small text-muted">
+    <div class="mb-2 social-icons">
+      <a class="btn btn-outline-secondary me-2" href="https://github.com/saumyadip-das-2003" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+      <a class="btn btn-outline-secondary me-2" href="https://www.linkedin.com/in/saumyadip-sohom/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+      <a class="btn btn-outline-secondary me-2" href="https://www.researchgate.net/profile/Saumyadip-Das-2" target="_blank" aria-label="ResearchGate">RG</a>
+      <a class="btn btn-outline-secondary" href="#" target="_blank" aria-label="Google Scholar">GS</a>
+    </div>
+    © Saumyadip Das — Built for research and professional use.
+  </div>
+</footer>
+
+<!-- PDF Modal (Awards/Certificates) -->
+<div class="modal fade" id="pdfModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-xl modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="videoModalLabel">Video Portfolio</h5>
+        <h5 class="modal-title">Document Preview</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <div id="videoContent" class="ratio ratio-16x9">
-          <iframe id="videoIframe" src="" title="Video Portfolio" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <div class="ratio ratio-16x9">
+          <iframe id="pdfFrame" src="" frameborder="0" title="PDF preview"></iframe>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<footer class="bg-light py-4 mt-5">
-  <div class="container text-center small text-muted">
-    <div class="mb-2">
-      <a class="text-muted me-3" href="https://github.com/saumyadip-das-2003" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
-      <a class="text-muted me-3" href="https://www.linkedin.com/in/saumyadip-sohom/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-      <a class="text-muted me-3" href="https://www.researchgate.net/profile/Saumyadip-Das-2" target="_blank" aria-label="ResearchGate">RG</a>
-      <a class="text-muted me-3" href="#" target="_blank" aria-label="Google Scholar">GS</a>
-      <a class="text-muted" href="#" target="_blank" aria-label="IEEE Profile">IEEE</a>
+<!-- Transcript Modal -->
+<div class="modal fade" id="transcriptModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-xl modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="transcriptModalLabel">Transcript</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" id="transcriptContent"></div>
+      <div class="modal-footer">
+        <a id="transcriptDownload" class="btn btn-primary" href="#" target="_blank" rel="noopener" style="display:none;">Download</a>
+        <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Close</button>
+      </div>
     </div>
-    © Saumyadip Das — Built for research and professional use.
   </div>
-</footer>
+</div>
+
+<!-- Publication Modal -->
+<div class="modal fade" id="pubModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="pubModalLabel">Publication</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div id="pubDetail" class="mb-3"></div>
+        <div id="pubLinks"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Video Modal -->
+<div class="modal fade" id="videoModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Video Portfolio</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="ratio ratio-16x9">
+          <iframe id="videoIframe" src="" title="Video Portfolio" frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-<script src="/js/main.js"></script>
+
 <script>
-// Certificate Show More logic (vanilla JS, no jQuery)
-document.addEventListener('DOMContentLoaded', function() {
-  const certItems = Array.from(document.querySelectorAll('#cert-list .cert-item'));
-  const showMoreRow = document.getElementById('cert-showmore-row');
-  const showMoreBtn = document.getElementById('certShowMore');
-  const showMoreText = document.getElementById('certShowMoreText');
-  const showMoreCount = document.getElementById('certShowMoreCount');
-  const INITIAL_VISIBLE = 4;
-  let visibleCount = INITIAL_VISIBLE;
-  let expanded = false;
+document.addEventListener('DOMContentLoaded', function () {
 
-  function updateCertVisibility() {
-    certItems.forEach((item, idx) => {
-      item.style.display = idx < visibleCount ? '' : 'none';
-    });
-    // Move the button after the last visible cert
-    const lastVisible = certItems[Math.min(visibleCount, certItems.length) - 1];
-    if (lastVisible && showMoreRow) {
-      lastVisible.parentNode.insertBefore(showMoreRow, lastVisible.nextSibling);
-    }
-    const remaining = certItems.length - visibleCount;
-    if (visibleCount < certItems.length) {
-      showMoreText.textContent = 'Show more';
-      showMoreCount.textContent = `(${remaining} more)`;
-      showMoreRow.style.display = '';
-      expanded = false;
-    } else if (certItems.length > INITIAL_VISIBLE) {
-      showMoreText.textContent = 'Show less';
-      showMoreCount.textContent = '';
-      showMoreRow.style.display = '';
-      expanded = true;
-    } else {
-      showMoreRow.style.display = 'none';
-    }
-  }
+  // Smooth scroll
+  document.querySelectorAll('a[href^="/#"], a[href^="#"]').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      var href = this.getAttribute('href');
+      if (href && (href.startsWith('/#') || href.startsWith('#'))) {
+        e.preventDefault();
+        var id = href.split('#').pop();
+        var el = document.getElementById(id);
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
-  if (showMoreBtn) {
-    showMoreBtn.addEventListener('click', function() {
-      if (!expanded) {
-        visibleCount = certItems.length;
-      } else {
-        visibleCount = INITIAL_VISIBLE;
+        var navEl = document.getElementById('nav');
+        var bs = (window.bootstrap && bootstrap.Collapse && navEl) ? bootstrap.Collapse.getInstance(navEl) : null;
+        if (bs) bs.hide();
+        setTimeout(function () { window.dispatchEvent(new Event('scroll')); }, 300);
       }
-      updateCertVisibility();
+    });
+  });
+
+  // Active nav + shrink
+  var sections = document.querySelectorAll('section[id]');
+  var navbarEl = document.querySelector('.navbar');
+
+  function updateNav() {
+    var scrollPos = window.scrollY + 120;
+    sections.forEach(function (sec) {
+      if (sec.offsetTop <= scrollPos && (sec.offsetTop + sec.offsetHeight) > scrollPos) {
+        document.querySelectorAll('.nav-link').forEach(function (a) { a.classList.remove('active'); });
+        var link = document.querySelector('.nav-link[href="/#' + sec.id + '"]');
+        if (link) link.classList.add('active');
+      }
+    });
+
+    if (!navbarEl) return;
+    if (window.scrollY > 40) navbarEl.classList.add('nav-scrolled');
+    else navbarEl.classList.remove('nav-scrolled');
+  }
+  window.addEventListener('scroll', updateNav);
+  updateNav();
+
+  // Publication filter + show more
+  var buttons = document.querySelectorAll('[data-filter]');
+  var pubItems = Array.from(document.querySelectorAll('.pub-item'));
+  var PAGE_INITIAL = 4, PAGE_INCREMENT = 5;
+  var pubVisible = PAGE_INITIAL, currentFilter = 'all';
+
+  function renderPubs() {
+    var matching = pubItems.filter(function (it) {
+      if (currentFilter === 'all') return true;
+      var tags = it.getAttribute('data-tags') || '';
+      return tags.indexOf(currentFilter) !== -1;
+    });
+
+    matching.forEach(function (it, idx) {
+      it.style.display = idx < pubVisible ? '' : 'none';
+    });
+
+    pubItems.filter(function (it) { return matching.indexOf(it) === -1; })
+      .forEach(function (it) { it.style.display = 'none'; });
+
+    var btn = document.getElementById('pubShowMore');
+    if (!btn) return;
+
+    if (matching.length <= PAGE_INITIAL) btn.style.display = 'none';
+    else {
+      btn.style.display = '';
+      if (pubVisible < matching.length) {
+        var left = matching.length - pubVisible;
+        btn.textContent = 'Show more (' + Math.min(PAGE_INCREMENT, left) + ' more)';
+      } else {
+        btn.textContent = 'Show less';
+      }
+    }
+  }
+
+  buttons.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      buttons.forEach(function (b) { b.classList.remove('active'); });
+      this.classList.add('active');
+      currentFilter = this.getAttribute('data-filter') || 'all';
+      pubVisible = PAGE_INITIAL;
+      renderPubs();
+    });
+  });
+
+  var pubShowMoreBtn = document.getElementById('pubShowMore');
+  if (pubShowMoreBtn) {
+    pubShowMoreBtn.addEventListener('click', function () {
+      var matchingCount = pubItems.filter(function (it) {
+        if (currentFilter === 'all') return true;
+        var tags = it.getAttribute('data-tags') || '';
+        return tags.indexOf(currentFilter) !== -1;
+      }).length;
+
+      if (pubVisible < matchingCount) pubVisible += PAGE_INCREMENT;
+      else {
+        pubVisible = PAGE_INITIAL;
+        var list = document.getElementById('publications');
+        if (list) list.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+      renderPubs();
     });
   }
-  updateCertVisibility();
+  renderPubs();
+
+  // Projects show more
+  var projItems = Array.from(document.querySelectorAll('.project-item'));
+  var PROJ_INITIAL = 4, PROJ_INCREMENT = 4;
+  var projVisible = PROJ_INITIAL;
+
+  function renderProjects() {
+    projItems.forEach(function (it, idx) {
+      it.style.display = idx < projVisible ? '' : 'none';
+    });
+    var btn = document.getElementById('projShowMore');
+    if (!btn) return;
+
+    if (projItems.length <= PROJ_INITIAL) btn.style.display = 'none';
+    else {
+      btn.style.display = '';
+      if (projVisible < projItems.length) {
+        var left = projItems.length - projVisible;
+        btn.textContent = 'Show more (' + Math.min(PROJ_INCREMENT, left) + ' more)';
+      } else {
+        btn.textContent = 'Show less';
+      }
+    }
+  }
+
+  var projBtn = document.getElementById('projShowMore');
+  if (projBtn) {
+    projBtn.addEventListener('click', function () {
+      if (projVisible < projItems.length) projVisible += PROJ_INCREMENT;
+      else {
+        projVisible = PROJ_INITIAL;
+        var sec = document.getElementById('projects');
+        if (sec) sec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+      renderProjects();
+    });
+  }
+  renderProjects();
+
+  // Awards show more
+  var awardItems = Array.from(document.querySelectorAll('.award-item'));
+  var AWARD_INITIAL = 4, AWARD_INCREMENT = 4;
+  var awardVisible = AWARD_INITIAL;
+
+  function renderAwards() {
+    awardItems.forEach(function (it, idx) {
+      it.style.display = idx < awardVisible ? '' : 'none';
+    });
+    var btn = document.getElementById('awardShowMore');
+    if (!btn) return;
+
+    if (awardItems.length <= AWARD_INITIAL) btn.style.display = 'none';
+    else {
+      btn.style.display = '';
+      if (awardVisible < awardItems.length) {
+        var left = awardItems.length - awardVisible;
+        btn.textContent = 'Show more (' + Math.min(AWARD_INCREMENT, left) + ' more)';
+      } else {
+        btn.textContent = 'Show less';
+      }
+    }
+  }
+
+  var awardBtn = document.getElementById('awardShowMore');
+  if (awardBtn) {
+    awardBtn.addEventListener('click', function () {
+      if (awardVisible < awardItems.length) awardVisible += AWARD_INCREMENT;
+      else {
+        awardVisible = AWARD_INITIAL;
+        var sec = document.getElementById('awards');
+        if (sec) sec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+      renderAwards();
+    });
+  }
+  renderAwards();
+
+  // Certifications: show 4, each click +4, when done -> show less
+  var certWrap = document.getElementById('cert-list');
+  var certItems = certWrap ? Array.from(certWrap.querySelectorAll('.cert-item')) : [];
+  var CERT_INITIAL = 4, CERT_INCREMENT = 4;
+  var certVisible = CERT_INITIAL;
+
+  var certShowMoreRow = document.getElementById('cert-showmore-row');
+  var certBtn = document.getElementById('certShowMore');
+  var certBtnText = document.getElementById('certShowMoreText');
+  var certBtnCount = document.getElementById('certShowMoreCount');
+
+  function moveCertButtonAfterLastVisible() {
+    if (!certShowMoreRow || certItems.length === 0) return;
+    var lastVisibleIndex = Math.min(certVisible, certItems.length) - 1;
+    var lastVisible = certItems[lastVisibleIndex];
+    if (lastVisible && lastVisible.parentNode) {
+      lastVisible.parentNode.insertBefore(certShowMoreRow, lastVisible.nextSibling);
+    }
+  }
+
+  function renderCerts() {
+    certItems.forEach(function (it, idx) {
+      it.style.display = idx < certVisible ? '' : 'none';
+    });
+
+    if (!certBtn || !certBtnText || !certBtnCount || !certShowMoreRow) return;
+
+    if (certItems.length <= CERT_INITIAL) {
+      certShowMoreRow.style.display = 'none';
+      return;
+    }
+
+    certShowMoreRow.style.display = '';
+    moveCertButtonAfterLastVisible();
+
+    if (certVisible < certItems.length) {
+      var left = certItems.length - certVisible;
+      var willShow = Math.min(CERT_INCREMENT, left);
+      certBtnText.textContent = 'Show more';
+      certBtnCount.textContent = ' (' + willShow + ' more)';
+    } else {
+      certBtnText.textContent = 'Show less';
+      certBtnCount.textContent = '';
+    }
+  }
+
+  if (certBtn) {
+    certBtn.addEventListener('click', function () {
+      if (certVisible < certItems.length) {
+        certVisible += CERT_INCREMENT;
+        if (certVisible > certItems.length) certVisible = certItems.length;
+      } else {
+        certVisible = CERT_INITIAL;
+        var sec = document.getElementById('certifications');
+        if (sec) sec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+      renderCerts();
+    });
+  }
+  renderCerts();
+
+  // PDF modal open for awards + certs
+  document.querySelectorAll('.award-img, .cert-img').forEach(function (img) {
+    img.addEventListener('click', function () {
+      var pdf = this.getAttribute('data-pdf');
+      var frame = document.getElementById('pdfFrame');
+      if (frame) frame.src = pdf ? encodeURI(pdf) : '';
+      var modalEl = document.getElementById('pdfModal');
+      if (modalEl) new bootstrap.Modal(modalEl).show();
+    });
+  });
+
+  document.getElementById('pdfModal').addEventListener('hidden.bs.modal', function () {
+    var frame = document.getElementById('pdfFrame');
+    if (frame) frame.src = '';
+  });
+
+  // Transcript modal
+  document.querySelectorAll('.edu-transcript-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var pdf = this.getAttribute('data-pdf');
+      var pdfUrl = pdf ? encodeURI(pdf) : '';
+
+      var card = this.closest('.card');
+      var titleEl = card ? card.querySelector('.card-title') : null;
+      var title = titleEl ? titleEl.textContent : 'Transcript';
+
+      document.getElementById('transcriptModalLabel').textContent = title + ' — Transcript';
+      var content = document.getElementById('transcriptContent');
+      var download = document.getElementById('transcriptDownload');
+
+      if (pdf && pdf.trim()) {
+        content.innerHTML = '<div class="ratio ratio-16x9"><iframe src="' + pdfUrl + '" width="100%" height="600" frameborder="0">Loading…</iframe></div>';
+        download.href = pdfUrl;
+        download.style.display = '';
+      } else {
+        content.innerHTML = '<p class="text-muted">Transcript PDF not uploaded yet.</p>';
+        download.style.display = 'none';
+      }
+
+      new bootstrap.Modal(document.getElementById('transcriptModal')).show();
+    });
+  });
+
+  // Publication modal populate
+  var pubModal = document.getElementById('pubModal');
+  if (pubModal) {
+    pubModal.addEventListener('show.bs.modal', function (e) {
+      var trigger = e.relatedTarget;
+      if (!trigger) return;
+
+      var title = trigger.getAttribute('data-title');
+      var authors = trigger.getAttribute('data-authors');
+      var detail = trigger.getAttribute('data-detail');
+      var links = trigger.getAttribute('data-links');
+
+      document.getElementById('pubModalLabel').textContent = title || 'Publication';
+      document.getElementById('pubDetail').innerHTML = '<strong>' + (authors || '') + '</strong><br>' + (detail || '');
+      document.getElementById('pubLinks').innerHTML = links ? '<a href="' + links + '" target="_blank" rel="noopener">View paper / DOI</a>' : '';
+    });
+  }
+
+  // Video modal
+  var videoModalEl = document.getElementById('videoModal');
+  if (videoModalEl) {
+    videoModalEl.addEventListener('show.bs.modal', function () {
+      var iframe = document.getElementById('videoIframe');
+      if (iframe) iframe.src = 'https://www.youtube.com/embed/-tJYN-eG1zk?rel=0';
+    });
+    videoModalEl.addEventListener('hidden.bs.modal', function () {
+      var iframe = document.getElementById('videoIframe');
+      if (iframe) iframe.src = '';
+    });
+  }
+
+  // Reveal animation
+  document.querySelectorAll('.reveal').forEach(function (el, i) {
+    setTimeout(function () { el.classList.add('visible'); }, 80 * i);
+  });
+
 });
 </script>
+
 </body>
 </html>
