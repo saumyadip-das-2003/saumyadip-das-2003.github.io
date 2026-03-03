@@ -805,349 +805,344 @@
     </div>
   </section>
 
-  <!-- SKILLS -->
+  <!-- SKILLS (Theme-Based Tiles + Hover/Click Details) -->
 <section id="skills" class="py-5 section-skills">
   <h2 class="mb-3 reveal">Skills</h2>
+  <p class="text-muted mb-4 reveal">Hover (or tap on mobile) to view the tools and technologies.</p>
 
-  <div class="skill-legend mb-3">
-    <div><span class="skill-legend-swatch skill-adv"></span> Advanced</div>
-    <div><span class="skill-legend-swatch skill-int"></span> Intermediate</div>
-    <div><span class="skill-legend-swatch skill-fam"></span> Familiar</div>
-  </div>
+  <!-- ✅ Skills CSS (inside HTML, no external file needed) -->
+  <style>
+    /* Skills theme tiles */
+    .skills-grid .skill-tile{
+      position: relative;
+      border: 1px solid rgba(229,231,235,.9);
+      border-radius: 18px;
+      background: #fff;
+      box-shadow: 0 10px 26px rgba(2,6,23,.06);
+      padding: 16px 16px;
+      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+      min-height: 150px;
+      overflow: hidden;
+      cursor: default;
+    }
 
-  <div class="row g-4 mt-3">
+    .skills-grid .skill-tile:hover{
+      transform: translateY(-2px);
+      box-shadow: 0 18px 45px rgba(2,6,23,.10);
+      border-color: rgba(11,94,215,.25);
+    }
 
-    <!-- Programming Languages -->
+    .skills-grid .skill-tile-head{
+      display:flex;
+      align-items:flex-start;
+      gap:12px;
+    }
+
+    .skills-grid .skill-icon{
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background: rgba(11,94,215,.10);
+      color: var(--brand, #0b5ed7);
+      flex: 0 0 auto;
+      font-size: 18px;
+    }
+
+    .skills-grid .skill-title{
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      margin: 0;
+      color: rgba(15,23,42,.95);
+    }
+
+    .skills-grid .skill-subtitle{
+      color: rgba(100,116,139,.95);
+      font-size: .92rem;
+    }
+
+    /* Hover content overlay */
+    .skills-grid .skill-hover{
+      position: absolute;
+      inset: 0;
+      padding: 16px;
+      background: rgba(255,255,255,.96);
+      backdrop-filter: blur(8px);
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity .18s ease, transform .18s ease;
+      display:flex;
+      align-items:center;
+      pointer-events: none;
+    }
+
+    .skills-grid .skill-tile:hover .skill-hover,
+    .skills-grid .skill-tile:focus .skill-hover{
+      opacity: 1;
+      transform: none;
+      pointer-events: auto;
+    }
+
+    /* Mobile: tap-to-open */
+    .skills-grid .skill-tile.is-open .skill-hover{
+      opacity: 1;
+      transform: none;
+      pointer-events: auto;
+    }
+
+    .skills-grid .skill-list{
+      margin: 0;
+      padding-left: 18px;
+      color: rgba(15,23,42,.88);
+      font-size: .95rem;
+    }
+    .skills-grid .skill-list li{ margin: 6px 0; }
+
+    /* Small helper text inside hover */
+    .skills-grid .skill-hint{
+      margin-top: 10px;
+      font-size: .85rem;
+      color: rgba(100,116,139,.95);
+    }
+  </style>
+
+  <div class="row g-4 mt-2 skills-grid">
+
+    <!-- Machine Learning & Data Science -->
     <div class="col-md-6 col-lg-4">
-      <div class="card h-100 reveal">
-        <div class="card-body">
-          <h5 class="card-title">Programming Languages</h5>
-
-          <div class="skill-row">
-            <div class="skill-name">Python</div>
-            <div class="skill-bar"><div class="skill-fill skill-adv"></div></div>
-            
+      <div class="skill-tile reveal" tabindex="0" data-skill-tile>
+        <div class="skill-tile-head">
+          <div class="skill-icon"><i class="fa-solid fa-brain"></i></div>
+          <div>
+            <h5 class="skill-title mb-1">Machine Learning & Data Science</h5>
+            <div class="skill-subtitle">Modeling • Training • Analytics</div>
           </div>
-
-          <div class="skill-row">
-            <div class="skill-name">C / C++</div>
-            <div class="skill-bar"><div class="skill-fill skill-adv"></div></div>
-            
+        </div>
+        <div class="skill-hover">
+          <div>
+            <ul class="skill-list">
+              <li>NumPy, Pandas</li>
+              <li>Scikit-learn</li>
+              <li>PyTorch, TensorFlow</li>
+              <li>Matplotlib, Seaborn</li>
+              <li>Power BI</li>
+            </ul>
+            <div class="skill-hint">Tip: Tap again to close (mobile).</div>
           </div>
-
-          <div class="skill-row">
-            <div class="skill-name">Java</div>
-            <div class="skill-bar"><div class="skill-fill skill-adv"></div></div>
-            
-          </div>
-
-          <div class="skill-row">
-            <div class="skill-name">C#</div>
-            <div class="skill-bar"><div class="skill-fill skill-adv"></div></div>
-            
-          </div>
-
-          <div class="skill-row">
-            <div class="skill-name">R</div>
-            <div class="skill-bar"><div class="skill-fill skill-int"></div></div>
-            
-          </div>
-
-          <p class="text-muted small mt-2">
-            <strong>Evidence:</strong> Python-based ML/data projects, C# Banking System, C++ graphics projects, Java resource booking systems.
-          </p>
         </div>
       </div>
     </div>
 
-    <!-- Data Science & Machine Learning -->
+    <!-- IoT Implementation -->
     <div class="col-md-6 col-lg-4">
-      <div class="card h-100 reveal">
-        <div class="card-body">
-          <h5 class="card-title">Data Science & Machine Learning</h5>
-
-          <div class="skill-row">
-            <div class="skill-name">NumPy / Pandas</div>
-            <div class="skill-bar"><div class="skill-fill skill-adv"></div></div>
-            
+      <div class="skill-tile reveal" tabindex="0" data-skill-tile>
+        <div class="skill-tile-head">
+          <div class="skill-icon"><i class="fa-solid fa-microchip"></i></div>
+          <div>
+            <h5 class="skill-title mb-1">IoT Implementation</h5>
+            <div class="skill-subtitle">Sensors • Prototyping • Monitoring</div>
           </div>
-
-          <div class="skill-row">
-            <div class="skill-name">Matplotlib / Seaborn</div>
-            <div class="skill-bar"><div class="skill-fill skill-adv"></div></div>
-            
+        </div>
+        <div class="skill-hover">
+          <div>
+            <ul class="skill-list">
+              <li>ESP32, Arduino UNO</li>
+              <li>Sensors: DHT11, Rain, Soil Moisture</li>
+              <li>Embedded Prototyping</li>
+              <li>IoT Data Collection & Automation</li>
+            </ul>
+            <div class="skill-hint">Tip: Tap again to close (mobile).</div>
           </div>
-
-          <div class="skill-row">
-            <div class="skill-name">PyTorch</div>
-            <div class="skill-bar"><div class="skill-fill skill-int"></div></div>
-            
-          </div>
-
-          <div class="skill-row">
-            <div class="skill-name">TensorFlow</div>
-            <div class="skill-bar"><div class="skill-fill skill-int"></div></div>
-            
-          </div>
-
-          <div class="skill-row">
-            <div class="skill-name">Power BI</div>
-            <div class="skill-bar"><div class="skill-fill skill-int"></div></div>
-            
-          </div>
-
-          <p class="text-muted small mt-2">
-            <strong>Evidence:</strong> Data analysis workflows, ML model training, visualization, and research projects.
-          </p>
         </div>
       </div>
     </div>
 
-    <!-- IoT & Embedded Systems -->
+    <!-- Web Development -->
     <div class="col-md-6 col-lg-4">
-      <div class="card h-100 reveal">
-        <div class="card-body">
-          <h5 class="card-title">IoT & Embedded Systems</h5>
-
-          <div class="skill-row">
-            <div class="skill-name">ESP32</div>
-            <div class="skill-bar"><div class="skill-fill skill-int"></div></div>
-            
+      <div class="skill-tile reveal" tabindex="0" data-skill-tile>
+        <div class="skill-tile-head">
+          <div class="skill-icon"><i class="fa-solid fa-code"></i></div>
+          <div>
+            <h5 class="skill-title mb-1">Web Development</h5>
+            <div class="skill-subtitle">Frontend • Backend • UI</div>
           </div>
-
-          <div class="skill-row">
-            <div class="skill-name">Arduino UNO</div>
-            <div class="skill-bar"><div class="skill-fill skill-int"></div></div>
-            
+        </div>
+        <div class="skill-hover">
+          <div>
+            <ul class="skill-list">
+              <li>HTML5, CSS3, Bootstrap</li>
+              <li>JavaScript</li>
+              <li>PHP</li>
+            </ul>
+            <div class="skill-hint">Tip: Tap again to close (mobile).</div>
           </div>
-
-          <div class="skill-row">
-            <div class="skill-name">Sensors (DHT11, Rain, Moisture)</div>
-            <div class="skill-bar"><div class="skill-fill skill-int"></div></div>
-            
-          </div>
-
-          <div class="skill-row">
-            <div class="skill-name">IoT Prototyping</div>
-            <div class="skill-bar"><div class="skill-fill skill-int"></div></div>
-            
-          </div>
-
-          <p class="text-muted small mt-2">
-            <strong>Evidence:</strong> Soil health monitoring system, sensor data collection and IoT automation.
-          </p>
         </div>
       </div>
     </div>
 
-    <!-- Web Technologies -->
+    <!-- Software Development (Updated as you requested) -->
     <div class="col-md-6 col-lg-4">
-      <div class="card h-100 reveal">
-        <div class="card-body">
-          <h5 class="card-title">Web Technologies</h5>
-
-          <div class="skill-row">
-            <div class="skill-name">HTML5</div>
-            <div class="skill-bar"><div class="skill-fill skill-adv"></div></div>
-            
+      <div class="skill-tile reveal" tabindex="0" data-skill-tile>
+        <div class="skill-tile-head">
+          <div class="skill-icon"><i class="fa-solid fa-laptop-code"></i></div>
+          <div>
+            <h5 class="skill-title mb-1">Software Development</h5>
+            <div class="skill-subtitle">OOP • Desktop Apps • Systems</div>
           </div>
-
-          <div class="skill-row">
-            <div class="skill-name">CSS</div>
-            <div class="skill-bar"><div class="skill-fill skill-adv"></div></div>
-            
+        </div>
+        <div class="skill-hover">
+          <div>
+            <ul class="skill-list">
+              <li>.NET Development (C# / WinForms)</li>
+              <li>Java Swing Development</li>
+              <li>C / C++ (GLUT / Systems)</li>
+              <li>Python (Automation / Utilities)</li>
+            </ul>
+            <div class="skill-hint">Tip: Tap again to close (mobile).</div>
           </div>
+        </div>
+      </div>
+    </div>
 
-          <div class="skill-row">
-            <div class="skill-name">JavaScript</div>
-            <div class="skill-bar"><div class="skill-fill skill-int"></div></div>
-            
+    <!-- UI/UX Design (Updated with Figma) -->
+    <div class="col-md-6 col-lg-4">
+      <div class="skill-tile reveal" tabindex="0" data-skill-tile>
+        <div class="skill-tile-head">
+          <div class="skill-icon"><i class="fa-solid fa-pen-nib"></i></div>
+          <div>
+            <h5 class="skill-title mb-1">UI/UX Design</h5>
+            <div class="skill-subtitle">Prototypes • Layout • Components</div>
           </div>
-
-          <div class="skill-row">
-            <div class="skill-name">PHP</div>
-            <div class="skill-bar"><div class="skill-fill skill-adv"></div></div>
-            
+        </div>
+        <div class="skill-hover">
+          <div>
+            <ul class="skill-list">
+              <li>Figma Prototypes</li>
+              <li>Wireframes & User Flows</li>
+              <li>Component-Based UI Design</li>
+            </ul>
+            <div class="skill-hint">Tip: Tap again to close (mobile).</div>
           </div>
-
-          <p class="text-muted small mt-2">
-            <strong>Evidence:</strong> SafePath, custom works and portfolio development.
-          </p>
         </div>
       </div>
     </div>
 
     <!-- Database Systems -->
     <div class="col-md-6 col-lg-4">
-      <div class="card h-100 reveal">
-        <div class="card-body">
-          <h5 class="card-title">Database Systems</h5>
-
-          <div class="skill-row">
-            <div class="skill-name">Oracle</div>
-            <div class="skill-bar"><div class="skill-fill skill-int"></div></div>
-            
+      <div class="skill-tile reveal" tabindex="0" data-skill-tile>
+        <div class="skill-tile-head">
+          <div class="skill-icon"><i class="fa-solid fa-database"></i></div>
+          <div>
+            <h5 class="skill-title mb-1">Database Systems</h5>
+            <div class="skill-subtitle">Design • Queries • Storage</div>
           </div>
-
-          <div class="skill-row">
-            <div class="skill-name">MS SQL</div>
-            <div class="skill-bar"><div class="skill-fill skill-int"></div></div>
-            
+        </div>
+        <div class="skill-hover">
+          <div>
+            <ul class="skill-list">
+              <li>MySQL</li>
+              <li>MS SQL</li>
+              <li>Oracle</li>
+            </ul>
+            <div class="skill-hint">Tip: Tap again to close (mobile).</div>
           </div>
-
-          <div class="skill-row">
-            <div class="skill-name">MySQL</div>
-            <div class="skill-bar"><div class="skill-fill skill-int"></div></div>
-            
-          </div>
-
-          <p class="text-muted small mt-2">
-            <strong>Evidence:</strong> Used in Banking System, University Resource System, SafePath.
-          </p>
         </div>
       </div>
     </div>
 
-    <!-- Mathematical & Statistical Tools -->
+    <!-- Tools & Productivity -->
     <div class="col-md-6 col-lg-4">
-      <div class="card h-100 reveal">
-        <div class="card-body">
-          <h5 class="card-title">Mathematical & Statistical Tools</h5>
-
-          <div class="skill-row">
-            <div class="skill-name">MATLAB</div>
-            <div class="skill-bar"><div class="skill-fill skill-int"></div></div>
-            
+      <div class="skill-tile reveal" tabindex="0" data-skill-tile>
+        <div class="skill-tile-head">
+          <div class="skill-icon"><i class="fa-solid fa-screwdriver-wrench"></i></div>
+          <div>
+            <h5 class="skill-title mb-1">Tools & Productivity</h5>
+            <div class="skill-subtitle">Collaboration • Docs • Workflow</div>
           </div>
-
-          <div class="skill-row">
-            <div class="skill-name">SPSS</div>
-            <div class="skill-bar"><div class="skill-fill skill-int"></div></div>
-            
+        </div>
+        <div class="skill-hover">
+          <div>
+            <ul class="skill-list">
+              <li>Git, GitHub</li>
+              <li>Google Colab, Kaggle</li>
+              <li>MS Word, PowerPoint, Excel</li>
+              <li>MS Project</li>
+            </ul>
+            <div class="skill-hint">Tip: Tap again to close (mobile).</div>
           </div>
-
-          <p class="text-muted small mt-2">
-            <strong>Evidence:</strong> Data Communication labs, statistics coursework, and data analysis tasks.
-          </p>
         </div>
       </div>
     </div>
 
-    <!-- Cloud & Collaboration -->
+    <!-- Creative & Media -->
     <div class="col-md-6 col-lg-4">
-      <div class="card h-100 reveal">
-        <div class="card-body">
-          <h5 class="card-title">Cloud & Collaboration</h5>
-
-          <div class="skill-row">
-            <div class="skill-name">Google Colab</div>
-            <div class="skill-bar"><div class="skill-fill skill-adv"></div></div>
-            
+      <div class="skill-tile reveal" tabindex="0" data-skill-tile>
+        <div class="skill-tile-head">
+          <div class="skill-icon"><i class="fa-solid fa-photo-film"></i></div>
+          <div>
+            <h5 class="skill-title mb-1">Creative & Media</h5>
+            <div class="skill-subtitle">Visuals • Video • Design</div>
           </div>
-
-          <div class="skill-row">
-            <div class="skill-name">Kaggle Notebook</div>
-            <div class="skill-bar"><div class="skill-fill skill-adv"></div></div>
-            
-          </div>
-
-          <div class="skill-row">
-            <div class="skill-name">Git / GitHub</div>
-            <div class="skill-bar"><div class="skill-fill skill-adv"></div></div>
-            
-          </div>
-
-          <div class="skill-row">
-            <div class="skill-name">Microsoft Azure</div>
-            <div class="skill-bar"><div class="skill-fill skill-fam"></div></div>
-            
-          </div>
-
-          <p class="text-muted small mt-2">
-            <strong>Evidence:</strong> ML workflows in Colab/Kaggle, project collaboration and version control.
-          </p>
         </div>
-      </div>
-    </div>
-
-    <!-- Creative & Media Tools -->
-    <div class="col-md-6 col-lg-4">
-      <div class="card h-100 reveal">
-        <div class="card-body">
-          <h5 class="card-title">Creative & Media Tools</h5>
-
-          <div class="skill-row">
-            <div class="skill-name">Filmora</div>
-            <div class="skill-bar"><div class="skill-fill skill-int"></div></div>
-            
+        <div class="skill-hover">
+          <div>
+            <ul class="skill-list">
+              <li>Photoshop</li>
+              <li>Filmora</li>
+              <li>Premiere Pro (basic)</li>
+              <li>Illustrator (basic)</li>
+            </ul>
+            <div class="skill-hint">Tip: Tap again to close (mobile).</div>
           </div>
-
-          <div class="skill-row">
-            <div class="skill-name">Premiere Pro</div>
-            <div class="skill-bar"><div class="skill-fill skill-fam"></div></div>
-            
-          </div>
-
-          <div class="skill-row">
-            <div class="skill-name">Photoshop</div>
-            <div class="skill-bar"><div class="skill-fill skill-int"></div></div>
-            
-          </div>
-
-          <div class="skill-row">
-            <div class="skill-name">Illustrator</div>
-            <div class="skill-bar"><div class="skill-fill skill-fam"></div></div>
-            
-          </div>
-
-          <p class="text-muted small mt-2">
-            <strong>Evidence:</strong> Video portfolio creation, poster and visual content design.
-          </p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Productivity Tools -->
-    <div class="col-md-6 col-lg-4">
-      <div class="card h-100 reveal">
-        <div class="card-body">
-          <h5 class="card-title">Productivity & Documentation</h5>
-
-          <div class="skill-row">
-            <div class="skill-name">MS Word</div>
-            <div class="skill-bar"><div class="skill-fill skill-adv"></div></div>
-            
-          </div>
-
-          <div class="skill-row">
-            <div class="skill-name">MS PowerPoint</div>
-            <div class="skill-bar"><div class="skill-fill skill-adv"></div></div>
-            
-          </div>
-
-          <div class="skill-row">
-            <div class="skill-name">MS Excel</div>
-            <div class="skill-bar"><div class="skill-fill skill-adv"></div></div>
-            
-          </div>
-
-          <div class="skill-row">
-            <div class="skill-name">MS Project</div>
-            <div class="skill-bar"><div class="skill-fill skill-fam"></div></div>
-            
-          </div>
-
-          <p class="text-muted small mt-2">
-            <strong>Evidence:</strong> Used in academic and professional projects, reports, and presentations.
-          </p>
         </div>
       </div>
     </div>
 
   </div>
+
+  <!-- ✅ Skills JS (inside HTML, no external file needed) -->
+  <script>
+    (function () {
+      const tiles = document.querySelectorAll('[data-skill-tile]');
+
+      // accessibility
+      tiles.forEach(t => t.setAttribute('role','button'));
+
+      // Mobile-friendly tap open/close + close others
+      tiles.forEach(tile => {
+        tile.addEventListener('click', (e) => {
+          // if user is selecting text inside hover list, don't close
+          if (window.getSelection && String(window.getSelection()).length > 0) return;
+
+          const isOpen = tile.classList.contains('is-open');
+
+          tiles.forEach(t => t.classList.remove('is-open'));
+          if (!isOpen) tile.classList.add('is-open');
+        });
+
+        // keyboard: Enter/Space toggle
+        tile.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            tile.click();
+          }
+          if (e.key === 'Escape') {
+            tile.classList.remove('is-open');
+          }
+        });
+      });
+
+      // Click outside closes all
+      document.addEventListener('click', (e) => {
+        if (!e.target.closest('[data-skill-tile]')) {
+          tiles.forEach(t => t.classList.remove('is-open'));
+        }
+      });
+    })();
+  </script>
 </section>
-
-
 
   <!-- AWARDS -->
   <section id="awards" class="py-5 section-awards">
