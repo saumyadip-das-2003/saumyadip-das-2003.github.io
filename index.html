@@ -1416,6 +1416,57 @@
 <script>
 document.addEventListener('DOMContentLoaded', function () {
 
+
+
+  // ✅ Certificates show more (MISSING)
+var certItems = Array.from(document.querySelectorAll('.cert-item'));
+var CERT_INITIAL = 8, CERT_INCREMENT = 4;
+var certVisible = CERT_INITIAL;
+
+function renderCerts() {
+  certItems.forEach(function (it, idx) {
+    it.style.display = idx < certVisible ? '' : 'none';
+  });
+
+  var btn = document.getElementById('certShowMore');
+  var txt = document.getElementById('certShowMoreText');
+  var cnt = document.getElementById('certShowMoreCount');
+
+  if (!btn) return;
+
+  if (certItems.length <= CERT_INITIAL) {
+    btn.style.display = 'none';
+    return;
+  }
+
+  btn.style.display = '';
+
+  if (certVisible < certItems.length) {
+    var left = certItems.length - certVisible;
+    if (txt) txt.textContent = 'Show more';
+    if (cnt) cnt.textContent = ' (' + Math.min(CERT_INCREMENT, left) + ' more)';
+  } else {
+    if (txt) txt.textContent = 'Show less';
+    if (cnt) cnt.textContent = '';
+  }
+}
+
+var certBtn = document.getElementById('certShowMore');
+if (certBtn) {
+  certBtn.addEventListener('click', function () {
+    if (certVisible < certItems.length) certVisible += CERT_INCREMENT;
+    else {
+      certVisible = CERT_INITIAL;
+      var sec = document.getElementById('certifications');
+      if (sec) sec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    renderCerts();
+  });
+}
+
+renderCerts();
+
+
   // Smooth scroll
   document.querySelectorAll('a[href^="/#"], a[href^="#"]').forEach(function (a) {
     a.addEventListener('click', function (e) {

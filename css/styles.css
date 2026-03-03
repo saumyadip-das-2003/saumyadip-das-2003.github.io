@@ -22,6 +22,99 @@
   font-family:'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
 }
 
+
+
+
+/* ===== Skills UI (missing in your file) ===== */
+.skill-legend{
+  display:flex;
+  gap:14px;
+  flex-wrap:wrap;
+  align-items:center;
+  color: var(--muted);
+  font-size: .92rem;
+}
+.skill-legend-swatch{
+  width: 14px;
+  height: 10px;
+  border-radius: 999px;
+  display:inline-block;
+  margin-right: 6px;
+  border: 1px solid rgba(15,23,42,.08);
+}
+
+.skill-row{
+  display:grid;
+  grid-template-columns: 130px 1fr 90px;
+  gap: 10px;
+  align-items:center;
+  margin: 12px 0;
+}
+.skill-name{
+  font-weight: 700;
+  color: rgba(15,23,42,.88);
+}
+.skill-bar{
+  height: 10px;
+  background: rgba(100,116,139,.18);
+  border-radius: 999px;
+  overflow:hidden;
+  position: relative;
+}
+.skill-fill{
+  height: 100%;
+  width: 0;
+  border-radius: 999px;
+  transition: width .7s ease;
+}
+
+/* Levels */
+.skill-adv{ background: rgba(11,94,215,.95); width: 92%; }
+.skill-int{ background: rgba(11,94,215,.70); width: 72%; }
+.skill-fam{ background: rgba(11,94,215,.45); width: 52%; }
+
+.skill-label{
+  font-weight: 800;
+  color: rgba(15,23,42,.70);
+  font-size: .9rem;
+  text-align: right;
+}
+
+/* Mobile */
+@media (max-width: 520px){
+  .skill-row{
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+  .skill-label{ text-align:left; }
+}
+
+/* ===== Awards (prevent huge images) ===== */
+.award-image-wrapper{
+  width: 100%;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(229,231,235,.9);
+  background: rgba(248,250,252,.9);
+}
+
+.award-img{
+  width: 100%;
+  height: 220px;      /* adjust if you want taller */
+  object-fit: cover;  /* keeps it clean */
+  display: block;
+  cursor: pointer;
+  transition: transform .18s ease;
+}
+
+.award-img:hover{
+  transform: scale(1.02);
+}
+
+
+
+
+
 *{ box-sizing:border-box; }
 html,body{ height:100%; }
 body{
