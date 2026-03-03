@@ -805,123 +805,152 @@
     </div>
   </section>
 
-  <!-- SKILLS (Theme-Based Tiles + Hover/Click Details) -->
-<section id="skills" class="py-5 section-skills">
-  <h2 class="mb-3 reveal">Skills</h2>
-  <p class="text-muted mb-4 reveal">Hover (or tap on mobile) to view the tools and technologies.</p>
+<!-- ================= SKILLS SECTION ================= -->
+<section id="skills" class="py-5">
+  <div class="container">
+    <h2 class="mb-3">Skills</h2>
+    <p class="text-muted mb-4">Hover (or tap on mobile) to explore tools and technologies.</p>
 
-  <!-- ✅ Skills CSS (inside HTML, no external file needed) -->
-  <style>
-    /* Skills theme tiles */
-    .skills-grid .skill-tile{
-      position: relative;
-      border: 1px solid rgba(229,231,235,.9);
-      border-radius: 18px;
-      background: #fff;
-      box-shadow: 0 10px 26px rgba(2,6,23,.06);
-      padding: 16px 16px;
-      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
-      min-height: 150px;
-      overflow: hidden;
-      cursor: default;
-    }
+    <!-- ========== INTERNAL CSS ========== -->
+    <style>
+      .skills-grid .skill-tile{
+        position: relative;
+        border: 1px solid rgba(229,231,235,.9);
+        border-radius: 18px;
+        background: #fff;
+        box-shadow: 0 10px 26px rgba(2,6,23,.06);
+        padding: 18px;
+        min-height: 150px;
+        transition: all .18s ease;
+        overflow: visible;
+      }
 
-    .skills-grid .skill-tile:hover{
-      transform: translateY(-2px);
-      box-shadow: 0 18px 45px rgba(2,6,23,.10);
-      border-color: rgba(11,94,215,.25);
-    }
+      .skills-grid .skill-tile:hover{
+        transform: translateY(-3px);
+        box-shadow: 0 20px 50px rgba(2,6,23,.12);
+        border-color: rgba(13,110,253,.35);
+      }
 
-    .skills-grid .skill-tile-head{
-      display:flex;
-      align-items:flex-start;
-      gap:12px;
-    }
+      .skill-tile-head{
+        display: flex;
+        gap: 14px;
+        align-items: center;
+      }
 
-    .skills-grid .skill-icon{
-      width: 42px;
-      height: 42px;
-      border-radius: 14px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      background: rgba(11,94,215,.10);
-      color: var(--brand, #0b5ed7);
-      flex: 0 0 auto;
-      font-size: 18px;
-    }
+      .skill-icon{
+        width: 46px;
+        height: 46px;
+        border-radius: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(13,110,253,.12);
+        color: #0d6efd;
+        font-size: 20px;
+      }
 
-    .skills-grid .skill-title{
-      font-weight: 900;
-      letter-spacing: -0.02em;
-      margin: 0;
-      color: rgba(15,23,42,.95);
-    }
+      .skill-title{
+        font-weight: 700;
+        margin: 0;
+      }
 
-    .skills-grid .skill-subtitle{
-      color: rgba(100,116,139,.95);
-      font-size: .92rem;
-    }
+      .skill-subtitle{
+        font-size: .9rem;
+        color: #6c757d;
+      }
 
-    /* Hover content overlay */
-    .skills-grid .skill-hover{
-      position: absolute;
-      inset: 0;
-      padding: 16px;
-      background: rgba(255,255,255,.96);
-      backdrop-filter: blur(8px);
-      opacity: 0;
-      transform: translateY(8px);
-      transition: opacity .18s ease, transform .18s ease;
-      display:flex;
-      align-items:center;
-      pointer-events: none;
-    }
+      /* Popover hover panel */
+      .skill-hover{
+        position: absolute;
+        left: 15px;
+        right: 15px;
+        top: calc(100% + 12px);
+        z-index: 100;
+        background: #fff;
+        border: 1px solid rgba(229,231,235,.9);
+        border-radius: 16px;
+        box-shadow: 0 18px 45px rgba(2,6,23,.12);
+        padding: 15px;
+        opacity: 0;
+        transform: translateY(-8px);
+        transition: all .18s ease;
+        pointer-events: none;
+      }
 
-    .skills-grid .skill-tile:hover .skill-hover,
-    .skills-grid .skill-tile:focus .skill-hover{
-      opacity: 1;
-      transform: none;
-      pointer-events: auto;
-    }
+      .skill-hover::before{
+        content:"";
+        position:absolute;
+        top:-8px;
+        left:20px;
+        width:14px;
+        height:14px;
+        background:#fff;
+        border-left:1px solid rgba(229,231,235,.9);
+        border-top:1px solid rgba(229,231,235,.9);
+        transform: rotate(45deg);
+      }
 
-    /* Mobile: tap-to-open */
-    .skills-grid .skill-tile.is-open .skill-hover{
-      opacity: 1;
-      transform: none;
-      pointer-events: auto;
-    }
+      .skill-tile:hover .skill-hover,
+      .skill-tile.is-open .skill-hover{
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+      }
 
-    .skills-grid .skill-list{
-      margin: 0;
-      padding-left: 18px;
-      color: rgba(15,23,42,.88);
-      font-size: .95rem;
-    }
-    .skills-grid .skill-list li{ margin: 6px 0; }
+      .skill-list{
+        margin: 0;
+        padding-left: 18px;
+        font-size: .95rem;
+        line-height: 1.6;
+      }
 
-    /* Small helper text inside hover */
-    .skills-grid .skill-hint{
-      margin-top: 10px;
-      font-size: .85rem;
-      color: rgba(100,116,139,.95);
-    }
-  </style>
+      .skill-list li{
+        margin: 6px 0;
+      }
 
-  <div class="row g-4 mt-2 skills-grid">
+      @media (max-width: 768px){
+        .skill-hover{
+          left: 10px;
+          right: 10px;
+        }
+      }
+    </style>
 
-    <!-- Machine Learning & Data Science -->
-    <div class="col-md-6 col-lg-4">
-      <div class="skill-tile reveal" tabindex="0" data-skill-tile>
-        <div class="skill-tile-head">
-          <div class="skill-icon"><i class="fa-solid fa-brain"></i></div>
-          <div>
-            <h5 class="skill-title mb-1">Machine Learning & Data Science</h5>
-            <div class="skill-subtitle">Modeling • Training • Analytics</div>
+    <div class="row g-4 skills-grid">
+
+      <!-- Programming Languages -->
+      <div class="col-md-6 col-lg-4">
+        <div class="skill-tile" data-skill>
+          <div class="skill-tile-head">
+            <div class="skill-icon"><i class="fa-solid fa-terminal"></i></div>
+            <div>
+              <h5 class="skill-title">Programming Languages</h5>
+              <div class="skill-subtitle">Core development languages</div>
+            </div>
+          </div>
+          <div class="skill-hover">
+            <ul class="skill-list">
+              <li>Python</li>
+              <li>C / C++</li>
+              <li>Java</li>
+              <li>C#</li>
+              <li>R</li>
+            </ul>
           </div>
         </div>
-        <div class="skill-hover">
-          <div>
+      </div>
+
+      <!-- Machine Learning -->
+      <div class="col-md-6 col-lg-4">
+        <div class="skill-tile" data-skill>
+          <div class="skill-tile-head">
+            <div class="skill-icon"><i class="fa-solid fa-brain"></i></div>
+            <div>
+              <h5 class="skill-title">Machine Learning & Data Science</h5>
+              <div class="skill-subtitle">Model training & analytics</div>
+            </div>
+          </div>
+          <div class="skill-hover">
             <ul class="skill-list">
               <li>NumPy, Pandas</li>
               <li>Scikit-learn</li>
@@ -929,220 +958,112 @@
               <li>Matplotlib, Seaborn</li>
               <li>Power BI</li>
             </ul>
-            <div class="skill-hint">Tip: Tap again to close (mobile).</div>
           </div>
         </div>
       </div>
-    </div>
 
-    <!-- IoT Implementation -->
-    <div class="col-md-6 col-lg-4">
-      <div class="skill-tile reveal" tabindex="0" data-skill-tile>
-        <div class="skill-tile-head">
-          <div class="skill-icon"><i class="fa-solid fa-microchip"></i></div>
-          <div>
-            <h5 class="skill-title mb-1">IoT Implementation</h5>
-            <div class="skill-subtitle">Sensors • Prototyping • Monitoring</div>
+      <!-- Software Development -->
+      <div class="col-md-6 col-lg-4">
+        <div class="skill-tile" data-skill>
+          <div class="skill-tile-head">
+            <div class="skill-icon"><i class="fa-solid fa-laptop-code"></i></div>
+            <div>
+              <h5 class="skill-title">Software Development</h5>
+              <div class="skill-subtitle">Desktop & system applications</div>
+            </div>
+          </div>
+          <div class="skill-hover">
+            <ul class="skill-list">
+              <li>.NET Development (C# / WinForms)</li>
+              <li>Java Swing Development</li>
+              <li>GLUT Graphics (C++)</li>
+              <li>System-based applications</li>
+            </ul>
           </div>
         </div>
-        <div class="skill-hover">
-          <div>
+      </div>
+
+      <!-- IoT -->
+      <div class="col-md-6 col-lg-4">
+        <div class="skill-tile" data-skill>
+          <div class="skill-tile-head">
+            <div class="skill-icon"><i class="fa-solid fa-microchip"></i></div>
+            <div>
+              <h5 class="skill-title">IoT Implementation</h5>
+              <div class="skill-subtitle">Embedded & monitoring systems</div>
+            </div>
+          </div>
+          <div class="skill-hover">
             <ul class="skill-list">
               <li>ESP32, Arduino UNO</li>
-              <li>Sensors: DHT11, Rain, Soil Moisture</li>
-              <li>Embedded Prototyping</li>
-              <li>IoT Data Collection & Automation</li>
+              <li>DHT11, Rain, Moisture Sensors</li>
+              <li>IoT Automation & Monitoring</li>
             </ul>
-            <div class="skill-hint">Tip: Tap again to close (mobile).</div>
           </div>
         </div>
       </div>
-    </div>
 
-    <!-- Web Development -->
-    <div class="col-md-6 col-lg-4">
-      <div class="skill-tile reveal" tabindex="0" data-skill-tile>
-        <div class="skill-tile-head">
-          <div class="skill-icon"><i class="fa-solid fa-code"></i></div>
-          <div>
-            <h5 class="skill-title mb-1">Web Development</h5>
-            <div class="skill-subtitle">Frontend • Backend • UI</div>
+      <!-- Web Development -->
+      <div class="col-md-6 col-lg-4">
+        <div class="skill-tile" data-skill>
+          <div class="skill-tile-head">
+            <div class="skill-icon"><i class="fa-solid fa-code"></i></div>
+            <div>
+              <h5 class="skill-title">Web Development</h5>
+              <div class="skill-subtitle">Frontend & backend solutions</div>
+            </div>
           </div>
-        </div>
-        <div class="skill-hover">
-          <div>
+          <div class="skill-hover">
             <ul class="skill-list">
               <li>HTML5, CSS3, Bootstrap</li>
               <li>JavaScript</li>
               <li>PHP</li>
             </ul>
-            <div class="skill-hint">Tip: Tap again to close (mobile).</div>
           </div>
         </div>
       </div>
-    </div>
 
-    <!-- Software Development (Updated as you requested) -->
-    <div class="col-md-6 col-lg-4">
-      <div class="skill-tile reveal" tabindex="0" data-skill-tile>
-        <div class="skill-tile-head">
-          <div class="skill-icon"><i class="fa-solid fa-laptop-code"></i></div>
-          <div>
-            <h5 class="skill-title mb-1">Software Development</h5>
-            <div class="skill-subtitle">OOP • Desktop Apps • Systems</div>
+      <!-- UI/UX -->
+      <div class="col-md-6 col-lg-4">
+        <div class="skill-tile" data-skill>
+          <div class="skill-tile-head">
+            <div class="skill-icon"><i class="fa-solid fa-pen-nib"></i></div>
+            <div>
+              <h5 class="skill-title">UI/UX Design</h5>
+              <div class="skill-subtitle">Design & prototyping</div>
+            </div>
           </div>
-        </div>
-        <div class="skill-hover">
-          <div>
-            <ul class="skill-list">
-              <li>.NET Development (C# / WinForms)</li>
-              <li>Java Swing Development</li>
-              <li>C / C++ (GLUT / Systems)</li>
-              <li>Python (Automation / Utilities)</li>
-            </ul>
-            <div class="skill-hint">Tip: Tap again to close (mobile).</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- UI/UX Design (Updated with Figma) -->
-    <div class="col-md-6 col-lg-4">
-      <div class="skill-tile reveal" tabindex="0" data-skill-tile>
-        <div class="skill-tile-head">
-          <div class="skill-icon"><i class="fa-solid fa-pen-nib"></i></div>
-          <div>
-            <h5 class="skill-title mb-1">UI/UX Design</h5>
-            <div class="skill-subtitle">Prototypes • Layout • Components</div>
-          </div>
-        </div>
-        <div class="skill-hover">
-          <div>
+          <div class="skill-hover">
             <ul class="skill-list">
               <li>Figma Prototypes</li>
-              <li>Wireframes & User Flows</li>
+              <li>Wireframes & Layout Systems</li>
               <li>Component-Based UI Design</li>
             </ul>
-            <div class="skill-hint">Tip: Tap again to close (mobile).</div>
           </div>
         </div>
       </div>
-    </div>
 
-    <!-- Database Systems -->
-    <div class="col-md-6 col-lg-4">
-      <div class="skill-tile reveal" tabindex="0" data-skill-tile>
-        <div class="skill-tile-head">
-          <div class="skill-icon"><i class="fa-solid fa-database"></i></div>
-          <div>
-            <h5 class="skill-title mb-1">Database Systems</h5>
-            <div class="skill-subtitle">Design • Queries • Storage</div>
-          </div>
-        </div>
-        <div class="skill-hover">
-          <div>
-            <ul class="skill-list">
-              <li>MySQL</li>
-              <li>MS SQL</li>
-              <li>Oracle</li>
-            </ul>
-            <div class="skill-hint">Tip: Tap again to close (mobile).</div>
-          </div>
-        </div>
-      </div>
     </div>
-
-    <!-- Tools & Productivity -->
-    <div class="col-md-6 col-lg-4">
-      <div class="skill-tile reveal" tabindex="0" data-skill-tile>
-        <div class="skill-tile-head">
-          <div class="skill-icon"><i class="fa-solid fa-screwdriver-wrench"></i></div>
-          <div>
-            <h5 class="skill-title mb-1">Tools & Productivity</h5>
-            <div class="skill-subtitle">Collaboration • Docs • Workflow</div>
-          </div>
-        </div>
-        <div class="skill-hover">
-          <div>
-            <ul class="skill-list">
-              <li>Git, GitHub</li>
-              <li>Google Colab, Kaggle</li>
-              <li>MS Word, PowerPoint, Excel</li>
-              <li>MS Project</li>
-            </ul>
-            <div class="skill-hint">Tip: Tap again to close (mobile).</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Creative & Media -->
-    <div class="col-md-6 col-lg-4">
-      <div class="skill-tile reveal" tabindex="0" data-skill-tile>
-        <div class="skill-tile-head">
-          <div class="skill-icon"><i class="fa-solid fa-photo-film"></i></div>
-          <div>
-            <h5 class="skill-title mb-1">Creative & Media</h5>
-            <div class="skill-subtitle">Visuals • Video • Design</div>
-          </div>
-        </div>
-        <div class="skill-hover">
-          <div>
-            <ul class="skill-list">
-              <li>Photoshop</li>
-              <li>Filmora</li>
-              <li>Premiere Pro (basic)</li>
-              <li>Illustrator (basic)</li>
-            </ul>
-            <div class="skill-hint">Tip: Tap again to close (mobile).</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
   </div>
 
-  <!-- ✅ Skills JS (inside HTML, no external file needed) -->
+  <!-- ========== INTERNAL JS ========== -->
   <script>
-    (function () {
-      const tiles = document.querySelectorAll('[data-skill-tile]');
-
-      // accessibility
-      tiles.forEach(t => t.setAttribute('role','button'));
-
-      // Mobile-friendly tap open/close + close others
-      tiles.forEach(tile => {
-        tile.addEventListener('click', (e) => {
-          // if user is selecting text inside hover list, don't close
-          if (window.getSelection && String(window.getSelection()).length > 0) return;
-
-          const isOpen = tile.classList.contains('is-open');
-
-          tiles.forEach(t => t.classList.remove('is-open'));
-          if (!isOpen) tile.classList.add('is-open');
-        });
-
-        // keyboard: Enter/Space toggle
-        tile.addEventListener('keydown', (e) => {
-          if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            tile.click();
-          }
-          if (e.key === 'Escape') {
-            tile.classList.remove('is-open');
-          }
-        });
+    document.querySelectorAll('[data-skill]').forEach(tile => {
+      tile.addEventListener('click', function () {
+        const isOpen = this.classList.contains('is-open');
+        document.querySelectorAll('[data-skill]').forEach(t => t.classList.remove('is-open'));
+        if (!isOpen) this.classList.add('is-open');
       });
+    });
 
-      // Click outside closes all
-      document.addEventListener('click', (e) => {
-        if (!e.target.closest('[data-skill-tile]')) {
-          tiles.forEach(t => t.classList.remove('is-open'));
-        }
-      });
-    })();
+    document.addEventListener('click', function(e){
+      if(!e.target.closest('[data-skill]')){
+        document.querySelectorAll('[data-skill]').forEach(t => t.classList.remove('is-open'));
+      }
+    });
   </script>
 </section>
+<!-- ================= END SKILLS ================= -->
 
   <!-- AWARDS -->
   <section id="awards" class="py-5 section-awards">
