@@ -516,3 +516,44 @@ section h2:hover::after{
   .hero-center h1{ font-size: 1.5rem; }
   .hero-center .lead{ font-size: .95rem; }
 }
+
+
+/* Cleaner 2-column layout */
+.skill-row{
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 14px;
+  align-items: center;
+  margin: 14px 0;
+}
+
+.skill-name{
+  font-weight: 700;
+  color: rgba(15,23,42,.88);
+  line-height: 1.2;
+}
+
+.skill-bar{
+  height: 10px;
+  background: rgba(100,116,139,.18);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.skill-fill{
+  height: 100%;
+  border-radius: 999px;
+  transition: width .6s ease;
+}
+
+/* Level widths */
+.skill-adv{ width: 92%; background: rgba(11,94,215,.95); }
+.skill-int{ width: 72%; background: rgba(11,94,215,.70); }
+.skill-fam{ width: 52%; background: rgba(11,94,215,.45); }
+
+/* Mobile */
+@media (max-width: 768px){
+  .skill-row{
+    grid-template-columns: 1fr;
+  }
+}
