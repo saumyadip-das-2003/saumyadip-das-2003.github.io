@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Saumyadip Das — Researcher in AI & ML</title>
   <meta name="description" content="Saumyadip Das — Computer Science researcher focusing on AI, ML and IoT.">
-  <meta name="theme-color" content="#0d7377">
+  <meta name="theme-color" content="#0b5ed7">
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=DM+Serif+Display&display=swap" rel="stylesheet">
@@ -16,53 +16,48 @@
   <script>
     (function(){
       var saved = localStorage.getItem('theme');
-      var sysDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-      /* Use saved preference; if none, use system default — never overridden once user picks manually */
-      document.documentElement.setAttribute('data-theme', saved ? saved : (sysDark ? 'dark' : 'light'));
+      document.documentElement.setAttribute('data-theme', saved ? saved : 'dark');
     })();
   </script>
 
   <style>
     /* ============================================================
-       DESIGN TOKENS
-       Light: warm off-white + deep teal (scholarly, calm)
-       Dark:  deep navy + soft cyan (cool, technical)
+       DESIGN TOKENS — light & dark
     ============================================================ */
     :root {
-      --brand:        #0d7377;
-      --brand-light:  #14a7ac;
-      --brand-soft:   rgba(13,115,119,.10);
-      --ink:          #1a2332;
-      --muted:        #5a6a7e;
-      --line:         #dde3ec;
-      --bg:           #f4f6f9;
-      --surface:      rgba(255,255,255,0.88);
-      --card:         rgba(255,255,255,0.82);
-      --nav-bg:       rgba(244,246,249,.92);
-      --nav-border:   rgba(221,227,236,.80);
-      --shadow:       0 4px 24px rgba(13,115,119,.07), 0 1px 4px rgba(26,35,50,.06);
-      --shadow2:      0 12px 40px rgba(13,115,119,.12), 0 2px 8px rgba(26,35,50,.08);
-      --radius:       14px;
-      --toggle-bg:    #c8d6e0;
+      --brand:        #0b5ed7;
+      --brand-soft:   rgba(11,94,215,.10);
+      --ink:          #0f172a;
+      --muted:        #64748b;
+      --line:         #e5e7eb;
+      --bg:           #f8fafc;
+      --surface:      #ffffff;
+      --card:         #ffffff;
+      --nav-bg:       rgba(255,255,255,.80);
+      --nav-border:   rgba(229,231,235,.70);
+      --shadow:       0 10px 30px rgba(2,6,23,.08);
+      --shadow2:      0 18px 45px rgba(2,6,23,.10);
+      --radius:       16px;
+      --toggle-bg:    #e2e8f0;
       --toggle-knob:  #ffffff;
+      --toggle-icon:  "☀️";
     }
 
     [data-theme="dark"] {
-      --brand:        #2dd4bf;
-      --brand-light:  #5eead4;
-      --brand-soft:   rgba(45,212,191,.12);
-      --ink:          #e2e8f0;
-      --muted:        #8899aa;
-      --line:         #1f2d3d;
-      --bg:           #0d1b2a;
-      --surface:      rgba(19,32,50,0.90);
-      --card:         rgba(23,38,56,0.85);
-      --nav-bg:       rgba(13,27,42,.95);
-      --nav-border:   rgba(31,45,61,.98);
-      --shadow:       0 4px 24px rgba(0,0,0,.35);
-      --shadow2:      0 12px 40px rgba(0,0,0,.50);
-      --toggle-bg:    #1f3a4f;
-      --toggle-knob:  #0d1b2a;
+      --brand:        #4d94ff;
+      --brand-soft:   rgba(77,148,255,.12);
+      --ink:          #f1f5f9;
+      --muted:        #94a3b8;
+      --line:         #1e293b;
+      --bg:           #0f172a;
+      --surface:      #1e293b;
+      --card:         #1e293b;
+      --nav-bg:       rgba(15,23,42,.88);
+      --nav-border:   rgba(30,41,59,.90);
+      --shadow:       0 10px 30px rgba(0,0,0,.30);
+      --shadow2:      0 18px 45px rgba(0,0,0,.40);
+      --toggle-bg:    #334155;
+      --toggle-knob:  #0f172a;
     }
 
     /* ============================================================
@@ -85,40 +80,35 @@
        NAVBAR
     ============================================================ */
     .navbar {
-      background: var(--nav-bg) !important;
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
+      background: var(--nav-bg);
+      backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--nav-border);
       transition: box-shadow .2s ease, background .3s ease, border-color .3s ease;
-      padding: 0 !important;
-      min-height: 60px;
     }
-    .navbar.nav-scrolled { box-shadow: 0 4px 16px rgba(2,6,23,.10); }
-    [data-theme="dark"] .navbar.nav-scrolled { box-shadow: 0 4px 16px rgba(0,0,0,.40); }
+    .navbar.nav-scrolled {
+      box-shadow: 0 6px 18px rgba(2,6,23,.08);
+    }
+    [data-theme="dark"] .navbar.nav-scrolled {
+      box-shadow: 0 6px 18px rgba(0,0,0,.35);
+    }
     .navbar .navbar-brand {
       font-family: "DM Serif Display", serif;
       font-weight: 400;
-      font-size: 1.3rem;
+      font-size: 1.35rem;
       letter-spacing: -0.02em;
-      color: var(--ink) !important;
-      line-height: 1;
-      padding: 0;
-      margin: 0;
+      color: var(--ink);
     }
     .navbar .nav-link {
       font-weight: 600;
-      font-size: .82rem;
-      color: var(--ink) !important;
+      font-size: .88rem;
+      color: var(--ink);
       opacity: .78;
-      padding: .45rem .7rem;
-      border-radius: 8px;
+      padding: .55rem .8rem;
+      border-radius: 10px;
       transition: background .15s, opacity .15s;
-      line-height: 1;
     }
     .navbar .nav-link:hover  { background: var(--brand-soft); opacity: 1; }
-    .navbar .nav-link.active { background: var(--brand-soft); color: var(--brand) !important; opacity: 1; }
-    /* Remove Bootstrap's default mb on ul inside collapsed nav */
-    .navbar .navbar-nav { margin-bottom: 0 !important; }
+    .navbar .nav-link.active { background: var(--brand-soft); color: var(--brand); opacity: 1; }
 
     /* ============================================================
        DARK MODE TOGGLE
@@ -167,14 +157,8 @@
     /* ============================================================
        LAYOUT
     ============================================================ */
-    html, body { margin: 0; padding: 0; width: 100%; overflow-x: hidden; }
-    main { width: 100%; padding-left: 0; padding-right: 0; }
-    .page-inner { max-width: 1240px; margin: 0 auto; padding: 0 2.5rem; }
-    @media (max-width: 576px) { .page-inner { padding: 0 1rem; } }
+    main.container { max-width: 1100px; }
     section { scroll-margin-top: 90px; }
-
-    /* Subtle section dividers */
-    section + section { border-top: 1px solid var(--line); }
 
     h1 { font-family: "DM Serif Display", serif; font-weight: 400; letter-spacing: -0.03em; color: var(--ink); }
     h2 { font-weight: 800; letter-spacing: -0.03em; margin-bottom: 1rem; color: var(--ink); }
@@ -187,9 +171,9 @@
        BUTTONS
     ============================================================ */
     .btn { border-radius: 12px; font-weight: 700; font-size: .875rem; }
-    .btn-primary { background: var(--brand); border-color: var(--brand); box-shadow: 0 8px 20px rgba(13,115,119,.20); }
-    .btn-primary:hover { background: var(--brand-light); border-color: var(--brand-light); }
-    .btn-outline-primary { border-color: rgba(13,115,119,.45); color: var(--brand); }
+    .btn-primary { background: var(--brand); border-color: var(--brand); box-shadow: 0 8px 20px rgba(11,94,215,.18); }
+    .btn-primary:hover { background: #0950c3; border-color: #0950c3; }
+    .btn-outline-primary { border-color: rgba(11,94,215,.4); color: var(--brand); }
     .btn-outline-primary:hover { background: var(--brand-soft); border-color: var(--brand); color: var(--brand); }
     .btn-outline-primary.active { background: var(--brand-soft); border-color: var(--brand); color: var(--brand); }
     .btn-outline-secondary { border-color: var(--line); color: var(--muted); }
@@ -202,8 +186,6 @@
       border: 1px solid var(--line);
       border-radius: var(--radius);
       background: var(--card);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
       box-shadow: var(--shadow);
       transition: background .35s, border-color .35s, box-shadow .35s;
     }
@@ -259,8 +241,6 @@
       border: 1px solid var(--line);
       border-radius: var(--radius);
       background: var(--card);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
       padding: 14px;
       box-shadow: var(--shadow);
       display: flex; gap: 14px; align-items: flex-start;
@@ -297,10 +277,7 @@
     .skill-tile {
       position: relative; overflow: visible;
       border: 1px solid var(--line); border-radius: 18px;
-      background: var(--card);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      box-shadow: var(--shadow);
+      background: var(--card); box-shadow: var(--shadow);
       transition: transform .16s ease, box-shadow .16s ease, border-color .16s ease, background .35s;
       padding: 18px; height: 100%; z-index: 1;
     }
@@ -396,237 +373,39 @@
     ============================================================ */
     footer {
       border-top: 1px solid var(--line);
-      background-color: var(--surface) !important;
-      color: var(--muted);
-      transition: background-color .35s, border-color .35s, color .35s;
+      background: var(--surface) !important;
+      backdrop-filter: blur(10px);
+      transition: background .35s, border-color .35s;
     }
-    footer a { color: var(--muted); }
-    footer .text-muted { color: var(--muted) !important; }
 
     /* ============================================================
        BACK TO TOP
     ============================================================ */
     #backToTop {
-      position: fixed !important;
-      bottom: 28px !important;
-      right: 24px !important;
-      width: 46px; height: 46px;
+      position: fixed;
+      bottom: 28px;
+      right: 24px;
+      width: 44px; height: 44px;
       border-radius: 50%;
       background: var(--brand);
-      color: #fff !important;
+      color: #fff;
       border: none;
-      box-shadow: 0 8px 20px rgba(13,115,119,.35);
+      box-shadow: 0 8px 20px rgba(11,94,215,.35);
       font-size: 1.1rem;
       cursor: pointer;
-      display: flex !important;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      pointer-events: none;
-      transform: translateY(14px);
-      transition: opacity .3s ease, transform .3s ease, background .2s;
-      z-index: 99999 !important;
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none;
+      transform: translateY(12px);
+      transition: opacity .25s, transform .25s, background .2s;
+      z-index: 1050;
     }
-    #backToTop.show { opacity: 1 !important; pointer-events: auto !important; transform: translateY(0) !important; }
-    #backToTop:hover { background: var(--brand-light); }
+    #backToTop.show { opacity: 1; pointer-events: auto; transform: translateY(0); }
+    #backToTop:hover { background: #0950c3; }
 
     /* ============================================================
        BADGE / SOCIAL UTILS
     ============================================================ */
-
-    /* ── AI NEWS SIDEBAR ── */
-    #aiNewsSidebar {
-      position: fixed;
-      right: 0;
-      top: 60px;
-      width: 300px;
-      height: calc(100vh - 60px);
-      z-index: 1100;
-      display: flex;
-      flex-direction: column;
-      transition: transform .3s ease;
-    }
-    #aiNewsSidebar.collapsed { transform: translateX(100%); }
-    #aiSidebarInner {
-      display: flex;
-      flex-direction: column;
-      height: 100%;
-      background: var(--card);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border-left: 1px solid var(--line);
-      box-shadow: -4px 0 24px rgba(0,0,0,.10);
-    }
-    [data-theme="dark"] #aiSidebarInner {
-      box-shadow: -4px 0 24px rgba(0,0,0,.35);
-    }
-    #aiSidebarBody { scrollbar-width: thin; scrollbar-color: var(--line) transparent; }
-    #aiSidebarBody::-webkit-scrollbar { width: 3px; }
-    #aiSidebarBody::-webkit-scrollbar-thumb { background: var(--line); border-radius: 3px; }
-
-    .feed-source-section { border-bottom: 1px solid var(--line); }
-    .feed-source-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: .6rem 1rem;
-      cursor: pointer;
-      user-select: none;
-      background: transparent;
-      border: none;
-      width: 100%;
-      text-align: left;
-      transition: background .15s;
-    }
-    .feed-source-header:hover { background: var(--brand-soft); }
-    .feed-source-name {
-      font-size: .72rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: .08em;
-      color: var(--brand);
-    }
-    .feed-source-count {
-      font-size: .6rem;
-      color: var(--muted);
-      background: var(--bg);
-      padding: 2px 6px;
-      border-radius: 999px;
-      border: 1px solid var(--line);
-    }
-    .feed-source-chevron {
-      font-size: .65rem;
-      color: var(--muted);
-      transition: transform .2s;
-      margin-left: 6px;
-    }
-    .feed-source-section.open .feed-source-chevron { transform: rotate(180deg); }
-    .feed-articles {
-      display: none;
-      flex-direction: column;
-      gap: 0;
-      padding: 0;
-    }
-    .feed-source-section.open .feed-articles { display: flex; }
-    .feed-article-link {
-      display: block;
-      padding: .55rem 1rem;
-      border-top: 1px solid var(--line);
-      text-decoration: none;
-      transition: background .12s;
-    }
-    .feed-article-link:hover { background: var(--brand-soft); }
-    .feed-article-title {
-      font-size: .78rem;
-      font-weight: 600;
-      color: var(--ink);
-      line-height: 1.35;
-      margin-bottom: 2px;
-    }
-    .feed-article-time {
-      font-size: .63rem;
-      color: var(--muted);
-    }
-
-    /* Sidebar is pure overlay — never shifts content */
-    @media (max-width: 900px) {
-      #aiNewsSidebar { display: none !important; }
-    }
-
     .badge { border-radius: 999px; font-weight: 700; letter-spacing: -0.01em; }
-    /* ── CUSTOM TOOLTIPS ── */
-    .sd-tooltip { position: relative; }
-    .sd-tooltip::after {
-      content: attr(data-tip);
-      position: absolute;
-      bottom: calc(100% + 7px);
-      left: 50%;
-      transform: translateX(-50%);
-      background: var(--ink);
-      color: var(--bg);
-      font-size: .68rem;
-      font-weight: 600;
-      white-space: nowrap;
-      padding: 3px 8px;
-      border-radius: 6px;
-      pointer-events: none;
-      opacity: 0;
-      transition: opacity .15s ease;
-      z-index: 9999;
-    }
-    .sd-tooltip::before {
-      content: '';
-      position: absolute;
-      bottom: calc(100% + 1px);
-      left: 50%;
-      transform: translateX(-50%);
-      border: 4px solid transparent;
-      border-top-color: var(--ink);
-      pointer-events: none;
-      opacity: 0;
-      transition: opacity .15s ease;
-      z-index: 9999;
-    }
-    .sd-tooltip:hover::after,
-    .sd-tooltip:hover::before { opacity: 1; }
-
-    /* ── CUSTOM TOOLTIPS ── */
-    .sd-tooltip { position: relative; }
-    .sd-tooltip::after {
-      content: attr(data-tip);
-      position: absolute;
-      bottom: calc(100% + 7px);
-      left: 50%;
-      transform: translateX(-50%);
-      background: var(--ink);
-      color: var(--bg);
-      font-size: .68rem;
-      font-weight: 600;
-      white-space: nowrap;
-      padding: 3px 8px;
-      border-radius: 6px;
-      pointer-events: none;
-      opacity: 0;
-      transition: opacity .15s ease;
-      z-index: 9999;
-    }
-    .sd-tooltip::before {
-      content: '';
-      position: absolute;
-      bottom: calc(100% + 1px);
-      left: 50%;
-      transform: translateX(-50%);
-      border: 4px solid transparent;
-      border-top-color: var(--ink);
-      pointer-events: none;
-      opacity: 0;
-      transition: opacity .15s ease;
-      z-index: 9999;
-    }
-    .sd-tooltip:hover::after,
-    .sd-tooltip:hover::before { opacity: 1; }
-    .badge-conf {
-      background: var(--brand-soft);
-      color: var(--brand);
-      border: 1px solid rgba(13,115,119,.25);
-      padding: .3em .75em;
-    }
-    [data-theme="dark"] .badge-conf {
-      background: rgba(45,212,191,.12);
-      color: var(--brand);
-      border-color: rgba(45,212,191,.25);
-    }
-    .badge-sub {
-      background: rgba(90,106,126,.10);
-      color: var(--muted);
-      border: 1px solid rgba(90,106,126,.20);
-      padding: .3em .75em;
-    }
-    [data-theme="dark"] .badge-sub {
-      background: rgba(136,153,170,.10);
-      color: var(--muted);
-      border-color: rgba(136,153,170,.20);
-    }
     .social-icons .btn { border-radius: 12px; }
 
     /* ============================================================
@@ -650,75 +429,102 @@
       font-size: .82rem;
       color: var(--muted);
       transition: background .35s, border-color .35s;
-      position: relative; z-index: 1;
     }
 
     /* ============================================================
-       NAVBAR DARK MODE EXPLICIT OVERRIDE
+       DARK OVERRIDES for Bootstrap components
     ============================================================ */
-    html[data-theme="dark"] .navbar,
-    html[data-theme="dark"] .navbar.nav-scrolled {
-      background: rgba(13,27,42,.96) !important;
-      border-bottom-color: rgba(31,45,61,.99) !important;
+    [data-theme="dark"] .navbar-toggler-icon {
+      filter: invert(1);
     }
-    html[data-theme="light"] .navbar {
-      background: rgba(244,246,249,.92) !important;
-      border-bottom-color: rgba(221,227,236,.80) !important;
-    }
-    [data-theme="dark"] .navbar-toggler-icon { filter: invert(1); }
     [data-theme="dark"] .form-control,
     [data-theme="dark"] .form-select {
-      background-color: var(--bg);
+      background-color: #0f172a;
       color: var(--ink);
-      border-color: var(--line);
+      border-color: #334155;
     }
     [data-theme="dark"] .btn-outline-secondary {
-      border-color: var(--line); color: var(--muted);
+      border-color: #334155; color: var(--muted);
     }
     [data-theme="dark"] .btn-outline-secondary:hover {
       background: var(--brand-soft); border-color: var(--brand); color: var(--brand);
     }
     [data-theme="dark"] .btn-group .btn-outline-primary {
-      color: var(--brand); border-color: rgba(45,212,191,.35);
+      color: var(--brand); border-color: rgba(77,148,255,.35);
     }
     [data-theme="dark"] .btn-group .btn-outline-primary.active {
       background: var(--brand-soft);
     }
-    /* Ensure pub-row hover uses teal in dark */
-    [data-theme="dark"] .pub-row:hover { border-color: rgba(45,212,191,.35); }
-    [data-theme="dark"] .skill-tile:hover, [data-theme="dark"] .skill-tile.is-open { border-color: rgba(45,212,191,.40); }
-    /* Back to top in dark */
-    [data-theme="dark"] #backToTop { box-shadow: 0 8px 20px rgba(45,212,191,.25); }
   </style>
 </head>
 
 <body>
 
-<!-- ============================================================
-     ANIMATED BACKGROUND CANVAS
-============================================================ -->
-<canvas id="bgCanvas" style="position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;display:block;"></canvas>
-<style>
-  main        { position: relative; z-index: 1; }
-  footer      { position: relative; z-index: 1; }
-  .view-counter-wrap { position: relative; z-index: 1; }
-</style>
+<!-- Animated background -->
+<canvas id="bgCanvas"></canvas>
+
+<!-- Tab strip -->
+<div id="sidebarTabs">
+  <button class="sidebar-tab-btn" id="newsTabBtn" onclick="toggleSidePanel('news')" title="AI & Research Feed">
+    <i class="fas fa-satellite-dish stab-icon"></i>
+    <span class="stab-label">Feed</span>
+  </button>
+  <button class="sidebar-tab-btn" id="puzzleTabBtn" onclick="toggleSidePanel('puzzle')" title="Visual Puzzles">
+    <i class="fas fa-puzzle-piece stab-icon"></i>
+    <span class="stab-label">Play</span>
+  </button>
+</div>
+
+<!-- News panel -->
+<div class="sd-panel" id="newsPanel">
+  <div class="sd-panel-inner">
+    <div class="sd-panel-header">
+      <i class="fas fa-satellite-dish" style="color:var(--brand);font-size:.8rem;"></i>
+      <span class="sd-panel-title">AI &amp; Research Feed</span>
+      <span style="font-size:.58rem;color:var(--muted);">Live</span>
+    </div>
+    <div class="sd-panel-body" id="aiSidebarBody">
+      <div style="padding:2rem;text-align:center;color:var(--muted);font-size:.82rem;">
+        <i class="fas fa-spinner fa-spin" style="display:block;font-size:1.4rem;color:var(--brand);margin-bottom:.5rem;"></i>
+        Loading feeds…
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Puzzle panel -->
+<div class="sd-panel" id="puzzlePanel">
+  <div class="sd-panel-inner">
+    <div class="sd-panel-header">
+      <i class="fas fa-puzzle-piece" style="color:var(--brand);font-size:.8rem;"></i>
+      <span class="sd-panel-title">Visual Puzzle</span>
+      <span id="puzzleScore" style="font-size:.68rem;font-weight:700;color:var(--ink);">0 pts</span>
+    </div>
+    <div class="sd-panel-body">
+      <div id="puzzleContainer" style="padding:.5rem 0;"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Back to top -->
+<button id="backToTop" aria-label="Back to top" title="Back to top">
+  <i class="fas fa-chevron-up"></i>
+</button>
 
 <!-- ============================================================
      NAVBAR
 ============================================================ -->
 <nav class="navbar navbar-expand-lg fixed-top">
-  <div class="page-inner w-100" style="display:flex;align-items:center;flex-wrap:nowrap;padding-top:.5rem;padding-bottom:.5rem;">
-    <a class="navbar-brand me-3" href="/#home" style="flex-shrink:0;">Saumyadip Das</a>
+  <div class="container">
+    <a class="navbar-brand" href="/#home">Saumyadip Das</a>
 
-    <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#nav"
-            aria-controls="nav" aria-expanded="false" aria-label="Toggle navigation"
-            style="flex-shrink:0;">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav"
+            aria-controls="nav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="nav" style="flex-grow:1;">
-      <ul class="navbar-nav ms-auto mb-0 align-items-lg-center">
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
         <li class="nav-item"><a class="nav-link" href="/#home">Home</a></li>
         <li class="nav-item"><a class="nav-link" href="/#education">Education</a></li>
         <li class="nav-item"><a class="nav-link" href="/#publications">Publications</a></li>
@@ -730,23 +536,20 @@
       </ul>
 
       <!-- Social icons -->
-      <div class="d-none d-lg-flex align-items-center ms-3 social-icons" style="gap:4px;flex-shrink:0;">
-        <a class="btn btn-outline-secondary btn-sm sd-tooltip" href="https://github.com/saumyadip-das-2003" target="_blank" aria-label="GitHub" data-tip="GitHub"><i class="fab fa-github"></i></a>
-        <a class="btn btn-outline-secondary btn-sm sd-tooltip" href="https://www.linkedin.com/in/saumyadip-sohom/" target="_blank" aria-label="LinkedIn" data-tip="LinkedIn"><i class="fab fa-linkedin"></i></a>
-        <a class="btn btn-outline-secondary btn-sm sd-tooltip" href="https://www.researchgate.net/profile/Saumyadip-Das-2" target="_blank" aria-label="ResearchGate" data-tip="ResearchGate"><i class="fab fa-researchgate"></i></a>
-        <a class="btn btn-outline-secondary btn-sm sd-tooltip" href="https://orcid.org/0009-0009-1130-2091" target="_blank" aria-label="ORCID" data-tip="ORCID"><i class="fab fa-orcid"></i></a>
-        <a class="btn btn-outline-secondary btn-sm sd-tooltip" href="https://scholar.google.com/citations?user=vCvfzOMAAAAJ&hl=en" target="_blank" aria-label="Google Scholar" data-tip="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
+      <div class="d-none d-lg-flex align-items-center ms-3 social-icons">
+        <a class="btn btn-outline-secondary me-2" href="https://github.com/saumyadip-das-2003" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+        <a class="btn btn-outline-secondary me-2" href="https://www.linkedin.com/in/saumyadip-sohom/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+        <a class="btn btn-outline-secondary me-2" href="https://www.researchgate.net/profile/Saumyadip-Das-2" target="_blank" aria-label="ResearchGate"><i class="fab fa-researchgate"></i></a>
+        <a class="btn btn-outline-secondary me-2" href="https://orcid.org/0009-0009-1130-2091" target="_blank" aria-label="ORCID"><i class="fab fa-orcid"></i></a>
+        <a class="btn btn-outline-secondary" href="https://scholar.google.com/citations?user=vCvfzOMAAAAJ&hl=en" target="_blank" aria-label="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
       </div>
 
-      <!-- Dark mode toggle — professional icon button -->
-      <button id="themeToggle" aria-label="Toggle dark mode"
-        style="flex-shrink:0;margin-left:.75rem;width:36px;height:36px;border-radius:10px;
-               border:1px solid var(--line);background:var(--surface);color:var(--muted);
-               cursor:pointer;display:flex;align-items:center;justify-content:center;
-               font-size:.9rem;transition:all .2s;outline:none;"
-        title="Toggle light / dark mode">
-        <i id="themeIcon" class="fas fa-moon"></i>
-      </button>
+      <!-- Dark mode toggle -->
+      <div class="theme-toggle-wrap ms-3" title="Toggle dark / light mode">
+        <span class="ti-icon" id="tiSun">☀️</span>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode"></button>
+        <span class="ti-icon" id="tiMoon">🌙</span>
+      </div>
     </div>
   </div>
 </nav>
@@ -754,59 +557,16 @@
 <!-- ============================================================
      MAIN
 ============================================================ -->
-<main style="padding-top:90px;padding-bottom:40px;">
-<div class="page-inner">
+<main class="container" id="home" style="padding-top:90px;padding-bottom:40px;">
 
   <!-- HERO -->
-  <section id="home" class="section-hero py-5">
+  <section class="section-hero py-5">
     <style>
       .hero-split {
-        display: grid;
-        grid-template-columns: 200px 1fr;
-        gap: 2rem;
-        align-items: start;
-        padding-top: 1rem;
-      }
-      .hero-news {
-        border-left: 1px solid var(--line);
-        padding-left: 1.5rem;
-        max-height: 520px;
-        overflow-y: auto;
-        scrollbar-width: thin;
-        scrollbar-color: var(--line) transparent;
-      }
-      .hero-news::-webkit-scrollbar { width: 4px; }
-      .hero-news::-webkit-scrollbar-track { background: transparent; }
-      .hero-news::-webkit-scrollbar-thumb { background: var(--line); border-radius: 4px; }
-      .news-card {
-        display: block;
-        text-decoration: none;
-        padding: .65rem .75rem;
-        border-radius: 10px;
-        border: 1px solid var(--line);
-        background: var(--card);
-        backdrop-filter: blur(8px);
-        transition: border-color .15s, transform .15s;
-      }
-      .news-card:hover { border-color: var(--brand); transform: translateX(3px); }
-      .news-source {
-        font-size: .6rem;
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: .08em;
-        color: var(--brand);
-        margin-bottom: 3px;
-      }
-      .news-title {
-        font-size: .78rem;
-        font-weight: 600;
-        color: var(--ink);
-        line-height: 1.4;
-        margin-bottom: 3px;
-      }
-      .news-time {
-        font-size: .62rem;
-        color: var(--muted);
+        display: flex;
+        align-items: center;
+        gap: 3rem;
+        min-height: 420px;
       }
       .hero-left {
         display: flex;
@@ -879,14 +639,267 @@
       }
       .hero-cta { display: flex; flex-wrap: wrap; gap: 10px; }
 
-      @media (max-width: 700px) {
-        .hero-split { grid-template-columns: 1fr; }
+      @media (max-width: 767px) {
+        .hero-split { flex-direction: column; gap: 2rem; }
+        .hero-left { flex: none; width: 100%; }
+        .hero-divider { display: none; }
+        .hero-right { width: 100%; }
       }
-      @media (max-width: 700px) {
-        .hero-split { grid-template-columns: 1fr; }
-        .hero-left { text-align: center; align-items: center; }
-      }
-    </style>
+    
+
+    /* ════════════════ DESIGN TOKEN UPDATES ════════════════ */
+    :root {
+      --brand:        #0d7377;
+      --brand-light:  #14a7ac;
+      --brand-soft:   rgba(13,115,119,.10);
+      --ink:          #1a2332;
+      --muted:        #5a6a7e;
+      --line:         #dde3ec;
+      --bg:           #f4f6f9;
+      --surface:      rgba(255,255,255,0.88);
+      --card:         rgba(255,255,255,0.85);
+      --nav-bg:       rgba(244,246,249,.92);
+      --nav-border:   rgba(221,227,236,.80);
+      --shadow:       0 4px 24px rgba(13,115,119,.07), 0 1px 4px rgba(26,35,50,.06);
+      --shadow2:      0 12px 40px rgba(13,115,119,.12), 0 2px 8px rgba(26,35,50,.08);
+      --radius:       14px;
+      --toggle-bg:    #c8d6e0;
+      --toggle-knob:  #ffffff;
+    }
+    [data-theme="dark"] {
+      --brand:        #2dd4bf;
+      --brand-light:  #5eead4;
+      --brand-soft:   rgba(45,212,191,.12);
+      --ink:          #e2e8f0;
+      --muted:        #8899aa;
+      --line:         #1f2d3d;
+      --bg:           #0d1b2a;
+      --surface:      rgba(19,32,50,0.90);
+      --card:         rgba(23,38,56,0.88);
+      --nav-bg:       rgba(13,27,42,.95);
+      --nav-border:   rgba(31,45,61,.98);
+      --shadow:       0 4px 24px rgba(0,0,0,.35);
+      --shadow2:      0 12px 40px rgba(0,0,0,.50);
+      --toggle-bg:    #1f3a4f;
+      --toggle-knob:  #0d1b2a;
+    }
+    body {
+      font-family: "Sora", system-ui, sans-serif;
+      background-color: var(--bg);
+      color: var(--ink);
+      transition: background-color .35s, color .35s;
+    }
+    /* Navbar dark override */
+    html[data-theme="dark"] .navbar,
+    html[data-theme="dark"] .navbar.nav-scrolled {
+      background: rgba(13,27,42,.96) !important;
+      border-bottom-color: rgba(31,45,61,.99) !important;
+    }
+    html[data-theme="light"] .navbar {
+      background: rgba(244,246,249,.92) !important;
+    }
+    .navbar .navbar-brand { color: var(--ink) !important; }
+    .navbar .nav-link { color: var(--ink) !important; }
+    .navbar .nav-link.active { color: var(--brand) !important; background: var(--brand-soft); }
+    .card { background: var(--card); border-color: var(--line); transition: background .35s, border-color .35s; }
+    .card-title { color: var(--ink); }
+    footer { background-color: var(--surface) !important; border-top: 1px solid var(--line); color: var(--muted); }
+    [data-theme="dark"] .btn-close { filter: invert(1); }
+    [data-theme="dark"] .modal-content { background: var(--card); color: var(--ink); border-color: var(--line); }
+    [data-theme="dark"] .form-control, [data-theme="dark"] .form-select {
+      background-color: var(--bg); color: var(--ink); border-color: var(--line);
+    }
+    ::placeholder { color: var(--muted) !important; }
+
+    /* Back to top */
+    #backToTop {
+      position: fixed !important; bottom: 28px !important; right: 24px !important;
+      width: 46px; height: 46px; border-radius: 50%; background: var(--brand);
+      color: #fff !important; border: none; font-size: 1.1rem; cursor: pointer;
+      display: flex !important; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none; transform: translateY(14px);
+      transition: opacity .3s ease, transform .3s ease; z-index: 99999 !important;
+    }
+    #backToTop.show { opacity: 1 !important; pointer-events: auto !important; transform: translateY(0) !important; }
+    #backToTop:hover { background: var(--brand-light); }
+    [data-theme="dark"] #backToTop { box-shadow: 0 8px 20px rgba(45,212,191,.25); }
+
+    /* Theme toggle button */
+    #themeToggle {
+      width: 36px; height: 36px; border-radius: 10px;
+      border: 1px solid var(--line); background: var(--surface);
+      color: var(--muted); cursor: pointer; display: flex;
+      align-items: center; justify-content: center; font-size: .9rem;
+      transition: all .2s; outline: none; flex-shrink: 0; margin-left: .75rem;
+    }
+
+    /* Animated canvas background */
+    #bgCanvas { position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;display:block; }
+    main { position:relative;z-index:1; }
+    footer { position:relative;z-index:1; }
+
+    /* Custom tooltips */
+    .sd-tooltip { position: relative; }
+    .sd-tooltip::after {
+      content: attr(data-tip); position: absolute; bottom: calc(100% + 7px);
+      left: 50%; transform: translateX(-50%); background: var(--ink); color: var(--bg);
+      font-size: .68rem; font-weight: 600; white-space: nowrap; padding: 3px 8px;
+      border-radius: 6px; pointer-events: none; opacity: 0; transition: opacity .15s; z-index: 9999;
+    }
+    .sd-tooltip::before {
+      content: ''; position: absolute; bottom: calc(100% + 1px); left: 50%;
+      transform: translateX(-50%); border: 4px solid transparent;
+      border-top-color: var(--ink); pointer-events: none; opacity: 0;
+      transition: opacity .15s; z-index: 9999;
+    }
+    .sd-tooltip:hover::after, .sd-tooltip:hover::before { opacity: 1; }
+
+    /* Hero layout */
+    .hero-split {
+      display: grid; grid-template-columns: 200px 1fr;
+      gap: 2rem; align-items: start; padding-top: 1rem;
+    }
+    .hero-left { display:flex;flex-direction:column;align-items:center;text-align:center; }
+    .hero-right { flex:1;min-width:0; }
+    .hero-name {
+      font-family: "DM Serif Display", serif; font-size: clamp(1.6rem,3.5vw,2.4rem);
+      color: var(--ink); margin: .75rem 0 .35rem;
+    }
+    .hero-role {
+      font-size: .78rem; font-weight: 600; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--brand); margin-bottom: .75rem;
+    }
+    .hero-social { display:flex;flex-wrap:wrap;justify-content:center;gap:6px;margin-top:.75rem; }
+    .hero-bio-label {
+      font-size: .7rem; font-weight: 700; letter-spacing: .14em;
+      text-transform: uppercase; color: var(--brand); margin-bottom: .6rem;
+    }
+    .hero-bio-text { font-size:1rem;line-height:1.8;color:var(--muted);margin-bottom:1.25rem;text-align:justify; }
+    .hero-tags { display:flex;flex-wrap:wrap;gap:8px;margin-bottom:1.5rem; }
+    .hero-tag {
+      font-size:.75rem;font-weight:600;padding:.3rem .8rem;border-radius:999px;
+      border:1px solid var(--line);color:var(--muted);background:var(--surface);
+      transition:border-color .15s,color .15s,background .35s;
+    }
+    .hero-cta { display:flex;flex-wrap:wrap;gap:10px; }
+    @media(max-width:700px){ .hero-split { grid-template-columns:1fr; } }
+
+    /* Publication rows */
+    .pub-row {
+      border:1px solid var(--line);border-radius:14px;background:var(--card);
+      backdrop-filter:blur(10px);padding:14px;box-shadow:var(--shadow);
+      display:flex;gap:14px;align-items:flex-start;
+      transition:transform .15s,box-shadow .15s,border-color .15s,background .35s;
+    }
+    .pub-row:hover { transform:translateY(-2px);box-shadow:var(--shadow2);border-color:rgba(13,115,119,.30); }
+    .pub-code { min-width:62px;text-align:center;font-weight:900;font-size:.82rem;padding:.35rem .55rem;border-radius:12px;border:1px solid var(--line);background:var(--bg);color:var(--ink); }
+    .pub-title { font-weight:800;font-size:.95rem;margin-bottom:.25rem;line-height:1.3;color:var(--ink); }
+    .pub-meta  { color:var(--muted);font-size:.88rem;margin-bottom:.3rem; }
+    .pub-meta strong { font-weight:800;color:var(--ink); }
+    .pub-extra { color:var(--muted);font-size:.85rem; }
+    .pub-actions { display:flex;flex-direction:column;gap:8px;align-items:stretch;min-width:130px; }
+    @media(max-width:768px){ .pub-row{flex-direction:column;} .pub-actions{flex-direction:row;min-width:0;} }
+
+    /* Badges */
+    .badge { border-radius:999px;font-weight:700;letter-spacing:-.01em; }
+    .badge-conf { background:var(--brand-soft);color:var(--brand);border:1px solid rgba(13,115,119,.25);padding:.3em .75em; }
+    .badge-sub  { background:rgba(90,106,126,.10);color:var(--muted);border:1px solid rgba(90,106,126,.20);padding:.3em .75em; }
+    [data-theme="dark"] .badge-conf { background:rgba(45,212,191,.12);color:var(--brand);border-color:rgba(45,212,191,.25); }
+    [data-theme="dark"] .badge-sub  { background:rgba(136,153,170,.10);color:var(--muted); }
+
+    /* Skill tiles */
+    .skill-tile {
+      position:relative;overflow:visible;border:1px solid var(--line);border-radius:18px;
+      background:var(--card);backdrop-filter:blur(10px);box-shadow:var(--shadow);
+      transition:transform .16s,box-shadow .16s,border-color .16s,background .35s;
+      padding:18px;height:100%;z-index:1;
+    }
+    .skill-tile:hover,.skill-tile.is-open { transform:translateY(-3px);box-shadow:var(--shadow2);border-color:rgba(13,115,119,.35);z-index:20; }
+    .skill-icon { width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;background:var(--brand-soft);color:var(--brand);font-size:20px;flex:0 0 auto; }
+    .skill-popover {
+      position:absolute;left:0;right:0;top:calc(100% + 12px);background:var(--card);
+      border:1px solid var(--line);border-radius:16px;box-shadow:0 24px 60px rgba(0,0,0,.18);
+      padding:14px 16px;z-index:9999;opacity:0;transform:translateY(-6px);
+      pointer-events:none;transition:opacity .14s,transform .14s,background .35s,border-color .35s;
+    }
+    .skill-tile:hover .skill-popover,.skill-tile.is-open .skill-popover { opacity:1;transform:translateY(0);pointer-events:auto; }
+
+    /* View counter */
+    .view-counter-wrap {
+      display:inline-flex;align-items:center;gap:6px;background:var(--surface);
+      border:1px solid var(--line);border-radius:999px;padding:5px 14px;
+      font-size:.82rem;color:var(--muted);position:relative;z-index:1;
+    }
+
+    /* ════════════════ DUAL SIDEBAR ════════════════ */
+    #sidebarTabs {
+      position:fixed;right:0;top:50%;transform:translateY(-50%);z-index:1200;
+      display:flex;flex-direction:column;gap:4px;
+    }
+    .sidebar-tab-btn {
+      display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;
+      width:32px;padding:.9rem .3rem;background:var(--card);border:1px solid var(--line);
+      border-right:none;border-radius:8px 0 0 8px;cursor:pointer;
+      transition:background .15s,border-color .15s;box-shadow:-2px 0 10px rgba(0,0,0,.12);
+    }
+    .sidebar-tab-btn:hover,.sidebar-tab-btn.active { background:var(--brand);border-color:var(--brand); }
+    .sidebar-tab-btn:hover .stab-icon,.sidebar-tab-btn.active .stab-icon { color:#fff; }
+    .sidebar-tab-btn:hover .stab-label,.sidebar-tab-btn.active .stab-label { color:rgba(255,255,255,.85); }
+    .stab-icon { font-size:.85rem;color:var(--brand);transition:color .15s; }
+    .stab-label { font-size:.52rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);writing-mode:vertical-rl;text-orientation:mixed;transition:color .15s; }
+
+    .sd-panel {
+      position:fixed;right:32px;top:60px;width:360px;height:calc(100vh - 60px);
+      z-index:1100;display:flex;flex-direction:column;
+      transform:translateX(calc(100% + 32px));
+      transition:transform .32s cubic-bezier(.4,0,.2,1);pointer-events:none;
+    }
+    .sd-panel.open { transform:translateX(0);pointer-events:auto; }
+    .sd-panel-inner {
+      display:flex;flex-direction:column;height:100%;background:var(--card);
+      backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+      border-left:1px solid var(--line);box-shadow:-6px 0 30px rgba(0,0,0,.15);
+    }
+    [data-theme="dark"] .sd-panel-inner { box-shadow:-6px 0 30px rgba(0,0,0,.45); }
+    .sd-panel-header { display:flex;align-items:center;gap:8px;padding:.7rem 1rem;border-bottom:1px solid var(--line);flex-shrink:0; }
+    .sd-panel-title { font-size:.68rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--brand);flex:1; }
+    .sd-panel-body { flex:1;overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--line) transparent; }
+    .sd-panel-body::-webkit-scrollbar { width:3px; }
+    .sd-panel-body::-webkit-scrollbar-thumb { background:var(--line);border-radius:3px; }
+
+    /* Feed styles */
+    .feed-source-section { border-bottom:1px solid var(--line); }
+    .feed-source-header { display:flex;align-items:center;justify-content:space-between;padding:.55rem 1rem;cursor:pointer;user-select:none;background:transparent;border:none;width:100%;text-align:left;transition:background .15s; }
+    .feed-source-header:hover { background:var(--brand-soft); }
+    .feed-source-name { font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--brand); }
+    .feed-source-count { font-size:.58rem;color:var(--muted);background:var(--bg);padding:2px 6px;border-radius:999px;border:1px solid var(--line); }
+    .feed-source-chevron { font-size:.62rem;color:var(--muted);transition:transform .2s;margin-left:6px;flex-shrink:0; }
+    .feed-source-section.open .feed-source-chevron { transform:rotate(180deg); }
+    .feed-articles { display:none;flex-direction:column; }
+    .feed-source-section.open .feed-articles { display:flex; }
+    .feed-article-link { display:block;padding:.5rem 1rem;border-top:1px solid var(--line);text-decoration:none;transition:background .12s; }
+    .feed-article-link:hover { background:var(--brand-soft); }
+    .feed-article-title { font-size:.76rem;font-weight:600;color:var(--ink);line-height:1.35;margin-bottom:2px; }
+    .feed-article-time { font-size:.62rem;color:var(--muted); }
+
+    /* Puzzle styles */
+    #puzzlePanel .sd-panel-body { padding:.75rem; }
+    .puzzle-meta { display:flex;align-items:center;justify-content:space-between;margin-bottom:.6rem; }
+    .puzzle-type-label { font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--brand); }
+    .puzzle-btn {
+      width:100%;margin-top:.6rem;padding:.45rem;border:1px solid var(--line);border-radius:8px;
+      background:var(--bg);color:var(--ink);cursor:pointer;font-size:.75rem;font-weight:600;
+      transition:background .15s,border-color .15s;
+    }
+    .puzzle-btn:hover { background:var(--brand-soft);border-color:var(--brand);color:var(--brand); }
+    .puzzle-btn.primary { background:var(--brand);color:#fff;border-color:var(--brand); }
+    .puzzle-btn.primary:hover { background:var(--brand-light); }
+    .puzzle-win-msg { display:none;text-align:center;padding:.6rem;background:var(--brand-soft);border-radius:8px;border:1px solid rgba(13,115,119,.25);margin-top:.5rem;font-size:.8rem;font-weight:700;color:var(--brand); }
+    .puzzle-hint { font-size:.7rem;color:var(--muted);text-align:center;margin-top:.5rem;line-height:1.4; }
+    #puzzleScore { font-size:.68rem;font-weight:700;color:var(--ink); }
+
+    @media(max-width:1060px) { #sidebarTabs,.sd-panel { display:none !important; } }
+</style>
 
     <div class="hero-split reveal">
 
@@ -898,27 +911,16 @@
         <div class="hero-name">Saumyadip Das</div>
         <div class="hero-role">AI &amp; ML Researcher</div>
         <div class="hero-social">
-          <a class="btn btn-outline-secondary sd-tooltip" href="https://github.com/saumyadip-das-2003" target="_blank" aria-label="GitHub" data-tip="GitHub"><i class="fab fa-github"></i></a>
-          <a class="btn btn-outline-secondary sd-tooltip" href="https://www.linkedin.com/in/saumyadip-sohom/" target="_blank" aria-label="LinkedIn" data-tip="LinkedIn"><i class="fab fa-linkedin"></i></a>
-          <a class="btn btn-outline-secondary sd-tooltip" href="https://www.researchgate.net/profile/Saumyadip-Das-2" target="_blank" aria-label="ResearchGate" data-tip="ResearchGate"><i class="fab fa-researchgate"></i></a>
-          <a class="btn btn-outline-secondary sd-tooltip" href="https://orcid.org/0009-0009-1130-2091" target="_blank" aria-label="ORCID" data-tip="ORCID"><i class="fab fa-orcid"></i></a>
-          <a class="btn btn-outline-secondary sd-tooltip" href="https://scholar.google.com/citations?user=vCvfzOMAAAAJ&hl=en" target="_blank" aria-label="Google Scholar" data-tip="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
-        </div>
-        <!-- Contact info -->
-        <div style="margin-top:1rem;display:flex;flex-direction:column;gap:6px;align-items:center;">
-          <a id="heroEmailLink" href="#" target="_blank" rel="noopener"
-             style="font-size:.72rem;color:var(--muted);text-decoration:none;display:flex;align-items:center;gap:5px;"
-             title="Send Email via Gmail">
-            <i class="fas fa-envelope" style="color:var(--brand);font-size:.75rem;"></i><span id="heroEmailText">das.saumyadip.cse&#64;gmail.com</span>
-          </a>
-          <a href="https://wa.me/8801646891418"
-             target="_blank" rel="noopener"
-             style="font-size:.72rem;color:var(--muted);text-decoration:none;display:flex;align-items:center;gap:5px;"
-             title="WhatsApp">
-            <i class="fab fa-whatsapp" style="color:#25d366;font-size:.8rem;"></i>+880 1646-891418
-          </a>
+          <a class="btn btn-outline-secondary" href="https://github.com/saumyadip-das-2003" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+          <a class="btn btn-outline-secondary" href="https://www.linkedin.com/in/saumyadip-sohom/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+          <a class="btn btn-outline-secondary" href="https://www.researchgate.net/profile/Saumyadip-Das-2" target="_blank" aria-label="ResearchGate"><i class="fab fa-researchgate"></i></a>
+          <a class="btn btn-outline-secondary" href="https://orcid.org/0009-0009-1130-2091" target="_blank" aria-label="ORCID"><i class="fab fa-orcid"></i></a>
+          <a class="btn btn-outline-secondary" href="https://scholar.google.com/citations?user=vCvfzOMAAAAJ&hl=en" target="_blank" aria-label="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
         </div>
       </div>
+
+      <!-- DIVIDER -->
+      <div class="hero-divider" aria-hidden="true"></div>
 
       <!-- RIGHT — professional bio -->
       <div class="hero-right">
@@ -929,7 +931,7 @@
         </p>
 
         <p class="hero-bio-text" style="margin-bottom:1.25rem;">
-          I am actively involved in research, working at the intersection of theory and application — from explainable AI and deep learning to IoT-based systems. Recently, I am shifting my focus toward Agentic AI, exploring how autonomous agents can reason, plan, and act to solve complex real-world problems. I am always open to collaboration, meaningful projects, and new learning opportunities.
+          I am actively involved in research and enjoy working at the intersection of theory and application — whether it is exploring explainability in AI models, building resource-efficient architectures, or prototyping hardware-integrated solutions. I am always open to collaboration, meaningful projects, and new learning opportunities.
         </p>
 
         <div class="hero-tags">
@@ -937,10 +939,7 @@
           <span class="hero-tag"><i class="fas fa-microscope me-1" style="font-size:.7rem;"></i>Deep Learning</span>
           <span class="hero-tag"><i class="fas fa-database me-1" style="font-size:.7rem;"></i>Data Science</span>
           <span class="hero-tag"><i class="fas fa-microchip me-1" style="font-size:.7rem;"></i>IoT Systems</span>
-          <span class="hero-tag"><i class="fas fa-language me-1" style="font-size:.7rem;"></i>NLP</span>
-          <span class="hero-tag"><i class="fas fa-hand-pointer me-1" style="font-size:.7rem;"></i>HCI</span>
           <span class="hero-tag"><i class="fas fa-code me-1" style="font-size:.7rem;"></i>Software Development</span>
-          <span class="hero-tag"><i class="fas fa-robot me-1" style="font-size:.7rem;"></i>Agentic AI</span>
           <span class="hero-tag"><i class="fas fa-flask me-1" style="font-size:.7rem;"></i>Research</span>
         </div>
 
@@ -961,39 +960,6 @@
   </section>
 
   <!-- ============================================================
-       AI NEWS SIDEBAR (fixed right panel)
-  ============================================================ -->
-  <div id="aiNewsSidebar">
-    <div id="aiSidebarInner">
-      <div style="display:flex;align-items:center;justify-content:space-between;padding:.75rem 1rem .5rem;border-bottom:1px solid var(--line);">
-        <div style="font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--brand);">
-          <i class="fas fa-satellite-dish me-1"></i>AI &amp; Research Feed
-        </div>
-        <button id="sidebarToggle" title="Collapse sidebar"
-          style="background:none;border:none;cursor:pointer;color:var(--muted);font-size:.85rem;padding:2px 4px;border-radius:4px;">
-          <i class="fas fa-times" id="sidebarToggleIcon"></i>
-        </button>
-      </div>
-      <div id="aiSidebarBody" style="overflow-y:auto;flex:1;padding:.5rem 0;">
-        <!-- Source sections injected by JS -->
-        <div style="padding:2rem;text-align:center;color:var(--muted);font-size:.82rem;">
-          <i class="fas fa-spinner fa-spin" style="display:block;font-size:1.4rem;color:var(--brand);margin-bottom:.5rem;"></i>
-          Loading feeds…
-        </div>
-      </div>
-    </div>
-    <!-- Collapsed tab -->
-    <button id="sidebarOpenTab" title="Open AI Feed"
-      style="display:none;position:fixed;right:0;top:50%;transform:translateY(-50%);
-             background:var(--brand);color:#fff;border:none;cursor:pointer;
-             writing-mode:vertical-rl;text-orientation:mixed;
-             font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
-             padding:.75rem .4rem;border-radius:8px 0 0 8px;z-index:1200;">
-      AI Feed
-    </button>
-  </div>
-
-  <!-- ============================================================
        EDUCATION
   ============================================================ -->
   <section id="education" class="py-5 section-education">
@@ -1007,7 +973,7 @@
             <p class="text-muted mb-1">Bachelor of Science in Computer Science and Engineering &mdash; Jan 2023 – Dec 2026 (Expected)</p>
             <p class="mb-0"><strong>CGPA:</strong> 3.99 / 4.00 &nbsp;|&nbsp; Major in Information Systems</p>
             <div class="mt-3">
-              <button class="btn btn-sm btn-outline-primary edu-transcript-btn" data-pdf="GradeReportBySemester23-50404-1.pdf" data-degree="BSc in Computer Science and Engineering">
+              <button class="btn btn-sm btn-outline-primary edu-transcript-btn" data-pdf="GradeReportBySemester23-50404-1.pdf">
                 <i class="fas fa-file-alt me-1"></i>View transcript
               </button>
             </div>
@@ -1022,7 +988,7 @@
             <p class="text-muted mb-1">Higher Secondary Certificate (Science) &mdash; 2021 &nbsp;|&nbsp; Dhaka, Bangladesh</p>
             <p class="mb-0">GPA: 5.00 / 5.00</p>
             <div class="mt-3">
-              <button class="btn btn-sm btn-outline-primary edu-transcript-btn" data-pdf="HSC Transcript.pdf" data-degree="Higher Secondary Certificate (Science)">
+              <button class="btn btn-sm btn-outline-primary edu-transcript-btn" data-pdf="HSC Transcript.pdf">
                 <i class="fas fa-file-alt me-1"></i>View transcript
               </button>
             </div>
@@ -1037,7 +1003,7 @@
             <p class="text-muted mb-1">Secondary School Certificate (Science) &mdash; 2019 &nbsp;|&nbsp; Moulvibazar, Bangladesh</p>
             <p class="mb-0">GPA: 5.00 / 5.00</p>
             <div class="mt-3">
-              <button class="btn btn-sm btn-outline-primary edu-transcript-btn" data-pdf="SSC Transcript.pdf" data-degree="Secondary School Certificate (Science)">
+              <button class="btn btn-sm btn-outline-primary edu-transcript-btn" data-pdf="SSC Transcript.pdf">
                 <i class="fas fa-file-alt me-1"></i>View transcript
               </button>
             </div>
@@ -1087,7 +1053,7 @@
               <div class="pub-extra">In <em>2026 IEEE 2nd International Conference on Quantum Photonics, Artificial Intelligence &amp; Networking</em>. 16–18 April 2026, Chattogram, Bangladesh.</div>
             </div>
             <div class="pub-actions">
-              <span class="badge badge-conf">Conference</span>
+              <span class="badge bg-primary">Conference</span>
               <span class="btn btn-sm btn-outline-primary">Open</span>
             </div>
           </div>
@@ -1105,7 +1071,7 @@
               <div class="pub-extra">In <em>7th International Conference on Electrical Information and Communication Technology</em>, IEEE. 18–20 Dec 2025, Khulna, Bangladesh. DOI: 10.1109/EICT68394.2025.11355612</div>
             </div>
             <div class="pub-actions">
-              <span class="badge badge-conf">Conference</span>
+              <span class="badge bg-primary">Conference</span>
               <span class="btn btn-sm btn-outline-primary">DOI</span>
             </div>
           </div>
@@ -1123,7 +1089,7 @@
               <div class="pub-extra">In <em>3rd International Conference on Textile Science and Engineering</em>. 24 May 2025, BUTEX, Dhaka, Bangladesh.</div>
             </div>
             <div class="pub-actions">
-              <span class="badge badge-conf">Conference</span>
+              <span class="badge bg-primary">Conference</span>
               <span class="btn btn-sm btn-outline-primary">Open</span>
             </div>
           </div>
@@ -1141,7 +1107,7 @@
               <div class="pub-extra">In <em>3rd International Conference on Textile Science and Engineering</em>. 24 May 2025, BUTEX, Dhaka, Bangladesh.</div>
             </div>
             <div class="pub-actions">
-              <span class="badge badge-conf">Conference</span>
+              <span class="badge bg-primary">Conference</span>
               <span class="btn btn-sm btn-outline-primary">Open</span>
             </div>
           </div>
@@ -1159,7 +1125,7 @@
               <div class="pub-extra">In <em>1st International Conference on Engineering and Technology for Sustainable Development (ICETSD 2025)</em>. 22–23 Feb 2025, JUST, Jashore, Bangladesh.</div>
             </div>
             <div class="pub-actions">
-              <span class="badge badge-conf">Conference</span>
+              <span class="badge bg-primary">Conference</span>
               <span class="btn btn-sm btn-outline-primary">Open</span>
             </div>
           </div>
@@ -1176,7 +1142,7 @@
             <div class="pub-extra">Manuscript submitted for publication in <em>IEEE Transactions on Medical Imaging</em>.</div>
           </div>
           <div class="pub-actions">
-            <span class="badge badge-sub">Submitted</span>
+            <span class="badge bg-secondary">Submitted</span>
             <button class="btn btn-sm btn-outline-primary" type="button">Details</button>
           </div>
         </div>
@@ -1192,7 +1158,7 @@
             <div class="pub-extra">Manuscript submitted for acceptance in <em>IEEE International Conference on Microwave, Antennas, RF and Sensors (MARSCON) 2026</em>.</div>
           </div>
           <div class="pub-actions">
-            <span class="badge badge-sub">Submitted</span>
+            <span class="badge bg-secondary">Submitted</span>
             <button class="btn btn-sm btn-outline-primary" type="button">Details</button>
           </div>
         </div>
@@ -1208,7 +1174,7 @@
             <div class="pub-extra">Manuscript submitted for acceptance in <em>16th IEEE International Conference on Control System, Computing and Engineering</em>, Penang, Malaysia.</div>
           </div>
           <div class="pub-actions">
-            <span class="badge badge-sub">Submitted</span>
+            <span class="badge bg-secondary">Submitted</span>
             <button class="btn btn-sm btn-outline-primary" type="button">Details</button>
           </div>
         </div>
@@ -1224,7 +1190,7 @@
             <div class="pub-extra">Manuscript submitted for publication in <em>IET Information Security</em>.</div>
           </div>
           <div class="pub-actions">
-            <span class="badge badge-sub">Submitted</span>
+            <span class="badge bg-secondary">Submitted</span>
             <button class="btn btn-sm btn-outline-primary" type="button">Details</button>
           </div>
         </div>
@@ -1240,7 +1206,7 @@
             <div class="pub-extra">Manuscript submitted for publication in <em>International Journal of Modern Education and Computer Science (IJMECS)</em>.</div>
           </div>
           <div class="pub-actions">
-            <span class="badge badge-sub">Submitted</span>
+            <span class="badge bg-secondary">Submitted</span>
             <button class="btn btn-sm btn-outline-primary" type="button">Details</button>
           </div>
         </div>
@@ -1256,7 +1222,7 @@
             <div class="pub-extra">Manuscript submitted for acceptance in <em>ICEFronT: IEEE International Conference on Engineering and Frontier Technologies 2026</em>.</div>
           </div>
           <div class="pub-actions">
-            <span class="badge badge-sub">Submitted</span>
+            <span class="badge bg-secondary">Submitted</span>
             <button class="btn btn-sm btn-outline-primary" type="button">Details</button>
           </div>
         </div>
@@ -1272,7 +1238,7 @@
             <div class="pub-extra">Manuscript submitted for acceptance in <em>ICEFronT: IEEE International Conference on Engineering and Frontier Technologies 2026</em>.</div>
           </div>
           <div class="pub-actions">
-            <span class="badge badge-sub">Submitted</span>
+            <span class="badge bg-secondary">Submitted</span>
             <button class="btn btn-sm btn-outline-primary" type="button">Details</button>
           </div>
         </div>
@@ -1486,7 +1452,7 @@
 
     </div>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    <script>
       (function(){
         var tiles = Array.from(document.querySelectorAll('[data-skill-tile]'));
         tiles.forEach(function(tile){
@@ -1671,25 +1637,7 @@
 
     <div class="card shadow-sm border-0">
       <div class="card-body p-4">
-        <!-- Success message (hidden by default) -->
-        <div id="formSuccess" style="display:none;padding:1.2rem 1.4rem;border-radius:12px;background:var(--brand-soft);border:1px solid rgba(13,115,119,.25);margin-bottom:1.2rem;">
-          <div style="display:flex;align-items:center;gap:10px;">
-            <i class="fas fa-check-circle" style="color:var(--brand);font-size:1.3rem;"></i>
-            <div>
-              <div style="font-weight:700;color:var(--ink);margin-bottom:2px;">Message sent successfully!</div>
-              <div style="font-size:.88rem;color:var(--muted);">Thank you for reaching out. I'll get back to you soon.</div>
-            </div>
-          </div>
-        </div>
-        <!-- Error message (hidden by default) -->
-        <div id="formError" style="display:none;padding:1rem 1.4rem;border-radius:12px;background:rgba(220,53,69,.08);border:1px solid rgba(220,53,69,.20);margin-bottom:1.2rem;">
-          <div style="display:flex;align-items:center;gap:10px;">
-            <i class="fas fa-exclamation-circle" style="color:#dc3545;font-size:1.2rem;"></i>
-            <div style="font-size:.9rem;color:var(--ink);">Something went wrong. Please try emailing directly at <a id="errorEmailLink" href="#" style="color:var(--brand);">das.saumyadip.cse&#64;gmail.com</a></div>
-          </div>
-        </div>
-
-        <form id="contactForm">
+        <form action="https://formspree.io/f/mzdadwra" method="POST">
           <div class="row g-3">
             <div class="col-md-6">
               <label class="form-label">Full Name</label>
@@ -1707,14 +1655,12 @@
               <label class="form-label">Message</label>
               <textarea name="message" class="form-control" rows="5" placeholder="Write your message..." required></textarea>
             </div>
+            <input type="text" name="_gotcha" style="display:none">
             <div class="col-12 d-flex gap-2 align-items-center">
-              <button type="submit" class="btn btn-primary px-4" id="contactSubmitBtn">
+              <button type="submit" class="btn btn-primary px-4">
                 <i class="fas fa-paper-plane me-1"></i>Send Message
               </button>
-              <span class="text-muted small" id="contactSendingMsg" style="display:none;">
-                <i class="fas fa-spinner fa-spin me-1"></i>Sending…
-              </span>
-              <span class="text-muted small" id="contactHint">Replies will be sent to your email.</span>
+              <span class="text-muted small">Replies will be sent to your email.</span>
             </div>
           </div>
         </form>
@@ -1722,7 +1668,6 @@
     </div>
   </section>
 
-</div><!-- /page-inner -->
 </main>
 
 <!-- ============================================================
@@ -1739,8 +1684,8 @@
 <!-- ============================================================
      FOOTER
 ============================================================ -->
-<footer class="py-4 mt-3">
-  <div class="page-inner text-center small" style="color:var(--muted)">
+<footer class="bg-light py-4 mt-3">
+  <div class="container text-center small text-muted">
     <div class="mb-2 social-icons">
       <a class="btn btn-outline-secondary me-2" href="https://github.com/saumyadip-das-2003" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
       <a class="btn btn-outline-secondary me-2" href="https://www.linkedin.com/in/saumyadip-sohom/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
@@ -1755,15 +1700,8 @@
 <!-- ============================================================
      BACK TO TOP BUTTON
 ============================================================ -->
-<button id="backToTop" aria-label="Back to top" title="Back to top"
-  style="position:fixed!important;bottom:28px!important;right:24px!important;
-         width:46px!important;height:46px!important;border-radius:50%!important;
-         background:var(--brand)!important;color:#fff!important;border:none!important;
-         font-size:1.1rem!important;cursor:pointer!important;
-         display:flex!important;align-items:center!important;justify-content:center!important;
-         opacity:0;pointer-events:none;transform:translateY(14px);
-         transition:opacity .3s ease,transform .3s ease;z-index:99999!important;">
-  <i class="fas fa-chevron-up"></i>
+<button id="backToTop" aria-label="Back to top" title="Back to top">
+  <i class="fas fa-arrow-up"></i>
 </button>
 
 <!-- ============================================================
@@ -1826,7 +1764,7 @@
 <!-- ============================================================
      SCRIPTS
 ============================================================ -->
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
 document.addEventListener('DOMContentLoaded', function () {
@@ -1835,43 +1773,26 @@ document.addEventListener('DOMContentLoaded', function () {
   var fy = document.getElementById('fyear');
   if (fy) fy.textContent = new Date().getFullYear();
 
-  /* ── DARK MODE — system default, then localStorage override ── */
-  var html = document.documentElement;
+  /* ── THEME TOGGLE ── */
+  var html   = document.documentElement;
   var toggle = document.getElementById('themeToggle');
-  var saved = localStorage.getItem('theme');
-  var systemDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-  var theme = saved ? saved : (systemDark ? 'dark' : 'light');
-  html.setAttribute('data-theme', theme);
-
   function updateThemeIcon() {
     var icon = document.getElementById('themeIcon');
     if (!icon) return;
     var dark = html.getAttribute('data-theme') === 'dark';
     icon.className = dark ? 'fas fa-sun' : 'fas fa-moon';
-    if (toggle) {
-      toggle.style.color = dark ? 'var(--brand)' : 'var(--muted)';
-    }
+    if (toggle) toggle.style.color = dark ? 'var(--brand)' : 'var(--muted)';
   }
   updateThemeIcon();
-
   if (toggle) {
     toggle.addEventListener('click', function () {
-      var current = html.getAttribute('data-theme');
-      var next = current === 'dark' ? 'light' : 'dark';
+      var next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
       html.setAttribute('data-theme', next);
       localStorage.setItem('theme', next);
       localStorage.setItem('theme-manual', '1');
       updateThemeIcon();
     });
   }
-
-  /* System theme change — only follow if user has NEVER manually toggled */
-  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
-    if (!localStorage.getItem('theme-manual')) {
-      html.setAttribute('data-theme', e.matches ? 'dark' : 'light');
-      localStorage.setItem('theme', e.matches ? 'dark' : 'light');
-    }
-  });
 
   /* ── BACK TO TOP ── */
   var btt = document.getElementById('backToTop');
@@ -1880,12 +1801,8 @@ document.addEventListener('DOMContentLoaded', function () {
       if (window.scrollY > 400) btt.classList.add('show');
       else btt.classList.remove('show');
     }
-  });
-  if (btt) {
-    btt.addEventListener('click', function () {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-  }
+  }, { passive: true });
+  if (btt) btt.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
 
   /* ── SMOOTH SCROLL ── */
   document.querySelectorAll('a[href^="/#"], a[href^="#"]').forEach(function (a) {
@@ -1904,7 +1821,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  /* ── ACTIVE NAV + SCROLLED CLASS ── */
+  /* ── ACTIVE NAV (IntersectionObserver) ── */
   var allSections = Array.from(document.querySelectorAll('section[id]'));
   var navLinks    = Array.from(document.querySelectorAll('.nav-link[href]'));
   var navbarEl    = document.querySelector('.navbar');
@@ -1915,42 +1832,15 @@ document.addEventListener('DOMContentLoaded', function () {
     if (link) link.classList.add('active');
   }
 
-  /* Use IntersectionObserver — fires when section enters/leaves viewport */
-  var currentActive = 'home';
   if ('IntersectionObserver' in window) {
     var navH = navbarEl ? navbarEl.offsetHeight + 10 : 80;
     var observer = new IntersectionObserver(function(entries) {
       entries.forEach(function(entry) {
-        if (entry.isIntersecting) {
-          currentActive = entry.target.id;
-          setActiveLink(currentActive);
-        }
+        if (entry.isIntersecting) setActiveLink(entry.target.id);
       });
-    }, {
-      rootMargin: '-' + navH + 'px 0px -60% 0px',
-      threshold: 0
-    });
+    }, { rootMargin: '-' + navH + 'px 0px -60% 0px', threshold: 0 });
     allSections.forEach(function(sec) { observer.observe(sec); });
-  } else {
-    /* Fallback for old browsers */
-    function updateNavFallback() {
-      var navH = navbarEl ? navbarEl.offsetHeight : 70;
-      var midpoint = window.scrollY + navH + Math.floor(window.innerHeight * 0.3);
-      var best = null, bestDist = Infinity;
-      allSections.forEach(function(sec) {
-        var dist = Math.abs(sec.getBoundingClientRect().top);
-        if (sec.getBoundingClientRect().top <= navH + 40 && dist < bestDist) {
-          bestDist = dist;
-          best = sec.id;
-        }
-      });
-      if (best) setActiveLink(best);
-    }
-    window.addEventListener('scroll', updateNavFallback, { passive: true });
-    updateNavFallback();
   }
-
-  /* Navbar scroll shadow */
   function updateNavShadow() {
     if (!navbarEl) return;
     if (window.scrollY > 40) navbarEl.classList.add('nav-scrolled');
@@ -1960,12 +1850,22 @@ document.addEventListener('DOMContentLoaded', function () {
   updateNavShadow();
   setActiveLink('home');
 
+  /* ── EMAIL DECODE (Cloudflare-proof) ── */
+  (function(){
+    var u  = ['das','.','saumyadip','.','cse','@','gmail','.','com'].join('');
+    var gm = 'https://mail.google.com/mail/?view=cm&to=' + u;
+    ['heroEmailLink','contactEmailLink','errorEmailLink'].forEach(function(id){
+      var el = document.getElementById(id); if(el) el.href = gm;
+    });
+    ['heroEmailText','contactEmailText'].forEach(function(id){
+      var el = document.getElementById(id); if(el) el.textContent = u;
+    });
+  })();
+
   /* ── PUBLICATIONS FILTER + SHOW MORE ── */
   var filterBtns = document.querySelectorAll('[data-filter]');
   var pubItems   = Array.from(document.querySelectorAll('.pub-item'));
-  var PUB_INIT = 4, PUB_INC = 4;
-  var pubVisible = PUB_INIT, currentFilter = 'all';
-
+  var PUB_INIT = 4, PUB_INC = 4, pubVisible = PUB_INIT, currentFilter = 'all';
   function getMatching() {
     return pubItems.filter(function (it) {
       if (currentFilter === 'all') return true;
@@ -1973,42 +1873,30 @@ document.addEventListener('DOMContentLoaded', function () {
       return tags.indexOf(currentFilter) !== -1;
     });
   }
-
   function renderPubs() {
     var matching = getMatching();
     pubItems.forEach(function (it) { it.style.display = 'none'; });
     matching.forEach(function (it, idx) { it.style.display = idx < pubVisible ? '' : 'none'; });
-
     var btn = document.getElementById('pubShowMore');
     if (!btn) return;
     if (matching.length <= PUB_INIT) { btn.style.display = 'none'; return; }
     btn.style.display = '';
-    if (pubVisible < matching.length) {
-      btn.textContent = 'Show more (' + Math.min(PUB_INC, matching.length - pubVisible) + ' more)';
-    } else {
-      btn.textContent = 'Show less';
-    }
+    btn.textContent = pubVisible < matching.length ? 'Show more (' + Math.min(PUB_INC, matching.length - pubVisible) + ' more)' : 'Show less';
   }
-
   filterBtns.forEach(function (btn) {
     btn.addEventListener('click', function () {
       filterBtns.forEach(function (b) { b.classList.remove('active'); });
       this.classList.add('active');
       currentFilter = this.getAttribute('data-filter') || 'all';
-      pubVisible = PUB_INIT;
-      renderPubs();
+      pubVisible = PUB_INIT; renderPubs();
     });
   });
-
   var pubMoreBtn = document.getElementById('pubShowMore');
   if (pubMoreBtn) {
     pubMoreBtn.addEventListener('click', function () {
       var matching = getMatching();
       if (pubVisible < matching.length) pubVisible += PUB_INC;
-      else {
-        pubVisible = PUB_INIT;
-        document.getElementById('publications').scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
+      else { pubVisible = PUB_INIT; document.getElementById('publications').scrollIntoView({ behavior: 'smooth', block: 'start' }); }
       renderPubs();
     });
   }
@@ -2017,121 +1905,67 @@ document.addEventListener('DOMContentLoaded', function () {
   /* ── PROJECTS SHOW MORE ── */
   var projItems = Array.from(document.querySelectorAll('.project-item'));
   var PROJ_INIT = 4, PROJ_INC = 4, projVisible = PROJ_INIT;
-
   function renderProjects() {
     projItems.forEach(function (it, idx) { it.style.display = idx < projVisible ? '' : 'none'; });
     var btn = document.getElementById('projShowMore');
     if (!btn) return;
     if (projItems.length <= PROJ_INIT) { btn.style.display = 'none'; return; }
     btn.style.display = '';
-    btn.textContent = projVisible < projItems.length
-      ? 'Show more (' + Math.min(PROJ_INC, projItems.length - projVisible) + ' more)'
-      : 'Show less';
+    btn.textContent = projVisible < projItems.length ? 'Show more (' + Math.min(PROJ_INC, projItems.length - projVisible) + ' more)' : 'Show less';
   }
-
   var projBtn = document.getElementById('projShowMore');
-  if (projBtn) {
-    projBtn.addEventListener('click', function () {
-      if (projVisible < projItems.length) projVisible += PROJ_INC;
-      else {
-        projVisible = PROJ_INIT;
-        document.getElementById('projects').scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-      renderProjects();
-    });
-  }
+  if (projBtn) projBtn.addEventListener('click', function () {
+    if (projVisible < projItems.length) projVisible += PROJ_INC;
+    else { projVisible = PROJ_INIT; document.getElementById('projects').scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+    renderProjects();
+  });
   renderProjects();
 
-  /* ── AWARDS SHOW MORE ── */
-  var awardItems = Array.from(document.querySelectorAll('.award-item'));
-  var AWARD_INIT = 4, AWARD_INC = 4, awardVisible = AWARD_INIT;
-
-  function renderAwards() {
-    awardItems.forEach(function (it, idx) { it.style.display = idx < awardVisible ? '' : 'none'; });
-    var btn = document.getElementById('awardShowMore');
-    if (!btn) return;
-    if (awardItems.length <= AWARD_INIT) { btn.style.display = 'none'; return; }
-    btn.style.display = '';
-    btn.textContent = awardVisible < awardItems.length
-      ? 'Show more (' + Math.min(AWARD_INC, awardItems.length - awardVisible) + ' more)'
-      : 'Show less';
-  }
-
-  var awardBtn = document.getElementById('awardShowMore');
-  if (awardBtn) {
-    awardBtn.addEventListener('click', function () {
-      if (awardVisible < awardItems.length) awardVisible += AWARD_INC;
-      else {
-        awardVisible = AWARD_INIT;
-        document.getElementById('awards').scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-      renderAwards();
-    });
-  }
-  renderAwards();
-
-  /* ── CERTIFICATIONS SHOW MORE ── */
-  var certItems = Array.from(document.querySelectorAll('.cert-item'));
-  var CERT_INIT = 8, CERT_INC = 4, certVisible = CERT_INIT;
-
-  function renderCerts() {
-    certItems.forEach(function (it, idx) { it.style.display = idx < certVisible ? '' : 'none'; });
-    var btn = document.getElementById('certShowMore');
-    var txt = document.getElementById('certShowMoreText');
-    var cnt = document.getElementById('certShowMoreCount');
-    if (!btn) return;
-    if (certItems.length <= CERT_INIT) { btn.style.display = 'none'; return; }
-    btn.style.display = '';
-    if (certVisible < certItems.length) {
-      if (txt) txt.textContent = 'Show more';
-      if (cnt) cnt.textContent = ' (' + Math.min(CERT_INC, certItems.length - certVisible) + ' more)';
-    } else {
-      if (txt) txt.textContent = 'Show less';
-      if (cnt) cnt.textContent = '';
+  /* ── AWARDS + CERTS SHOW MORE ── */
+  function makeShowMore(selector, btnId, sectionId, init, inc) {
+    var items = Array.from(document.querySelectorAll(selector));
+    var visible = init;
+    function render() {
+      items.forEach(function (it, idx) { it.style.display = idx < visible ? '' : 'none'; });
+      var btn = document.getElementById(btnId);
+      if (!btn) return;
+      if (items.length <= init) { btn.style.display = 'none'; return; }
+      btn.style.display = '';
+      btn.textContent = visible < items.length ? 'Show more (' + Math.min(inc, items.length - visible) + ' more)' : 'Show less';
     }
-  }
-
-  var certBtn = document.getElementById('certShowMore');
-  if (certBtn) {
-    certBtn.addEventListener('click', function () {
-      if (certVisible < certItems.length) certVisible += CERT_INC;
-      else {
-        certVisible = CERT_INIT;
-        document.getElementById('certifications').scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-      renderCerts();
+    var btn = document.getElementById(btnId);
+    if (btn) btn.addEventListener('click', function () {
+      if (visible < items.length) visible += inc;
+      else { visible = init; document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+      render();
     });
+    render();
   }
-  renderCerts();
+  makeShowMore('.award-item', 'awardShowMore', 'awards', 4, 4);
+  makeShowMore('.cert-item',  'certShowMore',  'certifications', 8, 4);
 
-  /* ── PDF MODAL (awards + certs) ── */
+  /* ── PDF / TRANSCRIPT MODALS ── */
   document.querySelectorAll('.award-img, .cert-img').forEach(function (img) {
     img.style.cursor = 'pointer';
     img.addEventListener('click', function () {
-      var pdf = this.getAttribute('data-pdf');
       var frame = document.getElementById('pdfFrame');
-      if (frame) frame.src = pdf ? encodeURI(pdf) : '';
+      if (frame) frame.src = encodeURI(this.getAttribute('data-pdf') || '');
       new bootstrap.Modal(document.getElementById('pdfModal')).show();
     });
   });
-
   document.getElementById('pdfModal').addEventListener('hidden.bs.modal', function () {
-    var frame = document.getElementById('pdfFrame');
-    if (frame) frame.src = '';
+    var f = document.getElementById('pdfFrame'); if (f) f.src = '';
   });
-
-  /* ── TRANSCRIPT MODAL ── */
   document.querySelectorAll('.edu-transcript-btn').forEach(function (btn) {
     btn.addEventListener('click', function () {
-      var pdf    = this.getAttribute('data-pdf');
-      var degree = this.getAttribute('data-degree') || 'Transcript';
-      var pdfUrl = pdf ? encodeURI(pdf) : '';
-      document.getElementById('transcriptModalLabel').textContent = degree + ' — Transcript';
+      var pdf = this.getAttribute('data-pdf');
+      var deg = this.getAttribute('data-degree') || 'Transcript';
+      document.getElementById('transcriptModalLabel').textContent = deg + ' — Transcript';
       var content  = document.getElementById('transcriptContent');
       var download = document.getElementById('transcriptDownload');
-      if (pdf && pdf.trim()) {
-        content.innerHTML = '<div class="ratio ratio-16x9"><iframe src="' + pdfUrl + '" width="100%" height="600" frameborder="0">Loading…</iframe></div>';
-        download.href = pdfUrl; download.style.display = '';
+      if (pdf) {
+        content.innerHTML = '<div class="ratio ratio-16x9"><iframe src="' + encodeURI(pdf) + '" width="100%" height="600" frameborder="0"></iframe></div>';
+        download.href = encodeURI(pdf); download.style.display = '';
       } else {
         content.innerHTML = '<p class="text-muted">Transcript PDF not uploaded yet.</p>';
         download.style.display = 'none';
@@ -2153,299 +1987,680 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  /* ── CONTACT FORM — AJAX submit, no redirect ── */
+  /* ── CONTACT FORM (AJAX, no redirect) ── */
   var contactForm = document.getElementById('contactForm');
   if (contactForm) {
     contactForm.addEventListener('submit', function(e) {
       e.preventDefault();
-      var btn      = document.getElementById('contactSubmitBtn');
-      var sending  = document.getElementById('contactSendingMsg');
-      var hint     = document.getElementById('contactHint');
-      var success  = document.getElementById('formSuccess');
-      var error    = document.getElementById('formError');
-
+      var btn     = document.getElementById('contactSubmitBtn');
+      var sending = document.getElementById('contactSendingMsg');
+      var hint    = document.getElementById('contactHint');
+      var success = document.getElementById('formSuccess');
+      var error   = document.getElementById('formError');
       btn.disabled = true;
       if (sending) sending.style.display = '';
       if (hint)    hint.style.display    = 'none';
-      success.style.display = 'none';
-      error.style.display   = 'none';
-
-      var data = new FormData(contactForm);
-
+      success.style.display = 'none'; error.style.display = 'none';
       fetch('https://formspree.io/f/mzdadwra', {
-        method: 'POST',
-        body: data,
+        method: 'POST', body: new FormData(contactForm),
         headers: { 'Accept': 'application/json' }
-      })
-      .then(function(res) {
+      }).then(function(res) {
         if (sending) sending.style.display = 'none';
-        if (res.ok) {
-          success.style.display = '';
-          contactForm.reset();
-          btn.disabled = false;
-          if (hint) hint.style.display = '';
-        } else {
-          error.style.display = '';
-          btn.disabled = false;
-          if (hint) hint.style.display = '';
-        }
-      })
-      .catch(function() {
+        if (res.ok) { success.style.display = ''; contactForm.reset(); }
+        else        { error.style.display = ''; }
+        btn.disabled = false; if (hint) hint.style.display = '';
+      }).catch(function() {
         if (sending) sending.style.display = 'none';
-        error.style.display = '';
-        btn.disabled = false;
+        error.style.display = ''; btn.disabled = false;
         if (hint) hint.style.display = '';
       });
     });
   }
+
+  /* ── SKILL TILES (mobile tap) ── */
+  (function(){
+    var tiles = Array.from(document.querySelectorAll('[data-skill-tile]'));
+    tiles.forEach(function(tile){
+      tile.addEventListener('click', function(e){
+        if(window.matchMedia('(hover: hover)').matches) return;
+        var wasOpen = tile.classList.contains('is-open');
+        tiles.forEach(function(t){ t.classList.remove('is-open'); });
+        if(!wasOpen) tile.classList.add('is-open');
+        e.stopPropagation();
+      });
+    });
+    document.addEventListener('click', function(){
+      if(!window.matchMedia('(hover: hover)').matches)
+        tiles.forEach(function(t){ t.classList.remove('is-open'); });
+    });
+  })();
 
   /* ── REVEAL ANIMATION ── */
   document.querySelectorAll('.reveal').forEach(function (el, i) {
     setTimeout(function () { el.classList.add('visible'); }, 70 * i);
   });
 
-  /* ── EMAIL DECODE (Cloudflare-proof) ── */
-  (function(){
-    var u  = ['das','.','saumyadip','.','cse','@','gmail','.','com'].join('');
-    var gm = 'https://mail.google.com/mail/?view=cm&to=' + u;
-    ['heroEmailLink','contactEmailLink','errorEmailLink'].forEach(function(id){
-      var el = document.getElementById(id);
-      if(el) el.href = gm;
-    });
-    ['heroEmailText','contactEmailText'].forEach(function(id){
-      var el = document.getElementById(id);
-      if(el) el.textContent = u;
-    });
-  })();
-
-    /* ── AI NEWS SIDEBAR ── */
-  (function(){
-    var sidebar   = document.getElementById('aiNewsSidebar');
-    var body_el   = document.getElementById('aiSidebarBody');
-    var toggleBtn = document.getElementById('sidebarToggle');
-    var openTab   = document.getElementById('sidebarOpenTab');
-    var togIcon   = document.getElementById('sidebarToggleIcon');
-    if(!sidebar || !body_el) return;
-
-    /* ── Sources: AI/ML blogs + Research indexes ── */
-    var sources = [
-      /* ── AI & ML News ── */
-      { name: 'MarkTechPost',          grp:'AI News',   url:'https://www.marktechpost.com/feed/',           count:8, fallback:'https://www.marktechpost.com/' },
-      { name: 'Towards Data Science',  grp:'AI News',   url:'https://towardsdatascience.com/feed',          count:8, fallback:'https://towardsdatascience.com/' },
-      { name: 'HuggingFace Blog',      grp:'AI News',   url:'https://huggingface.co/blog/feed.xml',         count:8, fallback:'https://huggingface.co/blog' },
-      { name: 'Google DeepMind',       grp:'AI News',   url:'https://deepmind.google/blog/rss.xml',         count:6, fallback:'https://deepmind.google/research/' },
-      { name: 'Microsoft AI',          grp:'AI News',   url:'https://blogs.microsoft.com/ai/feed/',         count:6, fallback:'https://blogs.microsoft.com/ai/' },
-      { name: 'MIT Tech Review',       grp:'AI News',   url:'https://www.technologyreview.com/feed/',       count:6, fallback:'https://www.technologyreview.com/topic/artificial-intelligence/' },
-      { name: 'The Batch (deeplearning.ai)', grp:'AI News', url:'https://www.deeplearning.ai/the-batch/rss/', count:6, fallback:'https://www.deeplearning.ai/the-batch/' },
-      /* ── Research Papers ── */
-      { name: 'ArXiv — CS.AI',         grp:'Research',  url:'https://rss.arxiv.org/rss/cs.AI',              count:10, fallback:'https://arxiv.org/list/cs.AI/recent' },
-      { name: 'ArXiv — CS.LG',         grp:'Research',  url:'https://rss.arxiv.org/rss/cs.LG',              count:10, fallback:'https://arxiv.org/list/cs.LG/recent' },
-      { name: 'ArXiv — cs.CL (NLP)',   grp:'Research',  url:'https://rss.arxiv.org/rss/cs.CL',              count:8,  fallback:'https://arxiv.org/list/cs.CL/recent' },
-      { name: 'Papers With Code',      grp:'Research',  url:'https://paperswithcode.com/rss',               count:8,  fallback:'https://paperswithcode.com/latest' },
-      { name: 'Semantic Scholar',      grp:'Research',  url:'https://api.semanticscholar.org/graph/v1/paper/search?query=machine+learning&fields=title,url,year&limit=5', count:5, fallback:'https://www.semanticscholar.org/' },
-      /* ── Research Indexes (static links — no RSS) ── */
-      { name: 'IEEE Xplore',           grp:'Indexes',   url:null, count:0, fallback:'https://ieeexplore.ieee.org/search/searchresult.jsp?queryText=machine+learning',
-        staticLinks:[
-          { title:'IEEE Xplore — Search Machine Learning', url:'https://ieeexplore.ieee.org/search/searchresult.jsp?queryText=machine+learning' },
-          { title:'IEEE Xplore — Search Deep Learning',    url:'https://ieeexplore.ieee.org/search/searchresult.jsp?queryText=deep+learning' },
-          { title:'IEEE Xplore — Search Agentic AI',       url:'https://ieeexplore.ieee.org/search/searchresult.jsp?queryText=agentic+ai' },
-          { title:'IEEE Xplore — Search IoT',              url:'https://ieeexplore.ieee.org/search/searchresult.jsp?queryText=IoT+machine+learning' },
-          { title:'IEEE Xplore — Early Access Articles',   url:'https://ieeexplore.ieee.org/xpl/mostRecentIssue.jsp' },
-          { title:'IEEE Transactions on Neural Networks',  url:'https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=5962385' }
-        ]
-      },
-      { name: 'ACM Digital Library',   grp:'Indexes',   url:null, count:0, fallback:'https://dl.acm.org/',
-        staticLinks:[
-          { title:'ACM DL — Search AI & Machine Learning', url:'https://dl.acm.org/topic/ccs2012/10010147' },
-          { title:'ACM DL — Latest AI Research',           url:'https://dl.acm.org/subject/ai' },
-          { title:'ACM DL — Communications of the ACM',    url:'https://cacm.acm.org/research/' },
-          { title:'ACM DL — Search Deep Learning',         url:'https://dl.acm.org/action/doSearch?query=deep+learning' },
-          { title:'ACM SIGKDD — Data Mining Research',     url:'https://dl.acm.org/action/doSearch?query=data+mining&ConceptID=119745' }
-        ]
-      },
-      { name: 'Springer — AI',         grp:'Indexes',   url:null, count:0, fallback:'https://link.springer.com/search?query=artificial+intelligence',
-        staticLinks:[
-          { title:'Springer — Artificial Intelligence Journal', url:'https://link.springer.com/journal/10994' },
-          { title:'Springer — Machine Learning Journal',        url:'https://link.springer.com/journal/10994' },
-          { title:'Springer — Search Neural Networks',         url:'https://link.springer.com/search?query=neural+networks' },
-          { title:'Springer — Search Data Science',            url:'https://link.springer.com/search?query=data+science' },
-          { title:'Springer — Nature Machine Intelligence',    url:'https://www.nature.com/natmachintell/' }
-        ]
-      },
-      { name: 'Google Scholar',        grp:'Indexes',   url:null, count:0, fallback:'https://scholar.google.com/',
-        staticLinks:[
-          { title:'Google Scholar — Search Machine Learning',   url:'https://scholar.google.com/scholar?q=machine+learning+2024' },
-          { title:'Google Scholar — Search Agentic AI',         url:'https://scholar.google.com/scholar?q=agentic+AI+LLM' },
-          { title:'Google Scholar — Search Explainable AI',     url:'https://scholar.google.com/scholar?q=explainable+AI+XAI' },
-          { title:'Google Scholar — Search IoT Deep Learning',  url:'https://scholar.google.com/scholar?q=IoT+deep+learning' },
-          { title:'Google Scholar — My Profile',                url:'https://scholar.google.com/citations?user=vCvfzOMAAAAJ' }
-        ]
-      }
-    ];
-
-    /* Multiple proxies in order of reliability */
-    var PROXIES = [
-      'https://api.allorigins.win/get?url=',
-      'https://corsproxy.io/?',
-      'https://api.codetabs.com/v1/proxy?quest='
-    ];
-    var loadedSections = {};
-
-    function fetchWithFallback(url, proxyIdx) {
-      proxyIdx = proxyIdx || 0;
-      if(proxyIdx >= PROXIES.length) return Promise.reject(new Error('all proxies failed'));
-      var proxyUrl = PROXIES[proxyIdx] + encodeURIComponent(url);
-      return fetch(proxyUrl, {signal: AbortSignal.timeout ? AbortSignal.timeout(7000) : undefined})
-        .then(function(r){ return r.json(); })
-        .then(function(d){
-          var content = d.contents || d.data || d;
-          if(typeof content !== 'string' || content.length < 100) throw new Error('empty');
-          return content;
-        })
-        .catch(function(){ return fetchWithFallback(url, proxyIdx + 1); });
-    }
-
-    function timeAgo(ds) {
-      if(!ds) return '';
-      var d = new Date(ds);
-      if(isNaN(d)) return '';
-      var s = (Date.now() - d) / 1000;
-      if(s < 3600)   return Math.floor(s/60)    + 'm ago';
-      if(s < 86400)  return Math.floor(s/3600)  + 'h ago';
-      if(s < 604800) return Math.floor(s/86400) + 'd ago';
-      return d.toLocaleDateString('en-GB',{day:'numeric',month:'short'});
-    }
-
-    /* Build skeleton sections with group headers */
-    var skeletonHTML = '';
-    var lastGroup = '';
-    sources.forEach(function(src, idx) {
-      if(src.grp !== lastGroup) {
-        skeletonHTML += '<div style="padding:.45rem 1rem .3rem;font-size:.58rem;font-weight:800;letter-spacing:.14em;' +
-          'text-transform:uppercase;color:var(--muted);background:var(--bg);border-bottom:1px solid var(--line);">' +
-          src.grp + '</div>';
-        lastGroup = src.grp;
-      }
-      var loadingSpinner = src.url
-        ? '<div style="padding:.6rem 1rem;color:var(--muted);font-size:.75rem;"><i class="fas fa-spinner fa-spin me-1"></i>Loading…</div>'
-        : '';
-      skeletonHTML +=
-        '<div class="feed-source-section" id="fss-' + idx + '">' +
-          '<button class="feed-source-header" onclick="toggleFeedSection(' + idx + ')">' +
-            '<div style="display:flex;align-items:center;gap:6px;">' +
-              '<span class="feed-source-name">' + src.name + '</span>' +
-              '<span class="feed-source-count" id="fsc-' + idx + '">' + (src.url ? 'loading…' : '') + '</span>' +
-            '</div>' +
-            '<i class="fas fa-chevron-down feed-source-chevron"></i>' +
-          '</button>' +
-          '<div class="feed-articles" id="fa-' + idx + '">' + loadingSpinner + '</div>' +
-        '</div>';
-    });
-    body_el.innerHTML = skeletonHTML;
-    /* Open first section of each group by default */
-    [0, 7, 11].forEach(function(i){ var s=document.getElementById('fss-'+i); if(s) s.classList.add('open'); });
-
-    /* Add to window scope for onclick */
-    window.toggleFeedSection = function(idx) {
-      var sec = document.getElementById('fss-' + idx);
-      if(sec) sec.classList.toggle('open');
+/* Toggle logic — only one panel open at a time */
+    window.toggleSidePanel = function(which) {
+      var newsP    = document.getElementById('newsPanel');
+      var puzzP    = document.getElementById('puzzlePanel');
+      var newsBtn  = document.getElementById('newsTabBtn');
+      var puzzBtn  = document.getElementById('puzzleTabBtn');
+      var target   = which === 'news' ? newsP : puzzP;
+      var other    = which === 'news' ? puzzP : newsP;
+      var tBtn     = which === 'news' ? newsBtn : puzzBtn;
+      var oBtn     = which === 'news' ? puzzBtn : newsBtn;
+      var isOpen   = target.classList.contains('open');
+      /* Close both */
+      newsP.classList.remove('open'); puzzP.classList.remove('open');
+      newsBtn.classList.remove('active'); puzzBtn.classList.remove('active');
+      /* If was closed, open it */
+      if(!isOpen) { target.classList.add('open'); tBtn.classList.add('active'); }
     };
 
-    /* Load each feed */
-    function makeArticleHTML(title, url, pub) {
-      var clean = title.replace(/&amp;/g,'&').replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/<[^>]+>/g,'').trim();
-      var disp  = clean.length > 72 ? clean.slice(0,72) + '…' : clean;
-      var t     = pub ? timeAgo(pub) : '';
-      return '<a class="feed-article-link" href="' + url.trim() + '" target="_blank" rel="noopener">' +
-        '<div class="feed-article-title">' + disp + '</div>' +
-        (t ? '<div class="feed-article-time">' + t + '</div>' : '') +
-        '</a>';
-    }
+    /* ── NEWS FEED ── */
+    (function(){
+      var body_el = document.getElementById('aiSidebarBody');
+      if(!body_el) return;
 
-    function showFallback(idx, src) {
-      var articleEl = document.getElementById('fa-' + idx);
-      var countEl   = document.getElementById('fsc-' + idx);
-      /* If static links defined, show those */
-      if(src.staticLinks && src.staticLinks.length) {
-        var html = src.staticLinks.map(function(sl){
-          return makeArticleHTML(sl.title, sl.url, '');
-        }).join('');
-        if(articleEl) articleEl.innerHTML = html;
-        if(countEl)   countEl.textContent = src.staticLinks.length + ' links';
-        return;
+      var sources = [
+        /* AI & ML News */
+        { name: 'MarkTechPost',          grp:'AI News',  url:'https://www.marktechpost.com/feed/',          count:8,  fallback:'https://www.marktechpost.com/' },
+        { name: 'Towards Data Science',  grp:'AI News',  url:'https://towardsdatascience.com/feed',         count:8,  fallback:'https://towardsdatascience.com/' },
+        { name: 'HuggingFace Blog',      grp:'AI News',  url:'https://huggingface.co/blog/feed.xml',        count:8,  fallback:'https://huggingface.co/blog' },
+        { name: 'Google DeepMind',       grp:'AI News',  url:'https://deepmind.google/blog/rss.xml',        count:6,  fallback:'https://deepmind.google/research/' },
+        { name: 'Microsoft AI',          grp:'AI News',  url:'https://blogs.microsoft.com/ai/feed/',        count:6,  fallback:'https://blogs.microsoft.com/ai/' },
+        { name: 'MIT Tech Review',       grp:'AI News',  url:'https://www.technologyreview.com/feed/',      count:6,  fallback:'https://www.technologyreview.com/topic/artificial-intelligence/' },
+        { name: 'The Batch',             grp:'AI News',  url:'https://www.deeplearning.ai/the-batch/rss/',  count:6,  fallback:'https://www.deeplearning.ai/the-batch/' },
+        /* Research Papers */
+        { name: 'ArXiv — CS.AI',         grp:'Research', url:'https://rss.arxiv.org/rss/cs.AI',             count:10, fallback:'https://arxiv.org/list/cs.AI/recent' },
+        { name: 'ArXiv — CS.LG',         grp:'Research', url:'https://rss.arxiv.org/rss/cs.LG',             count:10, fallback:'https://arxiv.org/list/cs.LG/recent' },
+        { name: 'ArXiv — CS.CL (NLP)',   grp:'Research', url:'https://rss.arxiv.org/rss/cs.CL',             count:8,  fallback:'https://arxiv.org/list/cs.CL/recent' },
+        { name: 'Papers With Code',      grp:'Research', url:'https://paperswithcode.com/rss',              count:8,  fallback:'https://paperswithcode.com/latest' },
+        /* Research Indexes */
+        { name: 'IEEE Xplore', grp:'Indexes', url:null, count:0, fallback:'https://ieeexplore.ieee.org/',
+          staticLinks:[
+            { title:'Search: Machine Learning',  url:'https://ieeexplore.ieee.org/search/searchresult.jsp?queryText=machine+learning' },
+            { title:'Search: Deep Learning',     url:'https://ieeexplore.ieee.org/search/searchresult.jsp?queryText=deep+learning' },
+            { title:'Search: Agentic AI',        url:'https://ieeexplore.ieee.org/search/searchresult.jsp?queryText=agentic+ai' },
+            { title:'Search: IoT ML',            url:'https://ieeexplore.ieee.org/search/searchresult.jsp?queryText=IoT+machine+learning' },
+            { title:'IEEE Transactions on NNs',  url:'https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=5962385' }
+          ]
+        },
+        { name: 'ACM Digital Library', grp:'Indexes', url:null, count:0, fallback:'https://dl.acm.org/',
+          staticLinks:[
+            { title:'AI & Machine Learning',     url:'https://dl.acm.org/topic/ccs2012/10010147' },
+            { title:'Latest AI Research',        url:'https://dl.acm.org/subject/ai' },
+            { title:'Communications of ACM',     url:'https://cacm.acm.org/research/' },
+            { title:'Search: Deep Learning',     url:'https://dl.acm.org/action/doSearch?query=deep+learning' },
+            { title:'SIGKDD Data Mining',        url:'https://dl.acm.org/action/doSearch?query=data+mining' }
+          ]
+        },
+        { name: 'Springer / Nature', grp:'Indexes', url:null, count:0, fallback:'https://link.springer.com/',
+          staticLinks:[
+            { title:'Nature Machine Intelligence', url:'https://www.nature.com/natmachintell/' },
+            { title:'Machine Learning Journal',    url:'https://link.springer.com/journal/10994' },
+            { title:'Search: Neural Networks',     url:'https://link.springer.com/search?query=neural+networks' },
+            { title:'Search: Data Science',        url:'https://link.springer.com/search?query=data+science' },
+            { title:'Nature AI Section',           url:'https://www.nature.com/subjects/artificial-intelligence' }
+          ]
+        },
+        { name: 'Google Scholar', grp:'Indexes', url:null, count:0, fallback:'https://scholar.google.com/',
+          staticLinks:[
+            { title:'Search: Machine Learning 2024', url:'https://scholar.google.com/scholar?q=machine+learning+2024' },
+            { title:'Search: Agentic AI / LLM',      url:'https://scholar.google.com/scholar?q=agentic+AI+LLM' },
+            { title:'Search: Explainable AI',         url:'https://scholar.google.com/scholar?q=explainable+AI+XAI' },
+            { title:'Search: IoT Deep Learning',      url:'https://scholar.google.com/scholar?q=IoT+deep+learning' },
+            { title:'My Google Scholar Profile',      url:'https://scholar.google.com/citations?user=vCvfzOMAAAAJ' }
+          ]
+        }
+      ];
+
+      var PROXIES = [
+        'https://api.allorigins.win/get?url=',
+        'https://corsproxy.io/?',
+        'https://api.codetabs.com/v1/proxy?quest='
+      ];
+
+      function fetchRSS(url, pi) {
+        pi = pi||0;
+        if(pi >= PROXIES.length) return Promise.reject('all failed');
+        return fetch(PROXIES[pi] + encodeURIComponent(url))
+          .then(function(r){ return r.json(); })
+          .then(function(d){
+            var c = d.contents || d.data || (typeof d==='string'?d:'');
+            if(!c || c.length < 100) throw new Error('empty');
+            return c;
+          })
+          .catch(function(){ return fetchRSS(url, pi+1); });
       }
-      if(articleEl) articleEl.innerHTML =
-        '<a class="feed-article-link" href="' + (src.fallback||'#') + '" target="_blank" rel="noopener">' +
-        '<div class="feed-article-title">Visit ' + src.name + '</div>' +
-        '<div class="feed-article-time">Open website</div></a>';
-      if(countEl) countEl.textContent = 'visit';
-    }
 
-    sources.forEach(function(src, idx) {
-      /* Static index sources — show links immediately, no fetch needed */
-      if(!src.url) { showFallback(idx, src); return; }
+      function timeAgo(ds) {
+        if(!ds) return '';
+        var d = new Date(ds); if(isNaN(d)) return '';
+        var s = (Date.now()-d)/1000;
+        if(s<3600) return Math.floor(s/60)+'m ago';
+        if(s<86400) return Math.floor(s/3600)+'h ago';
+        if(s<604800) return Math.floor(s/86400)+'d ago';
+        return d.toLocaleDateString('en-GB',{day:'numeric',month:'short'});
+      }
 
-      fetchWithFallback(src.url)
-        .then(function(xmlStr){
-          var doc   = new DOMParser().parseFromString(xmlStr, 'text/xml');
-          var items = Array.from(doc.querySelectorAll('item, entry')).slice(0, src.count);
-          if(!items.length) throw new Error('no items');
+      function makeLink(title, url, pub) {
+        var clean = title.replace(/&amp;/g,'&').replace(/<[^>]+>/g,'').trim();
+        var disp  = clean.length>72 ? clean.slice(0,72)+'…' : clean;
+        return '<a class="feed-article-link" href="'+url.trim()+'" target="_blank" rel="noopener">'+
+          '<div class="feed-article-title">'+disp+'</div>'+
+          (pub?'<div class="feed-article-time">'+timeAgo(pub)+'</div>':'')+
+          '</a>';
+      }
 
-          var articlesHTML = items.map(function(item) {
-            /* Title */
-            var titleEl = item.querySelector('title');
-            var title   = titleEl ? (titleEl.textContent || '') : '';
-            /* Link — try multiple approaches */
-            var link = '';
-            var linkEl = item.querySelector('link');
-            if(linkEl) {
-              link = linkEl.getAttribute('href') || linkEl.textContent || '';
-              /* For Atom feeds, <link href="..."/> */
-              if(!link && linkEl.nextSibling) link = linkEl.nextSibling.textContent || '';
+      function showFallback(idx, src) {
+        var ae = document.getElementById('fa-'+idx);
+        var ce = document.getElementById('fsc-'+idx);
+        if(src.staticLinks) {
+          if(ae) ae.innerHTML = src.staticLinks.map(function(l){ return makeLink(l.title,l.url,''); }).join('');
+          if(ce) ce.textContent = src.staticLinks.length+' links';
+          return;
+        }
+        if(ae) ae.innerHTML = makeLink('Visit '+src.name, src.fallback||'#', '');
+        if(ce) ce.textContent = 'visit';
+      }
+
+      /* Build skeleton */
+      var html = '', lastGrp = '';
+      sources.forEach(function(src, idx) {
+        if(src.grp !== lastGrp) {
+          html += '<div style="padding:.4rem 1rem .25rem;font-size:.58rem;font-weight:800;letter-spacing:.14em;'+
+            'text-transform:uppercase;color:var(--muted);background:var(--bg);border-bottom:1px solid var(--line);">'+src.grp+'</div>';
+          lastGrp = src.grp;
+        }
+        html += '<div class="feed-source-section" id="fss-'+idx+'">'+
+          '<button class="feed-source-header" onclick="toggleFeedSection('+idx+')">'+
+            '<div style="display:flex;align-items:center;gap:5px;">'+
+              '<span class="feed-source-name">'+src.name+'</span>'+
+              '<span class="feed-source-count" id="fsc-'+idx+'">'+(src.url?'…':'')+'</span>'+
+            '</div>'+
+            '<i class="fas fa-chevron-down feed-source-chevron"></i>'+
+          '</button>'+
+          '<div class="feed-articles" id="fa-'+idx+'">'+
+            (src.url ? '<div style="padding:.5rem 1rem;color:var(--muted);font-size:.74rem;"><i class="fas fa-spinner fa-spin me-1"></i>Loading…</div>' : '')+
+          '</div>'+
+        '</div>';
+      });
+      body_el.innerHTML = html;
+
+      /* Open first of each group */
+      [0,7,11].forEach(function(i){ var s=document.getElementById('fss-'+i); if(s) s.classList.add('open'); });
+
+      window.toggleFeedSection = function(idx) {
+        var s = document.getElementById('fss-'+idx);
+        if(s) s.classList.toggle('open');
+      };
+
+      /* Fetch feeds */
+      sources.forEach(function(src, idx) {
+        if(!src.url) { showFallback(idx, src); return; }
+        fetchRSS(src.url)
+          .then(function(xml){
+            var doc   = new DOMParser().parseFromString(xml, 'text/xml');
+            var items = Array.from(doc.querySelectorAll('item,entry')).slice(0, src.count);
+            if(!items.length) throw new Error('empty');
+            var arts = items.map(function(item){
+              var t = (item.querySelector('title')||{}).textContent||'';
+              var l = ''; var le = item.querySelector('link');
+              if(le) { l = le.getAttribute('href')||le.textContent||''; }
+              if(!l.startsWith('http')) {
+                Array.from(item.querySelectorAll('link')).forEach(function(x){
+                  var h = x.getAttribute('href')||x.textContent||'';
+                  if(h.startsWith('http') && !l) l = h;
+                });
+              }
+              if(!l.startsWith('http')) return '';
+              var p = (item.querySelector('pubDate')||item.querySelector('published')||item.querySelector('updated')||{}).textContent||'';
+              return makeLink(t, l, p);
+            }).filter(Boolean).join('');
+            var ae = document.getElementById('fa-'+idx);
+            var ce = document.getElementById('fsc-'+idx);
+            if(arts && ae) { ae.innerHTML = arts; if(ce) ce.textContent = items.length+' articles'; }
+            else showFallback(idx, src);
+          })
+          .catch(function(){ showFallback(idx, src); });
+      });
+    })();
+
+    /* ── VISUAL PUZZLE ENGINE ── */
+    (function(){
+      var container = document.getElementById('puzzleContainer');
+      if(!container) return;
+
+      var score = 0;
+      var puzzleTypes = ['sliding','color','memory','spot','maze'];
+      var PUZZLE_INDEX = (new Date().getDate() + new Date().getMonth()*31) % puzzleTypes.length;
+      var currentType  = puzzleTypes[PUZZLE_INDEX];
+
+      function updateScore(pts) {
+        score += pts;
+        var el = document.getElementById('puzzleScore');
+        if(el) el.textContent = score + ' pts';
+      }
+
+      /* ── RENDER: route to puzzle ── */
+      function renderPuzzle() {
+        container.innerHTML = '';
+        var meta = document.createElement('div');
+        meta.className = 'puzzle-meta';
+        meta.innerHTML = '<span class="puzzle-type-label"><i class="fas fa-puzzle-piece me-1"></i>' + currentType.toUpperCase() + ' PUZZLE</span>';
+        container.appendChild(meta);
+
+        if(currentType === 'sliding')  renderSliding();
+        if(currentType === 'color')    renderColor();
+        if(currentType === 'memory')   renderMemory();
+        if(currentType === 'spot')     renderSpot();
+        if(currentType === 'maze')     renderMaze();
+
+        var newBtn = document.createElement('button');
+        newBtn.className = 'puzzle-btn';
+        newBtn.innerHTML = '<i class="fas fa-random me-1"></i>New Puzzle';
+        newBtn.onclick = function(){
+          PUZZLE_INDEX = (PUZZLE_INDEX + 1) % puzzleTypes.length;
+          currentType  = puzzleTypes[PUZZLE_INDEX];
+          renderPuzzle();
+        };
+        container.appendChild(newBtn);
+      }
+
+      /* ══════════════════════════════
+         PUZZLE 1: Sliding Tile (4x4)
+      ══════════════════════════════ */
+      function renderSliding() {
+        var SIZE = 4, total = SIZE*SIZE;
+        var tiles = [];
+        for(var i=0;i<total;i++) tiles.push(i);
+        /* Fisher-Yates shuffle (ensure solvable) */
+        function shuffle(a){
+          for(var i=a.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)); var t=a[i]; a[i]=a[j]; a[j]=t; }
+          return a;
+        }
+        function isSolvable(a){
+          var inv=0; for(var i=0;i<a.length-1;i++) for(var j=i+1;j<a.length;j++) if(a[i]&&a[j]&&a[i]>a[j]) inv++;
+          var blank=a.indexOf(0); var row=Math.floor(blank/SIZE);
+          return SIZE%2===1 ? inv%2===0 : ((SIZE-row)%2===1 ? inv%2===0 : inv%2===1);
+        }
+        do { shuffle(tiles); } while(!isSolvable(tiles));
+
+        var grid = document.createElement('div');
+        grid.style.cssText='display:grid;grid-template-columns:repeat(4,1fr);gap:3px;background:var(--line);border:1px solid var(--line);border-radius:8px;overflow:hidden;';
+        var solved = false;
+
+        function check(a){
+          for(var i=0;i<total-1;i++) if(a[i]!==i+1) return false;
+          return a[total-1]===0;
+        }
+
+        var colors=['#0d7377','#14a7ac','#1a8a8e','#0e6b6f','#2dd4bf','#22b8cf','#1090a0','#0d8080',
+                    '#148c90','#10a0a0','#0c6670','#1eb8c0','#16d4c4','#0a7878','#12acb0','transparent'];
+
+        function render(){
+          grid.innerHTML='';
+          tiles.forEach(function(val,pos){
+            var cell=document.createElement('div');
+            cell.style.cssText='height:68px;display:flex;align-items:center;justify-content:center;'+
+              'font-size:'+(val?'1.1rem':'.6rem')+';font-weight:700;cursor:'+(val?'pointer':'default')+';'+
+              'background:'+(val?colors[(val-1)%colors.length]:'var(--bg)')+';'+
+              'color:'+(val?'#fff':'var(--muted)')+';border-radius:2px;transition:background .1s;'+
+              'user-select:none;';
+            if(val) cell.textContent = val;
+            else cell.innerHTML='<i class="fas fa-expand-arrows-alt" style="font-size:.7rem;opacity:.3;"></i>';
+            cell.onclick=function(){
+              if(!val||solved) return;
+              var blank=tiles.indexOf(0);
+              var r1=Math.floor(pos/SIZE),c1=pos%SIZE;
+              var r2=Math.floor(blank/SIZE),c2=blank%SIZE;
+              if((Math.abs(r1-r2)+Math.abs(c1-c2))===1){
+                tiles[blank]=val; tiles[pos]=0; render();
+                if(check(tiles)){ solved=true; win.style.display='block'; updateScore(50); }
+              }
+            };
+            grid.appendChild(cell);
+          });
+        }
+        render();
+        container.appendChild(grid);
+
+        var hint=document.createElement('p'); hint.className='puzzle-hint';
+        hint.textContent='Slide tiles to arrange 1–15 in order. Empty space bottom-right.';
+        container.appendChild(hint);
+
+        var win=document.createElement('div'); win.className='puzzle-win-msg';
+        win.innerHTML='🎉 Solved! +50 pts'; container.appendChild(win);
+
+        var resetBtn=document.createElement('button'); resetBtn.className='puzzle-btn primary';
+        resetBtn.innerHTML='<i class="fas fa-redo me-1"></i>Shuffle'; resetBtn.style.marginTop='.4rem';
+        resetBtn.onclick=function(){ solved=false; do{shuffle(tiles);}while(!isSolvable(tiles)); win.style.display='none'; render(); };
+        container.appendChild(resetBtn);
+      }
+
+      /* ══════════════════════════════
+         PUZZLE 2: Color Match
+      ══════════════════════════════ */
+      function renderColor() {
+        var palette=['#e74c3c','#e67e22','#f1c40f','#2ecc71','#1abc9c','#3498db','#9b59b6','#e91e63','#ff5722','#00bcd4'];
+        var colorNames=['Red','Orange','Yellow','Green','Teal','Blue','Purple','Pink','Deep Orange','Cyan'];
+        var round=0, maxRounds=6, correctCount=0;
+
+        var scoreEl=document.createElement('div');
+        scoreEl.style.cssText='text-align:center;font-size:.72rem;color:var(--muted);margin-bottom:.4rem;';
+        container.appendChild(scoreEl);
+
+        var target=document.createElement('div');
+        target.style.cssText='text-align:center;margin-bottom:.5rem;';
+        container.appendChild(target);
+
+        var grid=document.createElement('div');
+        grid.style.cssText='display:grid;grid-template-columns:repeat(4,1fr);gap:6px;';
+        container.appendChild(grid);
+
+        var feedback=document.createElement('div');
+        feedback.style.cssText='text-align:center;font-size:.8rem;font-weight:700;min-height:1.4rem;margin-top:.4rem;';
+        container.appendChild(feedback);
+
+        var win=document.createElement('div'); win.className='puzzle-win-msg'; container.appendChild(win);
+
+        function nextRound(){
+          if(round>=maxRounds){ win.innerHTML='🎉 Score: '+correctCount+'/'+maxRounds+' +'+correctCount*10+' pts'; win.style.display='block'; updateScore(correctCount*10); return; }
+          round++;
+          scoreEl.textContent='Round '+round+'/'+maxRounds+' — Match the color name to its swatch';
+          feedback.textContent='';
+          /* Pick target */
+          var tIdx=Math.floor(Math.random()*palette.length);
+          target.innerHTML='<div style="display:inline-block;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:.5rem 1.2rem;">'+
+            '<div style="font-size:1.1rem;font-weight:800;color:var(--ink);">'+colorNames[tIdx]+'</div></div>';
+          /* Build 8 options (correct + 7 random) */
+          var opts=new Set([tIdx]);
+          while(opts.size<8) opts.add(Math.floor(Math.random()*palette.length));
+          var shuffled=Array.from(opts).sort(function(){return Math.random()-.5;});
+          grid.innerHTML='';
+          shuffled.forEach(function(ci){
+            var cell=document.createElement('div');
+            cell.style.cssText='height:44px;border-radius:8px;cursor:pointer;border:2px solid transparent;'+
+              'background:'+palette[ci]+';transition:transform .1s,border-color .1s;';
+            cell.onclick=function(){
+              if(ci===tIdx){ correctCount++; feedback.style.color='#2ecc71'; feedback.textContent='✓ Correct!'; cell.style.borderColor='#2ecc71'; setTimeout(nextRound,700); }
+              else { feedback.style.color='#e74c3c'; feedback.textContent='✗ Wrong — try again'; cell.style.borderColor='#e74c3c'; setTimeout(function(){cell.style.borderColor='transparent';},500); }
+            };
+            grid.appendChild(cell);
+          });
+        }
+        nextRound();
+      }
+
+      /* ══════════════════════════════
+         PUZZLE 3: Memory Match (4x4)
+      ══════════════════════════════ */
+      function renderMemory(){
+        var icons=['fa-robot','fa-brain','fa-microchip','fa-database','fa-code','fa-flask','fa-satellite-dish','fa-graduation-cap'];
+        var deck=[]; icons.forEach(function(ic){ deck.push(ic); deck.push(ic); });
+        deck.sort(function(){ return Math.random()-.5; });
+        var flipped=[], matched=new Set(), lockBoard=false, moves=0;
+
+        var movesEl=document.createElement('div'); movesEl.style.cssText='text-align:center;font-size:.7rem;color:var(--muted);margin-bottom:.4rem;';
+        movesEl.textContent='Moves: 0';
+        container.appendChild(movesEl);
+
+        var grid=document.createElement('div');
+        grid.style.cssText='display:grid;grid-template-columns:repeat(4,1fr);gap:5px;';
+        container.appendChild(grid);
+
+        var win=document.createElement('div'); win.className='puzzle-win-msg'; container.appendChild(win);
+
+        var cells=[];
+        deck.forEach(function(icon,idx){
+          var cell=document.createElement('div');
+          cell.style.cssText='height:60px;border-radius:8px;display:flex;align-items:center;justify-content:center;'+
+            'cursor:pointer;background:var(--bg);border:1px solid var(--line);transition:background .2s,transform .2s;font-size:1.2rem;';
+          cell.innerHTML='<i class="fas fa-question" style="color:var(--muted);font-size:.9rem;"></i>';
+          cell.onclick=function(){
+            if(lockBoard||matched.has(idx)||flipped.indexOf(idx)!==-1) return;
+            cell.style.background='var(--brand-soft)';
+            cell.innerHTML='<i class="fas '+icon+'" style="color:var(--brand);"></i>';
+            flipped.push(idx);
+            if(flipped.length===2){
+              moves++; movesEl.textContent='Moves: '+moves;
+              lockBoard=true;
+              var a=flipped[0],b=flipped[1];
+              if(deck[a]===deck[b]){
+                matched.add(a); matched.add(b);
+                cells[a].style.background='rgba(13,115,119,.2)';
+                cells[b].style.background='rgba(13,115,119,.2)';
+                flipped=[];lockBoard=false;
+                if(matched.size===deck.length){ win.innerHTML='🎉 Solved in '+moves+' moves! +'+Math.max(10,60-moves*2)+' pts'; win.style.display='block'; updateScore(Math.max(10,60-moves*2)); }
+              } else {
+                setTimeout(function(){
+                  cells[a].style.background='var(--bg)'; cells[a].innerHTML='<i class="fas fa-question" style="color:var(--muted);font-size:.9rem;"></i>';
+                  cells[b].style.background='var(--bg)'; cells[b].innerHTML='<i class="fas fa-question" style="color:var(--muted);font-size:.9rem;"></i>';
+                  flipped=[];lockBoard=false;
+                },900);
+              }
             }
-            /* ArXiv uses <link> differently */
-            if(!link || !link.startsWith('http')) {
-              var allLinks = Array.from(item.querySelectorAll('link'));
-              allLinks.forEach(function(l) {
-                var h = l.getAttribute('href') || l.textContent || '';
-                if(h.startsWith('http') && !link) link = h;
-              });
-            }
-            if(!link || !link.startsWith('http')) return '';
-            /* Date */
-            var pubEl = item.querySelector('pubDate') || item.querySelector('published') || item.querySelector('updated');
-            var pub   = pubEl ? pubEl.textContent : '';
-            return makeArticleHTML(title, link, pub);
-          }).filter(Boolean).join('');
+          };
+          cells.push(cell); grid.appendChild(cell);
+        });
 
-          var articleEl = document.getElementById('fa-' + idx);
-          var countEl   = document.getElementById('fsc-' + idx);
-          if(articlesHTML) {
-            if(articleEl) articleEl.innerHTML = articlesHTML;
-            if(countEl)   countEl.textContent = items.length + ' articles';
-          } else {
-            showFallback(idx, src);
+        var hint=document.createElement('p'); hint.className='puzzle-hint';
+        hint.textContent='Flip cards to find matching pairs. Fewer moves = more points.';
+        container.appendChild(hint);
+        container.appendChild(win);
+      }
+
+      /* ══════════════════════════════
+         PUZZLE 4: Spot the Difference (Canvas)
+      ══════════════════════════════ */
+      function renderSpot(){
+        var W=158, H=158;
+        var canvas1=document.createElement('canvas'); canvas1.width=W; canvas1.height=H;
+        var canvas2=document.createElement('canvas'); canvas2.width=W; canvas2.height=H;
+        canvas1.style.cssText='border-radius:8px;border:1px solid var(--line);width:100%;';
+        canvas2.style.cssText='border-radius:8px;border:1px solid var(--line);width:100%;cursor:crosshair;';
+
+        var wrap=document.createElement('div');
+        wrap.style.cssText='display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:.4rem;';
+        wrap.appendChild(canvas1); wrap.appendChild(canvas2);
+        container.appendChild(wrap);
+
+        /* Generate scene */
+        var ctx1=canvas1.getContext('2d'), ctx2=canvas2.getContext('2d');
+        var teal='#0d7377', cyan='#2dd4bf', muted='#8899aa', bg='#172638';
+        var shapes=[
+          {type:'circle', x:30, y:40, r:18, fill:teal},
+          {type:'rect',   x:70, y:20, w:40, h:30, fill:cyan},
+          {type:'circle', x:120,y:50, r:12, fill:muted},
+          {type:'rect',   x:20, y:90, w:35, h:35, fill:cyan},
+          {type:'circle', x:90, y:100,r:20, fill:teal},
+          {type:'rect',   x:115,y:100,w:30, h:25, fill:muted},
+          {type:'circle', x:50, y:130,r:14, fill:muted},
+          {type:'rect',   x:85, y:130,w:45, h:20, fill:teal}
+        ];
+
+        /* Pick 3 differences (change fill color) */
+        var diffIdxs=[];
+        while(diffIdxs.length<3){
+          var n=Math.floor(Math.random()*shapes.length);
+          if(diffIdxs.indexOf(n)===-1) diffIdxs.push(n);
+        }
+        var found=new Set();
+
+        function drawScene(ctx, diffs){
+          ctx.fillStyle=bg; ctx.fillRect(0,0,W,H);
+          shapes.forEach(function(s,i){
+            var fill = (diffs && diffs.indexOf(i)!==-1) ? '#e74c3c' : s.fill;
+            ctx.fillStyle=fill;
+            if(s.type==='circle'){ ctx.beginPath(); ctx.arc(s.x,s.y,s.r,0,Math.PI*2); ctx.fill(); }
+            else { ctx.fillRect(s.x,s.y,s.w,s.h); }
+          });
+        }
+        drawScene(ctx1, []);
+        drawScene(ctx2, diffIdxs);
+
+        var hint=document.createElement('p'); hint.className='puzzle-hint';
+        hint.textContent='Click the 3 differences in the right image. (0/3 found)';
+        container.appendChild(hint);
+        var win=document.createElement('div'); win.className='puzzle-win-msg'; container.appendChild(win);
+
+        canvas2.onclick=function(e){
+          if(found.size>=3) return;
+          var rect=canvas2.getBoundingClientRect();
+          var scaleX=W/rect.width;
+          var px=(e.clientX-rect.left)*scaleX;
+          var py=(e.clientY-rect.top)*scaleX;
+          var hit=false;
+          diffIdxs.forEach(function(di){
+            if(found.has(di)) return;
+            var s=shapes[di];
+            var dist = s.type==='circle'
+              ? Math.sqrt(Math.pow(px-s.x,2)+Math.pow(py-s.y,2)) <= s.r+6
+              : (px>=s.x-4 && px<=s.x+s.w+4 && py>=s.y-4 && py<=s.y+s.h+4);
+            if(dist){ found.add(di); hit=true;
+              /* Highlight found */
+              ctx2.strokeStyle='#f1c40f'; ctx2.lineWidth=3;
+              if(s.type==='circle'){ ctx2.beginPath(); ctx2.arc(s.x,s.y,s.r+4,0,Math.PI*2); ctx2.stroke(); }
+              else { ctx2.strokeRect(s.x-4,s.y-4,s.w+8,s.h+8); }
+            }
+          });
+          hint.textContent='Click the 3 differences in the right image. ('+found.size+'/3 found)';
+          if(found.size>=3){ win.innerHTML='🎉 All found! +30 pts'; win.style.display='block'; updateScore(30); }
+        };
+      }
+
+      /* ══════════════════════════════
+         PUZZLE 5: Simple Maze
+      ══════════════════════════════ */
+      function renderMaze(){
+        var COLS=9, ROWS=9, CELL=30;
+        var W_c=COLS*CELL, H_c=ROWS*CELL;
+        var canvas=document.createElement('canvas');
+        canvas.width=W_c; canvas.height=H_c;
+        canvas.style.cssText='border-radius:8px;border:1px solid var(--line);width:100%;cursor:none;display:block;';
+        container.appendChild(canvas);
+        var ctx=canvas.getContext('2d');
+
+        /* Generate maze using recursive backtracker */
+        var visited=Array.from({length:ROWS},function(){return new Array(COLS).fill(false);});
+        var walls={h:Array.from({length:ROWS+1},function(){return new Array(COLS).fill(true);}),
+                   v:Array.from({length:ROWS},function(){return new Array(COLS+1).fill(true);})};
+        function carve(r,c){
+          visited[r][c]=true;
+          var dirs=[[0,1],[0,-1],[1,0],[-1,0]].sort(function(){return Math.random()-.5;});
+          dirs.forEach(function(d){
+            var nr=r+d[0],nc=c+d[1];
+            if(nr>=0&&nr<ROWS&&nc>=0&&nc<COLS&&!visited[nr][nc]){
+              if(d[0]===0) walls.v[r][Math.max(c,nc)]=false;
+              else         walls.h[Math.max(r,nr)][c]=false;
+              carve(nr,nc);
+            }
+          });
+        }
+        carve(0,0);
+
+        var player={r:0,c:0};
+        var goal={r:ROWS-1,c:COLS-1};
+        var solved=false;
+
+        function draw(){
+          ctx.fillStyle='#0d1b2a'; ctx.fillRect(0,0,W_c,H_c);
+          /* Goal */
+          ctx.fillStyle='rgba(45,212,191,.25)'; ctx.fillRect(goal.c*CELL,goal.r*CELL,CELL,CELL);
+          ctx.fillStyle='#2dd4bf'; ctx.font='bold 14px sans-serif'; ctx.textAlign='center';
+          ctx.fillText('★',goal.c*CELL+CELL/2,goal.r*CELL+CELL/2+5);
+          /* Walls */
+          ctx.strokeStyle='#1f2d3d'; ctx.lineWidth=2;
+          for(var r=0;r<=ROWS;r++) for(var c=0;c<COLS;c++){
+            if(walls.h[r][c]){
+              ctx.beginPath(); ctx.moveTo(c*CELL,r*CELL); ctx.lineTo((c+1)*CELL,r*CELL); ctx.stroke();
+            }
           }
-        })
-        .catch(function(){ showFallback(idx, src); });
-    });
+          for(var r=0;r<ROWS;r++) for(var c=0;c<=COLS;c++){
+            if(walls.v[r][c]){
+              ctx.beginPath(); ctx.moveTo(c*CELL,r*CELL); ctx.lineTo(c*CELL,(r+1)*CELL); ctx.stroke();
+            }
+          }
+          /* Player */
+          ctx.fillStyle='#0d7377';
+          ctx.beginPath(); ctx.arc(player.c*CELL+CELL/2,player.r*CELL+CELL/2,CELL/2-4,0,Math.PI*2); ctx.fill();
+          ctx.fillStyle='#fff'; ctx.font='bold 11px sans-serif'; ctx.textAlign='center';
+          ctx.fillText('▶',player.c*CELL+CELL/2+1,player.r*CELL+CELL/2+4);
+        }
+        draw();
 
-    /* Sidebar toggle */
-    if(toggleBtn) {
-      toggleBtn.addEventListener('click', function(){
-        sidebar.classList.add('collapsed');
+        var hint=document.createElement('p'); hint.className='puzzle-hint';
+        hint.textContent='Use arrow keys or tap directions to reach the ★.';
+        container.appendChild(hint);
 
-        if(openTab) openTab.style.display = '';
-      });
-    }
-    if(openTab) {
-      openTab.addEventListener('click', function(){
-        sidebar.classList.remove('collapsed');
+        /* Direction buttons for mouse/touch */
+        var dirs2=document.createElement('div');
+        dirs2.style.cssText='display:grid;grid-template-columns:repeat(3,1fr);gap:4px;max-width:130px;margin:.4rem auto 0;';
+        [['','↑',''],['←','','→'],['','↓','']].forEach(function(row){
+          row.forEach(function(lbl){
+            var b=document.createElement('button');
+            b.style.cssText='padding:.3rem;border-radius:6px;border:1px solid var(--line);background:var(--bg);color:var(--ink);cursor:pointer;font-size:.9rem;';
+            if(!lbl){ b.style.visibility='hidden'; }
+            else { b.textContent=lbl;
+              b.onclick=function(){
+                var dr=lbl==='↑'?-1:lbl==='↓'?1:0;
+                var dc=lbl==='←'?-1:lbl==='→'?1:0;
+                move(dr,dc);
+              };
+            }
+            dirs2.appendChild(b);
+          });
+        });
+        container.appendChild(dirs2);
 
-        openTab.style.display = 'none';
-      });
-    }
-  })();
+        var win=document.createElement('div'); win.className='puzzle-win-msg'; container.appendChild(win);
+
+        function canMove(r,c,dr,dc){
+          if(dc===1)  return !walls.v[r][c+1];
+          if(dc===-1) return !walls.v[r][c];
+          if(dr===1)  return !walls.h[r+1][c];
+          if(dr===-1) return !walls.h[r][c];
+          return false;
+        }
+        function move(dr,dc){
+          if(solved) return;
+          var nr=player.r+dr, nc=player.c+dc;
+          if(nr<0||nr>=ROWS||nc<0||nc>=COLS) return;
+          if(!canMove(player.r,player.c,dr,dc)) return;
+          player.r=nr; player.c=nc; draw();
+          if(player.r===goal.r && player.c===goal.c){
+            solved=true; win.innerHTML='🎉 Maze solved! +40 pts'; win.style.display='block'; updateScore(40);
+          }
+        }
+
+        /* Keyboard */
+        function keyHandler(e){
+          if(!['ArrowUp','ArrowDown','ArrowLeft','ArrowRight'].includes(e.key)) return;
+          e.preventDefault();
+          var dr=e.key==='ArrowUp'?-1:e.key==='ArrowDown'?1:0;
+          var dc=e.key==='ArrowLeft'?-1:e.key==='ArrowRight'?1:0;
+          move(dr,dc);
+        }
+        document.addEventListener('keydown', keyHandler);
+        /* Clean up listener when puzzle changes */
+        container._cleanKeyboard = function(){ document.removeEventListener('keydown', keyHandler); };
+      }
+
+      /* Clean up keyboard listeners on new puzzle */
+      var origRender = renderPuzzle;
+      function renderPuzzleClean(){
+        if(container._cleanKeyboard){ container._cleanKeyboard(); container._cleanKeyboard=null; }
+        origRender();
+      }
+
+      renderPuzzleClean();
+
+    })();
+
+});
+</script>
 
 });
 </script>
@@ -2466,6 +2681,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 })();
 </script>
+
 <!-- ── ANIMATED BACKGROUND ── -->
 <script>
 (function(){
