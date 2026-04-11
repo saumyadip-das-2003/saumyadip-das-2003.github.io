@@ -497,6 +497,7 @@
     /* ════ HERO ════ */
     .section-hero { position: relative; }
     .hero-split { display: grid; grid-template-columns: 200px 1fr; gap: 2rem; align-items: start; padding-top: 1.5rem; }
+    .hero-divider { display: none !important; }
     .hero-left { display: flex; flex-direction: column; align-items: center; text-align: center; }
     .hero-right { flex: 1; min-width: 0; }
     .hero-name { font-family: "DM Serif Display", serif; font-size: clamp(1.6rem,3.5vw,2.4rem); color: var(--ink); margin: .75rem 0 .35rem; letter-spacing: -0.02em; line-height: 1.15; }
@@ -505,7 +506,7 @@
     .hero-bio-label { font-size: .7rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--brand); margin-bottom: .6rem; }
     .hero-bio-text { font-size: 1rem; line-height: 1.8; color: var(--muted); margin-bottom: 1.25rem; text-align: justify; }
     .hero-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 1.5rem; }
-    .hero-tag { font-size: .75rem; font-weight: 600; padding: .3rem .8rem; border-radius: 999px; border: 1px solid var(--line); color: var(--muted); background: var(--surface); }
+    .hero-tag { font-size: .75rem; font-weight: 600; padding: .3rem .8rem; border-radius: 999px; border: 1px solid var(--line); color: var(--muted); background: var(--surface); transition: border-color .15s, color .15s; display: inline-flex; align-items: center; }
     .hero-cta { display: flex; flex-wrap: wrap; gap: 10px; }
     @media(max-width:700px) { .hero-split { grid-template-columns: 1fr; } .hero-left { width: 100%; } }
 
@@ -754,16 +755,24 @@
         <div class="hero-name">Saumyadip Das</div>
         <div class="hero-role">AI &amp; ML Researcher</div>
         <div class="hero-social">
-          <a class="btn btn-outline-secondary" href="https://github.com/saumyadip-das-2003" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
-          <a class="btn btn-outline-secondary" href="https://www.linkedin.com/in/saumyadip-sohom/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-          <a class="btn btn-outline-secondary" href="https://www.researchgate.net/profile/Saumyadip-Das-2" target="_blank" aria-label="ResearchGate"><i class="fab fa-researchgate"></i></a>
-          <a class="btn btn-outline-secondary" href="https://orcid.org/0009-0009-1130-2091" target="_blank" aria-label="ORCID"><i class="fab fa-orcid"></i></a>
-          <a class="btn btn-outline-secondary" href="https://scholar.google.com/citations?user=vCvfzOMAAAAJ&hl=en" target="_blank" aria-label="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
+          <a class="btn btn-outline-secondary sd-tooltip" href="https://github.com/saumyadip-das-2003" target="_blank" aria-label="GitHub" data-tip="GitHub"><i class="fab fa-github"></i></a>
+          <a class="btn btn-outline-secondary sd-tooltip" href="https://www.linkedin.com/in/saumyadip-sohom/" target="_blank" aria-label="LinkedIn" data-tip="LinkedIn"><i class="fab fa-linkedin"></i></a>
+          <a class="btn btn-outline-secondary sd-tooltip" href="https://www.researchgate.net/profile/Saumyadip-Das-2" target="_blank" aria-label="ResearchGate" data-tip="ResearchGate"><i class="fab fa-researchgate"></i></a>
+          <a class="btn btn-outline-secondary sd-tooltip" href="https://orcid.org/0009-0009-1130-2091" target="_blank" aria-label="ORCID" data-tip="ORCID"><i class="fab fa-orcid"></i></a>
+          <a class="btn btn-outline-secondary sd-tooltip" href="https://scholar.google.com/citations?user=vCvfzOMAAAAJ&hl=en" target="_blank" aria-label="Google Scholar" data-tip="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
+        </div>
+        <div style="margin-top:1rem;display:flex;flex-direction:column;gap:5px;align-items:center;">
+          <a id="heroEmailLink" href="#" target="_blank" rel="noopener"
+             style="font-size:.7rem;color:var(--muted);text-decoration:none;display:flex;align-items:center;gap:5px;">
+            <i class="fas fa-envelope" style="color:var(--brand);font-size:.72rem;"></i>
+            <span id="heroEmailText">das.saumyadip.cse&#64;gmail.com</span>
+          </a>
+          <a href="https://wa.me/8801646891418" target="_blank" rel="noopener"
+             style="font-size:.7rem;color:var(--muted);text-decoration:none;display:flex;align-items:center;gap:5px;">
+            <i class="fab fa-whatsapp" style="color:#25d366;font-size:.78rem;"></i>+880 1646-891418
+          </a>
         </div>
       </div>
-
-      <!-- DIVIDER -->
-      <div class="hero-divider" aria-hidden="true"></div>
 
       <!-- RIGHT — professional bio -->
       <div class="hero-right">
@@ -774,8 +783,7 @@
         </p>
 
         <p class="hero-bio-text" style="margin-bottom:1.25rem;">
-          I am actively involved in research and enjoy working at the intersection of theory and application — whether it is exploring explainability in AI models, building resource-efficient architectures, or prototyping hardware-integrated solutions. I am always open to collaboration, meaningful projects, and new learning opportunities.
-        </p>
+          I am actively involved in research, working at the intersection of theory and application — from explainable AI and deep learning to IoT-based systems. Recently, I am shifting focus toward Agentic AI, exploring how autonomous agents can reason, plan, and act to solve complex real-world problems. I am always open to collaboration, meaningful projects, and new learning opportunities.</p>
 
         <div class="hero-tags">
           <span class="hero-tag"><i class="fas fa-brain me-1" style="font-size:.7rem;"></i>Machine Learning</span>
@@ -783,6 +791,9 @@
           <span class="hero-tag"><i class="fas fa-database me-1" style="font-size:.7rem;"></i>Data Science</span>
           <span class="hero-tag"><i class="fas fa-microchip me-1" style="font-size:.7rem;"></i>IoT Systems</span>
           <span class="hero-tag"><i class="fas fa-code me-1" style="font-size:.7rem;"></i>Software Development</span>
+          <span class="hero-tag"><i class="fas fa-language me-1" style="font-size:.7rem;"></i>NLP</span>
+          <span class="hero-tag"><i class="fas fa-hand-pointer me-1" style="font-size:.7rem;"></i>HCI</span>
+          <span class="hero-tag"><i class="fas fa-robot me-1" style="font-size:.7rem;"></i>Agentic AI</span>
           <span class="hero-tag"><i class="fas fa-flask me-1" style="font-size:.7rem;"></i>Research</span>
         </div>
 
@@ -1885,6 +1896,22 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
 /* Toggle logic — only one panel open at a time */
+    /* Auto-open news feed when page loads */
+    setTimeout(function(){
+      var np = document.getElementById('newsPanel');
+      var nb = document.getElementById('newsTabBtn');
+      if(np) np.classList.add('open');
+      if(nb) nb.classList.add('active');
+    }, 600);
+
+    /* Auto-open news feed on first load */
+    (function(){
+      var newsP   = document.getElementById('newsPanel');
+      var newsBtn = document.getElementById('newsTabBtn');
+      if(newsP)   newsP.classList.add('open');
+      if(newsBtn) newsBtn.classList.add('active');
+    })();
+
     window.toggleSidePanel = function(which) {
       var newsP    = document.getElementById('newsPanel');
       var puzzP    = document.getElementById('puzzlePanel');
@@ -2502,9 +2529,6 @@ document.addEventListener('DOMContentLoaded', function () {
       renderPuzzleClean();
 
     })();
-
-});
-</script>
 
 });
 </script>
