@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-theme="light">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,6 +11,15 @@
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=DM+Serif+Display&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link href="css/styles.css" rel="stylesheet">
+
+  <!-- Apply theme BEFORE render to prevent flash -->
+  <script>
+    (function(){
+      var saved = localStorage.getItem('theme');
+      var sysDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      document.documentElement.setAttribute('data-theme', saved || (sysDark ? 'dark' : 'light'));
+    })();
+  </script>
 
   <style>
     /* ============================================================
@@ -26,9 +35,9 @@
       --muted:        #5a6a7e;
       --line:         #dde3ec;
       --bg:           #f4f6f9;
-      --surface:      #ffffff;
-      --card:         #ffffff;
-      --nav-bg:       rgba(244,246,249,.90);
+      --surface:      rgba(255,255,255,0.88);
+      --card:         rgba(255,255,255,0.82);
+      --nav-bg:       rgba(244,246,249,.92);
       --nav-border:   rgba(221,227,236,.80);
       --shadow:       0 4px 24px rgba(13,115,119,.07), 0 1px 4px rgba(26,35,50,.06);
       --shadow2:      0 12px 40px rgba(13,115,119,.12), 0 2px 8px rgba(26,35,50,.08);
@@ -45,9 +54,9 @@
       --muted:        #8899aa;
       --line:         #1f2d3d;
       --bg:           #0d1b2a;
-      --surface:      #132032;
-      --card:         #172638;
-      --nav-bg:       rgba(13,27,42,.94);
+      --surface:      rgba(19,32,50,0.90);
+      --card:         rgba(23,38,56,0.85);
+      --nav-bg:       rgba(13,27,42,.95);
       --nav-border:   rgba(31,45,61,.98);
       --shadow:       0 4px 24px rgba(0,0,0,.35);
       --shadow2:      0 12px 40px rgba(0,0,0,.50);
@@ -76,7 +85,8 @@
     ============================================================ */
     .navbar {
       background: var(--nav-bg);
-      backdrop-filter: blur(12px);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--nav-border);
       transition: box-shadow .2s ease, background .3s ease, border-color .3s ease;
     }
@@ -195,6 +205,8 @@
       border: 1px solid var(--line);
       border-radius: var(--radius);
       background: var(--card);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
       box-shadow: var(--shadow);
       transition: background .35s, border-color .35s, box-shadow .35s;
     }
@@ -250,6 +262,8 @@
       border: 1px solid var(--line);
       border-radius: var(--radius);
       background: var(--card);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
       padding: 14px;
       box-shadow: var(--shadow);
       display: flex; gap: 14px; align-items: flex-start;
@@ -286,7 +300,10 @@
     .skill-tile {
       position: relative; overflow: visible;
       border: 1px solid var(--line); border-radius: 18px;
-      background: var(--card); box-shadow: var(--shadow);
+      background: var(--card);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: var(--shadow);
       transition: transform .16s ease, box-shadow .16s ease, border-color .16s ease, background .35s;
       padding: 18px; height: 100%; z-index: 1;
     }
@@ -382,9 +399,11 @@
     ============================================================ */
     footer {
       border-top: 1px solid var(--line);
-      background: var(--surface) !important;
-      transition: background .35s, border-color .35s, color .35s;
+      background-color: var(--surface) !important;
+      color: var(--muted);
+      transition: background-color .35s, border-color .35s, color .35s;
     }
+    footer a { color: var(--muted); }
     footer .text-muted { color: var(--muted) !important; }
 
     /* ============================================================
@@ -406,7 +425,7 @@
       opacity: 0; pointer-events: none;
       transform: translateY(12px);
       transition: opacity .25s, transform .25s, background .2s;
-      z-index: 1050;
+      z-index: 9999;
     }
     #backToTop.show { opacity: 1; pointer-events: auto; transform: translateY(0); }
     #backToTop:hover { background: var(--brand-light); }
@@ -460,6 +479,7 @@
       font-size: .82rem;
       color: var(--muted);
       transition: background .35s, border-color .35s;
+      position: relative; z-index: 1;
     }
 
     /* ============================================================
@@ -493,6 +513,21 @@
 </head>
 
 <body>
+
+<!-- ============================================================
+     ANIMATED BACKGROUND CANVAS
+============================================================ -->
+<canvas id="bgCanvas" style="position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;display:block;"></canvas>
+<style>
+  body { position: relative; z-index: 0; }
+  nav.navbar  { z-index: 1040 !important; position: relative; }
+  main        { position: relative; z-index: 1; }
+  footer      { position: relative; z-index: 1; }
+  .modal      { z-index: 1055 !important; }
+  .modal-backdrop { z-index: 1050 !important; }
+  #backToTop  { z-index: 9999 !important; }
+  .view-counter-wrap { position: relative; z-index: 1; }
+</style>
 
 <!-- ============================================================
      NAVBAR
@@ -649,10 +684,8 @@
         </div>
         <!-- Contact info -->
         <div style="margin-top:1rem;display:flex;flex-direction:column;gap:6px;align-items:center;">
-          <a href="mailto:das.saumyadip.cse@gmail.com"
-             style="font-size:.72rem;color:var(--muted);text-decoration:none;display:flex;align-items:center;gap:5px;"
-             title="Send Email">
-            <i class="fas fa-envelope" style="color:var(--brand);font-size:.75rem;"></i>das.saumyadip.cse@gmail.com
+          <a href="/cdn-cgi/l/email-protection#a2c6c3d18cd1c3d7cfdbc3c6cbd28cc1d1c7e2c5cfc3cbce8cc1cdcf" style="font-size:.72rem;color:var(--muted);text-decoration:none;display:flex;align-items:center;gap:5px;" title="Send Email">
+            <i class="fas fa-envelope" style="color:var(--brand);font-size:.75rem;"></i><span class="__cf_email__" data-cfemail="294d485a075a485c4450484d4059074a5a4c694e44484045074a4644">[email&#160;protected]</span>
           </a>
           <a href="https://wa.me/8801646891418"
              target="_blank" rel="noopener"
@@ -1198,7 +1231,7 @@
 
     </div>
 
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
       (function(){
         var tiles = Array.from(document.querySelectorAll('[data-skill-tile]'));
         tiles.forEach(function(tile){
@@ -1383,7 +1416,25 @@
 
     <div class="card shadow-sm border-0">
       <div class="card-body p-4">
-        <form action="https://formspree.io/f/mzdadwra" method="POST">
+        <!-- Success message (hidden by default) -->
+        <div id="formSuccess" style="display:none;padding:1.2rem 1.4rem;border-radius:12px;background:var(--brand-soft);border:1px solid rgba(13,115,119,.25);margin-bottom:1.2rem;">
+          <div style="display:flex;align-items:center;gap:10px;">
+            <i class="fas fa-check-circle" style="color:var(--brand);font-size:1.3rem;"></i>
+            <div>
+              <div style="font-weight:700;color:var(--ink);margin-bottom:2px;">Message sent successfully!</div>
+              <div style="font-size:.88rem;color:var(--muted);">Thank you for reaching out. I'll get back to you soon.</div>
+            </div>
+          </div>
+        </div>
+        <!-- Error message (hidden by default) -->
+        <div id="formError" style="display:none;padding:1rem 1.4rem;border-radius:12px;background:rgba(220,53,69,.08);border:1px solid rgba(220,53,69,.20);margin-bottom:1.2rem;">
+          <div style="display:flex;align-items:center;gap:10px;">
+            <i class="fas fa-exclamation-circle" style="color:#dc3545;font-size:1.2rem;"></i>
+            <div style="font-size:.9rem;color:var(--ink);">Something went wrong. Please try emailing directly at <a href="mailto:das.saumyadip.cse@gmail.com" style="color:var(--brand);">das.saumyadip.cse@gmail.com</a></div>
+          </div>
+        </div>
+
+        <form id="contactForm">
           <div class="row g-3">
             <div class="col-md-6">
               <label class="form-label">Full Name</label>
@@ -1401,12 +1452,14 @@
               <label class="form-label">Message</label>
               <textarea name="message" class="form-control" rows="5" placeholder="Write your message..." required></textarea>
             </div>
-            <input type="text" name="_gotcha" style="display:none">
             <div class="col-12 d-flex gap-2 align-items-center">
-              <button type="submit" class="btn btn-primary px-4">
+              <button type="submit" class="btn btn-primary px-4" id="contactSubmitBtn">
                 <i class="fas fa-paper-plane me-1"></i>Send Message
               </button>
-              <span class="text-muted small">Replies will be sent to your email.</span>
+              <span class="text-muted small" id="contactSendingMsg" style="display:none;">
+                <i class="fas fa-spinner fa-spin me-1"></i>Sending…
+              </span>
+              <span class="text-muted small" id="contactHint">Replies will be sent to your email.</span>
             </div>
           </div>
         </form>
@@ -1576,36 +1629,42 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   /* ── ACTIVE NAV + SCROLLED CLASS ── */
-  var sections = document.querySelectorAll('section[id]');
+  var sections = Array.from(document.querySelectorAll('section[id]'));
+  var navLinks = Array.from(document.querySelectorAll('.nav-link[href]'));
   var navbarEl = document.querySelector('.navbar');
 
   function updateNav() {
-    var scrollPos = window.scrollY + 130;
-    var activeId = null;
+    var scrollY = window.scrollY;
 
-    /* If near top of page, always mark Home */
-    if (window.scrollY < 80) {
-      activeId = 'home';
-    } else {
-      sections.forEach(function (sec) {
-        if (sec.offsetTop <= scrollPos && (sec.offsetTop + sec.offsetHeight) > scrollPos) {
-          activeId = sec.id;
-        }
-      });
+    /* Navbar scroll shadow */
+    if (navbarEl) {
+      if (scrollY > 40) navbarEl.classList.add('nav-scrolled');
+      else navbarEl.classList.remove('nav-scrolled');
     }
 
-    document.querySelectorAll('.nav-link').forEach(function (a) { a.classList.remove('active'); });
+    /* Always mark Home when near top */
+    if (scrollY < 100) {
+      navLinks.forEach(function(a){ a.classList.remove('active'); });
+      var homeLink = document.querySelector('.nav-link[href="/#home"]');
+      if (homeLink) homeLink.classList.add('active');
+      return;
+    }
+
+    /* Find which section is in view */
+    var scrollPos = scrollY + 140;
+    var activeId = null;
+    sections.forEach(function(sec) {
+      if (sec.offsetTop <= scrollPos) activeId = sec.id;
+    });
+
+    navLinks.forEach(function(a){ a.classList.remove('active'); });
     if (activeId) {
       var link = document.querySelector('.nav-link[href="/#' + activeId + '"]');
       if (link) link.classList.add('active');
     }
-
-    if (navbarEl) {
-      if (window.scrollY > 40) navbarEl.classList.add('nav-scrolled');
-      else navbarEl.classList.remove('nav-scrolled');
-    }
   }
-  window.addEventListener('scroll', updateNav);
+
+  window.addEventListener('scroll', updateNav, { passive: true });
   updateNav();
 
   /* ── PUBLICATIONS FILTER + SHOW MORE ── */
@@ -1771,11 +1830,10 @@ document.addEventListener('DOMContentLoaded', function () {
   /* ── TRANSCRIPT MODAL ── */
   document.querySelectorAll('.edu-transcript-btn').forEach(function (btn) {
     btn.addEventListener('click', function () {
-      var pdf = this.getAttribute('data-pdf');
+      var pdf    = this.getAttribute('data-pdf');
+      var degree = this.getAttribute('data-degree') || 'Transcript';
       var pdfUrl = pdf ? encodeURI(pdf) : '';
-      var card = this.closest('.card');
-      var title = card ? (card.querySelector('.card-title') || {}).textContent : 'Transcript';
-      document.getElementById('transcriptModalLabel').textContent = (title || 'Transcript') + ' — Transcript';
+      document.getElementById('transcriptModalLabel').textContent = degree + ' — Transcript';
       var content  = document.getElementById('transcriptContent');
       var download = document.getElementById('transcriptDownload');
       if (pdf && pdf.trim()) {
@@ -1802,6 +1860,52 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
+  /* ── CONTACT FORM — AJAX submit, no redirect ── */
+  var contactForm = document.getElementById('contactForm');
+  if (contactForm) {
+    contactForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      var btn      = document.getElementById('contactSubmitBtn');
+      var sending  = document.getElementById('contactSendingMsg');
+      var hint     = document.getElementById('contactHint');
+      var success  = document.getElementById('formSuccess');
+      var error    = document.getElementById('formError');
+
+      btn.disabled = true;
+      if (sending) sending.style.display = '';
+      if (hint)    hint.style.display    = 'none';
+      success.style.display = 'none';
+      error.style.display   = 'none';
+
+      var data = new FormData(contactForm);
+
+      fetch('https://formspree.io/f/mzdadwra', {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      })
+      .then(function(res) {
+        if (sending) sending.style.display = 'none';
+        if (res.ok) {
+          success.style.display = '';
+          contactForm.reset();
+          btn.disabled = false;
+          if (hint) hint.style.display = '';
+        } else {
+          error.style.display = '';
+          btn.disabled = false;
+          if (hint) hint.style.display = '';
+        }
+      })
+      .catch(function() {
+        if (sending) sending.style.display = 'none';
+        error.style.display = '';
+        btn.disabled = false;
+        if (hint) hint.style.display = '';
+      });
+    });
+  }
+
   /* ── REVEAL ANIMATION ── */
   document.querySelectorAll('.reveal').forEach(function (el, i) {
     setTimeout(function () { el.classList.add('visible'); }, 70 * i);
@@ -1811,22 +1915,97 @@ document.addEventListener('DOMContentLoaded', function () {
 </script>
 
 <!-- ── VISITOR COUNTER ── -->
-<!-- Uses hits.sh — free, no signup. Replace YOUR_SITE_ID with your domain or any unique key -->
 <script>
 (function () {
   var el = document.getElementById('viewCount');
-  /* hits.sh is a free, reliable, open counter — no auth needed */
-  fetch('https://hits.sh/saumyadip-das-portfolio.json')
+  /* Using counterapi.dev — free, no signup, persistent */
+  fetch('https://api.counterapi.dev/v1/saumyadip-das-2003-portfolio/pageviews/up')
     .then(function(r){ return r.json(); })
     .then(function(d){
-      if (el) el.textContent = (d.total || 0).toLocaleString();
+      if (el) el.textContent = ((d.count !== undefined ? d.count : d.value) || 0).toLocaleString();
     })
     .catch(function(){
-      /* Fallback: count in localStorage so at least per-device tracking works */
-      var key = 'sd_visits';
-      var n = parseInt(localStorage.getItem(key) || '0', 10) + 1;
-      localStorage.setItem(key, n);
-      if (el) el.textContent = n.toLocaleString() + ' (local)';
+      /* Silent fallback — don't show misleading local count */
+      if (el) el.textContent = '—';
     });
 })();
 </script>
+<!-- ── ANIMATED BACKGROUND ── -->
+<script>
+(function(){
+  var canvas = document.getElementById('bgCanvas');
+  if(!canvas) return;
+  var ctx = canvas.getContext('2d');
+  var nodes = [], TOTAL = 55, mouse = {x:-9999, y:-9999};
+  var isDark = function(){ return document.documentElement.getAttribute('data-theme') === 'dark'; };
+
+  function resize(){
+    canvas.width  = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+  window.addEventListener('mousemove', function(e){ mouse.x = e.clientX; mouse.y = e.clientY; });
+
+  function rand(a,b){ return a + Math.random()*(b-a); }
+
+  for(var i=0;i<TOTAL;i++){
+    nodes.push({
+      x: rand(0, window.innerWidth),
+      y: rand(0, window.innerHeight),
+      vx: rand(-0.22, 0.22),
+      vy: rand(-0.18, 0.18),
+      r: rand(1.8, 3.8),
+      opacity: rand(0.18, 0.52)
+    });
+  }
+
+  function draw(){
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    var dark = isDark();
+    var nodeColor = dark ? '45,212,191' : '13,115,119';
+    var lineColor = dark ? '45,212,191' : '13,115,119';
+
+    for(var i=0;i<nodes.length;i++){
+      for(var j=i+1;j<nodes.length;j++){
+        var dx=nodes[i].x-nodes[j].x, dy=nodes[i].y-nodes[j].y;
+        var dist=Math.sqrt(dx*dx+dy*dy);
+        if(dist<140){
+          ctx.beginPath();
+          ctx.strokeStyle='rgba('+lineColor+','+(1-dist/140)*(dark?0.10:0.07)+')';
+          ctx.lineWidth=0.8;
+          ctx.moveTo(nodes[i].x,nodes[i].y);
+          ctx.lineTo(nodes[j].x,nodes[j].y);
+          ctx.stroke();
+        }
+      }
+      var mdx=nodes[i].x-mouse.x, mdy=nodes[i].y-mouse.y;
+      var mdist=Math.sqrt(mdx*mdx+mdy*mdy);
+      if(mdist<180){
+        ctx.beginPath();
+        ctx.strokeStyle='rgba('+lineColor+','+(1-mdist/180)*(dark?0.25:0.16)+')';
+        ctx.lineWidth=1;
+        ctx.moveTo(nodes[i].x,nodes[i].y);
+        ctx.lineTo(mouse.x,mouse.y);
+        ctx.stroke();
+      }
+    }
+    for(var i=0;i<nodes.length;i++){
+      var n=nodes[i];
+      ctx.beginPath();
+      ctx.arc(n.x,n.y,n.r,0,Math.PI*2);
+      ctx.fillStyle='rgba('+nodeColor+','+n.opacity+')';
+      ctx.fill();
+      n.x+=n.vx; n.y+=n.vy;
+      if(n.x<-10) n.x=canvas.width+10;
+      if(n.x>canvas.width+10) n.x=-10;
+      if(n.y<-10) n.y=canvas.height+10;
+      if(n.y>canvas.height+10) n.y=-10;
+    }
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+</script>
+</body>
+</html>
