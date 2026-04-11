@@ -434,6 +434,77 @@
        BADGE / SOCIAL UTILS
     ============================================================ */
     .badge { border-radius: 999px; font-weight: 700; letter-spacing: -0.01em; }
+    /* ── CUSTOM TOOLTIPS ── */
+    .sd-tooltip { position: relative; }
+    .sd-tooltip::after {
+      content: attr(data-tip);
+      position: absolute;
+      bottom: calc(100% + 7px);
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--ink);
+      color: var(--bg);
+      font-size: .68rem;
+      font-weight: 600;
+      white-space: nowrap;
+      padding: 3px 8px;
+      border-radius: 6px;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity .15s ease;
+      z-index: 9999;
+    }
+    .sd-tooltip::before {
+      content: '';
+      position: absolute;
+      bottom: calc(100% + 1px);
+      left: 50%;
+      transform: translateX(-50%);
+      border: 4px solid transparent;
+      border-top-color: var(--ink);
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity .15s ease;
+      z-index: 9999;
+    }
+    .sd-tooltip:hover::after,
+    .sd-tooltip:hover::before { opacity: 1; }
+
+    /* ── CUSTOM TOOLTIPS ── */
+    .sd-tooltip { position: relative; }
+    .sd-tooltip::after {
+      content: attr(data-tip);
+      position: absolute;
+      bottom: calc(100% + 7px);
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--ink);
+      color: var(--bg);
+      font-size: .68rem;
+      font-weight: 600;
+      white-space: nowrap;
+      padding: 3px 8px;
+      border-radius: 6px;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity .15s ease;
+      z-index: 9999;
+    }
+    .sd-tooltip::before {
+      content: '';
+      position: absolute;
+      bottom: calc(100% + 1px);
+      left: 50%;
+      transform: translateX(-50%);
+      border: 4px solid transparent;
+      border-top-color: var(--ink);
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity .15s ease;
+      z-index: 9999;
+    }
+    .sd-tooltip:hover::after,
+    .sd-tooltip:hover::before { opacity: 1; }
     .badge-conf {
       background: var(--brand-soft);
       color: var(--brand);
@@ -560,19 +631,22 @@
 
       <!-- Social icons -->
       <div class="d-none d-lg-flex align-items-center ms-3 social-icons" style="gap:4px;flex-shrink:0;">
-        <a class="btn btn-outline-secondary btn-sm" href="https://github.com/saumyadip-das-2003" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
-        <a class="btn btn-outline-secondary btn-sm" href="https://www.linkedin.com/in/saumyadip-sohom/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-        <a class="btn btn-outline-secondary btn-sm" href="https://www.researchgate.net/profile/Saumyadip-Das-2" target="_blank" aria-label="ResearchGate"><i class="fab fa-researchgate"></i></a>
-        <a class="btn btn-outline-secondary btn-sm" href="https://orcid.org/0009-0009-1130-2091" target="_blank" aria-label="ORCID"><i class="fab fa-orcid"></i></a>
-        <a class="btn btn-outline-secondary btn-sm" href="https://scholar.google.com/citations?user=vCvfzOMAAAAJ&hl=en" target="_blank" aria-label="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
+        <a class="btn btn-outline-secondary btn-sm sd-tooltip" href="https://github.com/saumyadip-das-2003" target="_blank" aria-label="GitHub" data-tip="GitHub"><i class="fab fa-github"></i></a>
+        <a class="btn btn-outline-secondary btn-sm sd-tooltip" href="https://www.linkedin.com/in/saumyadip-sohom/" target="_blank" aria-label="LinkedIn" data-tip="LinkedIn"><i class="fab fa-linkedin"></i></a>
+        <a class="btn btn-outline-secondary btn-sm sd-tooltip" href="https://www.researchgate.net/profile/Saumyadip-Das-2" target="_blank" aria-label="ResearchGate" data-tip="ResearchGate"><i class="fab fa-researchgate"></i></a>
+        <a class="btn btn-outline-secondary btn-sm sd-tooltip" href="https://orcid.org/0009-0009-1130-2091" target="_blank" aria-label="ORCID" data-tip="ORCID"><i class="fab fa-orcid"></i></a>
+        <a class="btn btn-outline-secondary btn-sm sd-tooltip" href="https://scholar.google.com/citations?user=vCvfzOMAAAAJ&hl=en" target="_blank" aria-label="Google Scholar" data-tip="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
       </div>
 
-      <!-- Dark mode toggle -->
-      <div class="theme-toggle-wrap ms-2" title="Toggle dark / light mode" style="flex-shrink:0;">
-        <span class="ti-icon" id="tiSun">☀️</span>
-        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode"></button>
-        <span class="ti-icon" id="tiMoon">🌙</span>
-      </div>
+      <!-- Dark mode toggle — professional icon button -->
+      <button id="themeToggle" aria-label="Toggle dark mode"
+        style="flex-shrink:0;margin-left:.75rem;width:36px;height:36px;border-radius:10px;
+               border:1px solid var(--line);background:var(--surface);color:var(--muted);
+               cursor:pointer;display:flex;align-items:center;justify-content:center;
+               font-size:.9rem;transition:all .2s;outline:none;"
+        title="Toggle light / dark mode">
+        <i id="themeIcon" class="fas fa-moon"></i>
+      </button>
     </div>
   </div>
 </nav>
@@ -587,10 +661,52 @@
   <section id="home" class="section-hero py-5">
     <style>
       .hero-split {
-        display: flex;
-        align-items: center;
-        gap: 3rem;
+        display: grid;
+        grid-template-columns: 210px 1fr 260px;
+        gap: 2.5rem;
+        align-items: start;
         min-height: 420px;
+      }
+      .hero-news {
+        border-left: 1px solid var(--line);
+        padding-left: 1.5rem;
+        max-height: 520px;
+        overflow-y: auto;
+        scrollbar-width: thin;
+        scrollbar-color: var(--line) transparent;
+      }
+      .hero-news::-webkit-scrollbar { width: 4px; }
+      .hero-news::-webkit-scrollbar-track { background: transparent; }
+      .hero-news::-webkit-scrollbar-thumb { background: var(--line); border-radius: 4px; }
+      .news-card {
+        display: block;
+        text-decoration: none;
+        padding: .65rem .75rem;
+        border-radius: 10px;
+        border: 1px solid var(--line);
+        background: var(--card);
+        backdrop-filter: blur(8px);
+        transition: border-color .15s, transform .15s;
+      }
+      .news-card:hover { border-color: var(--brand); transform: translateX(3px); }
+      .news-source {
+        font-size: .6rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: .08em;
+        color: var(--brand);
+        margin-bottom: 3px;
+      }
+      .news-title {
+        font-size: .78rem;
+        font-weight: 600;
+        color: var(--ink);
+        line-height: 1.4;
+        margin-bottom: 3px;
+      }
+      .news-time {
+        font-size: .62rem;
+        color: var(--muted);
       }
       .hero-left {
         display: flex;
@@ -663,11 +779,14 @@
       }
       .hero-cta { display: flex; flex-wrap: wrap; gap: 10px; }
 
-      @media (max-width: 767px) {
-        .hero-split { flex-direction: column; gap: 2rem; }
-        .hero-left { flex: none; width: 100%; }
+      @media (max-width: 1100px) {
+        .hero-split { grid-template-columns: 200px 1fr; }
+        .hero-news { display: none; }
         .hero-divider { display: none; }
-        .hero-right { width: 100%; }
+      }
+      @media (max-width: 700px) {
+        .hero-split { grid-template-columns: 1fr; }
+        .hero-left { text-align: center; align-items: center; }
       }
     </style>
 
@@ -681,11 +800,11 @@
         <div class="hero-name">Saumyadip Das</div>
         <div class="hero-role">AI &amp; ML Researcher</div>
         <div class="hero-social">
-          <a class="btn btn-outline-secondary" href="https://github.com/saumyadip-das-2003" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
-          <a class="btn btn-outline-secondary" href="https://www.linkedin.com/in/saumyadip-sohom/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-          <a class="btn btn-outline-secondary" href="https://www.researchgate.net/profile/Saumyadip-Das-2" target="_blank" aria-label="ResearchGate"><i class="fab fa-researchgate"></i></a>
-          <a class="btn btn-outline-secondary" href="https://orcid.org/0009-0009-1130-2091" target="_blank" aria-label="ORCID"><i class="fab fa-orcid"></i></a>
-          <a class="btn btn-outline-secondary" href="https://scholar.google.com/citations?user=vCvfzOMAAAAJ&hl=en" target="_blank" aria-label="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
+          <a class="btn btn-outline-secondary sd-tooltip" href="https://github.com/saumyadip-das-2003" target="_blank" aria-label="GitHub" data-tip="GitHub"><i class="fab fa-github"></i></a>
+          <a class="btn btn-outline-secondary sd-tooltip" href="https://www.linkedin.com/in/saumyadip-sohom/" target="_blank" aria-label="LinkedIn" data-tip="LinkedIn"><i class="fab fa-linkedin"></i></a>
+          <a class="btn btn-outline-secondary sd-tooltip" href="https://www.researchgate.net/profile/Saumyadip-Das-2" target="_blank" aria-label="ResearchGate" data-tip="ResearchGate"><i class="fab fa-researchgate"></i></a>
+          <a class="btn btn-outline-secondary sd-tooltip" href="https://orcid.org/0009-0009-1130-2091" target="_blank" aria-label="ORCID" data-tip="ORCID"><i class="fab fa-orcid"></i></a>
+          <a class="btn btn-outline-secondary sd-tooltip" href="https://scholar.google.com/citations?user=vCvfzOMAAAAJ&hl=en" target="_blank" aria-label="Google Scholar" data-tip="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
         </div>
         <!-- Contact info -->
         <div style="margin-top:1rem;display:flex;flex-direction:column;gap:6px;align-items:center;">
@@ -716,7 +835,7 @@
         </p>
 
         <p class="hero-bio-text" style="margin-bottom:1.25rem;">
-          I am actively involved in research and enjoy working at the intersection of theory and application — whether it is exploring explainability in AI models, building resource-efficient architectures, or prototyping hardware-integrated solutions. I am always open to collaboration, meaningful projects, and new learning opportunities.
+          I am actively involved in research, working at the intersection of theory and application — from explainable AI and deep learning to IoT-based systems. Recently, I am shifting my focus toward Agentic AI, exploring how autonomous agents can reason, plan, and act to solve complex real-world problems. I am always open to collaboration, meaningful projects, and new learning opportunities.
         </p>
 
         <div class="hero-tags">
@@ -727,6 +846,8 @@
           <span class="hero-tag"><i class="fas fa-language me-1" style="font-size:.7rem;"></i>NLP</span>
           <span class="hero-tag"><i class="fas fa-hand-pointer me-1" style="font-size:.7rem;"></i>HCI</span>
           <span class="hero-tag"><i class="fas fa-code me-1" style="font-size:.7rem;"></i>Software Development</span>
+          <span class="hero-tag"><i class="fas fa-robot me-1" style="font-size:.7rem;"></i>Agentic AI</span>
+          <span class="hero-tag"><i class="fas fa-robot me-1" style="font-size:.7rem;"></i>Agentic AI</span>
           <span class="hero-tag"><i class="fas fa-flask me-1" style="font-size:.7rem;"></i>Research</span>
         </div>
 
@@ -740,6 +861,21 @@
           <a class="btn btn-outline-primary" href="/#publications">
             <i class="fas fa-book-open me-1"></i>Publications
           </a>
+        </div>
+      </div>
+
+      <!-- NEWS FEED COLUMN -->
+      <div class="hero-news" id="newsFeed">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.75rem;">
+          <div style="font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--brand);">Latest in AI &amp; Research</div>
+          <div id="newsFeedStatus" style="font-size:.65rem;color:var(--muted);"></div>
+        </div>
+        <div id="newsFeedList" style="display:flex;flex-direction:column;gap:8px;">
+          <!-- Populated by JS -->
+          <div style="text-align:center;padding:2rem 0;color:var(--muted);font-size:.82rem;">
+            <i class="fas fa-spinner fa-spin" style="margin-bottom:6px;display:block;font-size:1.2rem;color:var(--brand);"></i>
+            Loading latest news…
+          </div>
         </div>
       </div>
 
@@ -1501,15 +1637,22 @@
       <a class="btn btn-outline-secondary me-2" href="https://orcid.org/0009-0009-1130-2091" target="_blank" aria-label="ORCID"><i class="fab fa-orcid"></i></a>
       <a class="btn btn-outline-secondary" href="https://scholar.google.com/citations?user=vCvfzOMAAAAJ&hl=en" target="_blank" aria-label="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
     </div>
-    &copy; <span id="fyear"></span> Saumyadip Das | All rights reserved.
+    &copy; <span id="fyear"></span> Saumyadip Das — Built for research and professional use.
   </div>
 </footer>
 
 <!-- ============================================================
      BACK TO TOP BUTTON
 ============================================================ -->
-<button id="backToTop" aria-label="Back to top" title="Back to top">
-  <i class="fas fa-arrow-up"></i>
+<button id="backToTop" aria-label="Back to top" title="Back to top"
+  style="position:fixed!important;bottom:28px!important;right:24px!important;
+         width:46px!important;height:46px!important;border-radius:50%!important;
+         background:var(--brand)!important;color:#fff!important;border:none!important;
+         font-size:1.1rem!important;cursor:pointer!important;
+         display:flex!important;align-items:center!important;justify-content:center!important;
+         opacity:0;pointer-events:none;transform:translateY(14px);
+         transition:opacity .3s ease,transform .3s ease;z-index:99999!important;">
+  <i class="fas fa-chevron-up"></i>
 </button>
 
 <!-- ============================================================
@@ -1589,13 +1732,25 @@ document.addEventListener('DOMContentLoaded', function () {
   var theme = saved ? saved : (systemDark ? 'dark' : 'light');
   html.setAttribute('data-theme', theme);
 
+  function updateThemeIcon() {
+    var icon = document.getElementById('themeIcon');
+    if (!icon) return;
+    var dark = html.getAttribute('data-theme') === 'dark';
+    icon.className = dark ? 'fas fa-sun' : 'fas fa-moon';
+    if (toggle) {
+      toggle.style.color = dark ? 'var(--brand)' : 'var(--muted)';
+    }
+  }
+  updateThemeIcon();
+
   if (toggle) {
     toggle.addEventListener('click', function () {
       var current = html.getAttribute('data-theme');
       var next = current === 'dark' ? 'light' : 'dark';
       html.setAttribute('data-theme', next);
       localStorage.setItem('theme', next);
-      localStorage.setItem('theme-manual', '1'); /* user explicitly chose — never auto-override */
+      localStorage.setItem('theme-manual', '1');
+      updateThemeIcon();
     });
   }
 
@@ -1643,8 +1798,15 @@ document.addEventListener('DOMContentLoaded', function () {
   var navLinks = Array.from(document.querySelectorAll('.nav-link[href]'));
   var navbarEl = document.querySelector('.navbar');
 
+  function setActiveLink(id) {
+    navLinks.forEach(function(a){ a.classList.remove('active'); });
+    var link = document.querySelector('.nav-link[href="/#' + id + '"]');
+    if (link) link.classList.add('active');
+  }
+
   function updateNav() {
     var scrollY = window.scrollY;
+    var navH    = navbarEl ? navbarEl.offsetHeight : 70;
 
     /* Navbar scroll shadow */
     if (navbarEl) {
@@ -1652,26 +1814,14 @@ document.addEventListener('DOMContentLoaded', function () {
       else navbarEl.classList.remove('nav-scrolled');
     }
 
-    /* Always mark Home when near top */
-    if (scrollY < 100) {
-      navLinks.forEach(function(a){ a.classList.remove('active'); });
-      var homeLink = document.querySelector('.nav-link[href="/#home"]');
-      if (homeLink) homeLink.classList.add('active');
-      return;
-    }
-
-    /* Find which section is in view */
-    var scrollPos = scrollY + 140;
-    var activeId = null;
+    /* Find the section whose top is closest to (but above) the navbar bottom */
+    var trigger = scrollY + navH + 20;
+    var activeId = sections[0] ? sections[0].id : 'home';
     sections.forEach(function(sec) {
-      if (sec.offsetTop <= scrollPos) activeId = sec.id;
+      if (sec.offsetTop <= trigger) activeId = sec.id;
     });
 
-    navLinks.forEach(function(a){ a.classList.remove('active'); });
-    if (activeId) {
-      var link = document.querySelector('.nav-link[href="/#' + activeId + '"]');
-      if (link) link.classList.add('active');
-    }
+    setActiveLink(activeId);
   }
 
   window.addEventListener('scroll', updateNav, { passive: true });
@@ -1920,6 +2070,85 @@ document.addEventListener('DOMContentLoaded', function () {
   document.querySelectorAll('.reveal').forEach(function (el, i) {
     setTimeout(function () { el.classList.add('visible'); }, 70 * i);
   });
+
+  /* ── EMAIL DECODE (Cloudflare-proof) ── */
+  (function(){
+    var u = ['das','.','saumyadip','.','cse','@','gmail','.','com'].join('');
+    var gm = 'https://mail.google.com/mail/?view=cm&to=' + u;
+    var hel = document.getElementById('heroEmailLink');
+    var het = document.getElementById('heroEmailText');
+    var cel = document.getElementById('contactEmailLink');
+    var cet = document.getElementById('contactEmailText');
+    if(hel){ hel.href = gm; }
+    if(het){ het.textContent = u; }
+    if(cel){ cel.href = gm; }
+    if(cet){ cet.textContent = u; }
+  })();
+
+  /* ── NEWS FEED ── */
+  (function(){
+    var listEl   = document.getElementById('newsFeedList');
+    var statusEl = document.getElementById('newsFeedStatus');
+    if(!listEl) return;
+
+    /* Curated RSS feeds via rss2json.com (free tier, no key needed for low traffic) */
+    var feeds = [
+      { url: 'https://feeds.feedburner.com/googleblog/yJAo', label: 'Google AI' },
+      { url: 'https://openai.com/blog/rss/', label: 'OpenAI' },
+      { url: 'https://huggingface.co/blog/feed.xml', label: 'HuggingFace' },
+      { url: 'https://bair.berkeley.edu/blog/feed.xml', label: 'BAIR' },
+      { url: 'https://machinelearningmastery.com/feed/', label: 'ML Mastery' }
+    ];
+
+    var API = 'https://api.rss2json.com/v1/api.json?rss_url=';
+    var allItems = [];
+    var loaded = 0;
+
+    function timeAgo(dateStr) {
+      var diff = (Date.now() - new Date(dateStr)) / 1000;
+      if(diff < 3600)  return Math.floor(diff/60) + 'm ago';
+      if(diff < 86400) return Math.floor(diff/3600) + 'h ago';
+      return Math.floor(diff/86400) + 'd ago';
+    }
+
+    function renderFeed() {
+      if(!allItems.length){
+        listEl.innerHTML = '<div style="color:var(--muted);font-size:.8rem;text-align:center;padding:1rem 0;">Could not load feed. Check back later.</div>';
+        return;
+      }
+      allItems.sort(function(a,b){ return new Date(b.pubDate) - new Date(a.pubDate); });
+      var html = '';
+      allItems.slice(0,12).forEach(function(item){
+        html += '<a class="news-card" href="' + item.link + '" target="_blank" rel="noopener">' +
+          '<div class="news-source">' + item._source + '</div>' +
+          '<div class="news-title">' + item.title.substring(0,80) + (item.title.length>80?'…':'') + '</div>' +
+          '<div class="news-time">' + timeAgo(item.pubDate) + '</div>' +
+          '</a>';
+      });
+      listEl.innerHTML = html;
+      if(statusEl) statusEl.textContent = 'Updated just now';
+    }
+
+    feeds.forEach(function(feed){
+      fetch(API + encodeURIComponent(feed.url) + '&count=5')
+        .then(function(r){ return r.json(); })
+        .then(function(d){
+          if(d.items && d.items.length){
+            d.items.forEach(function(item){
+              allItems.push({ title: item.title, link: item.link, pubDate: item.pubDate, _source: feed.label });
+            });
+          }
+        })
+        .catch(function(){})
+        .finally(function(){
+          loaded++;
+          if(loaded === feeds.length) renderFeed();
+        });
+    });
+
+    /* Refresh every 15 minutes */
+    setTimeout(function(){ location.reload(); }, 15 * 60 * 1000);
+  })();
 
 });
 </script>
