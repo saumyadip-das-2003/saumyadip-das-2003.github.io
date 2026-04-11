@@ -662,10 +662,10 @@
     <style>
       .hero-split {
         display: grid;
-        grid-template-columns: 210px 1fr 260px;
-        gap: 2.5rem;
+        grid-template-columns: 200px 1fr 280px;
+        gap: 2rem;
         align-items: start;
-        min-height: 420px;
+        padding-top: 1rem;
       }
       .hero-news {
         border-left: 1px solid var(--line);
@@ -808,11 +808,10 @@
         </div>
         <!-- Contact info -->
         <div style="margin-top:1rem;display:flex;flex-direction:column;gap:6px;align-items:center;">
-          <a href="https://mail.google.com/mail/?view=cm&to=das.saumyadip.cse@gmail.com"
-             target="_blank" rel="noopener"
+          <a id="heroEmailLink" href="#" target="_blank" rel="noopener"
              style="font-size:.72rem;color:var(--muted);text-decoration:none;display:flex;align-items:center;gap:5px;"
              title="Send Email via Gmail">
-            <i class="fas fa-envelope" style="color:var(--brand);font-size:.75rem;"></i><span class="__cf_email__" data-cfemail="f5919486db869480988c94919c85db968690b59298949c99db969a98">[email&#160;protected]</span>
+            <i class="fas fa-envelope" style="color:var(--brand);font-size:.75rem;"></i><span id="heroEmailText">das.saumyadip.cse&#64;gmail.com</span>
           </a>
           <a href="https://wa.me/8801646891418"
              target="_blank" rel="noopener"
@@ -822,9 +821,6 @@
           </a>
         </div>
       </div>
-
-      <!-- DIVIDER -->
-      <div class="hero-divider" aria-hidden="true"></div>
 
       <!-- RIGHT — professional bio -->
       <div class="hero-right">
@@ -846,7 +842,6 @@
           <span class="hero-tag"><i class="fas fa-language me-1" style="font-size:.7rem;"></i>NLP</span>
           <span class="hero-tag"><i class="fas fa-hand-pointer me-1" style="font-size:.7rem;"></i>HCI</span>
           <span class="hero-tag"><i class="fas fa-code me-1" style="font-size:.7rem;"></i>Software Development</span>
-          <span class="hero-tag"><i class="fas fa-robot me-1" style="font-size:.7rem;"></i>Agentic AI</span>
           <span class="hero-tag"><i class="fas fa-robot me-1" style="font-size:.7rem;"></i>Agentic AI</span>
           <span class="hero-tag"><i class="fas fa-flask me-1" style="font-size:.7rem;"></i>Research</span>
         </div>
@@ -1553,7 +1548,7 @@
     <h2 class="mb-3">Contact</h2>
     <p class="text-muted">
       For research collaborations or project inquiries — email
-      <a href="https://mail.google.com/mail/?view=cm&to=das.saumyadip.cse@gmail.com" target="_blank" rel="noopener" style="color:var(--brand);font-weight:600;"><span class="__cf_email__" data-cfemail="781c190b560b190d1501191c1108561b0b1d381f15191114561b1715">[email&#160;protected]</span></a>
+      <a id="contactEmailLink" href="#" target="_blank" rel="noopener" style="color:var(--brand);font-weight:600;"><span id="contactEmailText">das.saumyadip.cse&#64;gmail.com</span></a>
       or WhatsApp <a href="https://wa.me/8801646891418" target="_blank" rel="noopener" style="color:var(--brand);font-weight:600;">+880 1646-891418</a>,
       or send a message below.
     </p>
@@ -1574,7 +1569,7 @@
         <div id="formError" style="display:none;padding:1rem 1.4rem;border-radius:12px;background:rgba(220,53,69,.08);border:1px solid rgba(220,53,69,.20);margin-bottom:1.2rem;">
           <div style="display:flex;align-items:center;gap:10px;">
             <i class="fas fa-exclamation-circle" style="color:#dc3545;font-size:1.2rem;"></i>
-            <div style="font-size:.9rem;color:var(--ink);">Something went wrong. Please try emailing directly at <a href="/cdn-cgi/l/email-protection#3b5f5a4815485a4e56425a5f524b1558485e7b5c565a525715585456" style="color:var(--brand);"><span class="__cf_email__" data-cfemail="84e0e5f7aaf7e5f1e9fde5e0edf4aae7f7e1c4e3e9e5ede8aae7ebe9">[email&#160;protected]</span></a></div>
+            <div style="font-size:.9rem;color:var(--ink);">Something went wrong. Please try emailing directly at <a id="errorEmailLink" href="#" style="color:var(--brand);">das.saumyadip.cse&#64;gmail.com</a></div>
           </div>
         </div>
 
@@ -2073,81 +2068,101 @@ document.addEventListener('DOMContentLoaded', function () {
 
   /* ── EMAIL DECODE (Cloudflare-proof) ── */
   (function(){
-    var u = ['das','.','saumyadip','.','cse','@','gmail','.','com'].join('');
+    var u  = ['das','.','saumyadip','.','cse','@','gmail','.','com'].join('');
     var gm = 'https://mail.google.com/mail/?view=cm&to=' + u;
-    var hel = document.getElementById('heroEmailLink');
-    var het = document.getElementById('heroEmailText');
-    var cel = document.getElementById('contactEmailLink');
-    var cet = document.getElementById('contactEmailText');
-    if(hel){ hel.href = gm; }
-    if(het){ het.textContent = u; }
-    if(cel){ cel.href = gm; }
-    if(cet){ cet.textContent = u; }
+    ['heroEmailLink','contactEmailLink','errorEmailLink'].forEach(function(id){
+      var el = document.getElementById(id);
+      if(el) el.href = gm;
+    });
+    ['heroEmailText','contactEmailText'].forEach(function(id){
+      var el = document.getElementById(id);
+      if(el) el.textContent = u;
+    });
   })();
 
-  /* ── NEWS FEED ── */
+    /* ── NEWS FEED — live RSS via allorigins.win CORS proxy ── */
   (function(){
     var listEl   = document.getElementById('newsFeedList');
     var statusEl = document.getElementById('newsFeedStatus');
     if(!listEl) return;
 
-    /* Curated RSS feeds via rss2json.com (free tier, no key needed for low traffic) */
     var feeds = [
-      { url: 'https://feeds.feedburner.com/googleblog/yJAo', label: 'Google AI' },
-      { url: 'https://openai.com/blog/rss/', label: 'OpenAI' },
+      { url: 'https://www.marktechpost.com/feed/', label: 'MarkTechPost' },
+      { url: 'https://towardsdatascience.com/feed', label: 'Towards DS' },
       { url: 'https://huggingface.co/blog/feed.xml', label: 'HuggingFace' },
-      { url: 'https://bair.berkeley.edu/blog/feed.xml', label: 'BAIR' },
-      { url: 'https://machinelearningmastery.com/feed/', label: 'ML Mastery' }
+      { url: 'https://deepmind.google/blog/rss.xml', label: 'DeepMind' },
+      { url: 'https://blogs.microsoft.com/ai/feed/', label: 'Microsoft AI' }
     ];
 
-    var API = 'https://api.rss2json.com/v1/api.json?rss_url=';
+    var PROXY = 'https://api.allorigins.win/get?url=';
     var allItems = [];
-    var loaded = 0;
+    var done = 0;
 
-    function timeAgo(dateStr) {
-      var diff = (Date.now() - new Date(dateStr)) / 1000;
-      if(diff < 3600)  return Math.floor(diff/60) + 'm ago';
-      if(diff < 86400) return Math.floor(diff/3600) + 'h ago';
-      return Math.floor(diff/86400) + 'd ago';
+    function timeAgo(ds) {
+      var d = new Date(ds);
+      if(isNaN(d)) return '';
+      var s = (Date.now() - d) / 1000;
+      if(s < 3600)   return Math.floor(s/60)    + 'm ago';
+      if(s < 86400)  return Math.floor(s/3600)  + 'h ago';
+      if(s < 604800) return Math.floor(s/86400) + 'd ago';
+      return d.toLocaleDateString('en-GB',{day:'numeric',month:'short'});
     }
 
-    function renderFeed() {
-      if(!allItems.length){
-        listEl.innerHTML = '<div style="color:var(--muted);font-size:.8rem;text-align:center;padding:1rem 0;">Could not load feed. Check back later.</div>';
-        return;
-      }
-      allItems.sort(function(a,b){ return new Date(b.pubDate) - new Date(a.pubDate); });
-      var html = '';
-      allItems.slice(0,12).forEach(function(item){
-        html += '<a class="news-card" href="' + item.link + '" target="_blank" rel="noopener">' +
-          '<div class="news-source">' + item._source + '</div>' +
-          '<div class="news-title">' + item.title.substring(0,80) + (item.title.length>80?'…':'') + '</div>' +
-          '<div class="news-time">' + timeAgo(item.pubDate) + '</div>' +
-          '</a>';
-      });
+    function parseRSS(xml, feed) {
+      try {
+        var doc = new DOMParser().parseFromString(xml, 'text/xml');
+        Array.from(doc.querySelectorAll('item')).slice(0,4).forEach(function(item){
+          var t = (item.querySelector('title')||{}).textContent||'';
+          var l = (item.querySelector('link')||{}).textContent||
+                  (item.querySelector('link')||{}).getAttribute('href')||'';
+          var p = (item.querySelector('pubDate')||item.querySelector('published')||{}).textContent||'';
+          if(t && l) allItems.push({title:t.trim(), link:l.trim(), pubDate:p, src:feed.label});
+        });
+      } catch(e){}
+    }
+
+    /* Curated fallback shown immediately and replaced if live loads */
+    var fallback = [
+      {title:'The Batch — Weekly AI Newsletter', link:'https://www.deeplearning.ai/the-batch/', src:'deeplearning.ai', pubDate:''},
+      {title:'Latest Papers on Agentic AI & LLMs', link:'https://paperswithcode.com/latest', src:'Papers With Code', pubDate:''},
+      {title:'Towards Data Science — Top Stories', link:'https://towardsdatascience.com/', src:'Towards DS', pubDate:''},
+      {title:'MIT Technology Review — AI', link:'https://www.technologyreview.com/topic/artificial-intelligence/', src:'MIT Tech Review', pubDate:''},
+      {title:'HuggingFace Blog — Models & Research', link:'https://huggingface.co/blog', src:'HuggingFace', pubDate:''},
+      {title:'Google DeepMind Research Updates', link:'https://deepmind.google/research/', src:'DeepMind', pubDate:''},
+      {title:'MarkTechPost — Daily AI Research News', link:'https://www.marktechpost.com/', src:'MarkTechPost', pubDate:''},
+      {title:'Microsoft AI Blog', link:'https://blogs.microsoft.com/ai/', src:'Microsoft AI', pubDate:''}
+    ];
+
+    function renderItems(items, label) {
+      var html = items.slice(0,10).map(function(item){
+        var t = item.title.length > 72 ? item.title.slice(0,72)+'…' : item.title;
+        var time = item.pubDate ? timeAgo(item.pubDate) : 'Resource';
+        return '<a class="news-card" href="'+item.link+'" target="_blank" rel="noopener">'+
+          '<div class="news-source">'+item.src+'</div>'+
+          '<div class="news-title">'+t+'</div>'+
+          '<div class="news-time">'+time+'</div></a>';
+      }).join('');
       listEl.innerHTML = html;
-      if(statusEl) statusEl.textContent = 'Updated just now';
+      if(statusEl) statusEl.textContent = label || '';
     }
 
+    /* Show curated fallback immediately */
+    renderItems(fallback, 'Curated');
+
+    /* Then try to load live feeds */
     feeds.forEach(function(feed){
-      fetch(API + encodeURIComponent(feed.url) + '&count=5')
+      fetch(PROXY + encodeURIComponent(feed.url), {signal: AbortSignal.timeout ? AbortSignal.timeout(6000) : undefined})
         .then(function(r){ return r.json(); })
-        .then(function(d){
-          if(d.items && d.items.length){
-            d.items.forEach(function(item){
-              allItems.push({ title: item.title, link: item.link, pubDate: item.pubDate, _source: feed.label });
-            });
-          }
-        })
+        .then(function(d){ if(d && d.contents) parseRSS(d.contents, feed); })
         .catch(function(){})
         .finally(function(){
-          loaded++;
-          if(loaded === feeds.length) renderFeed();
+          done++;
+          if(done === feeds.length && allItems.length > 0) {
+            allItems.sort(function(a,b){ return new Date(b.pubDate)-new Date(a.pubDate); });
+            renderItems(allItems, 'Live');
+          }
         });
     });
-
-    /* Refresh every 15 minutes */
-    setTimeout(function(){ location.reload(); }, 15 * 60 * 1000);
   })();
 
 });
