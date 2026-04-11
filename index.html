@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Saumyadip Das — Researcher in AI & ML</title>
   <meta name="description" content="Saumyadip Das — Computer Science researcher focusing on AI, ML and IoT.">
-  <meta name="theme-color" content="#0b5ed7">
+  <meta name="theme-color" content="#0d7377">
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=DM+Serif+Display&display=swap" rel="stylesheet">
@@ -14,42 +14,45 @@
 
   <style>
     /* ============================================================
-       DESIGN TOKENS — light & dark
+       DESIGN TOKENS
+       Light: warm off-white + deep teal (scholarly, calm)
+       Dark:  deep navy + soft cyan (cool, technical)
     ============================================================ */
     :root {
-      --brand:        #0b5ed7;
-      --brand-soft:   rgba(11,94,215,.10);
-      --ink:          #0f172a;
-      --muted:        #64748b;
-      --line:         #e5e7eb;
-      --bg:           #f8fafc;
+      --brand:        #0d7377;
+      --brand-light:  #14a7ac;
+      --brand-soft:   rgba(13,115,119,.10);
+      --ink:          #1a2332;
+      --muted:        #5a6a7e;
+      --line:         #dde3ec;
+      --bg:           #f4f6f9;
       --surface:      #ffffff;
       --card:         #ffffff;
-      --nav-bg:       rgba(255,255,255,.80);
-      --nav-border:   rgba(229,231,235,.70);
-      --shadow:       0 10px 30px rgba(2,6,23,.08);
-      --shadow2:      0 18px 45px rgba(2,6,23,.10);
-      --radius:       16px;
-      --toggle-bg:    #e2e8f0;
+      --nav-bg:       rgba(244,246,249,.90);
+      --nav-border:   rgba(221,227,236,.80);
+      --shadow:       0 4px 24px rgba(13,115,119,.07), 0 1px 4px rgba(26,35,50,.06);
+      --shadow2:      0 12px 40px rgba(13,115,119,.12), 0 2px 8px rgba(26,35,50,.08);
+      --radius:       14px;
+      --toggle-bg:    #c8d6e0;
       --toggle-knob:  #ffffff;
-      --toggle-icon:  "☀️";
     }
 
     [data-theme="dark"] {
-      --brand:        #4d94ff;
-      --brand-soft:   rgba(77,148,255,.12);
-      --ink:          #f1f5f9;
-      --muted:        #94a3b8;
-      --line:         #1e293b;
-      --bg:           #0f172a;
-      --surface:      #1e293b;
-      --card:         #1e293b;
-      --nav-bg:       rgba(15,23,42,.88);
-      --nav-border:   rgba(30,41,59,.90);
-      --shadow:       0 10px 30px rgba(0,0,0,.30);
-      --shadow2:      0 18px 45px rgba(0,0,0,.40);
-      --toggle-bg:    #334155;
-      --toggle-knob:  #0f172a;
+      --brand:        #2dd4bf;
+      --brand-light:  #5eead4;
+      --brand-soft:   rgba(45,212,191,.12);
+      --ink:          #e2e8f0;
+      --muted:        #8899aa;
+      --line:         #1f2d3d;
+      --bg:           #0d1b2a;
+      --surface:      #132032;
+      --card:         #172638;
+      --nav-bg:       rgba(13,27,42,.94);
+      --nav-border:   rgba(31,45,61,.98);
+      --shadow:       0 4px 24px rgba(0,0,0,.35);
+      --shadow2:      0 12px 40px rgba(0,0,0,.50);
+      --toggle-bg:    #1f3a4f;
+      --toggle-knob:  #0d1b2a;
     }
 
     /* ============================================================
@@ -149,8 +152,22 @@
     /* ============================================================
        LAYOUT
     ============================================================ */
-    main.container { max-width: 1100px; }
+    html, body { margin: 0; padding: 0; width: 100%; overflow-x: hidden; }
+    main { width: 100%; padding-left: 0; padding-right: 0; }
+    .page-inner { max-width: 1240px; margin: 0 auto; padding: 0 2.5rem; }
+    @media (max-width: 576px) { .page-inner { padding: 0 1rem; } }
     section { scroll-margin-top: 90px; }
+
+    /* Navbar full-width layout */
+    .navbar { padding-left: 0; padding-right: 0; }
+    .navbar > .page-inner {
+      display: flex; align-items: center; flex-wrap: nowrap;
+      width: 100%; padding-top: .45rem; padding-bottom: .45rem;
+    }
+    .navbar .navbar-collapse { flex-grow: 1; }
+
+    /* Subtle section dividers */
+    section + section { border-top: 1px solid var(--line); }
 
     h1 { font-family: "DM Serif Display", serif; font-weight: 400; letter-spacing: -0.03em; color: var(--ink); }
     h2 { font-weight: 800; letter-spacing: -0.03em; margin-bottom: 1rem; color: var(--ink); }
@@ -163,9 +180,9 @@
        BUTTONS
     ============================================================ */
     .btn { border-radius: 12px; font-weight: 700; font-size: .875rem; }
-    .btn-primary { background: var(--brand); border-color: var(--brand); box-shadow: 0 8px 20px rgba(11,94,215,.18); }
-    .btn-primary:hover { background: #0950c3; border-color: #0950c3; }
-    .btn-outline-primary { border-color: rgba(11,94,215,.4); color: var(--brand); }
+    .btn-primary { background: var(--brand); border-color: var(--brand); box-shadow: 0 8px 20px rgba(13,115,119,.20); }
+    .btn-primary:hover { background: var(--brand-light); border-color: var(--brand-light); }
+    .btn-outline-primary { border-color: rgba(13,115,119,.45); color: var(--brand); }
     .btn-outline-primary:hover { background: var(--brand-soft); border-color: var(--brand); color: var(--brand); }
     .btn-outline-primary.active { background: var(--brand-soft); border-color: var(--brand); color: var(--brand); }
     .btn-outline-secondary { border-color: var(--line); color: var(--muted); }
@@ -366,9 +383,9 @@
     footer {
       border-top: 1px solid var(--line);
       background: var(--surface) !important;
-      backdrop-filter: blur(10px);
-      transition: background .35s, border-color .35s;
+      transition: background .35s, border-color .35s, color .35s;
     }
+    footer .text-muted { color: var(--muted) !important; }
 
     /* ============================================================
        BACK TO TOP
@@ -382,7 +399,7 @@
       background: var(--brand);
       color: #fff;
       border: none;
-      box-shadow: 0 8px 20px rgba(11,94,215,.35);
+      box-shadow: 0 8px 20px rgba(13,115,119,.35);
       font-size: 1.1rem;
       cursor: pointer;
       display: flex; align-items: center; justify-content: center;
@@ -392,12 +409,34 @@
       z-index: 1050;
     }
     #backToTop.show { opacity: 1; pointer-events: auto; transform: translateY(0); }
-    #backToTop:hover { background: #0950c3; }
+    #backToTop:hover { background: var(--brand-light); }
 
     /* ============================================================
        BADGE / SOCIAL UTILS
     ============================================================ */
     .badge { border-radius: 999px; font-weight: 700; letter-spacing: -0.01em; }
+    .badge-conf {
+      background: var(--brand-soft);
+      color: var(--brand);
+      border: 1px solid rgba(13,115,119,.25);
+      padding: .3em .75em;
+    }
+    [data-theme="dark"] .badge-conf {
+      background: rgba(45,212,191,.12);
+      color: var(--brand);
+      border-color: rgba(45,212,191,.25);
+    }
+    .badge-sub {
+      background: rgba(90,106,126,.10);
+      color: var(--muted);
+      border: 1px solid rgba(90,106,126,.20);
+      padding: .3em .75em;
+    }
+    [data-theme="dark"] .badge-sub {
+      background: rgba(136,153,170,.10);
+      color: var(--muted);
+      border-color: rgba(136,153,170,.20);
+    }
     .social-icons .btn { border-radius: 12px; }
 
     /* ============================================================
@@ -426,27 +465,30 @@
     /* ============================================================
        DARK OVERRIDES for Bootstrap components
     ============================================================ */
-    [data-theme="dark"] .navbar-toggler-icon {
-      filter: invert(1);
-    }
+    [data-theme="dark"] .navbar-toggler-icon { filter: invert(1); }
     [data-theme="dark"] .form-control,
     [data-theme="dark"] .form-select {
-      background-color: #0f172a;
+      background-color: var(--bg);
       color: var(--ink);
-      border-color: #334155;
+      border-color: var(--line);
     }
     [data-theme="dark"] .btn-outline-secondary {
-      border-color: #334155; color: var(--muted);
+      border-color: var(--line); color: var(--muted);
     }
     [data-theme="dark"] .btn-outline-secondary:hover {
       background: var(--brand-soft); border-color: var(--brand); color: var(--brand);
     }
     [data-theme="dark"] .btn-group .btn-outline-primary {
-      color: var(--brand); border-color: rgba(77,148,255,.35);
+      color: var(--brand); border-color: rgba(45,212,191,.35);
     }
     [data-theme="dark"] .btn-group .btn-outline-primary.active {
       background: var(--brand-soft);
     }
+    /* Ensure pub-row hover uses teal in dark */
+    [data-theme="dark"] .pub-row:hover { border-color: rgba(45,212,191,.35); }
+    [data-theme="dark"] .skill-tile:hover, [data-theme="dark"] .skill-tile.is-open { border-color: rgba(45,212,191,.40); }
+    /* Back to top in dark */
+    [data-theme="dark"] #backToTop { box-shadow: 0 8px 20px rgba(45,212,191,.25); }
   </style>
 </head>
 
@@ -456,7 +498,7 @@
      NAVBAR
 ============================================================ -->
 <nav class="navbar navbar-expand-lg fixed-top">
-  <div class="container">
+  <div class="page-inner w-100 d-flex align-items-center" style="flex-wrap:wrap;">
     <a class="navbar-brand" href="/#home">Saumyadip Das</a>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav"
@@ -498,10 +540,11 @@
 <!-- ============================================================
      MAIN
 ============================================================ -->
-<main class="container" id="home" style="padding-top:90px;padding-bottom:40px;">
+<main style="padding-top:90px;padding-bottom:40px;">
+<div class="page-inner">
 
   <!-- HERO -->
-  <section class="section-hero py-5">
+  <section id="home" class="section-hero py-5">
     <style>
       .hero-split {
         display: flex;
@@ -604,6 +647,20 @@
           <a class="btn btn-outline-secondary" href="https://orcid.org/0009-0009-1130-2091" target="_blank" aria-label="ORCID"><i class="fab fa-orcid"></i></a>
           <a class="btn btn-outline-secondary" href="https://scholar.google.com/citations?user=vCvfzOMAAAAJ&hl=en" target="_blank" aria-label="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
         </div>
+        <!-- Contact info -->
+        <div style="margin-top:1rem;display:flex;flex-direction:column;gap:6px;align-items:center;">
+          <a href="mailto:das.saumyadip.cse@gmail.com"
+             style="font-size:.72rem;color:var(--muted);text-decoration:none;display:flex;align-items:center;gap:5px;"
+             title="Send Email">
+            <i class="fas fa-envelope" style="color:var(--brand);font-size:.75rem;"></i>das.saumyadip.cse@gmail.com
+          </a>
+          <a href="https://wa.me/8801646891418"
+             target="_blank" rel="noopener"
+             style="font-size:.72rem;color:var(--muted);text-decoration:none;display:flex;align-items:center;gap:5px;"
+             title="WhatsApp">
+            <i class="fab fa-whatsapp" style="color:#25d366;font-size:.8rem;"></i>+880 1646-891418
+          </a>
+        </div>
       </div>
 
       <!-- DIVIDER -->
@@ -626,6 +683,8 @@
           <span class="hero-tag"><i class="fas fa-microscope me-1" style="font-size:.7rem;"></i>Deep Learning</span>
           <span class="hero-tag"><i class="fas fa-database me-1" style="font-size:.7rem;"></i>Data Science</span>
           <span class="hero-tag"><i class="fas fa-microchip me-1" style="font-size:.7rem;"></i>IoT Systems</span>
+          <span class="hero-tag"><i class="fas fa-language me-1" style="font-size:.7rem;"></i>NLP</span>
+          <span class="hero-tag"><i class="fas fa-hand-pointer me-1" style="font-size:.7rem;"></i>HCI</span>
           <span class="hero-tag"><i class="fas fa-code me-1" style="font-size:.7rem;"></i>Software Development</span>
           <span class="hero-tag"><i class="fas fa-flask me-1" style="font-size:.7rem;"></i>Research</span>
         </div>
@@ -660,7 +719,7 @@
             <p class="text-muted mb-1">Bachelor of Science in Computer Science and Engineering &mdash; Jan 2023 – Dec 2026 (Expected)</p>
             <p class="mb-0"><strong>CGPA:</strong> 3.99 / 4.00 &nbsp;|&nbsp; Major in Information Systems</p>
             <div class="mt-3">
-              <button class="btn btn-sm btn-outline-primary edu-transcript-btn" data-pdf="GradeReportBySemester23-50404-1.pdf">
+              <button class="btn btn-sm btn-outline-primary edu-transcript-btn" data-pdf="GradeReportBySemester23-50404-1.pdf" data-degree="BSc in Computer Science and Engineering">
                 <i class="fas fa-file-alt me-1"></i>View transcript
               </button>
             </div>
@@ -675,7 +734,7 @@
             <p class="text-muted mb-1">Higher Secondary Certificate (Science) &mdash; 2021 &nbsp;|&nbsp; Dhaka, Bangladesh</p>
             <p class="mb-0">GPA: 5.00 / 5.00</p>
             <div class="mt-3">
-              <button class="btn btn-sm btn-outline-primary edu-transcript-btn" data-pdf="HSC Transcript.pdf">
+              <button class="btn btn-sm btn-outline-primary edu-transcript-btn" data-pdf="HSC Transcript.pdf" data-degree="Higher Secondary Certificate (Science)">
                 <i class="fas fa-file-alt me-1"></i>View transcript
               </button>
             </div>
@@ -690,7 +749,7 @@
             <p class="text-muted mb-1">Secondary School Certificate (Science) &mdash; 2019 &nbsp;|&nbsp; Moulvibazar, Bangladesh</p>
             <p class="mb-0">GPA: 5.00 / 5.00</p>
             <div class="mt-3">
-              <button class="btn btn-sm btn-outline-primary edu-transcript-btn" data-pdf="SSC Transcript.pdf">
+              <button class="btn btn-sm btn-outline-primary edu-transcript-btn" data-pdf="SSC Transcript.pdf" data-degree="Secondary School Certificate (Science)">
                 <i class="fas fa-file-alt me-1"></i>View transcript
               </button>
             </div>
@@ -740,7 +799,7 @@
               <div class="pub-extra">In <em>2026 IEEE 2nd International Conference on Quantum Photonics, Artificial Intelligence &amp; Networking</em>. 16–18 April 2026, Chattogram, Bangladesh.</div>
             </div>
             <div class="pub-actions">
-              <span class="badge bg-primary">Conference</span>
+              <span class="badge badge-conf">Conference</span>
               <span class="btn btn-sm btn-outline-primary">Open</span>
             </div>
           </div>
@@ -758,7 +817,7 @@
               <div class="pub-extra">In <em>7th International Conference on Electrical Information and Communication Technology</em>, IEEE. 18–20 Dec 2025, Khulna, Bangladesh. DOI: 10.1109/EICT68394.2025.11355612</div>
             </div>
             <div class="pub-actions">
-              <span class="badge bg-primary">Conference</span>
+              <span class="badge badge-conf">Conference</span>
               <span class="btn btn-sm btn-outline-primary">DOI</span>
             </div>
           </div>
@@ -776,7 +835,7 @@
               <div class="pub-extra">In <em>3rd International Conference on Textile Science and Engineering</em>. 24 May 2025, BUTEX, Dhaka, Bangladesh.</div>
             </div>
             <div class="pub-actions">
-              <span class="badge bg-primary">Conference</span>
+              <span class="badge badge-conf">Conference</span>
               <span class="btn btn-sm btn-outline-primary">Open</span>
             </div>
           </div>
@@ -794,7 +853,7 @@
               <div class="pub-extra">In <em>3rd International Conference on Textile Science and Engineering</em>. 24 May 2025, BUTEX, Dhaka, Bangladesh.</div>
             </div>
             <div class="pub-actions">
-              <span class="badge bg-primary">Conference</span>
+              <span class="badge badge-conf">Conference</span>
               <span class="btn btn-sm btn-outline-primary">Open</span>
             </div>
           </div>
@@ -812,7 +871,7 @@
               <div class="pub-extra">In <em>1st International Conference on Engineering and Technology for Sustainable Development (ICETSD 2025)</em>. 22–23 Feb 2025, JUST, Jashore, Bangladesh.</div>
             </div>
             <div class="pub-actions">
-              <span class="badge bg-primary">Conference</span>
+              <span class="badge badge-conf">Conference</span>
               <span class="btn btn-sm btn-outline-primary">Open</span>
             </div>
           </div>
@@ -829,7 +888,7 @@
             <div class="pub-extra">Manuscript submitted for publication in <em>IEEE Transactions on Medical Imaging</em>.</div>
           </div>
           <div class="pub-actions">
-            <span class="badge bg-secondary">Submitted</span>
+            <span class="badge badge-sub">Submitted</span>
             <button class="btn btn-sm btn-outline-primary" type="button">Details</button>
           </div>
         </div>
@@ -845,7 +904,7 @@
             <div class="pub-extra">Manuscript submitted for acceptance in <em>IEEE International Conference on Microwave, Antennas, RF and Sensors (MARSCON) 2026</em>.</div>
           </div>
           <div class="pub-actions">
-            <span class="badge bg-secondary">Submitted</span>
+            <span class="badge badge-sub">Submitted</span>
             <button class="btn btn-sm btn-outline-primary" type="button">Details</button>
           </div>
         </div>
@@ -861,7 +920,7 @@
             <div class="pub-extra">Manuscript submitted for acceptance in <em>16th IEEE International Conference on Control System, Computing and Engineering</em>, Penang, Malaysia.</div>
           </div>
           <div class="pub-actions">
-            <span class="badge bg-secondary">Submitted</span>
+            <span class="badge badge-sub">Submitted</span>
             <button class="btn btn-sm btn-outline-primary" type="button">Details</button>
           </div>
         </div>
@@ -877,7 +936,7 @@
             <div class="pub-extra">Manuscript submitted for publication in <em>IET Information Security</em>.</div>
           </div>
           <div class="pub-actions">
-            <span class="badge bg-secondary">Submitted</span>
+            <span class="badge badge-sub">Submitted</span>
             <button class="btn btn-sm btn-outline-primary" type="button">Details</button>
           </div>
         </div>
@@ -893,7 +952,7 @@
             <div class="pub-extra">Manuscript submitted for publication in <em>International Journal of Modern Education and Computer Science (IJMECS)</em>.</div>
           </div>
           <div class="pub-actions">
-            <span class="badge bg-secondary">Submitted</span>
+            <span class="badge badge-sub">Submitted</span>
             <button class="btn btn-sm btn-outline-primary" type="button">Details</button>
           </div>
         </div>
@@ -909,7 +968,7 @@
             <div class="pub-extra">Manuscript submitted for acceptance in <em>ICEFronT: IEEE International Conference on Engineering and Frontier Technologies 2026</em>.</div>
           </div>
           <div class="pub-actions">
-            <span class="badge bg-secondary">Submitted</span>
+            <span class="badge badge-sub">Submitted</span>
             <button class="btn btn-sm btn-outline-primary" type="button">Details</button>
           </div>
         </div>
@@ -925,7 +984,7 @@
             <div class="pub-extra">Manuscript submitted for acceptance in <em>ICEFronT: IEEE International Conference on Engineering and Frontier Technologies 2026</em>.</div>
           </div>
           <div class="pub-actions">
-            <span class="badge bg-secondary">Submitted</span>
+            <span class="badge badge-sub">Submitted</span>
             <button class="btn btn-sm btn-outline-primary" type="button">Details</button>
           </div>
         </div>
@@ -1317,7 +1376,8 @@
     <h2 class="mb-3">Contact</h2>
     <p class="text-muted">
       For research collaborations or project inquiries — email
-      <a href="/cdn-cgi/l/email-protection#791d180a570a180c1400181d1009571a0a1c391e14181015571a1614" style="color:var(--brand);"><span class="__cf_email__" data-cfemail="89ede8faa7fae8fce4f0e8ede0f9a7eafaecc9eee4e8e0e5a7eae6e4">[email&#160;protected]</span></a>
+      <a href="mailto:das.saumyadip.cse@gmail.com" style="color:var(--brand);font-weight:600;">das.saumyadip.cse@gmail.com</a>
+      or WhatsApp <a href="https://wa.me/8801646891418" target="_blank" rel="noopener" style="color:var(--brand);font-weight:600;">+880 1646-891418</a>,
       or send a message below.
     </p>
 
@@ -1354,6 +1414,7 @@
     </div>
   </section>
 
+</div><!-- /page-inner -->
 </main>
 
 <!-- ============================================================
@@ -1370,8 +1431,8 @@
 <!-- ============================================================
      FOOTER
 ============================================================ -->
-<footer class="bg-light py-4 mt-3">
-  <div class="container text-center small text-muted">
+<footer class="py-4 mt-3">
+  <div class="page-inner text-center small" style="color:var(--muted)">
     <div class="mb-2 social-icons">
       <a class="btn btn-outline-secondary me-2" href="https://github.com/saumyadip-das-2003" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
       <a class="btn btn-outline-secondary me-2" href="https://www.linkedin.com/in/saumyadip-sohom/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
@@ -1450,7 +1511,7 @@
 <!-- ============================================================
      SCRIPTS
 ============================================================ -->
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
 document.addEventListener('DOMContentLoaded', function () {
@@ -1459,11 +1520,13 @@ document.addEventListener('DOMContentLoaded', function () {
   var fy = document.getElementById('fyear');
   if (fy) fy.textContent = new Date().getFullYear();
 
-  /* ── DARK MODE TOGGLE ── */
+  /* ── DARK MODE — system default, then localStorage override ── */
   var html = document.documentElement;
   var toggle = document.getElementById('themeToggle');
-  var saved = localStorage.getItem('theme') || 'light';
-  html.setAttribute('data-theme', saved);
+  var saved = localStorage.getItem('theme');
+  var systemDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  var theme = saved ? saved : (systemDark ? 'dark' : 'light');
+  html.setAttribute('data-theme', theme);
 
   if (toggle) {
     toggle.addEventListener('click', function () {
@@ -1473,6 +1536,13 @@ document.addEventListener('DOMContentLoaded', function () {
       localStorage.setItem('theme', next);
     });
   }
+
+  /* Listen for system theme change when no manual override */
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
+    if (!localStorage.getItem('theme')) {
+      html.setAttribute('data-theme', e.matches ? 'dark' : 'light');
+    }
+  });
 
   /* ── BACK TO TOP ── */
   var btt = document.getElementById('backToTop');
@@ -1510,14 +1580,26 @@ document.addEventListener('DOMContentLoaded', function () {
   var navbarEl = document.querySelector('.navbar');
 
   function updateNav() {
-    var scrollPos = window.scrollY + 120;
-    sections.forEach(function (sec) {
-      if (sec.offsetTop <= scrollPos && (sec.offsetTop + sec.offsetHeight) > scrollPos) {
-        document.querySelectorAll('.nav-link').forEach(function (a) { a.classList.remove('active'); });
-        var link = document.querySelector('.nav-link[href="/#' + sec.id + '"]');
-        if (link) link.classList.add('active');
-      }
-    });
+    var scrollPos = window.scrollY + 130;
+    var activeId = null;
+
+    /* If near top of page, always mark Home */
+    if (window.scrollY < 80) {
+      activeId = 'home';
+    } else {
+      sections.forEach(function (sec) {
+        if (sec.offsetTop <= scrollPos && (sec.offsetTop + sec.offsetHeight) > scrollPos) {
+          activeId = sec.id;
+        }
+      });
+    }
+
+    document.querySelectorAll('.nav-link').forEach(function (a) { a.classList.remove('active'); });
+    if (activeId) {
+      var link = document.querySelector('.nav-link[href="/#' + activeId + '"]');
+      if (link) link.classList.add('active');
+    }
+
     if (navbarEl) {
       if (window.scrollY > 40) navbarEl.classList.add('nav-scrolled');
       else navbarEl.classList.remove('nav-scrolled');
@@ -1728,8 +1810,23 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 </script>
 
-<!-- ── VISITOR COUNTER (counterapi.dev — free & reliable) ── -->
+<!-- ── VISITOR COUNTER ── -->
+<!-- Uses hits.sh — free, no signup. Replace YOUR_SITE_ID with your domain or any unique key -->
 <script>
 (function () {
   var el = document.getElementById('viewCount');
-  fetch('https://api.counterapi.dev/v1/saumyadip-portfolio/visits/up
+  /* hits.sh is a free, reliable, open counter — no auth needed */
+  fetch('https://hits.sh/saumyadip-das-portfolio.json')
+    .then(function(r){ return r.json(); })
+    .then(function(d){
+      if (el) el.textContent = (d.total || 0).toLocaleString();
+    })
+    .catch(function(){
+      /* Fallback: count in localStorage so at least per-device tracking works */
+      var key = 'sd_visits';
+      var n = parseInt(localStorage.getItem(key) || '0', 10) + 1;
+      localStorage.setItem(key, n);
+      if (el) el.textContent = n.toLocaleString() + ' (local)';
+    });
+})();
+</script>
