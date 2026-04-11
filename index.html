@@ -528,14 +528,7 @@
       color: var(--muted);
     }
 
-    /* Push main content left when sidebar is open */
-    @media (min-width: 1200px) {
-      body.sidebar-open .page-inner { padding-right: 316px; }
-    }
-    @media (max-width: 1199px) {
-      #aiNewsSidebar { width: 280px; }
-      body.sidebar-open .page-inner { padding-right: 0; }
-    }
+    /* Sidebar is pure overlay — never shifts content */
     @media (max-width: 900px) {
       #aiNewsSidebar { display: none !important; }
     }
@@ -2234,20 +2227,83 @@ document.addEventListener('DOMContentLoaded', function () {
     var togIcon   = document.getElementById('sidebarToggleIcon');
     if(!sidebar || !body_el) return;
 
-    /* Sources — each with an RSS URL, display name, and article count */
+    /* ── Sources: AI/ML blogs + Research indexes ── */
     var sources = [
-      { name: 'MarkTechPost',         url: 'https://www.marktechpost.com/feed/',                    count: 8  },
-      { name: 'Towards Data Science', url: 'https://towardsdatascience.com/feed',                   count: 8  },
-      { name: 'HuggingFace Blog',     url: 'https://huggingface.co/blog/feed.xml',                  count: 8  },
-      { name: 'Google DeepMind',      url: 'https://deepmind.google/blog/rss.xml',                  count: 6  },
-      { name: 'Microsoft AI Blog',    url: 'https://blogs.microsoft.com/ai/feed/',                  count: 6  },
-      { name: 'MIT Tech Review',      url: 'https://www.technologyreview.com/feed/',                 count: 6  },
-      { name: 'The TLDR AI Newsletter',url:'https://tldr.tech/ai/rss',                              count: 6  },
-      { name: 'Papers With Code',     url: 'https://paperswithcode.com/rss',                        count: 8  }
+      /* ── AI & ML News ── */
+      { name: 'MarkTechPost',          grp:'AI News',   url:'https://www.marktechpost.com/feed/',           count:8, fallback:'https://www.marktechpost.com/' },
+      { name: 'Towards Data Science',  grp:'AI News',   url:'https://towardsdatascience.com/feed',          count:8, fallback:'https://towardsdatascience.com/' },
+      { name: 'HuggingFace Blog',      grp:'AI News',   url:'https://huggingface.co/blog/feed.xml',         count:8, fallback:'https://huggingface.co/blog' },
+      { name: 'Google DeepMind',       grp:'AI News',   url:'https://deepmind.google/blog/rss.xml',         count:6, fallback:'https://deepmind.google/research/' },
+      { name: 'Microsoft AI',          grp:'AI News',   url:'https://blogs.microsoft.com/ai/feed/',         count:6, fallback:'https://blogs.microsoft.com/ai/' },
+      { name: 'MIT Tech Review',       grp:'AI News',   url:'https://www.technologyreview.com/feed/',       count:6, fallback:'https://www.technologyreview.com/topic/artificial-intelligence/' },
+      { name: 'The Batch (deeplearning.ai)', grp:'AI News', url:'https://www.deeplearning.ai/the-batch/rss/', count:6, fallback:'https://www.deeplearning.ai/the-batch/' },
+      /* ── Research Papers ── */
+      { name: 'ArXiv — CS.AI',         grp:'Research',  url:'https://rss.arxiv.org/rss/cs.AI',              count:10, fallback:'https://arxiv.org/list/cs.AI/recent' },
+      { name: 'ArXiv — CS.LG',         grp:'Research',  url:'https://rss.arxiv.org/rss/cs.LG',              count:10, fallback:'https://arxiv.org/list/cs.LG/recent' },
+      { name: 'ArXiv — cs.CL (NLP)',   grp:'Research',  url:'https://rss.arxiv.org/rss/cs.CL',              count:8,  fallback:'https://arxiv.org/list/cs.CL/recent' },
+      { name: 'Papers With Code',      grp:'Research',  url:'https://paperswithcode.com/rss',               count:8,  fallback:'https://paperswithcode.com/latest' },
+      { name: 'Semantic Scholar',      grp:'Research',  url:'https://api.semanticscholar.org/graph/v1/paper/search?query=machine+learning&fields=title,url,year&limit=5', count:5, fallback:'https://www.semanticscholar.org/' },
+      /* ── Research Indexes (static links — no RSS) ── */
+      { name: 'IEEE Xplore',           grp:'Indexes',   url:null, count:0, fallback:'https://ieeexplore.ieee.org/search/searchresult.jsp?queryText=machine+learning',
+        staticLinks:[
+          { title:'IEEE Xplore — Search Machine Learning', url:'https://ieeexplore.ieee.org/search/searchresult.jsp?queryText=machine+learning' },
+          { title:'IEEE Xplore — Search Deep Learning',    url:'https://ieeexplore.ieee.org/search/searchresult.jsp?queryText=deep+learning' },
+          { title:'IEEE Xplore — Search Agentic AI',       url:'https://ieeexplore.ieee.org/search/searchresult.jsp?queryText=agentic+ai' },
+          { title:'IEEE Xplore — Search IoT',              url:'https://ieeexplore.ieee.org/search/searchresult.jsp?queryText=IoT+machine+learning' },
+          { title:'IEEE Xplore — Early Access Articles',   url:'https://ieeexplore.ieee.org/xpl/mostRecentIssue.jsp' },
+          { title:'IEEE Transactions on Neural Networks',  url:'https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=5962385' }
+        ]
+      },
+      { name: 'ACM Digital Library',   grp:'Indexes',   url:null, count:0, fallback:'https://dl.acm.org/',
+        staticLinks:[
+          { title:'ACM DL — Search AI & Machine Learning', url:'https://dl.acm.org/topic/ccs2012/10010147' },
+          { title:'ACM DL — Latest AI Research',           url:'https://dl.acm.org/subject/ai' },
+          { title:'ACM DL — Communications of the ACM',    url:'https://cacm.acm.org/research/' },
+          { title:'ACM DL — Search Deep Learning',         url:'https://dl.acm.org/action/doSearch?query=deep+learning' },
+          { title:'ACM SIGKDD — Data Mining Research',     url:'https://dl.acm.org/action/doSearch?query=data+mining&ConceptID=119745' }
+        ]
+      },
+      { name: 'Springer — AI',         grp:'Indexes',   url:null, count:0, fallback:'https://link.springer.com/search?query=artificial+intelligence',
+        staticLinks:[
+          { title:'Springer — Artificial Intelligence Journal', url:'https://link.springer.com/journal/10994' },
+          { title:'Springer — Machine Learning Journal',        url:'https://link.springer.com/journal/10994' },
+          { title:'Springer — Search Neural Networks',         url:'https://link.springer.com/search?query=neural+networks' },
+          { title:'Springer — Search Data Science',            url:'https://link.springer.com/search?query=data+science' },
+          { title:'Springer — Nature Machine Intelligence',    url:'https://www.nature.com/natmachintell/' }
+        ]
+      },
+      { name: 'Google Scholar',        grp:'Indexes',   url:null, count:0, fallback:'https://scholar.google.com/',
+        staticLinks:[
+          { title:'Google Scholar — Search Machine Learning',   url:'https://scholar.google.com/scholar?q=machine+learning+2024' },
+          { title:'Google Scholar — Search Agentic AI',         url:'https://scholar.google.com/scholar?q=agentic+AI+LLM' },
+          { title:'Google Scholar — Search Explainable AI',     url:'https://scholar.google.com/scholar?q=explainable+AI+XAI' },
+          { title:'Google Scholar — Search IoT Deep Learning',  url:'https://scholar.google.com/scholar?q=IoT+deep+learning' },
+          { title:'Google Scholar — My Profile',                url:'https://scholar.google.com/citations?user=vCvfzOMAAAAJ' }
+        ]
+      }
     ];
 
-    var PROXY = 'https://api.allorigins.win/get?url=';
+    /* Multiple proxies in order of reliability */
+    var PROXIES = [
+      'https://api.allorigins.win/get?url=',
+      'https://corsproxy.io/?',
+      'https://api.codetabs.com/v1/proxy?quest='
+    ];
     var loadedSections = {};
+
+    function fetchWithFallback(url, proxyIdx) {
+      proxyIdx = proxyIdx || 0;
+      if(proxyIdx >= PROXIES.length) return Promise.reject(new Error('all proxies failed'));
+      var proxyUrl = PROXIES[proxyIdx] + encodeURIComponent(url);
+      return fetch(proxyUrl, {signal: AbortSignal.timeout ? AbortSignal.timeout(7000) : undefined})
+        .then(function(r){ return r.json(); })
+        .then(function(d){
+          var content = d.contents || d.data || d;
+          if(typeof content !== 'string' || content.length < 100) throw new Error('empty');
+          return content;
+        })
+        .catch(function(){ return fetchWithFallback(url, proxyIdx + 1); });
+    }
 
     function timeAgo(ds) {
       if(!ds) return '';
@@ -2260,28 +2316,34 @@ document.addEventListener('DOMContentLoaded', function () {
       return d.toLocaleDateString('en-GB',{day:'numeric',month:'short'});
     }
 
-    /* Build skeleton sections immediately */
+    /* Build skeleton sections with group headers */
     var skeletonHTML = '';
+    var lastGroup = '';
     sources.forEach(function(src, idx) {
+      if(src.grp !== lastGroup) {
+        skeletonHTML += '<div style="padding:.45rem 1rem .3rem;font-size:.58rem;font-weight:800;letter-spacing:.14em;' +
+          'text-transform:uppercase;color:var(--muted);background:var(--bg);border-bottom:1px solid var(--line);">' +
+          src.grp + '</div>';
+        lastGroup = src.grp;
+      }
+      var loadingSpinner = src.url
+        ? '<div style="padding:.6rem 1rem;color:var(--muted);font-size:.75rem;"><i class="fas fa-spinner fa-spin me-1"></i>Loading…</div>'
+        : '';
       skeletonHTML +=
         '<div class="feed-source-section" id="fss-' + idx + '">' +
           '<button class="feed-source-header" onclick="toggleFeedSection(' + idx + ')">' +
             '<div style="display:flex;align-items:center;gap:6px;">' +
               '<span class="feed-source-name">' + src.name + '</span>' +
-              '<span class="feed-source-count" id="fsc-' + idx + '">loading…</span>' +
+              '<span class="feed-source-count" id="fsc-' + idx + '">' + (src.url ? 'loading…' : '') + '</span>' +
             '</div>' +
             '<i class="fas fa-chevron-down feed-source-chevron"></i>' +
           '</button>' +
-          '<div class="feed-articles" id="fa-' + idx + '">' +
-            '<div style="padding:.6rem 1rem;color:var(--muted);font-size:.75rem;">' +
-              '<i class="fas fa-spinner fa-spin me-1"></i>Loading…</div>' +
-          '</div>' +
+          '<div class="feed-articles" id="fa-' + idx + '">' + loadingSpinner + '</div>' +
         '</div>';
     });
     body_el.innerHTML = skeletonHTML;
-    /* Open first section by default */
-    var firstSec = document.getElementById('fss-0');
-    if(firstSec) firstSec.classList.add('open');
+    /* Open first section of each group by default */
+    [0, 7, 11].forEach(function(i){ var s=document.getElementById('fss-'+i); if(s) s.classList.add('open'); });
 
     /* Add to window scope for onclick */
     window.toggleFeedSection = function(idx) {
@@ -2290,75 +2352,96 @@ document.addEventListener('DOMContentLoaded', function () {
     };
 
     /* Load each feed */
+    function makeArticleHTML(title, url, pub) {
+      var clean = title.replace(/&amp;/g,'&').replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/<[^>]+>/g,'').trim();
+      var disp  = clean.length > 72 ? clean.slice(0,72) + '…' : clean;
+      var t     = pub ? timeAgo(pub) : '';
+      return '<a class="feed-article-link" href="' + url.trim() + '" target="_blank" rel="noopener">' +
+        '<div class="feed-article-title">' + disp + '</div>' +
+        (t ? '<div class="feed-article-time">' + t + '</div>' : '') +
+        '</a>';
+    }
+
+    function showFallback(idx, src) {
+      var articleEl = document.getElementById('fa-' + idx);
+      var countEl   = document.getElementById('fsc-' + idx);
+      /* If static links defined, show those */
+      if(src.staticLinks && src.staticLinks.length) {
+        var html = src.staticLinks.map(function(sl){
+          return makeArticleHTML(sl.title, sl.url, '');
+        }).join('');
+        if(articleEl) articleEl.innerHTML = html;
+        if(countEl)   countEl.textContent = src.staticLinks.length + ' links';
+        return;
+      }
+      if(articleEl) articleEl.innerHTML =
+        '<a class="feed-article-link" href="' + (src.fallback||'#') + '" target="_blank" rel="noopener">' +
+        '<div class="feed-article-title">Visit ' + src.name + '</div>' +
+        '<div class="feed-article-time">Open website</div></a>';
+      if(countEl) countEl.textContent = 'visit';
+    }
+
     sources.forEach(function(src, idx) {
-      fetch(PROXY + encodeURIComponent(src.url))
-        .then(function(r){ return r.json(); })
-        .then(function(d){
-          if(!d || !d.contents) throw new Error('empty');
-          var doc = new DOMParser().parseFromString(d.contents, 'text/xml');
+      /* Static index sources — show links immediately, no fetch needed */
+      if(!src.url) { showFallback(idx, src); return; }
+
+      fetchWithFallback(src.url)
+        .then(function(xmlStr){
+          var doc   = new DOMParser().parseFromString(xmlStr, 'text/xml');
           var items = Array.from(doc.querySelectorAll('item, entry')).slice(0, src.count);
           if(!items.length) throw new Error('no items');
 
           var articlesHTML = items.map(function(item) {
-            var title = (item.querySelector('title')||{}).textContent || '';
-            var link  = (item.querySelector('link')||{}).textContent ||
-                        (item.querySelector('link')||{}).getAttribute('href') || '';
-            /* Some feeds have <link> as an element with text, others as attribute */
-            if(!link.startsWith('http')) {
-              var linkEl = item.querySelector('link');
-              link = linkEl ? (linkEl.getAttribute('href') || linkEl.textContent || '') : '';
+            /* Title */
+            var titleEl = item.querySelector('title');
+            var title   = titleEl ? (titleEl.textContent || '') : '';
+            /* Link — try multiple approaches */
+            var link = '';
+            var linkEl = item.querySelector('link');
+            if(linkEl) {
+              link = linkEl.getAttribute('href') || linkEl.textContent || '';
+              /* For Atom feeds, <link href="..."/> */
+              if(!link && linkEl.nextSibling) link = linkEl.nextSibling.textContent || '';
             }
-            var pub   = (item.querySelector('pubDate')||item.querySelector('published')||{}).textContent || '';
-            title = title.trim().replace(/&amp;/g,'&').replace(/&lt;/g,'<').replace(/&gt;/g,'>');
-            var display = title.length > 70 ? title.slice(0,70) + '…' : title;
-            if(!title || !link) return '';
-            return '<a class="feed-article-link" href="' + link.trim() + '" target="_blank" rel="noopener">' +
-              '<div class="feed-article-title">' + display + '</div>' +
-              '<div class="feed-article-time">' + timeAgo(pub) + '</div>' +
-              '</a>';
+            /* ArXiv uses <link> differently */
+            if(!link || !link.startsWith('http')) {
+              var allLinks = Array.from(item.querySelectorAll('link'));
+              allLinks.forEach(function(l) {
+                var h = l.getAttribute('href') || l.textContent || '';
+                if(h.startsWith('http') && !link) link = h;
+              });
+            }
+            if(!link || !link.startsWith('http')) return '';
+            /* Date */
+            var pubEl = item.querySelector('pubDate') || item.querySelector('published') || item.querySelector('updated');
+            var pub   = pubEl ? pubEl.textContent : '';
+            return makeArticleHTML(title, link, pub);
           }).filter(Boolean).join('');
 
           var articleEl = document.getElementById('fa-' + idx);
           var countEl   = document.getElementById('fsc-' + idx);
-          if(articleEl) articleEl.innerHTML = articlesHTML || '<div style="padding:.6rem 1rem;color:var(--muted);font-size:.75rem;">No articles found.</div>';
-          if(countEl)   countEl.textContent = items.length + ' articles';
+          if(articlesHTML) {
+            if(articleEl) articleEl.innerHTML = articlesHTML;
+            if(countEl)   countEl.textContent = items.length + ' articles';
+          } else {
+            showFallback(idx, src);
+          }
         })
-        .catch(function(){
-          /* Show fallback link for this source */
-          var articleEl = document.getElementById('fa-' + idx);
-          var countEl   = document.getElementById('fsc-' + idx);
-          var fallbackLinks = {
-            'MarkTechPost':          'https://www.marktechpost.com/',
-            'Towards Data Science':  'https://towardsdatascience.com/',
-            'HuggingFace Blog':      'https://huggingface.co/blog',
-            'Google DeepMind':       'https://deepmind.google/research/',
-            'Microsoft AI Blog':     'https://blogs.microsoft.com/ai/',
-            'MIT Tech Review':       'https://www.technologyreview.com/topic/artificial-intelligence/',
-            'The TLDR AI Newsletter':'https://tldr.tech/ai',
-            'Papers With Code':      'https://paperswithcode.com/latest'
-          };
-          var url = fallbackLinks[src.name] || '#';
-          if(articleEl) articleEl.innerHTML =
-            '<a class="feed-article-link" href="' + url + '" target="_blank" rel="noopener">' +
-            '<div class="feed-article-title">Visit ' + src.name + '</div>' +
-            '<div class="feed-article-time">Click to open</div></a>';
-          if(countEl) countEl.textContent = 'visit';
-        });
+        .catch(function(){ showFallback(idx, src); });
     });
 
     /* Sidebar toggle */
-    document.body.classList.add('sidebar-open');
     if(toggleBtn) {
       toggleBtn.addEventListener('click', function(){
         sidebar.classList.add('collapsed');
-        document.body.classList.remove('sidebar-open');
+
         if(openTab) openTab.style.display = '';
       });
     }
     if(openTab) {
       openTab.addEventListener('click', function(){
         sidebar.classList.remove('collapsed');
-        document.body.classList.add('sidebar-open');
+
         openTab.style.display = 'none';
       });
     }
