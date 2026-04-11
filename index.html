@@ -1,256 +1,460 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Saumyadip Das — Researcher in AI & ML</title>
-
   <meta name="description" content="Saumyadip Das — Computer Science researcher focusing on AI, ML and IoT.">
   <meta name="theme-color" content="#0b5ed7">
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=DM+Serif+Display&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link href="css/styles.css" rel="stylesheet">
 
-
-  <!-- PROFESSIONAL STYLES (replace your /css/styles.css or keep it but ensure it doesn't override these) -->
   <style>
-    :root{
-      --brand:#0b5ed7;
-      --ink:#0f172a;      /* slate-900 */
-      --muted:#64748b;    /* slate-500 */
-      --line:#e5e7eb;     /* gray-200 */
-      --bg:#f8fafc;       /* slate-50 */
-      --card:#ffffff;
-      --shadow: 0 10px 30px rgba(2,6,23,.08);
-      --shadow2: 0 18px 45px rgba(2,6,23,.10);
-      --radius: 16px;
+    /* ============================================================
+       DESIGN TOKENS — light & dark
+    ============================================================ */
+    :root {
+      --brand:        #0b5ed7;
+      --brand-soft:   rgba(11,94,215,.10);
+      --ink:          #0f172a;
+      --muted:        #64748b;
+      --line:         #e5e7eb;
+      --bg:           #f8fafc;
+      --surface:      #ffffff;
+      --card:         #ffffff;
+      --nav-bg:       rgba(255,255,255,.80);
+      --nav-border:   rgba(229,231,235,.70);
+      --shadow:       0 10px 30px rgba(2,6,23,.08);
+      --shadow2:      0 18px 45px rgba(2,6,23,.10);
+      --radius:       16px;
+      --toggle-bg:    #e2e8f0;
+      --toggle-knob:  #ffffff;
+      --toggle-icon:  "☀️";
     }
 
-    html,body{ height:100%; }
-    body{
-      font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    [data-theme="dark"] {
+      --brand:        #4d94ff;
+      --brand-soft:   rgba(77,148,255,.12);
+      --ink:          #f1f5f9;
+      --muted:        #94a3b8;
+      --line:         #1e293b;
+      --bg:           #0f172a;
+      --surface:      #1e293b;
+      --card:         #1e293b;
+      --nav-bg:       rgba(15,23,42,.88);
+      --nav-border:   rgba(30,41,59,.90);
+      --shadow:       0 10px 30px rgba(0,0,0,.30);
+      --shadow2:      0 18px 45px rgba(0,0,0,.40);
+      --toggle-bg:    #334155;
+      --toggle-knob:  #0f172a;
+    }
+
+    /* ============================================================
+       BASE
+    ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html, body { height: 100%; }
+
+    body {
+      font-family: "Sora", system-ui, -apple-system, sans-serif;
       color: var(--ink);
-      background: linear-gradient(180deg, #ffffff 0%, var(--bg) 100%);
+      background-color: var(--bg);
       letter-spacing: -0.01em;
       text-rendering: optimizeLegibility;
+      transition: background-color .35s ease, color .35s ease;
     }
 
-    /* Navbar */
-    .navbar{
-      background: rgba(255,255,255,.75);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(229,231,235,.7);
-      transition: box-shadow .2s ease, background .2s ease;
+    /* ============================================================
+       NAVBAR
+    ============================================================ */
+    .navbar {
+      background: var(--nav-bg);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--nav-border);
+      transition: box-shadow .2s ease, background .3s ease, border-color .3s ease;
     }
-    .navbar.nav-scrolled{
-      background: rgba(255,255,255,.92);
+    .navbar.nav-scrolled {
       box-shadow: 0 6px 18px rgba(2,6,23,.08);
     }
-    .navbar .navbar-brand{
-      font-weight: 800;
-      letter-spacing: -0.03em;
+    [data-theme="dark"] .navbar.nav-scrolled {
+      box-shadow: 0 6px 18px rgba(0,0,0,.35);
+    }
+    .navbar .navbar-brand {
+      font-family: "DM Serif Display", serif;
+      font-weight: 400;
+      font-size: 1.35rem;
+      letter-spacing: -0.02em;
       color: var(--ink);
     }
-    .navbar .nav-link{
+    .navbar .nav-link {
       font-weight: 600;
-      color: rgba(15,23,42,.78);
-      padding: .6rem .85rem;
-      border-radius: 12px;
-    }
-    .navbar .nav-link:hover{
-      background: rgba(11,94,215,.08);
+      font-size: .88rem;
       color: var(--ink);
+      opacity: .78;
+      padding: .55rem .8rem;
+      border-radius: 10px;
+      transition: background .15s, opacity .15s;
     }
-    .navbar .nav-link.active{
-      background: rgba(11,94,215,.12);
-      color: var(--brand);
+    .navbar .nav-link:hover  { background: var(--brand-soft); opacity: 1; }
+    .navbar .nav-link.active { background: var(--brand-soft); color: var(--brand); opacity: 1; }
+
+    /* ============================================================
+       DARK MODE TOGGLE
+    ============================================================ */
+    .theme-toggle {
+      width: 46px;
+      height: 24px;
+      border-radius: 999px;
+      background: var(--toggle-bg);
+      border: none;
+      position: relative;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: background .3s;
+      outline: none;
+      display: flex;
+      align-items: center;
+      padding: 0 4px;
+    }
+    .theme-toggle::after {
+      content: "";
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--toggle-knob);
+      box-shadow: 0 1px 4px rgba(0,0,0,.25);
+      transition: transform .3s ease, background .3s;
+      flex-shrink: 0;
+    }
+    [data-theme="dark"] .theme-toggle::after {
+      transform: translateX(20px);
+    }
+    .theme-toggle-wrap {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      margin-left: .75rem;
+    }
+    .theme-toggle-wrap .ti-icon {
+      font-size: .9rem;
+      line-height: 1;
+      transition: opacity .2s;
+      user-select: none;
     }
 
-    /* Layout / typography */
-    main.container{ max-width: 1100px; }
-    section{ scroll-margin-top: 90px; }
-    h1{ font-weight: 900; letter-spacing: -0.04em; }
-    h2{
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      margin-bottom: 1rem;
-    }
-    .lead{ color: rgba(15,23,42,.72); }
+    /* ============================================================
+       LAYOUT
+    ============================================================ */
+    main.container { max-width: 1100px; }
+    section { scroll-margin-top: 90px; }
 
-    /* Buttons */
-    .btn{
-      border-radius: 12px;
-      font-weight: 700;
-    }
-    .btn-primary{
-      background: var(--brand);
-      border-color: var(--brand);
-      box-shadow: 0 10px 22px rgba(11,94,215,.18);
-    }
-    .btn-outline-primary{
-      border-color: rgba(11,94,215,.35);
-      color: var(--brand);
-    }
-    .btn-outline-primary:hover{
-      background: rgba(11,94,215,.08);
-      border-color: rgba(11,94,215,.45);
-      color: var(--brand);
-    }
-    .btn-outline-secondary{
-      border-color: rgba(100,116,139,.35);
-    }
+    h1 { font-family: "DM Serif Display", serif; font-weight: 400; letter-spacing: -0.03em; color: var(--ink); }
+    h2 { font-weight: 800; letter-spacing: -0.03em; margin-bottom: 1rem; color: var(--ink); }
+    p, li { color: var(--ink); }
+    .lead { color: var(--muted); }
+    .text-muted { color: var(--muted) !important; }
+    small { color: var(--muted); }
 
-    /* Cards */
-    .card{
-      border: 1px solid rgba(229,231,235,.9);
+    /* ============================================================
+       BUTTONS
+    ============================================================ */
+    .btn { border-radius: 12px; font-weight: 700; font-size: .875rem; }
+    .btn-primary { background: var(--brand); border-color: var(--brand); box-shadow: 0 8px 20px rgba(11,94,215,.18); }
+    .btn-primary:hover { background: #0950c3; border-color: #0950c3; }
+    .btn-outline-primary { border-color: rgba(11,94,215,.4); color: var(--brand); }
+    .btn-outline-primary:hover { background: var(--brand-soft); border-color: var(--brand); color: var(--brand); }
+    .btn-outline-primary.active { background: var(--brand-soft); border-color: var(--brand); color: var(--brand); }
+    .btn-outline-secondary { border-color: var(--line); color: var(--muted); }
+    .btn-outline-secondary:hover { background: var(--brand-soft); border-color: var(--brand); color: var(--brand); }
+
+    /* ============================================================
+       CARDS
+    ============================================================ */
+    .card {
+      border: 1px solid var(--line);
       border-radius: var(--radius);
       background: var(--card);
-      box-shadow: 0 8px 24px rgba(2,6,23,.06);
-    }
-    .card-title{ font-weight: 800; letter-spacing: -0.02em; }
-    .text-muted{ color: var(--muted) !important; }
-
-    /* Hero */
-    .section-hero{
-      position: relative;
-      overflow: hidden;
-    }
-    .portrait{
-      width: 224px;
-      height: 224px;
-      object-fit: cover;
-      border: 4px solid rgba(255,255,255,.9);
       box-shadow: var(--shadow);
+      transition: background .35s, border-color .35s, box-shadow .35s;
     }
-    .hero-orn{
-      position:absolute;
+    .card-title { font-weight: 800; letter-spacing: -0.02em; color: var(--ink); }
+    .card-text  { color: var(--muted); }
+
+    /* ============================================================
+       HERO
+    ============================================================ */
+    .section-hero { position: relative; overflow: hidden; }
+    .portrait {
+      width: 200px; height: 200px;
+      object-fit: cover;
+      border: 4px solid var(--surface);
+      box-shadow: var(--shadow);
+      transition: border-color .35s;
+    }
+    .hero-orn {
+      position: absolute;
       inset: auto -180px -220px auto;
-      width: 520px;
-      height: 520px;
-      pointer-events:none;
-      opacity:.9;
+      width: 480px; height: 480px;
+      pointer-events: none;
+      opacity: .6;
     }
 
-    /* Section soft panels */
-    .section-education,.section-publications,.section-projects,.section-skills,
-    .section-awards,.section-certifications{
-      padding-top: 72px !important;
-      padding-bottom: 72px !important;
+    /* ============================================================
+       SECTION SPACING
+    ============================================================ */
+    .section-education,
+    .section-publications,
+    .section-projects,
+    .section-skills,
+    .section-awards,
+    .section-certifications { padding-top: 72px !important; padding-bottom: 72px !important; }
+
+    /* ============================================================
+       PUBLICATIONS
+    ============================================================ */
+    .pub-header { display: flex; gap: 12px; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; }
+    .pub-legend {
+      font-size: .83rem; color: var(--muted);
+      background: var(--surface);
+      border: 1px solid var(--line);
+      padding: .5rem .75rem; border-radius: 14px;
+      transition: background .35s, border-color .35s;
+    }
+    .pub-legend code {
+      background: var(--brand-soft); color: var(--brand);
+      padding: .1rem .35rem; border-radius: 8px; font-weight: 800;
+    }
+    .pub-list { display: flex; flex-direction: column; gap: 12px; }
+    .pub-row {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--card);
+      padding: 14px;
+      box-shadow: var(--shadow);
+      display: flex; gap: 14px; align-items: flex-start;
+      transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease, background .35s;
+    }
+    .pub-row:hover { transform: translateY(-2px); box-shadow: var(--shadow2); border-color: rgba(11,94,215,.30); }
+    .pub-code {
+      min-width: 62px; text-align: center;
+      font-weight: 900; font-size: .82rem;
+      padding: .35rem .55rem; border-radius: 12px;
+      border: 1px solid var(--line);
+      background: var(--bg);
+      color: var(--ink);
+      transition: background .35s, border-color .35s, color .35s;
+    }
+    .pub-main { flex: 1; }
+    .pub-title { font-weight: 800; font-size: .95rem; letter-spacing: -0.02em; margin-bottom: .25rem; line-height: 1.3; color: var(--ink); }
+    .pub-meta  { color: var(--muted); font-size: .88rem; margin-bottom: .3rem; }
+    .pub-meta strong { font-weight: 800; color: var(--ink); }
+    .pub-extra { color: var(--muted); font-size: .85rem; }
+    .pub-actions { display: flex; flex-direction: column; gap: 8px; align-items: stretch; min-width: 130px; }
+    @media (max-width: 768px) {
+      .pub-row { flex-direction: column; }
+      .pub-actions { flex-direction: row; min-width: 0; }
+      .pub-code { min-width: auto; width: fit-content; }
     }
 
-    /* Small UI polish */
-    .social-icons .btn{ border-radius: 12px; }
-    .badge{ border-radius: 999px; font-weight: 800; letter-spacing: -0.01em; }
+    /* ============================================================
+       SKILLS
+    ============================================================ */
+    .section-skills { overflow: visible; }
+    .skills-row { overflow: visible; }
 
-    /* Reveal animation */
-    .reveal{ opacity:0; transform: translateY(10px); transition: all .55s ease; }
-    .reveal.visible{ opacity:1; transform:none; }
+    .skill-tile {
+      position: relative; overflow: visible;
+      border: 1px solid var(--line); border-radius: 18px;
+      background: var(--card); box-shadow: var(--shadow);
+      transition: transform .16s ease, box-shadow .16s ease, border-color .16s ease, background .35s;
+      padding: 18px; height: 100%; z-index: 1;
+    }
+    .skill-tile:hover, .skill-tile.is-open {
+      transform: translateY(-3px); box-shadow: var(--shadow2);
+      border-color: rgba(11,94,215,.35); z-index: 20;
+    }
+    .skill-head { display: flex; gap: 14px; align-items: center; }
+    .skill-icon {
+      width: 48px; height: 48px; border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      background: var(--brand-soft); color: var(--brand);
+      font-size: 20px; flex: 0 0 auto;
+      transition: background .35s;
+    }
+    .skill-title { font-weight: 800; margin: 0; letter-spacing: -0.02em; line-height: 1.1; color: var(--ink); }
+    .skill-subtitle { font-size: .88rem; color: var(--muted); margin-top: 4px; }
 
-    /* Publications — professional list styling */
-    .pub-header{
-      display:flex;
-      gap:12px;
-      align-items:flex-start;
-      justify-content: space-between;
-      flex-wrap: wrap;
-    }
-    .pub-legend{
-      font-size: .85rem;
-      color: var(--muted);
-      background: rgba(255,255,255,.75);
-      border: 1px solid rgba(229,231,235,.85);
-      padding: .55rem .75rem;
-      border-radius: 14px;
-    }
-    .pub-legend code{
-      background: rgba(11,94,215,.08);
-      color: var(--brand);
-      padding: .1rem .35rem;
-      border-radius: 8px;
-      font-weight: 800;
-    }
-
-    .pub-list{
-      display:flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .pub-row{
-      border: 1px solid rgba(229,231,235,.9);
+    .skill-popover {
+      position: absolute; left: 0; right: 0;
+      top: calc(100% + 12px);
+      background: var(--card);
+      border: 1px solid var(--line);
       border-radius: 16px;
-      background: #fff;
-      padding: 14px 14px;
-      box-shadow: 0 10px 26px rgba(2,6,23,.06);
-      transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
-      display:flex;
-      gap: 14px;
-      align-items:flex-start;
+      box-shadow: 0 24px 60px rgba(2,6,23,.18);
+      padding: 14px 16px;
+      z-index: 9999;
+      opacity: 0; transform: translateY(-6px);
+      pointer-events: none;
+      transition: opacity .14s ease, transform .14s ease, background .35s, border-color .35s;
     }
-    .pub-row:hover{
-      transform: translateY(-2px);
-      box-shadow: var(--shadow2);
-      border-color: rgba(11,94,215,.25);
+    [data-theme="dark"] .skill-popover {
+      box-shadow: 0 24px 60px rgba(0,0,0,.45);
     }
+    .skill-popover::before {
+      content: ""; position: absolute;
+      top: -8px; left: 26px;
+      width: 16px; height: 16px;
+      background: var(--card);
+      border-left: 1px solid var(--line);
+      border-top: 1px solid var(--line);
+      transform: rotate(45deg);
+      transition: background .35s, border-color .35s;
+    }
+    .skill-tile:hover .skill-popover,
+    .skill-tile.is-open .skill-popover { opacity: 1; transform: translateY(0); pointer-events: auto; }
+    .skill-popover h6 { font-weight: 800; letter-spacing: -0.01em; margin: 0 0 8px 0; font-size: .95rem; color: var(--ink); }
+    .skill-popover ul { margin: 0; padding-left: 18px; color: var(--ink); line-height: 1.65; font-size: .9rem; }
+    .skill-popover li { margin: 6px 0; }
 
-    .pub-code{
-      min-width: 62px;
-      text-align: center;
-      font-weight: 900;
-      letter-spacing: -0.02em;
-      padding: .35rem .55rem;
-      border-radius: 12px;
-      border: 1px solid rgba(229,231,235,.9);
-      background: rgba(248,250,252,.9);
-      color: rgba(15,23,42,.85);
+    /* ============================================================
+       AWARDS / CERTS
+    ============================================================ */
+    .award-img, .cert-img {
+      width: 100%; border-radius: 10px; margin-top: 10px;
+      cursor: pointer; border: 1px solid var(--line);
+      transition: border-color .15s;
     }
+    .award-img:hover, .cert-img:hover { border-color: var(--brand); }
 
-    .pub-main{ flex: 1; }
-    .pub-title{
-      font-weight: 900;
-      letter-spacing: -0.02em;
-      margin-bottom: .25rem;
-      line-height: 1.25;
+    /* ============================================================
+       MODALS
+    ============================================================ */
+    .modal-content {
+      background: var(--card); color: var(--ink);
+      border: 1px solid var(--line); border-radius: var(--radius);
+      transition: background .35s, border-color .35s;
     }
-    .pub-meta{
-      color: rgba(15,23,42,.70);
-      font-size: .95rem;
-      margin-bottom: .35rem;
-    }
-    .pub-meta strong{ font-weight: 900; }
-    .pub-extra{
-      color: var(--muted);
-      font-size: .92rem;
-    }
+    .modal-header { border-bottom: 1px solid var(--line); }
+    .modal-footer { border-top: 1px solid var(--line); }
+    .modal-title { font-weight: 800; color: var(--ink); }
+    .btn-close { filter: var(--btn-close-filter, none); }
+    [data-theme="dark"] .btn-close { filter: invert(1); }
 
-    .pub-actions{
-      display:flex;
-      flex-direction: column;
-      gap:8px;
-      align-items: stretch;
-      min-width: 140px;
+    /* ============================================================
+       FORMS
+    ============================================================ */
+    .form-control, .form-select {
+      background: var(--surface); color: var(--ink);
+      border: 1px solid var(--line);
+      transition: background .35s, border-color .15s, color .35s;
     }
-
-    @media (max-width: 768px){
-      .pub-row{ flex-direction: column; }
-      .pub-actions{ flex-direction: row; min-width: 0; }
-      .pub-code{ min-width: auto; width: fit-content; }
+    .form-control:focus, .form-select:focus {
+      background: var(--surface); color: var(--ink);
+      border-color: var(--brand);
+      box-shadow: 0 0 0 3px rgba(11,94,215,.15);
     }
+    .form-label { color: var(--ink); font-weight: 600; }
+    ::placeholder { color: var(--muted) !important; opacity: 1; }
 
-    /* Footer */
-    footer{
-      border-top: 1px solid rgba(229,231,235,.85);
-      background: rgba(255,255,255,.8) !important;
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+    footer {
+      border-top: 1px solid var(--line);
+      background: var(--surface) !important;
       backdrop-filter: blur(10px);
+      transition: background .35s, border-color .35s;
+    }
+
+    /* ============================================================
+       BACK TO TOP
+    ============================================================ */
+    #backToTop {
+      position: fixed;
+      bottom: 28px;
+      right: 24px;
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: var(--brand);
+      color: #fff;
+      border: none;
+      box-shadow: 0 8px 20px rgba(11,94,215,.35);
+      font-size: 1.1rem;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none;
+      transform: translateY(12px);
+      transition: opacity .25s, transform .25s, background .2s;
+      z-index: 1050;
+    }
+    #backToTop.show { opacity: 1; pointer-events: auto; transform: translateY(0); }
+    #backToTop:hover { background: #0950c3; }
+
+    /* ============================================================
+       BADGE / SOCIAL UTILS
+    ============================================================ */
+    .badge { border-radius: 999px; font-weight: 700; letter-spacing: -0.01em; }
+    .social-icons .btn { border-radius: 12px; }
+
+    /* ============================================================
+       REVEAL
+    ============================================================ */
+    .reveal { opacity: 0; transform: translateY(10px); transition: all .55s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* ============================================================
+       VISITOR COUNTER
+    ============================================================ */
+    #viewCount {
+      font-weight: 700; color: var(--brand);
+    }
+    .view-counter-wrap {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 5px 14px;
+      font-size: .82rem;
+      color: var(--muted);
+      transition: background .35s, border-color .35s;
+    }
+
+    /* ============================================================
+       DARK OVERRIDES for Bootstrap components
+    ============================================================ */
+    [data-theme="dark"] .navbar-toggler-icon {
+      filter: invert(1);
+    }
+    [data-theme="dark"] .form-control,
+    [data-theme="dark"] .form-select {
+      background-color: #0f172a;
+      color: var(--ink);
+      border-color: #334155;
+    }
+    [data-theme="dark"] .btn-outline-secondary {
+      border-color: #334155; color: var(--muted);
+    }
+    [data-theme="dark"] .btn-outline-secondary:hover {
+      background: var(--brand-soft); border-color: var(--brand); color: var(--brand);
+    }
+    [data-theme="dark"] .btn-group .btn-outline-primary {
+      color: var(--brand); border-color: rgba(77,148,255,.35);
+    }
+    [data-theme="dark"] .btn-group .btn-outline-primary.active {
+      background: var(--brand-soft);
     }
   </style>
 </head>
 
 <body>
 
-<!-- NAVBAR -->
+<!-- ============================================================
+     NAVBAR
+============================================================ -->
 <nav class="navbar navbar-expand-lg fixed-top">
   <div class="container">
     <a class="navbar-brand" href="/#home">Saumyadip Das</a>
@@ -272,151 +476,193 @@
         <li class="nav-item"><a class="nav-link" href="/#contact">Contact</a></li>
       </ul>
 
+      <!-- Social icons -->
       <div class="d-none d-lg-flex align-items-center ms-3 social-icons">
+        <a class="btn btn-outline-secondary me-2" href="https://github.com/saumyadip-das-2003" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+        <a class="btn btn-outline-secondary me-2" href="https://www.linkedin.com/in/saumyadip-sohom/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+        <a class="btn btn-outline-secondary me-2" href="https://www.researchgate.net/profile/Saumyadip-Das-2" target="_blank" aria-label="ResearchGate"><i class="fab fa-researchgate"></i></a>
+        <a class="btn btn-outline-secondary me-2" href="https://orcid.org/0009-0009-1130-2091" target="_blank" aria-label="ORCID"><i class="fab fa-orcid"></i></a>
+        <a class="btn btn-outline-secondary" href="https://scholar.google.com/citations?user=vCvfzOMAAAAJ&hl=en" target="_blank" aria-label="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
+      </div>
 
-  <a class="btn btn-outline-secondary me-2"
-     href="https://github.com/saumyadip-das-2003"
-     target="_blank"
-     aria-label="GitHub"
-     title="GitHub Profile">
-    <i class="fab fa-github"></i>
-  </a>
-
-  <a class="btn btn-outline-secondary me-2"
-     href="https://www.linkedin.com/in/saumyadip-sohom/"
-     target="_blank"
-     aria-label="LinkedIn"
-     title="LinkedIn Profile">
-    <i class="fab fa-linkedin"></i>
-  </a>
-
-  <a class="btn btn-outline-secondary me-2"
-     href="https://www.researchgate.net/profile/Saumyadip-Das-2"
-     target="_blank"
-     aria-label="ResearchGate"
-     title="ResearchGate Profile">
-    <i class="fab fa-researchgate"></i>
-  </a>
-
-  <a class="btn btn-outline-secondary me-2"
-     href="https://orcid.org/0009-0009-1130-2091"
-     target="_blank"
-     aria-label="ORCID"
-     title="ORCID Profile">
-    <i class="fab fa-orcid"></i>
-  </a>
-
-  <a class="btn btn-outline-secondary"
-     href="https://scholar.google.com/citations?user=vCvfzOMAAAAJ&hl=en"
-     target="_blank"
-     aria-label="Google Scholar"
-     title="Google Scholar Profile">
-    <i class="fas fa-graduation-cap"></i>
-  </a>
-
-</div>
+      <!-- Dark mode toggle -->
+      <div class="theme-toggle-wrap ms-3" title="Toggle dark / light mode">
+        <span class="ti-icon" id="tiSun">☀️</span>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode"></button>
+        <span class="ti-icon" id="tiMoon">🌙</span>
+      </div>
     </div>
   </div>
 </nav>
 
+<!-- ============================================================
+     MAIN
+============================================================ -->
 <main class="container" id="home" style="padding-top:90px;padding-bottom:40px;">
 
   <!-- HERO -->
-  <section class="hero-center text-center py-5 section-hero">
-    <img src="Saumyadip%20Das.png" alt="Saumyadip Das" class="rounded-circle portrait reveal">
+  <section class="section-hero py-5">
+    <style>
+      .hero-split {
+        display: flex;
+        align-items: center;
+        gap: 3rem;
+        min-height: 420px;
+      }
+      .hero-left {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        flex: 0 0 220px;
+      }
+      .hero-right {
+        flex: 1;
+        min-width: 0;
+      }
+      .hero-divider {
+        width: 1px;
+        align-self: stretch;
+        background: var(--line);
+        flex-shrink: 0;
+        transition: background .35s;
+      }
+      .hero-name {
+        font-family: "DM Serif Display", serif;
+        font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+        font-weight: 400;
+        letter-spacing: -0.02em;
+        color: var(--ink);
+        line-height: 1.15;
+        margin: .75rem 0 .35rem;
+      }
+      .hero-role {
+        font-size: .78rem;
+        font-weight: 600;
+        letter-spacing: .1em;
+        text-transform: uppercase;
+        color: var(--brand);
+        margin-bottom: .75rem;
+      }
+      .hero-social { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; margin-top: .75rem; }
+      .hero-social .btn { padding: .3rem .55rem; font-size: .8rem; border-radius: 10px; }
 
-    <h1 class="mt-3 mb-1 reveal">Saumyadip Das</h1>
-    <p class="lead mb-3 reveal">Computer Science Researcher • AI / ML • IoT • Data Science</p>
+      .hero-bio-label {
+        font-size: .7rem;
+        font-weight: 700;
+        letter-spacing: .14em;
+        text-transform: uppercase;
+        color: var(--brand);
+        margin-bottom: .6rem;
+      }
+      .hero-bio-text {
+        font-size: 1rem;
+        line-height: 1.8;
+        color: var(--muted);
+        margin-bottom: 1.25rem;
+        text-align: justify;
+      }
+      .hero-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 1.5rem;
+      }
+      .hero-tag {
+        font-size: .75rem;
+        font-weight: 600;
+        padding: .3rem .8rem;
+        border-radius: 999px;
+        border: 1px solid var(--line);
+        color: var(--muted);
+        background: var(--surface);
+        transition: border-color .15s, color .15s, background .35s;
+      }
+      .hero-cta { display: flex; flex-wrap: wrap; gap: 10px; }
 
-    <p class="reveal">
-      <a class="btn btn-primary me-2" href="Saumyadip_Das%20(2).pdf" target="_blank" rel="noopener">Download CV</a>
-      <button class="btn btn-outline-primary me-2" data-bs-toggle="modal" data-bs-target="#videoModal" type="button">Video Portfolio</button>
-      <a class="btn btn-outline-primary" href="/#publications">View Publications</a>
-    </p>
+      @media (max-width: 767px) {
+        .hero-split { flex-direction: column; gap: 2rem; }
+        .hero-left { flex: none; width: 100%; }
+        .hero-divider { display: none; }
+        .hero-right { width: 100%; }
+      }
+    </style>
 
-    <div class="mt-3 social-icons reveal">
+    <div class="hero-split reveal">
 
-  <a class="btn btn-outline-secondary btn-sm me-2"
-     href="https://github.com/saumyadip-das-2003"
-     target="_blank"
-     aria-label="GitHub"
-     title="GitHub Profile">
-     <i class="fab fa-github"></i>
-  </a>
-
-  <a class="btn btn-outline-secondary btn-sm me-2"
-     href="https://www.linkedin.com/in/saumyadip-sohom/"
-     target="_blank"
-     aria-label="LinkedIn"
-     title="LinkedIn Profile">
-     <i class="fab fa-linkedin"></i>
-  </a>
-
-  <a class="btn btn-outline-secondary btn-sm me-2"
-     href="https://www.researchgate.net/profile/Saumyadip-Das-2"
-     target="_blank"
-     aria-label="ResearchGate"
-     title="ResearchGate Profile">
-     <i class="fab fa-researchgate"></i>
-  </a>
-
-  <a class="btn btn-outline-secondary btn-sm me-2"
-     href="https://orcid.org/0009-0009-1130-2091"
-     target="_blank"
-     aria-label="ORCID"
-     title="ORCID Profile">
-     <i class="fab fa-orcid"></i>
-  </a>
-
-  <a class="btn btn-outline-secondary btn-sm"
-     href="https://scholar.google.com/citations?user=vCvfzOMAAAAJ&hl=en"
-     target="_blank"
-     aria-label="Google Scholar"
-     title="Google Scholar Profile">
-     <i class="fas fa-graduation-cap"></i>
-  </a>
-
-</div>
-
-    <!-- ornament -->
-    <div class="hero-orn" aria-hidden="true">
-      <svg viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <linearGradient id="g1" x1="0%" x2="100%" y1="0%" y2="100%">
-            <stop offset="0%" stop-color="#0b5ed7" stop-opacity="0.12" />
-            <stop offset="100%" stop-color="#6c63ff" stop-opacity="0.10" />
-          </linearGradient>
-          <filter id="blur1" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="30"/></filter>
-        </defs>
-        <g filter="url(#blur1)">
-          <path d="M421.8,330.2Q432,410,346.1,453.3Q260.2,496.6,183.6,447.7Q107,398.8,86.6,319.4Q66.2,240,133.8,183.8Q201.4,127.6,279,117.4Q356.6,107.2,396.8,174.8Q437,242.4,421.8,330.2Z" fill="url(#g1)"/>
-        </g>
-      </svg>
-    </div>
-
-    <!-- biography -->
-    <div class="card mt-4 mx-auto shadow-sm" style="max-width:920px;">
-      <div class="card-body text-start">
-        <p class="mb-0">
-          Saumyadip Das is a dedicated and academically strong Computer Science and Engineering student at American International University–Bangladesh (AIUB), expected to graduate in December 2026 with a CGPA of 3.99/4.00. His academic and research interests focus on Artificial Intelligence, Machine Learning, Data Science, and IoT-based intelligent systems, with a strong motivation to apply theoretical knowledge to practical, real-world technological challenges. He has been actively involved in research and project-based learning that integrates data analytics, deep learning, and embedded systems, strengthening his problem-solving, analytical, and technical capabilities. Saumyadip is seeking opportunities in Data Science, AI/ML, and research-driven roles where he can contribute to innovative, data-driven solutions while further developing his expertise and preparing for advanced studies in a research-oriented master’s program.
-        </p>
+      <!-- LEFT — photo + name -->
+      <div class="hero-left">
+        <img src="Saumyadip%20Das.png" alt="Saumyadip Das"
+             class="rounded-circle portrait"
+             style="width:168px;height:168px;">
+        <div class="hero-name">Saumyadip Das</div>
+        <div class="hero-role">AI &amp; ML Researcher</div>
+        <div class="hero-social">
+          <a class="btn btn-outline-secondary" href="https://github.com/saumyadip-das-2003" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+          <a class="btn btn-outline-secondary" href="https://www.linkedin.com/in/saumyadip-sohom/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+          <a class="btn btn-outline-secondary" href="https://www.researchgate.net/profile/Saumyadip-Das-2" target="_blank" aria-label="ResearchGate"><i class="fab fa-researchgate"></i></a>
+          <a class="btn btn-outline-secondary" href="https://orcid.org/0009-0009-1130-2091" target="_blank" aria-label="ORCID"><i class="fab fa-orcid"></i></a>
+          <a class="btn btn-outline-secondary" href="https://scholar.google.com/citations?user=vCvfzOMAAAAJ&hl=en" target="_blank" aria-label="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
+        </div>
       </div>
+
+      <!-- DIVIDER -->
+      <div class="hero-divider" aria-hidden="true"></div>
+
+      <!-- RIGHT — professional bio -->
+      <div class="hero-right">
+        <div class="hero-bio-label">About</div>
+
+        <p class="hero-bio-text">
+          I am a Computer Science and Engineering student based in Dhaka, Bangladesh, with a strong passion for building intelligent systems that solve real-world problems. My work spans Artificial Intelligence, Machine Learning, Data Science, and IoT — from designing embedded sensor systems to developing deep learning models for practical applications.
+        </p>
+
+        <p class="hero-bio-text" style="margin-bottom:1.25rem;">
+          I am actively involved in research and enjoy working at the intersection of theory and application — whether it is exploring explainability in AI models, building resource-efficient architectures, or prototyping hardware-integrated solutions. I am always open to collaboration, meaningful projects, and new learning opportunities.
+        </p>
+
+        <div class="hero-tags">
+          <span class="hero-tag"><i class="fas fa-brain me-1" style="font-size:.7rem;"></i>Machine Learning</span>
+          <span class="hero-tag"><i class="fas fa-microscope me-1" style="font-size:.7rem;"></i>Deep Learning</span>
+          <span class="hero-tag"><i class="fas fa-database me-1" style="font-size:.7rem;"></i>Data Science</span>
+          <span class="hero-tag"><i class="fas fa-microchip me-1" style="font-size:.7rem;"></i>IoT Systems</span>
+          <span class="hero-tag"><i class="fas fa-code me-1" style="font-size:.7rem;"></i>Software Development</span>
+          <span class="hero-tag"><i class="fas fa-flask me-1" style="font-size:.7rem;"></i>Research</span>
+        </div>
+
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="Saumyadip_Das%20(2).pdf" target="_blank" rel="noopener">
+            <i class="fas fa-download me-1"></i>Download CV
+          </a>
+          <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#videoModal" type="button">
+            <i class="fas fa-play me-1"></i>Video Portfolio
+          </button>
+          <a class="btn btn-outline-primary" href="/#publications">
+            <i class="fas fa-book-open me-1"></i>Publications
+          </a>
+        </div>
+      </div>
+
     </div>
   </section>
 
-  <!-- EDUCATION -->
+  <!-- ============================================================
+       EDUCATION
+  ============================================================ -->
   <section id="education" class="py-5 section-education">
     <h2 class="mb-3">Education</h2>
-
     <div class="row g-3">
+
       <div class="col-12">
         <div class="card h-100">
           <div class="card-body">
             <h5 class="card-title">American International University-Bangladesh</h5>
-            <p class="text-muted mb-1">Bachelor of Science in Computer Science and Engineering — Jan 2023 - Dec 2026 (Expected)</p>
-            <p class="mb-0"><strong>CGPA:</strong> 3.99 / 4.00 (Up to 10th Semester)</p>
+            <p class="text-muted mb-1">Bachelor of Science in Computer Science and Engineering &mdash; Jan 2023 – Dec 2026 (Expected)</p>
+            <p class="mb-0"><strong>CGPA:</strong> 3.99 / 4.00 &nbsp;|&nbsp; Major in Information Systems</p>
             <div class="mt-3">
-              <button class="btn btn-sm btn-outline-primary edu-transcript-btn" data-pdf="GradeReportBySemester23-50404-1.pdf">View transcript</button>
+              <button class="btn btn-sm btn-outline-primary edu-transcript-btn" data-pdf="GradeReportBySemester23-50404-1.pdf">
+                <i class="fas fa-file-alt me-1"></i>View transcript
+              </button>
             </div>
           </div>
         </div>
@@ -426,10 +672,12 @@
         <div class="card h-100">
           <div class="card-body">
             <h5 class="card-title">Birshreshtha Munshi Abdur Rouf Public College</h5>
-            <p class="text-muted mb-1">Higher Secondary Certificate (Science) — 2021</p>
+            <p class="text-muted mb-1">Higher Secondary Certificate (Science) &mdash; 2021 &nbsp;|&nbsp; Dhaka, Bangladesh</p>
             <p class="mb-0">GPA: 5.00 / 5.00</p>
             <div class="mt-3">
-              <button class="btn btn-sm btn-outline-primary edu-transcript-btn" data-pdf="HSC Transcript.pdf">View transcript</button>
+              <button class="btn btn-sm btn-outline-primary edu-transcript-btn" data-pdf="HSC Transcript.pdf">
+                <i class="fas fa-file-alt me-1"></i>View transcript
+              </button>
             </div>
           </div>
         </div>
@@ -439,30 +687,35 @@
         <div class="card h-100">
           <div class="card-body">
             <h5 class="card-title">Moulvibazar Government High School</h5>
-            <p class="text-muted mb-1">Secondary School Certificate (Science) — 2019</p>
+            <p class="text-muted mb-1">Secondary School Certificate (Science) &mdash; 2019 &nbsp;|&nbsp; Moulvibazar, Bangladesh</p>
             <p class="mb-0">GPA: 5.00 / 5.00</p>
             <div class="mt-3">
-              <button class="btn btn-sm btn-outline-primary edu-transcript-btn" data-pdf="SSC Transcript.pdf">View transcript</button>
+              <button class="btn btn-sm btn-outline-primary edu-transcript-btn" data-pdf="SSC Transcript.pdf">
+                <i class="fas fa-file-alt me-1"></i>View transcript
+              </button>
             </div>
           </div>
         </div>
       </div>
+
     </div>
   </section>
 
-  <!-- ✅ UPDATED PUBLICATIONS (as per your LaTeX list + professional layout) -->
+  <!-- ============================================================
+       PUBLICATIONS
+  ============================================================ -->
   <section id="publications" class="py-5 section-publications">
     <div class="pub-header mb-3">
       <div>
-        <h2 class="mb-1">Patents & Publications</h2>
+        <h2 class="mb-1">Patents &amp; Publications</h2>
       </div>
       <div class="pub-legend">
-        <div class="mb-1">
-          <code>C</code> Conference &nbsp; <code>J</code> Journal &nbsp; <code>P</code> Patent &nbsp; <code>S</code> In Submission &nbsp; <code>T</code> Thesis
-        </div>
+        <code>C</code> Conference &nbsp; <code>J</code> Journal &nbsp;
+        <code>P</code> Patent &nbsp; <code>S</code> In Submission &nbsp; <code>T</code> Thesis
       </div>
     </div>
 
+    <!-- Filter buttons -->
     <div class="mb-3">
       <div class="btn-group flex-wrap" role="group" aria-label="publication filters">
         <button class="btn btn-outline-primary active" data-filter="all">All</button>
@@ -482,16 +735,9 @@
           <div class="pub-row">
             <div class="pub-code">[C.1]</div>
             <div class="pub-main">
-              <div class="pub-title">
-                A Comparison of State-Space Model and CNN Baselines: MambaOut-tiny vs ResNet-50 and MobileNetV2 for Rice Leaf Disease Classification
-              </div>
-              <div class="pub-meta">
-                Nur-E Sarjina Khan, <strong>Saumyadip Das</strong>, Sazia Sharmin, Kamruddin Nur (2026)
-              </div>
-              <div class="pub-extra">
-                In <em>2026 IEEE 2nd International Conference on Quantum Photonics, Artificial Intelligence &amp; Networking</em>, IEEE.
-                16–18 April 2026, Chattogram, Bangladesh.
-              </div>
+              <div class="pub-title">A Comparison of State-Space Model and CNN Baselines: MambaOut-tiny vs ResNet-50 and MobileNetV2 for Rice Leaf Disease Classification</div>
+              <div class="pub-meta">Nur-E Sarjina Khan, <strong>Saumyadip Das</strong>, Sazia Sharmin, Kamruddin Nur (2026)</div>
+              <div class="pub-extra">In <em>2026 IEEE 2nd International Conference on Quantum Photonics, Artificial Intelligence &amp; Networking</em>. 16–18 April 2026, Chattogram, Bangladesh.</div>
             </div>
             <div class="pub-actions">
               <span class="badge bg-primary">Conference</span>
@@ -507,16 +753,9 @@
           <div class="pub-row">
             <div class="pub-code">[C.2]</div>
             <div class="pub-main">
-              <div class="pub-title">
-                SoilSense: An IoT-Based Soil Health Monitoring System for Smallholder Farmers in Bangladesh to Support Sustainable Agriculture
-              </div>
-              <div class="pub-meta">
-                <strong>Saumyadip Das</strong>, Nur-E Sarjina Khan, Md. Ahasan Habib Alif, Raiyan Bin Alam, Mahima Afroz, Niloy Paul, Md Sajid Hossain (2025)
-              </div>
-              <div class="pub-extra">
-                In <em>7th International Conference on Electrical Information and Communication Technology</em>, IEEE.
-                18–20 December 2025, Khulna, Bangladesh. DOI: 10.1109/EICT68394.2025.11355612
-              </div>
+              <div class="pub-title">SoilSense: An IoT-Based Soil Health Monitoring System for Smallholder Farmers in Bangladesh to Support Sustainable Agriculture</div>
+              <div class="pub-meta"><strong>Saumyadip Das</strong>, Nur-E Sarjina Khan, Md. Ahasan Habib Alif, Raiyan Bin Alam, Mahima Afroz, Niloy Paul, Md Sajid Hossain (2025)</div>
+              <div class="pub-extra">In <em>7th International Conference on Electrical Information and Communication Technology</em>, IEEE. 18–20 Dec 2025, Khulna, Bangladesh. DOI: 10.1109/EICT68394.2025.11355612</div>
             </div>
             <div class="pub-actions">
               <span class="badge bg-primary">Conference</span>
@@ -526,88 +765,15 @@
         </a>
       </div>
 
-      <!-- [S.1] -->
-      <div class="pub-item" data-tags="S">
-        <div class="pub-row submitted-card" data-bs-toggle="modal" data-bs-target="#submittedModal">
-          <div class="pub-code">[S.1]</div>
-          <div class="pub-main">
-            <div class="pub-title">
-              Decoding Rider Risk: A Behavioral Archetype and XAI-Driven Approach to Predict Motorcycle Accident Severity
-            </div>
-            <div class="pub-meta">
-              Nur-E Sarjina Khan, <strong>Saumyadip Das</strong>, Muhammad Hasibur Rashid Chayon (2026)
-            </div>
-            <div class="pub-extra">
-              Manuscript submitted for acceptance in <em>16th IEEE International Conference On Control System, Computing and Engineering</em>.
-            </div>
-          </div>
-          <div class="pub-actions">
-            <span class="badge bg-secondary">Submitted</span>
-            <button class="btn btn-sm btn-outline-primary" type="button">Details</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- [S.2] -->
-      <div class="pub-item" data-tags="S">
-        <div class="pub-row submitted-card" data-bs-toggle="modal" data-bs-target="#submittedModal">
-          <div class="pub-code">[S.2]</div>
-          <div class="pub-main">
-            <div class="pub-title">
-              LLM-Driven Cardiovascular Disease Risk Prediction and the Predominant Influence of Smoking
-            </div>
-            <div class="pub-meta">
-              Ranak Debnath, Ariful Islam, Nur-E Sarjina Khan, <strong>Saumyadip Das</strong>, Anik Kumar Saha, Firoz Ahmed (2026)
-            </div>
-            <div class="pub-extra">
-              Manuscript submitted for publication in <em>IET Information Security</em>.
-            </div>
-          </div>
-          <div class="pub-actions">
-            <span class="badge bg-secondary">Submitted</span>
-            <button class="btn btn-sm btn-outline-primary" type="button">Details</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- [S.3] -->
-      <div class="pub-item" data-tags="S">
-        <div class="pub-row submitted-card" data-bs-toggle="modal" data-bs-target="#submittedModal">
-          <div class="pub-code">[S.3]</div>
-          <div class="pub-main">
-            <div class="pub-title">
-              Reasoning Drift in Compressed Transformers: An Explainability Analysis of BERT, DistilBERT, and TinyBERT
-            </div>
-            <div class="pub-meta">
-              Samin Yasir, Nur-E Sarjina Khan, <strong>Saumyadip Das</strong>, Md. Nafi Al Tahosin Khan, Munif Shahrier Niloy, Anika Tahmina Chowdhury, Anik Kumar Saha (2026)
-            </div>
-            <div class="pub-extra">
-              Manuscript submitted for publication in <em>International Journal of Modern Education and Computer Science (IJMECS)</em>.
-            </div>
-          </div>
-          <div class="pub-actions">
-            <span class="badge bg-secondary">Submitted</span>
-            <button class="btn btn-sm btn-outline-primary" type="button">Details</button>
-          </div>
-        </div>
-      </div>
-
       <!-- [C.3] -->
       <div class="pub-item" data-tags="C">
-        <a class="text-decoration-none text-reset" target="_blank"
-           href="https://www.researchgate.net/publication/400525770_The_Future_of_Textile_Waste_Sustainable_Solutions_through_Eco-Friendly_Products_and_Renewable_Energy_from_Post-Consumer_Textiles?_tp=eyJjb250ZXh0Ijp7InBhZ2UiOiJwcm9maWxlIiwicHJldmlvdXNQYWdlIjpudWxsLCJwb3NpdGlvbiI6InBhZ2VDb250ZW50In19">
+        <a class="text-decoration-none text-reset" target="_blank" href="https://www.researchgate.net/publication/400525770_The_Future_of_Textile_Waste_Sustainable_Solutions_through_Eco-Friendly_Products_and_Renewable_Energy_from_Post-Consumer_Textiles">
           <div class="pub-row">
             <div class="pub-code">[C.3]</div>
             <div class="pub-main">
-              <div class="pub-title">
-                The Future of Textile Waste: Sustainable Solutions through Eco-Friendly Products and Renewable Energy from Post-Consumer Textiles
-              </div>
-              <div class="pub-meta">
-                Nur-E Sarjina Khan, <strong>Saumyadip Das</strong>, Md. Mahtab Habib, Md. Sadman Sanim, Md. Mahbubor Rahman, Dr. Jannatul Fardus (2025)
-              </div>
-              <div class="pub-extra">
-                In <em>3rd International Conference on Textile Science and Engineering</em>. 24 May 2025, BUTEX, Dhaka, Bangladesh.
-              </div>
+              <div class="pub-title">The Future of Textile Waste: Sustainable Solutions through Eco-Friendly Products and Renewable Energy from Post-Consumer Textiles</div>
+              <div class="pub-meta">Nur-E Sarjina Khan, <strong>Saumyadip Das</strong>, Md. Mahtab Habib, Md. Sadman Sanim, Md. Mahbubor Rahman, Dr. Jannatul Fardus (2025)</div>
+              <div class="pub-extra">In <em>3rd International Conference on Textile Science and Engineering</em>. 24 May 2025, BUTEX, Dhaka, Bangladesh.</div>
             </div>
             <div class="pub-actions">
               <span class="badge bg-primary">Conference</span>
@@ -619,20 +785,13 @@
 
       <!-- [C.4] -->
       <div class="pub-item" data-tags="C">
-        <a class="text-decoration-none text-reset" target="_blank"
-           href="https://www.researchgate.net/publication/400526019_Artificial_Intelligence_in_Textile_Waste_Management_Exploring_Predictive_Modelling_Recycling_Innovations_and_Sustainable_Solutions">
+        <a class="text-decoration-none text-reset" target="_blank" href="https://www.researchgate.net/publication/400526019_Artificial_Intelligence_in_Textile_Waste_Management_Exploring_Predictive_Modelling_Recycling_Innovations_and_Sustainable_Solutions">
           <div class="pub-row">
             <div class="pub-code">[C.4]</div>
             <div class="pub-main">
-              <div class="pub-title">
-                Artificial Intelligence in Textile Waste Management: Exploring Predictive Modelling, Recycling Innovations, and Sustainable Solutions
-              </div>
-              <div class="pub-meta">
-                Nur-E Sarjina Khan, <strong>Saumyadip Das</strong>, Raiyan Bin Alam, Abtahi Islam, Md. Mahbubor Rahman, Jannatul Fardus (2025)
-              </div>
-              <div class="pub-extra">
-                In <em>3rd International Conference on Textile Science and Engineering</em>. 24 May 2025, BUTEX, Dhaka, Bangladesh.
-              </div>
+              <div class="pub-title">Artificial Intelligence in Textile Waste Management: Exploring Predictive Modelling, Recycling Innovations, and Sustainable Solutions</div>
+              <div class="pub-meta">Nur-E Sarjina Khan, <strong>Saumyadip Das</strong>, Raiyan Bin Alam, Abtahi Islam, Md. Mahbubor Rahman, Jannatul Fardus (2025)</div>
+              <div class="pub-extra">In <em>3rd International Conference on Textile Science and Engineering</em>. 24 May 2025, BUTEX, Dhaka, Bangladesh.</div>
             </div>
             <div class="pub-actions">
               <span class="badge bg-primary">Conference</span>
@@ -644,21 +803,13 @@
 
       <!-- [C.5] -->
       <div class="pub-item" data-tags="C">
-        <a class="text-decoration-none text-reset" target="_blank"
-           href="https://www.researchgate.net/publication/400525785_AI-Driven_Transformations_in_Textile_Waste_Management_Challenges_and_Opportunities">
+        <a class="text-decoration-none text-reset" target="_blank" href="https://www.researchgate.net/publication/400525785_AI-Driven_Transformations_in_Textile_Waste_Management_Challenges_and_Opportunities">
           <div class="pub-row">
             <div class="pub-code">[C.5]</div>
             <div class="pub-main">
-              <div class="pub-title">
-                AI-Driven Transformations in Textile Waste Management: Challenges and Opportunities
-              </div>
-              <div class="pub-meta">
-                Nur-E Sarjina Khan, <strong>Saumyadip Das</strong>, Arpon Paul Amit, Jannatul Fardus, Md. Mahbubor Rahman (2025)
-              </div>
-              <div class="pub-extra">
-                In <em>1st International Conference on Engineering and Technology for Sustainable Development (ICETSD 2025)</em>.
-                22–23 February 2025, JUST, Jashore, Bangladesh.
-              </div>
+              <div class="pub-title">AI-Driven Transformations in Textile Waste Management: Challenges and Opportunities</div>
+              <div class="pub-meta">Nur-E Sarjina Khan, <strong>Saumyadip Das</strong>, Arpon Paul Amit, Jannatul Fardus, Md. Mahbubor Rahman (2025)</div>
+              <div class="pub-extra">In <em>1st International Conference on Engineering and Technology for Sustainable Development (ICETSD 2025)</em>. 22–23 Feb 2025, JUST, Jashore, Bangladesh.</div>
             </div>
             <div class="pub-actions">
               <span class="badge bg-primary">Conference</span>
@@ -668,42 +819,114 @@
         </a>
       </div>
 
-      <!-- Optional: Journal/Patent/Thesis placeholders (hidden by filter unless 'all') -->
-      <div class="pub-item" data-tags="J" style="display:none;">
-        <div class="pub-row">
-          <div class="pub-code">[J.1]</div>
+      <!-- [S.1] -->
+      <div class="pub-item" data-tags="S">
+        <div class="pub-row submitted-card" style="cursor:pointer;" data-bs-toggle="modal" data-bs-target="#submittedModal">
+          <div class="pub-code">[S.1]</div>
           <div class="pub-main">
-            <div class="pub-title">Journal entry — coming soon</div>
-            <div class="pub-extra">Add your journal publications here when available.</div>
+            <div class="pub-title">Explainable Multimodal Deep Learning Framework For Skin Lesion Classification</div>
+            <div class="pub-meta"><strong>Saumyadip Das</strong>, Nur-E Sarjina Khan, Md Asraf Ali (2026)</div>
+            <div class="pub-extra">Manuscript submitted for publication in <em>IEEE Transactions on Medical Imaging</em>.</div>
           </div>
           <div class="pub-actions">
-            <span class="badge bg-dark">Journal</span>
+            <span class="badge bg-secondary">Submitted</span>
+            <button class="btn btn-sm btn-outline-primary" type="button">Details</button>
           </div>
         </div>
       </div>
 
-      <div class="pub-item" data-tags="P" style="display:none;">
-        <div class="pub-row">
-          <div class="pub-code">[P.1]</div>
+      <!-- [S.2] -->
+      <div class="pub-item" data-tags="S">
+        <div class="pub-row submitted-card" style="cursor:pointer;" data-bs-toggle="modal" data-bs-target="#submittedModal">
+          <div class="pub-code">[S.2]</div>
           <div class="pub-main">
-            <div class="pub-title">Patent entry — coming soon</div>
-            <div class="pub-extra">Add your patents here when available.</div>
+            <div class="pub-title">DARENet: A Lightweight CNN–Transformer Framework for Resource-Constrained IoT-Based Aerial Object Classification</div>
+            <div class="pub-meta">Nur-E Sarjina Khan, <strong>Saumyadip Das</strong>, Muhammad Hasibur Rashid Chayon (2026)</div>
+            <div class="pub-extra">Manuscript submitted for acceptance in <em>IEEE International Conference on Microwave, Antennas, RF and Sensors (MARSCON) 2026</em>.</div>
           </div>
           <div class="pub-actions">
-            <span class="badge bg-dark">Patent</span>
+            <span class="badge bg-secondary">Submitted</span>
+            <button class="btn btn-sm btn-outline-primary" type="button">Details</button>
           </div>
         </div>
       </div>
 
-      <div class="pub-item" data-tags="T" style="display:none;">
-        <div class="pub-row">
-          <div class="pub-code">[T.1]</div>
+      <!-- [S.3] -->
+      <div class="pub-item" data-tags="S">
+        <div class="pub-row submitted-card" style="cursor:pointer;" data-bs-toggle="modal" data-bs-target="#submittedModal">
+          <div class="pub-code">[S.3]</div>
           <div class="pub-main">
-            <div class="pub-title">Thesis entry — coming soon</div>
-            <div class="pub-extra">Add your thesis details here if applicable.</div>
+            <div class="pub-title">Decoding Rider Risk: A Behavioral Archetype and XAI-Driven Approach to Predict Motorcycle Accident Severity</div>
+            <div class="pub-meta">Nur-E Sarjina Khan, <strong>Saumyadip Das</strong>, Muhammad Hasibur Rashid Chayon (2026)</div>
+            <div class="pub-extra">Manuscript submitted for acceptance in <em>16th IEEE International Conference on Control System, Computing and Engineering</em>, Penang, Malaysia.</div>
           </div>
           <div class="pub-actions">
-            <span class="badge bg-dark">Thesis</span>
+            <span class="badge bg-secondary">Submitted</span>
+            <button class="btn btn-sm btn-outline-primary" type="button">Details</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- [S.4] -->
+      <div class="pub-item" data-tags="S">
+        <div class="pub-row submitted-card" style="cursor:pointer;" data-bs-toggle="modal" data-bs-target="#submittedModal">
+          <div class="pub-code">[S.4]</div>
+          <div class="pub-main">
+            <div class="pub-title">LLM-Driven Cardiovascular Disease Risk Prediction and the Predominant Influence of Smoking</div>
+            <div class="pub-meta">Ranak Debnath, Ariful Islam, Nur-E Sarjina Khan, <strong>Saumyadip Das</strong>, Anik Kumar Saha, Firoz Ahmed (2026)</div>
+            <div class="pub-extra">Manuscript submitted for publication in <em>IET Information Security</em>.</div>
+          </div>
+          <div class="pub-actions">
+            <span class="badge bg-secondary">Submitted</span>
+            <button class="btn btn-sm btn-outline-primary" type="button">Details</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- [S.5] -->
+      <div class="pub-item" data-tags="S">
+        <div class="pub-row submitted-card" style="cursor:pointer;" data-bs-toggle="modal" data-bs-target="#submittedModal">
+          <div class="pub-code">[S.5]</div>
+          <div class="pub-main">
+            <div class="pub-title">Reasoning Drift in Compressed Transformers: An Explainability Analysis of BERT, DistilBERT, and TinyBERT</div>
+            <div class="pub-meta">Samin Yasir, Nur-E Sarjina Khan, <strong>Saumyadip Das</strong>, Md. Nafi Al Tahosin Khan, Munif Shahrier Niloy, Anika Tahmina Chowdhury, Anik Kumar Saha (2026)</div>
+            <div class="pub-extra">Manuscript submitted for publication in <em>International Journal of Modern Education and Computer Science (IJMECS)</em>.</div>
+          </div>
+          <div class="pub-actions">
+            <span class="badge bg-secondary">Submitted</span>
+            <button class="btn btn-sm btn-outline-primary" type="button">Details</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- [S.6] -->
+      <div class="pub-item" data-tags="S">
+        <div class="pub-row submitted-card" style="cursor:pointer;" data-bs-toggle="modal" data-bs-target="#submittedModal">
+          <div class="pub-code">[S.6]</div>
+          <div class="pub-main">
+            <div class="pub-title">HCNT-Net: An Explainable Hybrid ConvNeXt-Transformer Framework for Robust Rice Disease Classification via Cross-Dataset Analysis</div>
+            <div class="pub-meta">Nur-E Sarjina Khan, <strong>Saumyadip Das</strong> et al. (2026)</div>
+            <div class="pub-extra">Manuscript submitted for acceptance in <em>ICEFronT: IEEE International Conference on Engineering and Frontier Technologies 2026</em>.</div>
+          </div>
+          <div class="pub-actions">
+            <span class="badge bg-secondary">Submitted</span>
+            <button class="btn btn-sm btn-outline-primary" type="button">Details</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- [S.7] -->
+      <div class="pub-item" data-tags="S">
+        <div class="pub-row submitted-card" style="cursor:pointer;" data-bs-toggle="modal" data-bs-target="#submittedModal">
+          <div class="pub-code">[S.7]</div>
+          <div class="pub-main">
+            <div class="pub-title">A Joint CLAHE-Enhanced CNN-Transformer Framework for Imbalanced Nail Disease Classification</div>
+            <div class="pub-meta">Raiyan Bin Alam, <strong>Saumyadip Das</strong>, Nur-E Sarjina Khan et al. (2026)</div>
+            <div class="pub-extra">Manuscript submitted for acceptance in <em>ICEFronT: IEEE International Conference on Engineering and Frontier Technologies 2026</em>.</div>
+          </div>
+          <div class="pub-actions">
+            <span class="badge bg-secondary">Submitted</span>
+            <button class="btn btn-sm btn-outline-primary" type="button">Details</button>
           </div>
         </div>
       </div>
@@ -715,7 +938,7 @@
     </div>
   </section>
 
-  <!-- SUBMITTED PAPERS MODAL -->
+  <!-- Submitted papers modal -->
   <div class="modal fade" id="submittedModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
@@ -724,10 +947,8 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
         </div>
         <div class="modal-body">
-          <p class="mb-0">
-            <strong>Public link will be added after acceptance/publication.</strong><br>
-            For preprint or manuscript details, please contact via email.
-          </p>
+          <p class="mb-0"><strong>Public link will be added after acceptance/publication.</strong><br>
+          For preprint or manuscript details, please contact via email.</p>
         </div>
         <div class="modal-footer">
           <button class="btn btn-primary" data-bs-dismiss="modal">Okay</button>
@@ -736,17 +957,20 @@
     </div>
   </div>
 
-  <!-- PROJECTS -->
+  <!-- ============================================================
+       PROJECTS
+  ============================================================ -->
   <section id="projects" class="py-5 section-projects">
     <h2 class="mb-3">Projects (9)</h2>
     <div class="row g-3">
+
       <div class="col-md-6 project-item">
         <div class="card h-100">
           <div class="card-body">
             <h5 class="card-title">SafePath — Community Safety Monitoring</h5>
-            <p class="card-text">HTML, PHP, MySQL. Citizens report incidents, authority management & admin panel.</p>
-            <a href="https://github.com/saumyadip-das-2003/SafePath---Community-Safety-Extremism-Monitoring-System" target="_blank" class="btn btn-sm btn-outline-primary" rel="noopener">View on GitHub</a>
-            <a href="https://www.figma.com/community/file/1495248825990649497" target="_blank" class="btn btn-sm btn-outline-primary" rel="noopener">Figma Prototype</a>
+            <p class="card-text">HTML, PHP, MySQL. Citizens report incidents, authority management &amp; admin panel.</p>
+            <a href="https://github.com/saumyadip-das-2003/SafePath---Community-Safety-Extremism-Monitoring-System" target="_blank" class="btn btn-sm btn-outline-primary me-1" rel="noopener">GitHub</a>
+            <a href="https://www.figma.com/community/file/1495248825990649497" target="_blank" class="btn btn-sm btn-outline-primary" rel="noopener">Figma</a>
           </div>
         </div>
       </div>
@@ -755,22 +979,27 @@
         <div class="card h-100">
           <div class="card-body">
             <h5 class="card-title">SoilSense — IoT + ML</h5>
-            <p class="card-text">ESP32 sensors + ML to predict NPK values. Accepted to IEEE (DOI available).</p>
+            <p class="card-text">ESP32 sensors + ML to predict NPK values. Published at IEEE (DOI available).</p>
             <a href="https://github.com/saumyadip-das-2003/SoilSense-Codes" target="_blank" class="btn btn-sm btn-outline-primary" rel="noopener">View Code</a>
           </div>
         </div>
       </div>
 
       <div class="col-md-6 project-item">
-        <div class="card h-100 shadow-sm">
+        <div class="card h-100">
+          <div class="card-body">
+            <h5 class="card-title">Bangla Lemmatizer</h5>
+            <p class="card-text">NLP system for Bangla lemmatization using subsidiary English language mapping. Ongoing.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 project-item">
+        <div class="card h-100">
           <div class="card-body">
             <h5 class="card-title">Bank Management System</h5>
-            <p class="card-text">
-              <strong>Technical Implementation:</strong> C#, .NET Framework, MSSQL — core banking workflows, role-based access, and database design.
-              <br><br>
-              <strong>Engineering Management Project:</strong> Gantt Chart, Network Diagram, Budgeting, Cash Flow analysis, Resource Sheet in MS Project.
-            </p>
-            <a href="https://github.com/saumyadip-das-2003/Bank-Management-System" target="_blank" class="btn btn-sm btn-outline-primary me-2">Code (GitHub)</a>
+            <p class="card-text">C#, .NET Framework, MSSQL. Core banking workflows, role-based access &amp; engineering management docs.</p>
+            <a href="https://github.com/saumyadip-das-2003/Bank-Management-System" target="_blank" class="btn btn-sm btn-outline-primary me-1">Code</a>
             <a href="https://github.com/saumyadip-das-2003/Bank-Management-System-EM-" target="_blank" class="btn btn-sm btn-outline-primary">EM Project</a>
           </div>
         </div>
@@ -779,11 +1008,11 @@
       <div class="col-md-6 project-item">
         <div class="card h-100">
           <div class="card-body">
-            <h5 class="card-title">University Resource Management System — Java / UML / Oracle DB</h5>
+            <h5 class="card-title">University Resource Management System</h5>
             <p class="card-text">Java Swing UI, UML design, and Oracle DB backend for booking university resources.</p>
-            <a href="https://github.com/saumyadip-das-2003/Resource-Booking-System-JAVA-Swing-Project-" target="_blank" class="btn btn-sm btn-outline-primary" rel="noopener">Java Swing</a>
-            <a href="https://github.com/saumyadip-das-2003/University-Resource-Booking-System--Oracle-Database-Project" target="_blank" class="btn btn-sm btn-outline-primary ms-2" rel="noopener">Oracle DB</a>
-            <a href="https://github.com/saumyadip-das-2003/University-Resource-Management-System-URMS---OOAD" target="_blank" class="btn btn-sm btn-outline-primary ms-2" rel="noopener">UML</a>
+            <a href="https://github.com/saumyadip-das-2003/Resource-Booking-System-JAVA-Swing-Project-" target="_blank" class="btn btn-sm btn-outline-primary me-1">Java Swing</a>
+            <a href="https://github.com/saumyadip-das-2003/University-Resource-Booking-System--Oracle-Database-Project" target="_blank" class="btn btn-sm btn-outline-primary me-1">Oracle DB</a>
+            <a href="https://github.com/saumyadip-das-2003/University-Resource-Management-System-URMS---OOAD" target="_blank" class="btn btn-sm btn-outline-primary">UML</a>
           </div>
         </div>
       </div>
@@ -791,329 +1020,159 @@
       <div class="col-md-6 project-item">
         <div class="card h-100">
           <div class="card-body">
-            <h5 class="card-title">Life of a River — Computer Graphics (GLUT, C++)</h5>
-            <p class="card-text">Interactive computer graphics project using GLUT and C++ to visualize river flow and ecosystems.</p>
-            <a href="#" class="btn btn-sm btn-outline-primary">Project link (placeholder)</a>
+            <h5 class="card-title">Life of a River — Computer Graphics</h5>
+            <p class="card-text">C++ and GLUT simulation visualizing four ecological stages of a river ecosystem.</p>
           </div>
         </div>
       </div>
 
     </div>
-
     <div class="text-center mt-4">
       <button id="projShowMore" class="btn btn-outline-primary" type="button">Show more</button>
     </div>
   </section>
 
-<!-- ===================== SKILLS (TILE + HOVER OVERLAY) ===================== -->
-<section id="skills" class="py-5 section-skills">
-  <h2 class="mb-3 reveal">Skills</h2>
-  <p class="text-muted mb-4">Hover on a card to preview details (tap to open on mobile).</p>
+  <!-- ============================================================
+       SKILLS
+  ============================================================ -->
+  <section id="skills" class="py-5 section-skills">
+    <h2 class="mb-3 reveal">Skills</h2>
+    <p class="text-muted mb-4">Hover a card to preview details (tap on mobile).</p>
 
-  <style>
-    /* Important: allow overlays to float */
-    .section-skills { overflow: visible; }
-    .skills-row { overflow: visible; }
+    <div class="row g-4 mt-3 skills-row">
 
-    .skill-tile {
-      position: relative;
-      overflow: visible;              /* key */
-      border: 1px solid rgba(229,231,235,.9);
-      border-radius: 18px;
-      background: #fff;
-      box-shadow: 0 10px 26px rgba(2,6,23,.06);
-      transition: transform .16s ease, box-shadow .16s ease, border-color .16s ease;
-      padding: 18px;
-      height: 100%;
-      z-index: 1;                     /* default */
-    }
-
-    .skill-tile:hover,
-    .skill-tile.is-open {
-      transform: translateY(-3px);
-      box-shadow: 0 20px 50px rgba(2,6,23,.12);
-      border-color: rgba(13,110,253,.35);
-      z-index: 20;                    /* bring above neighbors */
-    }
-
-    .skill-head {
-      display: flex;
-      gap: 14px;
-      align-items: center;
-    }
-
-    .skill-icon {
-      width: 48px;
-      height: 48px;
-      border-radius: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: rgba(13,110,253,.12);
-      color: #0d6efd;
-      font-size: 20px;
-      flex: 0 0 auto;
-    }
-
-    .skill-title {
-      font-weight: 900;
-      margin: 0;
-      letter-spacing: -0.02em;
-      line-height: 1.1;
-    }
-
-    .skill-subtitle {
-      font-size: .92rem;
-      color: #6c757d;
-      margin-top: 4px;
-    }
-
-    /* The floating hover panel */
-    .skill-popover {
-      position: absolute;
-      left: 0;
-      right: 0;
-      top: calc(100% + 12px);        /* float below card */
-      background: #fff;
-      border: 1px solid rgba(229,231,235,.95);
-      border-radius: 16px;
-      box-shadow: 0 24px 60px rgba(2,6,23,.18);
-      padding: 14px 16px;
-      z-index: 9999;                 /* sit above next row */
-      opacity: 0;
-      transform: translateY(-6px);
-      pointer-events: none;
-      transition: opacity .14s ease, transform .14s ease;
-    }
-
-    /* little arrow */
-    .skill-popover::before {
-      content: "";
-      position: absolute;
-      top: -8px;
-      left: 26px;
-      width: 16px;
-      height: 16px;
-      background: #fff;
-      border-left: 1px solid rgba(229,231,235,.95);
-      border-top: 1px solid rgba(229,231,235,.95);
-      transform: rotate(45deg);
-    }
-
-    /* Show on hover OR .is-open (mobile tap) */
-    .skill-tile:hover .skill-popover,
-    .skill-tile.is-open .skill-popover {
-      opacity: 1;
-      transform: translateY(0);
-      pointer-events: auto;
-    }
-
-    .skill-popover h6 {
-      font-weight: 900;
-      letter-spacing: -0.01em;
-      margin: 0 0 8px 0;
-      font-size: 1rem;
-    }
-
-    .skill-popover ul {
-      margin: 0;
-      padding-left: 18px;
-      color: rgba(15,23,42,.85);
-      line-height: 1.6;
-      font-size: .95rem;
-    }
-
-    .skill-popover li { margin: 6px 0; }
-
-    /* Mobile: popover should not overflow screen width too much */
-    @media (max-width: 576px) {
-      .skill-popover { left: 0; right: 0; }
-      .skill-popover::before { left: 22px; }
-    }
-  </style>
-
-  <div class="row g-4 mt-3 skills-row">
-
-    <!-- Programming Languages -->
-    <div class="col-md-6 col-lg-4">
-      <div class="skill-tile reveal" data-skill-tile>
-        <div class="skill-head">
-          <div class="skill-icon"><i class="fa-solid fa-terminal"></i></div>
-          <div>
-            <h5 class="skill-title">Programming Languages</h5>
-            <div class="skill-subtitle">Core development languages</div>
+      <div class="col-md-6 col-lg-4">
+        <div class="skill-tile reveal" data-skill-tile>
+          <div class="skill-head">
+            <div class="skill-icon"><i class="fa-solid fa-terminal"></i></div>
+            <div>
+              <h5 class="skill-title">Programming Languages</h5>
+              <div class="skill-subtitle">Core development languages</div>
+            </div>
+          </div>
+          <div class="skill-popover" role="tooltip" aria-hidden="true">
+            <h6>Includes</h6>
+            <ul><li>Python</li><li>C / C++</li><li>Java</li><li>C#</li><li>R</li></ul>
           </div>
         </div>
-
-        <div class="skill-popover" role="tooltip" aria-hidden="true">
-          <h6>Includes</h6>
-          <ul>
-            <li>Python</li>
-            <li>C / C++</li>
-            <li>Java</li>
-            <li>C#</li>
-            <li>R</li>
-          </ul>
-        </div>
       </div>
-    </div>
 
-    <!-- Machine Learning -->
-    <div class="col-md-6 col-lg-4">
-      <div class="skill-tile reveal" data-skill-tile>
-        <div class="skill-head">
-          <div class="skill-icon"><i class="fa-solid fa-brain"></i></div>
-          <div>
-            <h5 class="skill-title">Machine Learning</h5>
-            <div class="skill-subtitle">Models, analytics & visualization</div>
+      <div class="col-md-6 col-lg-4">
+        <div class="skill-tile reveal" data-skill-tile>
+          <div class="skill-head">
+            <div class="skill-icon"><i class="fa-solid fa-brain"></i></div>
+            <div>
+              <h5 class="skill-title">Machine Learning</h5>
+              <div class="skill-subtitle">Models, analytics &amp; visualization</div>
+            </div>
+          </div>
+          <div class="skill-popover" role="tooltip" aria-hidden="true">
+            <h6>Includes</h6>
+            <ul><li>NumPy, Pandas</li><li>Scikit-learn</li><li>PyTorch, TensorFlow</li><li>Matplotlib, Seaborn</li><li>Google Colab, RStudio</li></ul>
           </div>
         </div>
-
-        <div class="skill-popover" role="tooltip" aria-hidden="true">
-          <h6>Includes</h6>
-          <ul>
-            <li>NumPy, Pandas</li>
-            <li>Scikit-learn</li>
-            <li>PyTorch, TensorFlow</li>
-            <li>Matplotlib, Seaborn</li>
-            <li>Power BI</li>
-          </ul>
-        </div>
       </div>
-    </div>
 
-    <!-- IoT Implementation -->
-    <div class="col-md-6 col-lg-4">
-      <div class="skill-tile reveal" data-skill-tile>
-        <div class="skill-head">
-          <div class="skill-icon"><i class="fa-solid fa-microchip"></i></div>
-          <div>
-            <h5 class="skill-title">IoT Implementation</h5>
-            <div class="skill-subtitle">Embedded & monitoring systems</div>
+      <div class="col-md-6 col-lg-4">
+        <div class="skill-tile reveal" data-skill-tile>
+          <div class="skill-head">
+            <div class="skill-icon"><i class="fa-solid fa-microchip"></i></div>
+            <div>
+              <h5 class="skill-title">IoT Implementation</h5>
+              <div class="skill-subtitle">Embedded &amp; monitoring systems</div>
+            </div>
+          </div>
+          <div class="skill-popover" role="tooltip" aria-hidden="true">
+            <h6>Includes</h6>
+            <ul><li>ESP32, Arduino UNO</li><li>DHT11, Rain, Moisture Sensors</li><li>Wireless &amp; real-time data collection</li></ul>
           </div>
         </div>
-
-        <div class="skill-popover" role="tooltip" aria-hidden="true">
-          <h6>Includes</h6>
-          <ul>
-            <li>ESP32, Arduino UNO</li>
-            <li>DHT11, Rain, Moisture Sensors</li>
-            <li>IoT Prototyping & Data Collection</li>
-          </ul>
-        </div>
       </div>
-    </div>
 
-    <!-- Web Development -->
-    <div class="col-md-6 col-lg-4">
-      <div class="skill-tile reveal" data-skill-tile>
-        <div class="skill-head">
-          <div class="skill-icon"><i class="fa-solid fa-code"></i></div>
-          <div>
-            <h5 class="skill-title">Web Development</h5>
-            <div class="skill-subtitle">Frontend & backend foundations</div>
+      <div class="col-md-6 col-lg-4">
+        <div class="skill-tile reveal" data-skill-tile>
+          <div class="skill-head">
+            <div class="skill-icon"><i class="fa-solid fa-code"></i></div>
+            <div>
+              <h5 class="skill-title">Web Development</h5>
+              <div class="skill-subtitle">Frontend &amp; backend</div>
+            </div>
+          </div>
+          <div class="skill-popover" role="tooltip" aria-hidden="true">
+            <h6>Includes</h6>
+            <ul><li>HTML5, CSS3, Bootstrap</li><li>JavaScript</li><li>PHP</li><li>MySQL</li></ul>
           </div>
         </div>
-
-        <div class="skill-popover" role="tooltip" aria-hidden="true">
-          <h6>Includes</h6>
-          <ul>
-            <li>HTML5, CSS3, Bootstrap</li>
-            <li>JavaScript</li>
-            <li>PHP</li>
-          </ul>
-        </div>
       </div>
-    </div>
 
-    <!-- Software Development -->
-    <div class="col-md-6 col-lg-4">
-      <div class="skill-tile reveal" data-skill-tile>
-        <div class="skill-head">
-          <div class="skill-icon"><i class="fa-solid fa-laptop-code"></i></div>
-          <div>
-            <h5 class="skill-title">Software Development</h5>
-            <div class="skill-subtitle">Desktop & system-based apps</div>
+      <div class="col-md-6 col-lg-4">
+        <div class="skill-tile reveal" data-skill-tile>
+          <div class="skill-head">
+            <div class="skill-icon"><i class="fa-solid fa-laptop-code"></i></div>
+            <div>
+              <h5 class="skill-title">Software Development</h5>
+              <div class="skill-subtitle">Desktop &amp; system-based apps</div>
+            </div>
+          </div>
+          <div class="skill-popover" role="tooltip" aria-hidden="true">
+            <h6>Includes</h6>
+            <ul><li>.NET Development (C# / WinForms)</li><li>Java Swing Development</li><li>GLUT Graphics (C++)</li><li>Oracle SQL, MSSQL</li></ul>
           </div>
         </div>
-
-        <div class="skill-popover" role="tooltip" aria-hidden="true">
-          <h6>Includes</h6>
-          <ul>
-            <li>.NET Development (C# / WinForms)</li>
-            <li>Java Swing Development</li>
-            <li>GLUT Graphics (C++)</li>
-            <li>Database-integrated applications</li>
-          </ul>
-        </div>
       </div>
-    </div>
 
-    <!-- UI/UX -->
-    <div class="col-md-6 col-lg-4">
-      <div class="skill-tile reveal" data-skill-tile>
-        <div class="skill-head">
-          <div class="skill-icon"><i class="fa-solid fa-pen-nib"></i></div>
-          <div>
-            <h5 class="skill-title">UI/UX</h5>
-            <div class="skill-subtitle">Design & prototyping</div>
+      <div class="col-md-6 col-lg-4">
+        <div class="skill-tile reveal" data-skill-tile>
+          <div class="skill-head">
+            <div class="skill-icon"><i class="fa-solid fa-pen-nib"></i></div>
+            <div>
+              <h5 class="skill-title">UI/UX &amp; Tools</h5>
+              <div class="skill-subtitle">Design, stats &amp; productivity</div>
+            </div>
+          </div>
+          <div class="skill-popover" role="tooltip" aria-hidden="true">
+            <h6>Includes</h6>
+            <ul><li>Figma Prototypes</li><li>Adobe Creative Cloud</li><li>MATLAB, SPSS</li><li>AutoCAD, MS Office, MS Project</li></ul>
           </div>
         </div>
-
-        <div class="skill-popover" role="tooltip" aria-hidden="true">
-          <h6>Includes</h6>
-          <ul>
-            <li>Figma Prototypes</li>
-            <li>Wireframes & UI layout systems</li>
-            <li>Component-based UI design</li>
-          </ul>
-        </div>
       </div>
+
     </div>
 
-  </div>
-
-  <script>
-    // Mobile support: tap to open/close popover
-    (function(){
-      const tiles = Array.from(document.querySelectorAll('[data-skill-tile]'));
-
-      tiles.forEach(tile => {
-        tile.addEventListener('click', (e) => {
-          // If device supports hover, don't force click behavior
-          if (window.matchMedia('(hover: hover)').matches) return;
-
-          const wasOpen = tile.classList.contains('is-open');
-          tiles.forEach(t => t.classList.remove('is-open'));
-          if (!wasOpen) tile.classList.add('is-open');
-          e.stopPropagation();
+    <script>
+      (function(){
+        var tiles = Array.from(document.querySelectorAll('[data-skill-tile]'));
+        tiles.forEach(function(tile){
+          tile.addEventListener('click', function(e){
+            if(window.matchMedia('(hover: hover)').matches) return;
+            var wasOpen = tile.classList.contains('is-open');
+            tiles.forEach(function(t){ t.classList.remove('is-open'); });
+            if(!wasOpen) tile.classList.add('is-open');
+            e.stopPropagation();
+          });
         });
-      });
+        document.addEventListener('click', function(){
+          if(!window.matchMedia('(hover: hover)').matches)
+            tiles.forEach(function(t){ t.classList.remove('is-open'); });
+        });
+      })();
+    </script>
+  </section>
 
-      document.addEventListener('click', () => {
-        if (!window.matchMedia('(hover: hover)').matches) {
-          tiles.forEach(t => t.classList.remove('is-open'));
-        }
-      });
-    })();
-  </script>
-</section>
-<!-- ===================== END SKILLS ===================== -->
-
-  <!-- AWARDS -->
+  <!-- ============================================================
+       AWARDS
+  ============================================================ -->
   <section id="awards" class="py-5 section-awards">
-    <h2 class="mb-3">Awards & Achievements (2)</h2>
-    <p class="text-muted">Click on the image to view the PDF.</p>
-
+    <h2 class="mb-3">Awards &amp; Achievements</h2>
+    <p class="text-muted">Click the image to view the certificate PDF.</p>
     <div class="row g-3" id="award-list">
+
       <div class="col-md-6 award-item">
         <div class="card h-100">
           <div class="card-body">
-            <h5 class="card-title">Dean’s List — Fall 2024–25</h5>
-            <p class="text-muted mb-1">Awarded by AIUB for outstanding academic performance in the Fall 2024–25 semester.</p>
-            <div class="award-image-wrapper">
-              <img src="Awards/Fall 24-25.jpg" alt="Dean’s List — Fall 2024–25" class="award-img" data-pdf="Awards/Fall 24-25.pdf">
-            </div>
+            <h5 class="card-title">Dean's List — Fall 2024–25</h5>
+            <p class="text-muted mb-1">Awarded by AIUB for outstanding academic performance in Fall 2024–25.</p>
+            <img src="Awards/Fall 24-25.jpg" alt="Dean's List — Fall 2024–25" class="award-img" data-pdf="Awards/Fall 24-25.pdf">
           </div>
         </div>
       </div>
@@ -1121,204 +1180,144 @@
       <div class="col-md-6 award-item">
         <div class="card h-100">
           <div class="card-body">
-            <h5 class="card-title">Dean’s List — Spring 2023–24</h5>
-            <p class="text-muted mb-1">Awarded by AIUB in recognition of high academic achievement during the Spring 2023–24 semester.</p>
-            <div class="award-image-wrapper">
-              <img src="Awards/Spring 23-24.jpg" alt="Dean’s List — Spring 2023–24" class="award-img" data-pdf="Awards/Spring 23-24.pdf">
-            </div>
+            <h5 class="card-title">Dean's List — Spring 2023–24</h5>
+            <p class="text-muted mb-1">Awarded by AIUB in recognition of high academic achievement in Spring 2023–24.</p>
+            <img src="Awards/Spring 23-24.jpg" alt="Dean's List — Spring 2023–24" class="award-img" data-pdf="Awards/Spring 23-24.pdf">
           </div>
         </div>
       </div>
+
     </div>
-
     <div class="text-center mt-4">
       <button id="awardShowMore" class="btn btn-outline-primary" type="button">Show more</button>
     </div>
   </section>
 
-  <!-- CERTIFICATIONS -->
-<section id="certifications" class="py-5 section-certifications">
-  <h2 class="mb-3">Certifications & Courses (12)</h2>
-  <p class="text-muted">Click on the image to view the PDF.</p>
+  <!-- ============================================================
+       CERTIFICATIONS
+  ============================================================ -->
+  <section id="certifications" class="py-5 section-certifications">
+    <h2 class="mb-3">Certifications &amp; Courses (12)</h2>
+    <p class="text-muted">Click the image to view the certificate PDF.</p>
 
-  <div class="container px-0">
-    <div class="row g-3 align-items-stretch" id="cert-list">
+    <div class="container px-0">
+      <div class="row g-3 align-items-stretch" id="cert-list">
 
-      <div class="col-12 col-sm-6 col-md-4 col-lg-3 cert-item">
-        <div class="card h-100">
-          <div class="card-body">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 cert-item">
+          <div class="card h-100"><div class="card-body">
             <h6 class="card-title">Machine Learning — Fundamentals</h6>
             <p class="text-muted small mb-2">Introductory course covering supervised learning and basic ML models.</p>
-            <img src="Certificates/ML For beginners_page-0001.jpg"
-                 alt="Machine Learning — Fundamentals"
-                 class="img-fluid cert-img"
-                 data-pdf="Certificates/ML For beginners.pdf">
-          </div>
+            <img src="Certificates/ML For beginners_page-0001.jpg" alt="Machine Learning — Fundamentals" class="img-fluid cert-img" data-pdf="Certificates/ML For beginners.pdf">
+          </div></div>
         </div>
-      </div>
 
-      <div class="col-12 col-sm-6 col-md-4 col-lg-3 cert-item">
-        <div class="card h-100">
-          <div class="card-body">
-            <h6 class="card-title">Python for Data & Scripting</h6>
-            <p class="text-muted small mb-2">Certificate in Python programming with emphasis on data manipulation and automation.</p>
-            <img src="Certificates/Python_page-0001.jpg"
-                 alt="Python for Data & Scripting"
-                 class="img-fluid cert-img"
-                 data-pdf="Certificates/Python.pdf">
-          </div>
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 cert-item">
+          <div class="card h-100"><div class="card-body">
+            <h6 class="card-title">Python for Data &amp; Scripting</h6>
+            <p class="text-muted small mb-2">Certificate in Python programming with emphasis on data manipulation.</p>
+            <img src="Certificates/Python_page-0001.jpg" alt="Python" class="img-fluid cert-img" data-pdf="Certificates/Python.pdf">
+          </div></div>
         </div>
-      </div>
 
-      <div class="col-12 col-sm-6 col-md-4 col-lg-3 cert-item">
-        <div class="card h-100">
-          <div class="card-body">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 cert-item">
+          <div class="card h-100"><div class="card-body">
             <h6 class="card-title">Java — Core Concepts</h6>
-            <p class="text-muted small mb-2">Certificate covering object-oriented programming and Java fundamentals.</p>
-            <img src="Certificates/java.jpg"
-                 alt="Java — Core Concepts"
-                 class="img-fluid cert-img"
-                 data-pdf="Certificates/java.pdf">
-          </div>
+            <p class="text-muted small mb-2">Object-oriented programming and Java fundamentals.</p>
+            <img src="Certificates/java.jpg" alt="Java" class="img-fluid cert-img" data-pdf="Certificates/java.pdf">
+          </div></div>
         </div>
-      </div>
 
-      <div class="col-12 col-sm-6 col-md-4 col-lg-3 cert-item">
-        <div class="card h-100">
-          <div class="card-body">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 cert-item">
+          <div class="card h-100"><div class="card-body">
             <h6 class="card-title">HTML5 — Web Foundations</h6>
             <p class="text-muted small mb-2">Certificate in HTML5 and foundational web development techniques.</p>
-            <img src="Certificates/HTML_page-0001.jpg"
-                 alt="HTML5 — Web Foundations"
-                 class="img-fluid cert-img"
-                 data-pdf="Certificates/HTML.pdf">
-          </div>
+            <img src="Certificates/HTML_page-0001.jpg" alt="HTML5" class="img-fluid cert-img" data-pdf="Certificates/HTML.pdf">
+          </div></div>
         </div>
-      </div>
 
-      <div class="col-12 col-sm-6 col-md-4 col-lg-3 cert-item">
-        <div class="card h-100">
-          <div class="card-body">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 cert-item">
+          <div class="card h-100"><div class="card-body">
             <h6 class="card-title">Microsoft Excel — Data Analysis</h6>
-            <p class="text-muted small mb-2">Skills in formulas, pivot tables and data analysis workflows.</p>
-            <img src="Certificates/Certificate Excel_page-0001.jpg"
-                 alt="Microsoft Excel — Data Analysis"
-                 class="img-fluid cert-img"
-                 data-pdf="Certificates/Certificate Excel.pdf">
-          </div>
+            <p class="text-muted small mb-2">Formulas, pivot tables and data analysis workflows.</p>
+            <img src="Certificates/Certificate Excel_page-0001.jpg" alt="Excel" class="img-fluid cert-img" data-pdf="Certificates/Certificate Excel.pdf">
+          </div></div>
         </div>
-      </div>
 
-      <div class="col-12 col-sm-6 col-md-4 col-lg-3 cert-item">
-        <div class="card h-100">
-          <div class="card-body">
-            <h6 class="card-title">Microsoft PowerPoint — Presentation</h6>
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 cert-item">
+          <div class="card h-100"><div class="card-body">
+            <h6 class="card-title">Microsoft PowerPoint</h6>
             <p class="text-muted small mb-2">Certificate in presentation design and effective slide creation.</p>
-            <img src="Certificates/Certificate Powerpoint_page-0001.jpg"
-                 alt="Microsoft PowerPoint — Presentation"
-                 class="img-fluid cert-img"
-                 data-pdf="Certificates/Certificate Powerpoint.pdf">
-          </div>
+            <img src="Certificates/Certificate Powerpoint_page-0001.jpg" alt="PowerPoint" class="img-fluid cert-img" data-pdf="Certificates/Certificate Powerpoint.pdf">
+          </div></div>
         </div>
-      </div>
 
-      <div class="col-12 col-sm-6 col-md-4 col-lg-3 cert-item">
-        <div class="card h-100">
-          <div class="card-body">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 cert-item">
+          <div class="card h-100"><div class="card-body">
             <h6 class="card-title">Microsoft Word — Documentation</h6>
-            <p class="text-muted small mb-2">Certificate in professional document preparation and formatting.</p>
-            <img src="Certificates/Certificate Word_page-0001.jpg"
-                 alt="Microsoft Word — Documentation"
-                 class="img-fluid cert-img"
-                 data-pdf="Certificates/Certificate Word.pdf">
-          </div>
+            <p class="text-muted small mb-2">Professional document preparation and formatting.</p>
+            <img src="Certificates/Certificate Word_page-0001.jpg" alt="Word" class="img-fluid cert-img" data-pdf="Certificates/Certificate Word.pdf">
+          </div></div>
         </div>
-      </div>
 
-      <div class="col-12 col-sm-6 col-md-4 col-lg-3 cert-item">
-        <div class="card h-100">
-          <div class="card-body">
-            <h6 class="card-title">Google Analytics — Fundamentals</h6>
-            <p class="text-muted small mb-2">Certificate in web analytics, reporting and measurement basics.</p>
-            <img src="Certificates/Certificate google analitycs_page-0001.jpg"
-                 alt="Google Analytics — Fundamentals"
-                 class="img-fluid cert-img"
-                 data-pdf="Certificates/Certificate google analitycs.pdf">
-          </div>
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 cert-item">
+          <div class="card h-100"><div class="card-body">
+            <h6 class="card-title">Google Analytics</h6>
+            <p class="text-muted small mb-2">Web analytics, reporting and measurement basics.</p>
+            <img src="Certificates/Certificate google analitycs_page-0001.jpg" alt="Google Analytics" class="img-fluid cert-img" data-pdf="Certificates/Certificate google analitycs.pdf">
+          </div></div>
         </div>
-      </div>
 
-      <div class="col-12 col-sm-6 col-md-4 col-lg-3 cert-item">
-        <div class="card h-100">
-          <div class="card-body">
-            <h6 class="card-title">LinkedIn Learning Certificate</h6>
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 cert-item">
+          <div class="card h-100"><div class="card-body">
+            <h6 class="card-title">LinkedIn Learning</h6>
             <p class="text-muted small mb-2">Professional development and profile optimization course.</p>
-            <img src="Certificates/Certificate linkedin_page-0001.jpg"
-                 alt="LinkedIn Learning Certificate"
-                 class="img-fluid cert-img"
-                 data-pdf="Certificates/Certificate linkedin.pdf">
-          </div>
+            <img src="Certificates/Certificate linkedin_page-0001.jpg" alt="LinkedIn" class="img-fluid cert-img" data-pdf="Certificates/Certificate linkedin.pdf">
+          </div></div>
         </div>
-      </div>
 
-      <div class="col-12 col-sm-6 col-md-4 col-lg-3 cert-item">
-        <div class="card h-100">
-          <div class="card-body">
-            <h6 class="card-title">YouTube Creator Certificate</h6>
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 cert-item">
+          <div class="card h-100"><div class="card-body">
+            <h6 class="card-title">YouTube Creator</h6>
             <p class="text-muted small mb-2">Fundamentals of content creation and channel management.</p>
-            <img src="Certificates/Certificate youtube_page-0001.jpg"
-                 alt="YouTube Creator Certificate"
-                 class="img-fluid cert-img"
-                 data-pdf="Certificates/Certificate youtube.pdf">
-          </div>
+            <img src="Certificates/Certificate youtube_page-0001.jpg" alt="YouTube" class="img-fluid cert-img" data-pdf="Certificates/Certificate youtube.pdf">
+          </div></div>
         </div>
-      </div>
 
-      <div class="col-12 col-sm-6 col-md-4 col-lg-3 cert-item">
-        <div class="card h-100">
-          <div class="card-body">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 cert-item">
+          <div class="card h-100"><div class="card-body">
             <h6 class="card-title">English Fundamentals</h6>
-            <p class="text-muted small mb-2">Certificate in English language skills and communication fundamentals.</p>
-            <img src="Certificates/English Fundamentals_page-0001.jpg"
-                 alt="English Fundamentals"
-                 class="img-fluid cert-img"
-                 data-pdf="Certificates/English Fundamentals.pdf">
-          </div>
+            <p class="text-muted small mb-2">English language skills and communication fundamentals.</p>
+            <img src="Certificates/English Fundamentals_page-0001.jpg" alt="English" class="img-fluid cert-img" data-pdf="Certificates/English Fundamentals.pdf">
+          </div></div>
         </div>
-      </div>
 
-      <div class="col-12 col-sm-6 col-md-4 col-lg-3 cert-item">
-        <div class="card h-100">
-          <div class="card-body">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 cert-item">
+          <div class="card h-100"><div class="card-body">
             <h6 class="card-title">Zoom Training</h6>
-            <p class="text-muted small mb-2">Certificate in virtual meeting etiquette and platform usage.</p>
-            <img src="Certificates/Zoom Training_page-0001.jpg"
-                 alt="Zoom Training"
-                 class="img-fluid cert-img"
-                 data-pdf="Certificates/Zoom Training.pdf">
-          </div>
+            <p class="text-muted small mb-2">Virtual meeting etiquette and platform usage.</p>
+            <img src="Certificates/Zoom Training_page-0001.jpg" alt="Zoom" class="img-fluid cert-img" data-pdf="Certificates/Zoom Training.pdf">
+          </div></div>
         </div>
-      </div>
 
-      <!-- SINGLE SHOW MORE BUTTON (no duplicates) -->
-      <div class="col-12 text-center" id="cert-showmore-row">
-        <button id="certShowMore" class="btn btn-outline-primary" type="button">
-          <span id="certShowMoreText">Show more</span>
-          <span id="certShowMoreCount"></span>
-        </button>
-      </div>
+        <div class="col-12 text-center" id="cert-showmore-row">
+          <button id="certShowMore" class="btn btn-outline-primary" type="button">
+            <span id="certShowMoreText">Show more</span>
+            <span id="certShowMoreCount"></span>
+          </button>
+        </div>
 
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-
-  <!-- CONTACT -->
+  <!-- ============================================================
+       CONTACT
+  ============================================================ -->
   <section id="contact" class="py-5">
     <h2 class="mb-3">Contact</h2>
     <p class="text-muted">
       For research collaborations or project inquiries — email
-      <a href="mailto:das.saumyadip.cse@gmail.com">das.saumyadip.cse@gmail.com</a>
+      <a href="/cdn-cgi/l/email-protection#791d180a570a180c1400181d1009571a0a1c391e14181015571a1614" style="color:var(--brand);"><span class="__cf_email__" data-cfemail="89ede8faa7fae8fce4f0e8ede0f9a7eafaecc9eee4e8e0e5a7eae6e4">[email&#160;protected]</span></a>
       or send a message below.
     </p>
 
@@ -1326,95 +1325,76 @@
       <div class="card-body p-4">
         <form action="https://formspree.io/f/mzdadwra" method="POST">
           <div class="row g-3">
-
             <div class="col-md-6">
-              <label class="form-label fw-semibold">Full Name</label>
+              <label class="form-label">Full Name</label>
               <input type="text" name="name" class="form-control" placeholder="Your name" required>
             </div>
-
             <div class="col-md-6">
-              <label class="form-label fw-semibold">Email</label>
+              <label class="form-label">Email</label>
               <input type="email" name="email" class="form-control" placeholder="your@email.com" required>
             </div>
-
             <div class="col-12">
-              <label class="form-label fw-semibold">Subject</label>
+              <label class="form-label">Subject</label>
               <input type="text" name="subject" class="form-control" placeholder="Project / Collaboration / Question" required>
             </div>
-
             <div class="col-12">
-              <label class="form-label fw-semibold">Message</label>
+              <label class="form-label">Message</label>
               <textarea name="message" class="form-control" rows="5" placeholder="Write your message..." required></textarea>
             </div>
-
             <input type="text" name="_gotcha" style="display:none">
-
             <div class="col-12 d-flex gap-2 align-items-center">
-              <button type="submit" class="btn btn-primary px-4">Send Message</button>
+              <button type="submit" class="btn btn-primary px-4">
+                <i class="fas fa-paper-plane me-1"></i>Send Message
+              </button>
               <span class="text-muted small">Replies will be sent to your email.</span>
             </div>
-
           </div>
         </form>
-
       </div>
     </div>
   </section>
 
 </main>
 
-<div class="text-center small text-muted mt-2">
-  Views: <span id="viewCount">—</span>
+<!-- ============================================================
+     VISITOR COUNTER
+============================================================ -->
+<div class="text-center my-3">
+  <span class="view-counter-wrap">
+    <i class="fas fa-eye" style="color:var(--brand);font-size:.8rem;"></i>
+    <span>Total visits:</span>
+    <span id="viewCount">—</span>
+  </span>
 </div>
 
-<footer class="bg-light py-4 mt-5">
+<!-- ============================================================
+     FOOTER
+============================================================ -->
+<footer class="bg-light py-4 mt-3">
   <div class="container text-center small text-muted">
     <div class="mb-2 social-icons">
-  <a class="btn btn-outline-secondary me-2"
-     href="https://github.com/saumyadip-das-2003"
-     target="_blank"
-     aria-label="GitHub"
-     title="Visit GitHub Profile">
-     <i class="fab fa-github"></i>
-  </a>
-
-  <a class="btn btn-outline-secondary me-2"
-     href="https://www.linkedin.com/in/saumyadip-sohom/"
-     target="_blank"
-     aria-label="LinkedIn"
-     title="Visit LinkedIn Profile">
-     <i class="fab fa-linkedin"></i>
-  </a>
-
-  <a class="btn btn-outline-secondary me-2"
-     href="https://www.researchgate.net/profile/Saumyadip-Das-2"
-     target="_blank"
-     aria-label="ResearchGate"
-     title="Visit ResearchGate Profile">
-     <i class="fab fa-researchgate"></i>
-  </a>
-
-  <a class="btn btn-outline-secondary me-2"
-     href="https://orcid.org/0009-0009-1130-2091"
-     target="_blank"
-     aria-label="ORCID"
-     title="Visit ORCID Profile">
-     <i class="fab fa-orcid"></i>
-  </a>
-
-  <a class="btn btn-outline-secondary"
-     href="https://scholar.google.com/citations?user=vCvfzOMAAAAJ&hl=en"
-     target="_blank"
-     aria-label="Google Scholar"
-     title="Visit Google Scholar Profile">
-     <i class="fas fa-graduation-cap"></i>
-  </a>
-</div>
-    © Saumyadip Das — Built for research and professional use.
+      <a class="btn btn-outline-secondary me-2" href="https://github.com/saumyadip-das-2003" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+      <a class="btn btn-outline-secondary me-2" href="https://www.linkedin.com/in/saumyadip-sohom/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+      <a class="btn btn-outline-secondary me-2" href="https://www.researchgate.net/profile/Saumyadip-Das-2" target="_blank" aria-label="ResearchGate"><i class="fab fa-researchgate"></i></a>
+      <a class="btn btn-outline-secondary me-2" href="https://orcid.org/0009-0009-1130-2091" target="_blank" aria-label="ORCID"><i class="fab fa-orcid"></i></a>
+      <a class="btn btn-outline-secondary" href="https://scholar.google.com/citations?user=vCvfzOMAAAAJ&hl=en" target="_blank" aria-label="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
+    </div>
+    &copy; <span id="fyear"></span> Saumyadip Das — Built for research and professional use.
   </div>
 </footer>
 
-<!-- PDF Modal (Awards/Certificates) -->
+<!-- ============================================================
+     BACK TO TOP BUTTON
+============================================================ -->
+<button id="backToTop" aria-label="Back to top" title="Back to top">
+  <i class="fas fa-arrow-up"></i>
+</button>
+
+<!-- ============================================================
+     MODALS
+============================================================ -->
+
+<!-- PDF Modal -->
 <div class="modal fade" id="pdfModal" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-xl modal-dialog-centered">
     <div class="modal-content">
@@ -1467,63 +1447,48 @@
   </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<!-- ============================================================
+     SCRIPTS
+============================================================ -->
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
 document.addEventListener('DOMContentLoaded', function () {
 
+  /* ── FOOTER YEAR ── */
+  var fy = document.getElementById('fyear');
+  if (fy) fy.textContent = new Date().getFullYear();
 
+  /* ── DARK MODE TOGGLE ── */
+  var html = document.documentElement;
+  var toggle = document.getElementById('themeToggle');
+  var saved = localStorage.getItem('theme') || 'light';
+  html.setAttribute('data-theme', saved);
 
-  // ✅ Certificates show more (MISSING)
-var certItems = Array.from(document.querySelectorAll('.cert-item'));
-var CERT_INITIAL = 8, CERT_INCREMENT = 4;
-var certVisible = CERT_INITIAL;
-
-function renderCerts() {
-  certItems.forEach(function (it, idx) {
-    it.style.display = idx < certVisible ? '' : 'none';
-  });
-
-  var btn = document.getElementById('certShowMore');
-  var txt = document.getElementById('certShowMoreText');
-  var cnt = document.getElementById('certShowMoreCount');
-
-  if (!btn) return;
-
-  if (certItems.length <= CERT_INITIAL) {
-    btn.style.display = 'none';
-    return;
+  if (toggle) {
+    toggle.addEventListener('click', function () {
+      var current = html.getAttribute('data-theme');
+      var next = current === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+    });
   }
 
-  btn.style.display = '';
-
-  if (certVisible < certItems.length) {
-    var left = certItems.length - certVisible;
-    if (txt) txt.textContent = 'Show more';
-    if (cnt) cnt.textContent = ' (' + Math.min(CERT_INCREMENT, left) + ' more)';
-  } else {
-    if (txt) txt.textContent = 'Show less';
-    if (cnt) cnt.textContent = '';
-  }
-}
-
-var certBtn = document.getElementById('certShowMore');
-if (certBtn) {
-  certBtn.addEventListener('click', function () {
-    if (certVisible < certItems.length) certVisible += CERT_INCREMENT;
-    else {
-      certVisible = CERT_INITIAL;
-      var sec = document.getElementById('certifications');
-      if (sec) sec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  /* ── BACK TO TOP ── */
+  var btt = document.getElementById('backToTop');
+  window.addEventListener('scroll', function () {
+    if (btt) {
+      if (window.scrollY > 400) btt.classList.add('show');
+      else btt.classList.remove('show');
     }
-    renderCerts();
   });
-}
+  if (btt) {
+    btt.addEventListener('click', function () {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
 
-renderCerts();
-
-
-  // Smooth scroll
+  /* ── SMOOTH SCROLL ── */
   document.querySelectorAll('a[href^="/#"], a[href^="#"]').forEach(function (a) {
     a.addEventListener('click', function (e) {
       var href = this.getAttribute('href');
@@ -1532,7 +1497,6 @@ renderCerts();
         var id = href.split('#').pop();
         var el = document.getElementById(id);
         if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-
         var navEl = document.getElementById('nav');
         var bs = (window.bootstrap && bootstrap.Collapse && navEl) ? bootstrap.Collapse.getInstance(navEl) : null;
         if (bs) bs.hide();
@@ -1541,7 +1505,7 @@ renderCerts();
     });
   });
 
-  // Active nav + shrink
+  /* ── ACTIVE NAV + SCROLLED CLASS ── */
   var sections = document.querySelectorAll('section[id]');
   var navbarEl = document.querySelector('.navbar');
 
@@ -1554,199 +1518,196 @@ renderCerts();
         if (link) link.classList.add('active');
       }
     });
-
-    if (!navbarEl) return;
-    if (window.scrollY > 40) navbarEl.classList.add('nav-scrolled');
-    else navbarEl.classList.remove('nav-scrolled');
+    if (navbarEl) {
+      if (window.scrollY > 40) navbarEl.classList.add('nav-scrolled');
+      else navbarEl.classList.remove('nav-scrolled');
+    }
   }
   window.addEventListener('scroll', updateNav);
   updateNav();
 
-  // ✅ Publications filter + show more (updated for C/J/P/S/T tags)
-  var buttons = document.querySelectorAll('[data-filter]');
-  var pubItems = Array.from(document.querySelectorAll('.pub-item'));
-  var PAGE_INITIAL = 4, PAGE_INCREMENT = 4;
-  var pubVisible = PAGE_INITIAL, currentFilter = 'all';
+  /* ── PUBLICATIONS FILTER + SHOW MORE ── */
+  var filterBtns = document.querySelectorAll('[data-filter]');
+  var pubItems   = Array.from(document.querySelectorAll('.pub-item'));
+  var PUB_INIT = 4, PUB_INC = 4;
+  var pubVisible = PUB_INIT, currentFilter = 'all';
 
-  function renderPubs() {
-    var matching = pubItems.filter(function (it) {
+  function getMatching() {
+    return pubItems.filter(function (it) {
       if (currentFilter === 'all') return true;
-      var tags = (it.getAttribute('data-tags') || '').split(',').map(function(t){ return t.trim(); });
+      var tags = (it.getAttribute('data-tags') || '').split(',').map(function (t) { return t.trim(); });
       return tags.indexOf(currentFilter) !== -1;
     });
+  }
 
-    matching.forEach(function (it, idx) {
-      it.style.display = idx < pubVisible ? '' : 'none';
-    });
-
-    pubItems.filter(function (it) { return matching.indexOf(it) === -1; })
-      .forEach(function (it) { it.style.display = 'none'; });
+  function renderPubs() {
+    var matching = getMatching();
+    pubItems.forEach(function (it) { it.style.display = 'none'; });
+    matching.forEach(function (it, idx) { it.style.display = idx < pubVisible ? '' : 'none'; });
 
     var btn = document.getElementById('pubShowMore');
     if (!btn) return;
-
-    if (matching.length <= PAGE_INITIAL) btn.style.display = 'none';
-    else {
-      btn.style.display = '';
-      if (pubVisible < matching.length) {
-        var left = matching.length - pubVisible;
-        btn.textContent = 'Show more (' + Math.min(PAGE_INCREMENT, left) + ' more)';
-      } else {
-        btn.textContent = 'Show less';
-      }
+    if (matching.length <= PUB_INIT) { btn.style.display = 'none'; return; }
+    btn.style.display = '';
+    if (pubVisible < matching.length) {
+      btn.textContent = 'Show more (' + Math.min(PUB_INC, matching.length - pubVisible) + ' more)';
+    } else {
+      btn.textContent = 'Show less';
     }
   }
 
-  buttons.forEach(function (btn) {
+  filterBtns.forEach(function (btn) {
     btn.addEventListener('click', function () {
-      buttons.forEach(function (b) { b.classList.remove('active'); });
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
       this.classList.add('active');
       currentFilter = this.getAttribute('data-filter') || 'all';
-      pubVisible = PAGE_INITIAL;
+      pubVisible = PUB_INIT;
       renderPubs();
     });
   });
 
-  var pubShowMoreBtn = document.getElementById('pubShowMore');
-  if (pubShowMoreBtn) {
-    pubShowMoreBtn.addEventListener('click', function () {
-      var matchingCount = pubItems.filter(function (it) {
-        if (currentFilter === 'all') return true;
-        var tags = (it.getAttribute('data-tags') || '').split(',').map(function(t){ return t.trim(); });
-        return tags.indexOf(currentFilter) !== -1;
-      }).length;
-
-      if (pubVisible < matchingCount) pubVisible += PAGE_INCREMENT;
+  var pubMoreBtn = document.getElementById('pubShowMore');
+  if (pubMoreBtn) {
+    pubMoreBtn.addEventListener('click', function () {
+      var matching = getMatching();
+      if (pubVisible < matching.length) pubVisible += PUB_INC;
       else {
-        pubVisible = PAGE_INITIAL;
-        var list = document.getElementById('publications');
-        if (list) list.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        pubVisible = PUB_INIT;
+        document.getElementById('publications').scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
       renderPubs();
     });
   }
   renderPubs();
 
-  // Projects show more (unchanged)
+  /* ── PROJECTS SHOW MORE ── */
   var projItems = Array.from(document.querySelectorAll('.project-item'));
-  var PROJ_INITIAL = 4, PROJ_INCREMENT = 4;
-  var projVisible = PROJ_INITIAL;
+  var PROJ_INIT = 4, PROJ_INC = 4, projVisible = PROJ_INIT;
 
   function renderProjects() {
-    projItems.forEach(function (it, idx) {
-      it.style.display = idx < projVisible ? '' : 'none';
-    });
+    projItems.forEach(function (it, idx) { it.style.display = idx < projVisible ? '' : 'none'; });
     var btn = document.getElementById('projShowMore');
     if (!btn) return;
-
-    if (projItems.length <= PROJ_INITIAL) btn.style.display = 'none';
-    else {
-      btn.style.display = '';
-      if (projVisible < projItems.length) {
-        var left = projItems.length - projVisible;
-        btn.textContent = 'Show more (' + Math.min(PROJ_INCREMENT, left) + ' more)';
-      } else {
-        btn.textContent = 'Show less';
-      }
-    }
+    if (projItems.length <= PROJ_INIT) { btn.style.display = 'none'; return; }
+    btn.style.display = '';
+    btn.textContent = projVisible < projItems.length
+      ? 'Show more (' + Math.min(PROJ_INC, projItems.length - projVisible) + ' more)'
+      : 'Show less';
   }
 
   var projBtn = document.getElementById('projShowMore');
   if (projBtn) {
     projBtn.addEventListener('click', function () {
-      if (projVisible < projItems.length) projVisible += PROJ_INCREMENT;
+      if (projVisible < projItems.length) projVisible += PROJ_INC;
       else {
-        projVisible = PROJ_INITIAL;
-        var sec = document.getElementById('projects');
-        if (sec) sec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        projVisible = PROJ_INIT;
+        document.getElementById('projects').scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
       renderProjects();
     });
   }
   renderProjects();
 
-  // Awards show more (unchanged)
+  /* ── AWARDS SHOW MORE ── */
   var awardItems = Array.from(document.querySelectorAll('.award-item'));
-  var AWARD_INITIAL = 4, AWARD_INCREMENT = 4;
-  var awardVisible = AWARD_INITIAL;
+  var AWARD_INIT = 4, AWARD_INC = 4, awardVisible = AWARD_INIT;
 
   function renderAwards() {
-    awardItems.forEach(function (it, idx) {
-      it.style.display = idx < awardVisible ? '' : 'none';
-    });
+    awardItems.forEach(function (it, idx) { it.style.display = idx < awardVisible ? '' : 'none'; });
     var btn = document.getElementById('awardShowMore');
     if (!btn) return;
-
-    if (awardItems.length <= AWARD_INITIAL) btn.style.display = 'none';
-    else {
-      btn.style.display = '';
-      if (awardVisible < awardItems.length) {
-        var left = awardItems.length - awardVisible;
-        btn.textContent = 'Show more (' + Math.min(AWARD_INCREMENT, left) + ' more)';
-      } else {
-        btn.textContent = 'Show less';
-      }
-    }
+    if (awardItems.length <= AWARD_INIT) { btn.style.display = 'none'; return; }
+    btn.style.display = '';
+    btn.textContent = awardVisible < awardItems.length
+      ? 'Show more (' + Math.min(AWARD_INC, awardItems.length - awardVisible) + ' more)'
+      : 'Show less';
   }
 
   var awardBtn = document.getElementById('awardShowMore');
   if (awardBtn) {
     awardBtn.addEventListener('click', function () {
-      if (awardVisible < awardItems.length) awardVisible += AWARD_INCREMENT;
+      if (awardVisible < awardItems.length) awardVisible += AWARD_INC;
       else {
-        awardVisible = AWARD_INITIAL;
-        var sec = document.getElementById('awards');
-        if (sec) sec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        awardVisible = AWARD_INIT;
+        document.getElementById('awards').scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
       renderAwards();
     });
   }
   renderAwards();
 
-  // PDF modal open for awards + certs (unchanged)
+  /* ── CERTIFICATIONS SHOW MORE ── */
+  var certItems = Array.from(document.querySelectorAll('.cert-item'));
+  var CERT_INIT = 8, CERT_INC = 4, certVisible = CERT_INIT;
+
+  function renderCerts() {
+    certItems.forEach(function (it, idx) { it.style.display = idx < certVisible ? '' : 'none'; });
+    var btn = document.getElementById('certShowMore');
+    var txt = document.getElementById('certShowMoreText');
+    var cnt = document.getElementById('certShowMoreCount');
+    if (!btn) return;
+    if (certItems.length <= CERT_INIT) { btn.style.display = 'none'; return; }
+    btn.style.display = '';
+    if (certVisible < certItems.length) {
+      if (txt) txt.textContent = 'Show more';
+      if (cnt) cnt.textContent = ' (' + Math.min(CERT_INC, certItems.length - certVisible) + ' more)';
+    } else {
+      if (txt) txt.textContent = 'Show less';
+      if (cnt) cnt.textContent = '';
+    }
+  }
+
+  var certBtn = document.getElementById('certShowMore');
+  if (certBtn) {
+    certBtn.addEventListener('click', function () {
+      if (certVisible < certItems.length) certVisible += CERT_INC;
+      else {
+        certVisible = CERT_INIT;
+        document.getElementById('certifications').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+      renderCerts();
+    });
+  }
+  renderCerts();
+
+  /* ── PDF MODAL (awards + certs) ── */
   document.querySelectorAll('.award-img, .cert-img').forEach(function (img) {
+    img.style.cursor = 'pointer';
     img.addEventListener('click', function () {
       var pdf = this.getAttribute('data-pdf');
       var frame = document.getElementById('pdfFrame');
       if (frame) frame.src = pdf ? encodeURI(pdf) : '';
-      var modalEl = document.getElementById('pdfModal');
-      if (modalEl) new bootstrap.Modal(modalEl).show();
+      new bootstrap.Modal(document.getElementById('pdfModal')).show();
     });
   });
 
-  document.getElementById('pdfModal')?.addEventListener('hidden.bs.modal', function () {
+  document.getElementById('pdfModal').addEventListener('hidden.bs.modal', function () {
     var frame = document.getElementById('pdfFrame');
     if (frame) frame.src = '';
   });
 
-  // Transcript modal (unchanged)
+  /* ── TRANSCRIPT MODAL ── */
   document.querySelectorAll('.edu-transcript-btn').forEach(function (btn) {
     btn.addEventListener('click', function () {
       var pdf = this.getAttribute('data-pdf');
       var pdfUrl = pdf ? encodeURI(pdf) : '';
-
       var card = this.closest('.card');
-      var titleEl = card ? card.querySelector('.card-title') : null;
-      var title = titleEl ? titleEl.textContent : 'Transcript';
-
-      document.getElementById('transcriptModalLabel').textContent = title + ' — Transcript';
-      var content = document.getElementById('transcriptContent');
+      var title = card ? (card.querySelector('.card-title') || {}).textContent : 'Transcript';
+      document.getElementById('transcriptModalLabel').textContent = (title || 'Transcript') + ' — Transcript';
+      var content  = document.getElementById('transcriptContent');
       var download = document.getElementById('transcriptDownload');
-
       if (pdf && pdf.trim()) {
         content.innerHTML = '<div class="ratio ratio-16x9"><iframe src="' + pdfUrl + '" width="100%" height="600" frameborder="0">Loading…</iframe></div>';
-        download.href = pdfUrl;
-        download.style.display = '';
+        download.href = pdfUrl; download.style.display = '';
       } else {
         content.innerHTML = '<p class="text-muted">Transcript PDF not uploaded yet.</p>';
         download.style.display = 'none';
       }
-
       new bootstrap.Modal(document.getElementById('transcriptModal')).show();
     });
   });
 
-  // Video modal (unchanged)
+  /* ── VIDEO MODAL ── */
   var videoModalEl = document.getElementById('videoModal');
   if (videoModalEl) {
     videoModalEl.addEventListener('show.bs.modal', function () {
@@ -1759,7 +1720,7 @@ renderCerts();
     });
   }
 
-  // Reveal animation
+  /* ── REVEAL ANIMATION ── */
   document.querySelectorAll('.reveal').forEach(function (el, i) {
     setTimeout(function () { el.classList.add('visible'); }, 70 * i);
   });
@@ -1767,23 +1728,8 @@ renderCerts();
 });
 </script>
 
+<!-- ── VISITOR COUNTER (counterapi.dev — free & reliable) ── -->
 <script>
-  (function () {
-    const NAMESPACE = "saumyadipdas-portfolio";
-    const KEY = (location.pathname || "home").replace(/\W+/g, "_");
-
-    fetch(`https://api.countapi.xyz/hit/${NAMESPACE}/${KEY}`)
-      .then(r => r.json())
-      .then(d => {
-        const el = document.getElementById("viewCount");
-        if (el) el.textContent = d.value ?? "0";
-      })
-      .catch(() => {
-        const el = document.getElementById("viewCount");
-        if (el) el.textContent = "—";
-      });
-  })();
-</script>
-
-</body>
-</html>
+(function () {
+  var el = document.getElementById('viewCount');
+  fetch('https://api.counterapi.dev/v1/saumyadip-portfolio/visits/up

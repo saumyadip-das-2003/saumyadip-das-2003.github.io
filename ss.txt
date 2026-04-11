@@ -1,0 +1,1789 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Saumyadip Das — Researcher in AI & ML</title>
+
+  <meta name="description" content="Saumyadip Das — Computer Science researcher focusing on AI, ML and IoT.">
+  <meta name="theme-color" content="#0b5ed7">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="css/styles.css" rel="stylesheet">
+
+
+  <!-- PROFESSIONAL STYLES (replace your /css/styles.css or keep it but ensure it doesn't override these) -->
+  <style>
+    :root{
+      --brand:#0b5ed7;
+      --ink:#0f172a;      /* slate-900 */
+      --muted:#64748b;    /* slate-500 */
+      --line:#e5e7eb;     /* gray-200 */
+      --bg:#f8fafc;       /* slate-50 */
+      --card:#ffffff;
+      --shadow: 0 10px 30px rgba(2,6,23,.08);
+      --shadow2: 0 18px 45px rgba(2,6,23,.10);
+      --radius: 16px;
+    }
+
+    html,body{ height:100%; }
+    body{
+      font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: var(--ink);
+      background: linear-gradient(180deg, #ffffff 0%, var(--bg) 100%);
+      letter-spacing: -0.01em;
+      text-rendering: optimizeLegibility;
+    }
+
+    /* Navbar */
+    .navbar{
+      background: rgba(255,255,255,.75);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(229,231,235,.7);
+      transition: box-shadow .2s ease, background .2s ease;
+    }
+    .navbar.nav-scrolled{
+      background: rgba(255,255,255,.92);
+      box-shadow: 0 6px 18px rgba(2,6,23,.08);
+    }
+    .navbar .navbar-brand{
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--ink);
+    }
+    .navbar .nav-link{
+      font-weight: 600;
+      color: rgba(15,23,42,.78);
+      padding: .6rem .85rem;
+      border-radius: 12px;
+    }
+    .navbar .nav-link:hover{
+      background: rgba(11,94,215,.08);
+      color: var(--ink);
+    }
+    .navbar .nav-link.active{
+      background: rgba(11,94,215,.12);
+      color: var(--brand);
+    }
+
+    /* Layout / typography */
+    main.container{ max-width: 1100px; }
+    section{ scroll-margin-top: 90px; }
+    h1{ font-weight: 900; letter-spacing: -0.04em; }
+    h2{
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 1rem;
+    }
+    .lead{ color: rgba(15,23,42,.72); }
+
+    /* Buttons */
+    .btn{
+      border-radius: 12px;
+      font-weight: 700;
+    }
+    .btn-primary{
+      background: var(--brand);
+      border-color: var(--brand);
+      box-shadow: 0 10px 22px rgba(11,94,215,.18);
+    }
+    .btn-outline-primary{
+      border-color: rgba(11,94,215,.35);
+      color: var(--brand);
+    }
+    .btn-outline-primary:hover{
+      background: rgba(11,94,215,.08);
+      border-color: rgba(11,94,215,.45);
+      color: var(--brand);
+    }
+    .btn-outline-secondary{
+      border-color: rgba(100,116,139,.35);
+    }
+
+    /* Cards */
+    .card{
+      border: 1px solid rgba(229,231,235,.9);
+      border-radius: var(--radius);
+      background: var(--card);
+      box-shadow: 0 8px 24px rgba(2,6,23,.06);
+    }
+    .card-title{ font-weight: 800; letter-spacing: -0.02em; }
+    .text-muted{ color: var(--muted) !important; }
+
+    /* Hero */
+    .section-hero{
+      position: relative;
+      overflow: hidden;
+    }
+    .portrait{
+      width: 224px;
+      height: 224px;
+      object-fit: cover;
+      border: 4px solid rgba(255,255,255,.9);
+      box-shadow: var(--shadow);
+    }
+    .hero-orn{
+      position:absolute;
+      inset: auto -180px -220px auto;
+      width: 520px;
+      height: 520px;
+      pointer-events:none;
+      opacity:.9;
+    }
+
+    /* Section soft panels */
+    .section-education,.section-publications,.section-projects,.section-skills,
+    .section-awards,.section-certifications{
+      padding-top: 72px !important;
+      padding-bottom: 72px !important;
+    }
+
+    /* Small UI polish */
+    .social-icons .btn{ border-radius: 12px; }
+    .badge{ border-radius: 999px; font-weight: 800; letter-spacing: -0.01em; }
+
+    /* Reveal animation */
+    .reveal{ opacity:0; transform: translateY(10px); transition: all .55s ease; }
+    .reveal.visible{ opacity:1; transform:none; }
+
+    /* Publications — professional list styling */
+    .pub-header{
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+    .pub-legend{
+      font-size: .85rem;
+      color: var(--muted);
+      background: rgba(255,255,255,.75);
+      border: 1px solid rgba(229,231,235,.85);
+      padding: .55rem .75rem;
+      border-radius: 14px;
+    }
+    .pub-legend code{
+      background: rgba(11,94,215,.08);
+      color: var(--brand);
+      padding: .1rem .35rem;
+      border-radius: 8px;
+      font-weight: 800;
+    }
+
+    .pub-list{
+      display:flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .pub-row{
+      border: 1px solid rgba(229,231,235,.9);
+      border-radius: 16px;
+      background: #fff;
+      padding: 14px 14px;
+      box-shadow: 0 10px 26px rgba(2,6,23,.06);
+      transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+      display:flex;
+      gap: 14px;
+      align-items:flex-start;
+    }
+    .pub-row:hover{
+      transform: translateY(-2px);
+      box-shadow: var(--shadow2);
+      border-color: rgba(11,94,215,.25);
+    }
+
+    .pub-code{
+      min-width: 62px;
+      text-align: center;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      padding: .35rem .55rem;
+      border-radius: 12px;
+      border: 1px solid rgba(229,231,235,.9);
+      background: rgba(248,250,252,.9);
+      color: rgba(15,23,42,.85);
+    }
+
+    .pub-main{ flex: 1; }
+    .pub-title{
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      margin-bottom: .25rem;
+      line-height: 1.25;
+    }
+    .pub-meta{
+      color: rgba(15,23,42,.70);
+      font-size: .95rem;
+      margin-bottom: .35rem;
+    }
+    .pub-meta strong{ font-weight: 900; }
+    .pub-extra{
+      color: var(--muted);
+      font-size: .92rem;
+    }
+
+    .pub-actions{
+      display:flex;
+      flex-direction: column;
+      gap:8px;
+      align-items: stretch;
+      min-width: 140px;
+    }
+
+    @media (max-width: 768px){
+      .pub-row{ flex-direction: column; }
+      .pub-actions{ flex-direction: row; min-width: 0; }
+      .pub-code{ min-width: auto; width: fit-content; }
+    }
+
+    /* Footer */
+    footer{
+      border-top: 1px solid rgba(229,231,235,.85);
+      background: rgba(255,255,255,.8) !important;
+      backdrop-filter: blur(10px);
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="/#home">Saumyadip Das</a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav"
+            aria-controls="nav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item"><a class="nav-link" href="/#home">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="/#education">Education</a></li>
+        <li class="nav-item"><a class="nav-link" href="/#publications">Publications</a></li>
+        <li class="nav-item"><a class="nav-link" href="/#projects">Projects</a></li>
+        <li class="nav-item"><a class="nav-link" href="/#skills">Skills</a></li>
+        <li class="nav-item"><a class="nav-link" href="/#awards">Awards</a></li>
+        <li class="nav-item"><a class="nav-link" href="/#certifications">Certifications</a></li>
+        <li class="nav-item"><a class="nav-link" href="/#contact">Contact</a></li>
+      </ul>
+
+      <div class="d-none d-lg-flex align-items-center ms-3 social-icons">
+
+  <a class="btn btn-outline-secondary me-2"
+     href="https://github.com/saumyadip-das-2003"
+     target="_blank"
+     aria-label="GitHub"
+     title="GitHub Profile">
+    <i class="fab fa-github"></i>
+  </a>
+
+  <a class="btn btn-outline-secondary me-2"
+     href="https://www.linkedin.com/in/saumyadip-sohom/"
+     target="_blank"
+     aria-label="LinkedIn"
+     title="LinkedIn Profile">
+    <i class="fab fa-linkedin"></i>
+  </a>
+
+  <a class="btn btn-outline-secondary me-2"
+     href="https://www.researchgate.net/profile/Saumyadip-Das-2"
+     target="_blank"
+     aria-label="ResearchGate"
+     title="ResearchGate Profile">
+    <i class="fab fa-researchgate"></i>
+  </a>
+
+  <a class="btn btn-outline-secondary me-2"
+     href="https://orcid.org/0009-0009-1130-2091"
+     target="_blank"
+     aria-label="ORCID"
+     title="ORCID Profile">
+    <i class="fab fa-orcid"></i>
+  </a>
+
+  <a class="btn btn-outline-secondary"
+     href="https://scholar.google.com/citations?user=vCvfzOMAAAAJ&hl=en"
+     target="_blank"
+     aria-label="Google Scholar"
+     title="Google Scholar Profile">
+    <i class="fas fa-graduation-cap"></i>
+  </a>
+
+</div>
+    </div>
+  </div>
+</nav>
+
+<main class="container" id="home" style="padding-top:90px;padding-bottom:40px;">
+
+  <!-- HERO -->
+  <section class="hero-center text-center py-5 section-hero">
+    <img src="Saumyadip%20Das.png" alt="Saumyadip Das" class="rounded-circle portrait reveal">
+
+    <h1 class="mt-3 mb-1 reveal">Saumyadip Das</h1>
+    <p class="lead mb-3 reveal">Computer Science Researcher • AI / ML • IoT • Data Science</p>
+
+    <p class="reveal">
+      <a class="btn btn-primary me-2" href="Saumyadip_Das%20(2).pdf" target="_blank" rel="noopener">Download CV</a>
+      <button class="btn btn-outline-primary me-2" data-bs-toggle="modal" data-bs-target="#videoModal" type="button">Video Portfolio</button>
+      <a class="btn btn-outline-primary" href="/#publications">View Publications</a>
+    </p>
+
+    <div class="mt-3 social-icons reveal">
+
+  <a class="btn btn-outline-secondary btn-sm me-2"
+     href="https://github.com/saumyadip-das-2003"
+     target="_blank"
+     aria-label="GitHub"
+     title="GitHub Profile">
+     <i class="fab fa-github"></i>
+  </a>
+
+  <a class="btn btn-outline-secondary btn-sm me-2"
+     href="https://www.linkedin.com/in/saumyadip-sohom/"
+     target="_blank"
+     aria-label="LinkedIn"
+     title="LinkedIn Profile">
+     <i class="fab fa-linkedin"></i>
+  </a>
+
+  <a class="btn btn-outline-secondary btn-sm me-2"
+     href="https://www.researchgate.net/profile/Saumyadip-Das-2"
+     target="_blank"
+     aria-label="ResearchGate"
+     title="ResearchGate Profile">
+     <i class="fab fa-researchgate"></i>
+  </a>
+
+  <a class="btn btn-outline-secondary btn-sm me-2"
+     href="https://orcid.org/0009-0009-1130-2091"
+     target="_blank"
+     aria-label="ORCID"
+     title="ORCID Profile">
+     <i class="fab fa-orcid"></i>
+  </a>
+
+  <a class="btn btn-outline-secondary btn-sm"
+     href="https://scholar.google.com/citations?user=vCvfzOMAAAAJ&hl=en"
+     target="_blank"
+     aria-label="Google Scholar"
+     title="Google Scholar Profile">
+     <i class="fas fa-graduation-cap"></i>
+  </a>
+
+</div>
+
+    <!-- ornament -->
+    <div class="hero-orn" aria-hidden="true">
+      <svg viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="g1" x1="0%" x2="100%" y1="0%" y2="100%">
+            <stop offset="0%" stop-color="#0b5ed7" stop-opacity="0.12" />
+            <stop offset="100%" stop-color="#6c63ff" stop-opacity="0.10" />
+          </linearGradient>
+          <filter id="blur1" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="30"/></filter>
+        </defs>
+        <g filter="url(#blur1)">
+          <path d="M421.8,330.2Q432,410,346.1,453.3Q260.2,496.6,183.6,447.7Q107,398.8,86.6,319.4Q66.2,240,133.8,183.8Q201.4,127.6,279,117.4Q356.6,107.2,396.8,174.8Q437,242.4,421.8,330.2Z" fill="url(#g1)"/>
+        </g>
+      </svg>
+    </div>
+
+    <!-- biography -->
+    <div class="card mt-4 mx-auto shadow-sm" style="max-width:920px;">
+      <div class="card-body text-start">
+        <p class="mb-0">
+          Saumyadip Das is a dedicated and academically strong Computer Science and Engineering student at American International University–Bangladesh (AIUB), expected to graduate in December 2026 with a CGPA of 3.99/4.00. His academic and research interests focus on Artificial Intelligence, Machine Learning, Data Science, and IoT-based intelligent systems, with a strong motivation to apply theoretical knowledge to practical, real-world technological challenges. He has been actively involved in research and project-based learning that integrates data analytics, deep learning, and embedded systems, strengthening his problem-solving, analytical, and technical capabilities. Saumyadip is seeking opportunities in Data Science, AI/ML, and research-driven roles where he can contribute to innovative, data-driven solutions while further developing his expertise and preparing for advanced studies in a research-oriented master’s program.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education" class="py-5 section-education">
+    <h2 class="mb-3">Education</h2>
+
+    <div class="row g-3">
+      <div class="col-12">
+        <div class="card h-100">
+          <div class="card-body">
+            <h5 class="card-title">American International University-Bangladesh</h5>
+            <p class="text-muted mb-1">Bachelor of Science in Computer Science and Engineering — Jan 2023 - Dec 2026 (Expected)</p>
+            <p class="mb-0"><strong>CGPA:</strong> 3.99 / 4.00 (Up to 10th Semester)</p>
+            <div class="mt-3">
+              <button class="btn btn-sm btn-outline-primary edu-transcript-btn" data-pdf="GradeReportBySemester23-50404-1.pdf">View transcript</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12">
+        <div class="card h-100">
+          <div class="card-body">
+            <h5 class="card-title">Birshreshtha Munshi Abdur Rouf Public College</h5>
+            <p class="text-muted mb-1">Higher Secondary Certificate (Science) — 2021</p>
+            <p class="mb-0">GPA: 5.00 / 5.00</p>
+            <div class="mt-3">
+              <button class="btn btn-sm btn-outline-primary edu-transcript-btn" data-pdf="HSC Transcript.pdf">View transcript</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12">
+        <div class="card h-100">
+          <div class="card-body">
+            <h5 class="card-title">Moulvibazar Government High School</h5>
+            <p class="text-muted mb-1">Secondary School Certificate (Science) — 2019</p>
+            <p class="mb-0">GPA: 5.00 / 5.00</p>
+            <div class="mt-3">
+              <button class="btn btn-sm btn-outline-primary edu-transcript-btn" data-pdf="SSC Transcript.pdf">View transcript</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ✅ UPDATED PUBLICATIONS (as per your LaTeX list + professional layout) -->
+  <section id="publications" class="py-5 section-publications">
+    <div class="pub-header mb-3">
+      <div>
+        <h2 class="mb-1">Patents & Publications</h2>
+      </div>
+      <div class="pub-legend">
+        <div class="mb-1">
+          <code>C</code> Conference &nbsp; <code>J</code> Journal &nbsp; <code>P</code> Patent &nbsp; <code>S</code> In Submission &nbsp; <code>T</code> Thesis
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <div class="btn-group flex-wrap" role="group" aria-label="publication filters">
+        <button class="btn btn-outline-primary active" data-filter="all">All</button>
+        <button class="btn btn-outline-primary" data-filter="C">Conference (C)</button>
+        <button class="btn btn-outline-primary" data-filter="J">Journal (J)</button>
+        <button class="btn btn-outline-primary" data-filter="P">Patent (P)</button>
+        <button class="btn btn-outline-primary" data-filter="S">In Submission (S)</button>
+        <button class="btn btn-outline-primary" data-filter="T">Thesis (T)</button>
+      </div>
+    </div>
+
+    <div id="pub-list" class="pub-list">
+
+      <!-- [C.1] -->
+      <div class="pub-item" data-tags="C">
+        <a class="text-decoration-none text-reset" target="_blank" href="https://qpain.org/">
+          <div class="pub-row">
+            <div class="pub-code">[C.1]</div>
+            <div class="pub-main">
+              <div class="pub-title">
+                A Comparison of State-Space Model and CNN Baselines: MambaOut-tiny vs ResNet-50 and MobileNetV2 for Rice Leaf Disease Classification
+              </div>
+              <div class="pub-meta">
+                Nur-E Sarjina Khan, <strong>Saumyadip Das</strong>, Sazia Sharmin, Kamruddin Nur (2026)
+              </div>
+              <div class="pub-extra">
+                In <em>2026 IEEE 2nd International Conference on Quantum Photonics, Artificial Intelligence &amp; Networking</em>, IEEE.
+                16–18 April 2026, Chattogram, Bangladesh.
+              </div>
+            </div>
+            <div class="pub-actions">
+              <span class="badge bg-primary">Conference</span>
+              <span class="btn btn-sm btn-outline-primary">Open</span>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <!-- [C.2] -->
+      <div class="pub-item" data-tags="C">
+        <a class="text-decoration-none text-reset" target="_blank" href="https://doi.org/10.1109/EICT68394.2025.11355612">
+          <div class="pub-row">
+            <div class="pub-code">[C.2]</div>
+            <div class="pub-main">
+              <div class="pub-title">
+                SoilSense: An IoT-Based Soil Health Monitoring System for Smallholder Farmers in Bangladesh to Support Sustainable Agriculture
+              </div>
+              <div class="pub-meta">
+                <strong>Saumyadip Das</strong>, Nur-E Sarjina Khan, Md. Ahasan Habib Alif, Raiyan Bin Alam, Mahima Afroz, Niloy Paul, Md Sajid Hossain (2025)
+              </div>
+              <div class="pub-extra">
+                In <em>7th International Conference on Electrical Information and Communication Technology</em>, IEEE.
+                18–20 December 2025, Khulna, Bangladesh. DOI: 10.1109/EICT68394.2025.11355612
+              </div>
+            </div>
+            <div class="pub-actions">
+              <span class="badge bg-primary">Conference</span>
+              <span class="btn btn-sm btn-outline-primary">DOI</span>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <!-- [S.1] -->
+      <div class="pub-item" data-tags="S">
+        <div class="pub-row submitted-card" data-bs-toggle="modal" data-bs-target="#submittedModal">
+          <div class="pub-code">[S.1]</div>
+          <div class="pub-main">
+            <div class="pub-title">
+              Decoding Rider Risk: A Behavioral Archetype and XAI-Driven Approach to Predict Motorcycle Accident Severity
+            </div>
+            <div class="pub-meta">
+              Nur-E Sarjina Khan, <strong>Saumyadip Das</strong>, Muhammad Hasibur Rashid Chayon (2026)
+            </div>
+            <div class="pub-extra">
+              Manuscript submitted for acceptance in <em>16th IEEE International Conference On Control System, Computing and Engineering</em>.
+            </div>
+          </div>
+          <div class="pub-actions">
+            <span class="badge bg-secondary">Submitted</span>
+            <button class="btn btn-sm btn-outline-primary" type="button">Details</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- [S.2] -->
+      <div class="pub-item" data-tags="S">
+        <div class="pub-row submitted-card" data-bs-toggle="modal" data-bs-target="#submittedModal">
+          <div class="pub-code">[S.2]</div>
+          <div class="pub-main">
+            <div class="pub-title">
+              LLM-Driven Cardiovascular Disease Risk Prediction and the Predominant Influence of Smoking
+            </div>
+            <div class="pub-meta">
+              Ranak Debnath, Ariful Islam, Nur-E Sarjina Khan, <strong>Saumyadip Das</strong>, Anik Kumar Saha, Firoz Ahmed (2026)
+            </div>
+            <div class="pub-extra">
+              Manuscript submitted for publication in <em>IET Information Security</em>.
+            </div>
+          </div>
+          <div class="pub-actions">
+            <span class="badge bg-secondary">Submitted</span>
+            <button class="btn btn-sm btn-outline-primary" type="button">Details</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- [S.3] -->
+      <div class="pub-item" data-tags="S">
+        <div class="pub-row submitted-card" data-bs-toggle="modal" data-bs-target="#submittedModal">
+          <div class="pub-code">[S.3]</div>
+          <div class="pub-main">
+            <div class="pub-title">
+              Reasoning Drift in Compressed Transformers: An Explainability Analysis of BERT, DistilBERT, and TinyBERT
+            </div>
+            <div class="pub-meta">
+              Samin Yasir, Nur-E Sarjina Khan, <strong>Saumyadip Das</strong>, Md. Nafi Al Tahosin Khan, Munif Shahrier Niloy, Anika Tahmina Chowdhury, Anik Kumar Saha (2026)
+            </div>
+            <div class="pub-extra">
+              Manuscript submitted for publication in <em>International Journal of Modern Education and Computer Science (IJMECS)</em>.
+            </div>
+          </div>
+          <div class="pub-actions">
+            <span class="badge bg-secondary">Submitted</span>
+            <button class="btn btn-sm btn-outline-primary" type="button">Details</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- [C.3] -->
+      <div class="pub-item" data-tags="C">
+        <a class="text-decoration-none text-reset" target="_blank"
+           href="https://www.researchgate.net/publication/400525770_The_Future_of_Textile_Waste_Sustainable_Solutions_through_Eco-Friendly_Products_and_Renewable_Energy_from_Post-Consumer_Textiles?_tp=eyJjb250ZXh0Ijp7InBhZ2UiOiJwcm9maWxlIiwicHJldmlvdXNQYWdlIjpudWxsLCJwb3NpdGlvbiI6InBhZ2VDb250ZW50In19">
+          <div class="pub-row">
+            <div class="pub-code">[C.3]</div>
+            <div class="pub-main">
+              <div class="pub-title">
+                The Future of Textile Waste: Sustainable Solutions through Eco-Friendly Products and Renewable Energy from Post-Consumer Textiles
+              </div>
+              <div class="pub-meta">
+                Nur-E Sarjina Khan, <strong>Saumyadip Das</strong>, Md. Mahtab Habib, Md. Sadman Sanim, Md. Mahbubor Rahman, Dr. Jannatul Fardus (2025)
+              </div>
+              <div class="pub-extra">
+                In <em>3rd International Conference on Textile Science and Engineering</em>. 24 May 2025, BUTEX, Dhaka, Bangladesh.
+              </div>
+            </div>
+            <div class="pub-actions">
+              <span class="badge bg-primary">Conference</span>
+              <span class="btn btn-sm btn-outline-primary">Open</span>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <!-- [C.4] -->
+      <div class="pub-item" data-tags="C">
+        <a class="text-decoration-none text-reset" target="_blank"
+           href="https://www.researchgate.net/publication/400526019_Artificial_Intelligence_in_Textile_Waste_Management_Exploring_Predictive_Modelling_Recycling_Innovations_and_Sustainable_Solutions">
+          <div class="pub-row">
+            <div class="pub-code">[C.4]</div>
+            <div class="pub-main">
+              <div class="pub-title">
+                Artificial Intelligence in Textile Waste Management: Exploring Predictive Modelling, Recycling Innovations, and Sustainable Solutions
+              </div>
+              <div class="pub-meta">
+                Nur-E Sarjina Khan, <strong>Saumyadip Das</strong>, Raiyan Bin Alam, Abtahi Islam, Md. Mahbubor Rahman, Jannatul Fardus (2025)
+              </div>
+              <div class="pub-extra">
+                In <em>3rd International Conference on Textile Science and Engineering</em>. 24 May 2025, BUTEX, Dhaka, Bangladesh.
+              </div>
+            </div>
+            <div class="pub-actions">
+              <span class="badge bg-primary">Conference</span>
+              <span class="btn btn-sm btn-outline-primary">Open</span>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <!-- [C.5] -->
+      <div class="pub-item" data-tags="C">
+        <a class="text-decoration-none text-reset" target="_blank"
+           href="https://www.researchgate.net/publication/400525785_AI-Driven_Transformations_in_Textile_Waste_Management_Challenges_and_Opportunities">
+          <div class="pub-row">
+            <div class="pub-code">[C.5]</div>
+            <div class="pub-main">
+              <div class="pub-title">
+                AI-Driven Transformations in Textile Waste Management: Challenges and Opportunities
+              </div>
+              <div class="pub-meta">
+                Nur-E Sarjina Khan, <strong>Saumyadip Das</strong>, Arpon Paul Amit, Jannatul Fardus, Md. Mahbubor Rahman (2025)
+              </div>
+              <div class="pub-extra">
+                In <em>1st International Conference on Engineering and Technology for Sustainable Development (ICETSD 2025)</em>.
+                22–23 February 2025, JUST, Jashore, Bangladesh.
+              </div>
+            </div>
+            <div class="pub-actions">
+              <span class="badge bg-primary">Conference</span>
+              <span class="btn btn-sm btn-outline-primary">Open</span>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <!-- Optional: Journal/Patent/Thesis placeholders (hidden by filter unless 'all') -->
+      <div class="pub-item" data-tags="J" style="display:none;">
+        <div class="pub-row">
+          <div class="pub-code">[J.1]</div>
+          <div class="pub-main">
+            <div class="pub-title">Journal entry — coming soon</div>
+            <div class="pub-extra">Add your journal publications here when available.</div>
+          </div>
+          <div class="pub-actions">
+            <span class="badge bg-dark">Journal</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="pub-item" data-tags="P" style="display:none;">
+        <div class="pub-row">
+          <div class="pub-code">[P.1]</div>
+          <div class="pub-main">
+            <div class="pub-title">Patent entry — coming soon</div>
+            <div class="pub-extra">Add your patents here when available.</div>
+          </div>
+          <div class="pub-actions">
+            <span class="badge bg-dark">Patent</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="pub-item" data-tags="T" style="display:none;">
+        <div class="pub-row">
+          <div class="pub-code">[T.1]</div>
+          <div class="pub-main">
+            <div class="pub-title">Thesis entry — coming soon</div>
+            <div class="pub-extra">Add your thesis details here if applicable.</div>
+          </div>
+          <div class="pub-actions">
+            <span class="badge bg-dark">Thesis</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="text-center mt-4">
+      <button id="pubShowMore" class="btn btn-outline-primary" type="button">Show more</button>
+    </div>
+  </section>
+
+  <!-- SUBMITTED PAPERS MODAL -->
+  <div class="modal fade" id="submittedModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Preprint / Submission</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <p class="mb-0">
+            <strong>Public link will be added after acceptance/publication.</strong><br>
+            For preprint or manuscript details, please contact via email.
+          </p>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-primary" data-bs-dismiss="modal">Okay</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROJECTS -->
+  <section id="projects" class="py-5 section-projects">
+    <h2 class="mb-3">Projects (9)</h2>
+    <div class="row g-3">
+      <div class="col-md-6 project-item">
+        <div class="card h-100">
+          <div class="card-body">
+            <h5 class="card-title">SafePath — Community Safety Monitoring</h5>
+            <p class="card-text">HTML, PHP, MySQL. Citizens report incidents, authority management & admin panel.</p>
+            <a href="https://github.com/saumyadip-das-2003/SafePath---Community-Safety-Extremism-Monitoring-System" target="_blank" class="btn btn-sm btn-outline-primary" rel="noopener">View on GitHub</a>
+            <a href="https://www.figma.com/community/file/1495248825990649497" target="_blank" class="btn btn-sm btn-outline-primary" rel="noopener">Figma Prototype</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 project-item">
+        <div class="card h-100">
+          <div class="card-body">
+            <h5 class="card-title">SoilSense — IoT + ML</h5>
+            <p class="card-text">ESP32 sensors + ML to predict NPK values. Accepted to IEEE (DOI available).</p>
+            <a href="https://github.com/saumyadip-das-2003/SoilSense-Codes" target="_blank" class="btn btn-sm btn-outline-primary" rel="noopener">View Code</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 project-item">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">Bank Management System</h5>
+            <p class="card-text">
+              <strong>Technical Implementation:</strong> C#, .NET Framework, MSSQL — core banking workflows, role-based access, and database design.
+              <br><br>
+              <strong>Engineering Management Project:</strong> Gantt Chart, Network Diagram, Budgeting, Cash Flow analysis, Resource Sheet in MS Project.
+            </p>
+            <a href="https://github.com/saumyadip-das-2003/Bank-Management-System" target="_blank" class="btn btn-sm btn-outline-primary me-2">Code (GitHub)</a>
+            <a href="https://github.com/saumyadip-das-2003/Bank-Management-System-EM-" target="_blank" class="btn btn-sm btn-outline-primary">EM Project</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 project-item">
+        <div class="card h-100">
+          <div class="card-body">
+            <h5 class="card-title">University Resource Management System — Java / UML / Oracle DB</h5>
+            <p class="card-text">Java Swing UI, UML design, and Oracle DB backend for booking university resources.</p>
+            <a href="https://github.com/saumyadip-das-2003/Resource-Booking-System-JAVA-Swing-Project-" target="_blank" class="btn btn-sm btn-outline-primary" rel="noopener">Java Swing</a>
+            <a href="https://github.com/saumyadip-das-2003/University-Resource-Booking-System--Oracle-Database-Project" target="_blank" class="btn btn-sm btn-outline-primary ms-2" rel="noopener">Oracle DB</a>
+            <a href="https://github.com/saumyadip-das-2003/University-Resource-Management-System-URMS---OOAD" target="_blank" class="btn btn-sm btn-outline-primary ms-2" rel="noopener">UML</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 project-item">
+        <div class="card h-100">
+          <div class="card-body">
+            <h5 class="card-title">Life of a River — Computer Graphics (GLUT, C++)</h5>
+            <p class="card-text">Interactive computer graphics project using GLUT and C++ to visualize river flow and ecosystems.</p>
+            <a href="#" class="btn btn-sm btn-outline-primary">Project link (placeholder)</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="text-center mt-4">
+      <button id="projShowMore" class="btn btn-outline-primary" type="button">Show more</button>
+    </div>
+  </section>
+
+<!-- ===================== SKILLS (TILE + HOVER OVERLAY) ===================== -->
+<section id="skills" class="py-5 section-skills">
+  <h2 class="mb-3 reveal">Skills</h2>
+  <p class="text-muted mb-4">Hover on a card to preview details (tap to open on mobile).</p>
+
+  <style>
+    /* Important: allow overlays to float */
+    .section-skills { overflow: visible; }
+    .skills-row { overflow: visible; }
+
+    .skill-tile {
+      position: relative;
+      overflow: visible;              /* key */
+      border: 1px solid rgba(229,231,235,.9);
+      border-radius: 18px;
+      background: #fff;
+      box-shadow: 0 10px 26px rgba(2,6,23,.06);
+      transition: transform .16s ease, box-shadow .16s ease, border-color .16s ease;
+      padding: 18px;
+      height: 100%;
+      z-index: 1;                     /* default */
+    }
+
+    .skill-tile:hover,
+    .skill-tile.is-open {
+      transform: translateY(-3px);
+      box-shadow: 0 20px 50px rgba(2,6,23,.12);
+      border-color: rgba(13,110,253,.35);
+      z-index: 20;                    /* bring above neighbors */
+    }
+
+    .skill-head {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .skill-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(13,110,253,.12);
+      color: #0d6efd;
+      font-size: 20px;
+      flex: 0 0 auto;
+    }
+
+    .skill-title {
+      font-weight: 900;
+      margin: 0;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+    }
+
+    .skill-subtitle {
+      font-size: .92rem;
+      color: #6c757d;
+      margin-top: 4px;
+    }
+
+    /* The floating hover panel */
+    .skill-popover {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: calc(100% + 12px);        /* float below card */
+      background: #fff;
+      border: 1px solid rgba(229,231,235,.95);
+      border-radius: 16px;
+      box-shadow: 0 24px 60px rgba(2,6,23,.18);
+      padding: 14px 16px;
+      z-index: 9999;                 /* sit above next row */
+      opacity: 0;
+      transform: translateY(-6px);
+      pointer-events: none;
+      transition: opacity .14s ease, transform .14s ease;
+    }
+
+    /* little arrow */
+    .skill-popover::before {
+      content: "";
+      position: absolute;
+      top: -8px;
+      left: 26px;
+      width: 16px;
+      height: 16px;
+      background: #fff;
+      border-left: 1px solid rgba(229,231,235,.95);
+      border-top: 1px solid rgba(229,231,235,.95);
+      transform: rotate(45deg);
+    }
+
+    /* Show on hover OR .is-open (mobile tap) */
+    .skill-tile:hover .skill-popover,
+    .skill-tile.is-open .skill-popover {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .skill-popover h6 {
+      font-weight: 900;
+      letter-spacing: -0.01em;
+      margin: 0 0 8px 0;
+      font-size: 1rem;
+    }
+
+    .skill-popover ul {
+      margin: 0;
+      padding-left: 18px;
+      color: rgba(15,23,42,.85);
+      line-height: 1.6;
+      font-size: .95rem;
+    }
+
+    .skill-popover li { margin: 6px 0; }
+
+    /* Mobile: popover should not overflow screen width too much */
+    @media (max-width: 576px) {
+      .skill-popover { left: 0; right: 0; }
+      .skill-popover::before { left: 22px; }
+    }
+  </style>
+
+  <div class="row g-4 mt-3 skills-row">
+
+    <!-- Programming Languages -->
+    <div class="col-md-6 col-lg-4">
+      <div class="skill-tile reveal" data-skill-tile>
+        <div class="skill-head">
+          <div class="skill-icon"><i class="fa-solid fa-terminal"></i></div>
+          <div>
+            <h5 class="skill-title">Programming Languages</h5>
+            <div class="skill-subtitle">Core development languages</div>
+          </div>
+        </div>
+
+        <div class="skill-popover" role="tooltip" aria-hidden="true">
+          <h6>Includes</h6>
+          <ul>
+            <li>Python</li>
+            <li>C / C++</li>
+            <li>Java</li>
+            <li>C#</li>
+            <li>R</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Machine Learning -->
+    <div class="col-md-6 col-lg-4">
+      <div class="skill-tile reveal" data-skill-tile>
+        <div class="skill-head">
+          <div class="skill-icon"><i class="fa-solid fa-brain"></i></div>
+          <div>
+            <h5 class="skill-title">Machine Learning</h5>
+            <div class="skill-subtitle">Models, analytics & visualization</div>
+          </div>
+        </div>
+
+        <div class="skill-popover" role="tooltip" aria-hidden="true">
+          <h6>Includes</h6>
+          <ul>
+            <li>NumPy, Pandas</li>
+            <li>Scikit-learn</li>
+            <li>PyTorch, TensorFlow</li>
+            <li>Matplotlib, Seaborn</li>
+            <li>Power BI</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- IoT Implementation -->
+    <div class="col-md-6 col-lg-4">
+      <div class="skill-tile reveal" data-skill-tile>
+        <div class="skill-head">
+          <div class="skill-icon"><i class="fa-solid fa-microchip"></i></div>
+          <div>
+            <h5 class="skill-title">IoT Implementation</h5>
+            <div class="skill-subtitle">Embedded & monitoring systems</div>
+          </div>
+        </div>
+
+        <div class="skill-popover" role="tooltip" aria-hidden="true">
+          <h6>Includes</h6>
+          <ul>
+            <li>ESP32, Arduino UNO</li>
+            <li>DHT11, Rain, Moisture Sensors</li>
+            <li>IoT Prototyping & Data Collection</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Web Development -->
+    <div class="col-md-6 col-lg-4">
+      <div class="skill-tile reveal" data-skill-tile>
+        <div class="skill-head">
+          <div class="skill-icon"><i class="fa-solid fa-code"></i></div>
+          <div>
+            <h5 class="skill-title">Web Development</h5>
+            <div class="skill-subtitle">Frontend & backend foundations</div>
+          </div>
+        </div>
+
+        <div class="skill-popover" role="tooltip" aria-hidden="true">
+          <h6>Includes</h6>
+          <ul>
+            <li>HTML5, CSS3, Bootstrap</li>
+            <li>JavaScript</li>
+            <li>PHP</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Software Development -->
+    <div class="col-md-6 col-lg-4">
+      <div class="skill-tile reveal" data-skill-tile>
+        <div class="skill-head">
+          <div class="skill-icon"><i class="fa-solid fa-laptop-code"></i></div>
+          <div>
+            <h5 class="skill-title">Software Development</h5>
+            <div class="skill-subtitle">Desktop & system-based apps</div>
+          </div>
+        </div>
+
+        <div class="skill-popover" role="tooltip" aria-hidden="true">
+          <h6>Includes</h6>
+          <ul>
+            <li>.NET Development (C# / WinForms)</li>
+            <li>Java Swing Development</li>
+            <li>GLUT Graphics (C++)</li>
+            <li>Database-integrated applications</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- UI/UX -->
+    <div class="col-md-6 col-lg-4">
+      <div class="skill-tile reveal" data-skill-tile>
+        <div class="skill-head">
+          <div class="skill-icon"><i class="fa-solid fa-pen-nib"></i></div>
+          <div>
+            <h5 class="skill-title">UI/UX</h5>
+            <div class="skill-subtitle">Design & prototyping</div>
+          </div>
+        </div>
+
+        <div class="skill-popover" role="tooltip" aria-hidden="true">
+          <h6>Includes</h6>
+          <ul>
+            <li>Figma Prototypes</li>
+            <li>Wireframes & UI layout systems</li>
+            <li>Component-based UI design</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    // Mobile support: tap to open/close popover
+    (function(){
+      const tiles = Array.from(document.querySelectorAll('[data-skill-tile]'));
+
+      tiles.forEach(tile => {
+        tile.addEventListener('click', (e) => {
+          // If device supports hover, don't force click behavior
+          if (window.matchMedia('(hover: hover)').matches) return;
+
+          const wasOpen = tile.classList.contains('is-open');
+          tiles.forEach(t => t.classList.remove('is-open'));
+          if (!wasOpen) tile.classList.add('is-open');
+          e.stopPropagation();
+        });
+      });
+
+      document.addEventListener('click', () => {
+        if (!window.matchMedia('(hover: hover)').matches) {
+          tiles.forEach(t => t.classList.remove('is-open'));
+        }
+      });
+    })();
+  </script>
+</section>
+<!-- ===================== END SKILLS ===================== -->
+
+  <!-- AWARDS -->
+  <section id="awards" class="py-5 section-awards">
+    <h2 class="mb-3">Awards & Achievements (2)</h2>
+    <p class="text-muted">Click on the image to view the PDF.</p>
+
+    <div class="row g-3" id="award-list">
+      <div class="col-md-6 award-item">
+        <div class="card h-100">
+          <div class="card-body">
+            <h5 class="card-title">Dean’s List — Fall 2024–25</h5>
+            <p class="text-muted mb-1">Awarded by AIUB for outstanding academic performance in the Fall 2024–25 semester.</p>
+            <div class="award-image-wrapper">
+              <img src="Awards/Fall 24-25.jpg" alt="Dean’s List — Fall 2024–25" class="award-img" data-pdf="Awards/Fall 24-25.pdf">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 award-item">
+        <div class="card h-100">
+          <div class="card-body">
+            <h5 class="card-title">Dean’s List — Spring 2023–24</h5>
+            <p class="text-muted mb-1">Awarded by AIUB in recognition of high academic achievement during the Spring 2023–24 semester.</p>
+            <div class="award-image-wrapper">
+              <img src="Awards/Spring 23-24.jpg" alt="Dean’s List — Spring 2023–24" class="award-img" data-pdf="Awards/Spring 23-24.pdf">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center mt-4">
+      <button id="awardShowMore" class="btn btn-outline-primary" type="button">Show more</button>
+    </div>
+  </section>
+
+  <!-- CERTIFICATIONS -->
+<section id="certifications" class="py-5 section-certifications">
+  <h2 class="mb-3">Certifications & Courses (12)</h2>
+  <p class="text-muted">Click on the image to view the PDF.</p>
+
+  <div class="container px-0">
+    <div class="row g-3 align-items-stretch" id="cert-list">
+
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3 cert-item">
+        <div class="card h-100">
+          <div class="card-body">
+            <h6 class="card-title">Machine Learning — Fundamentals</h6>
+            <p class="text-muted small mb-2">Introductory course covering supervised learning and basic ML models.</p>
+            <img src="Certificates/ML For beginners_page-0001.jpg"
+                 alt="Machine Learning — Fundamentals"
+                 class="img-fluid cert-img"
+                 data-pdf="Certificates/ML For beginners.pdf">
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3 cert-item">
+        <div class="card h-100">
+          <div class="card-body">
+            <h6 class="card-title">Python for Data & Scripting</h6>
+            <p class="text-muted small mb-2">Certificate in Python programming with emphasis on data manipulation and automation.</p>
+            <img src="Certificates/Python_page-0001.jpg"
+                 alt="Python for Data & Scripting"
+                 class="img-fluid cert-img"
+                 data-pdf="Certificates/Python.pdf">
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3 cert-item">
+        <div class="card h-100">
+          <div class="card-body">
+            <h6 class="card-title">Java — Core Concepts</h6>
+            <p class="text-muted small mb-2">Certificate covering object-oriented programming and Java fundamentals.</p>
+            <img src="Certificates/java.jpg"
+                 alt="Java — Core Concepts"
+                 class="img-fluid cert-img"
+                 data-pdf="Certificates/java.pdf">
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3 cert-item">
+        <div class="card h-100">
+          <div class="card-body">
+            <h6 class="card-title">HTML5 — Web Foundations</h6>
+            <p class="text-muted small mb-2">Certificate in HTML5 and foundational web development techniques.</p>
+            <img src="Certificates/HTML_page-0001.jpg"
+                 alt="HTML5 — Web Foundations"
+                 class="img-fluid cert-img"
+                 data-pdf="Certificates/HTML.pdf">
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3 cert-item">
+        <div class="card h-100">
+          <div class="card-body">
+            <h6 class="card-title">Microsoft Excel — Data Analysis</h6>
+            <p class="text-muted small mb-2">Skills in formulas, pivot tables and data analysis workflows.</p>
+            <img src="Certificates/Certificate Excel_page-0001.jpg"
+                 alt="Microsoft Excel — Data Analysis"
+                 class="img-fluid cert-img"
+                 data-pdf="Certificates/Certificate Excel.pdf">
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3 cert-item">
+        <div class="card h-100">
+          <div class="card-body">
+            <h6 class="card-title">Microsoft PowerPoint — Presentation</h6>
+            <p class="text-muted small mb-2">Certificate in presentation design and effective slide creation.</p>
+            <img src="Certificates/Certificate Powerpoint_page-0001.jpg"
+                 alt="Microsoft PowerPoint — Presentation"
+                 class="img-fluid cert-img"
+                 data-pdf="Certificates/Certificate Powerpoint.pdf">
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3 cert-item">
+        <div class="card h-100">
+          <div class="card-body">
+            <h6 class="card-title">Microsoft Word — Documentation</h6>
+            <p class="text-muted small mb-2">Certificate in professional document preparation and formatting.</p>
+            <img src="Certificates/Certificate Word_page-0001.jpg"
+                 alt="Microsoft Word — Documentation"
+                 class="img-fluid cert-img"
+                 data-pdf="Certificates/Certificate Word.pdf">
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3 cert-item">
+        <div class="card h-100">
+          <div class="card-body">
+            <h6 class="card-title">Google Analytics — Fundamentals</h6>
+            <p class="text-muted small mb-2">Certificate in web analytics, reporting and measurement basics.</p>
+            <img src="Certificates/Certificate google analitycs_page-0001.jpg"
+                 alt="Google Analytics — Fundamentals"
+                 class="img-fluid cert-img"
+                 data-pdf="Certificates/Certificate google analitycs.pdf">
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3 cert-item">
+        <div class="card h-100">
+          <div class="card-body">
+            <h6 class="card-title">LinkedIn Learning Certificate</h6>
+            <p class="text-muted small mb-2">Professional development and profile optimization course.</p>
+            <img src="Certificates/Certificate linkedin_page-0001.jpg"
+                 alt="LinkedIn Learning Certificate"
+                 class="img-fluid cert-img"
+                 data-pdf="Certificates/Certificate linkedin.pdf">
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3 cert-item">
+        <div class="card h-100">
+          <div class="card-body">
+            <h6 class="card-title">YouTube Creator Certificate</h6>
+            <p class="text-muted small mb-2">Fundamentals of content creation and channel management.</p>
+            <img src="Certificates/Certificate youtube_page-0001.jpg"
+                 alt="YouTube Creator Certificate"
+                 class="img-fluid cert-img"
+                 data-pdf="Certificates/Certificate youtube.pdf">
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3 cert-item">
+        <div class="card h-100">
+          <div class="card-body">
+            <h6 class="card-title">English Fundamentals</h6>
+            <p class="text-muted small mb-2">Certificate in English language skills and communication fundamentals.</p>
+            <img src="Certificates/English Fundamentals_page-0001.jpg"
+                 alt="English Fundamentals"
+                 class="img-fluid cert-img"
+                 data-pdf="Certificates/English Fundamentals.pdf">
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3 cert-item">
+        <div class="card h-100">
+          <div class="card-body">
+            <h6 class="card-title">Zoom Training</h6>
+            <p class="text-muted small mb-2">Certificate in virtual meeting etiquette and platform usage.</p>
+            <img src="Certificates/Zoom Training_page-0001.jpg"
+                 alt="Zoom Training"
+                 class="img-fluid cert-img"
+                 data-pdf="Certificates/Zoom Training.pdf">
+          </div>
+        </div>
+      </div>
+
+      <!-- SINGLE SHOW MORE BUTTON (no duplicates) -->
+      <div class="col-12 text-center" id="cert-showmore-row">
+        <button id="certShowMore" class="btn btn-outline-primary" type="button">
+          <span id="certShowMoreText">Show more</span>
+          <span id="certShowMoreCount"></span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+  <!-- CONTACT -->
+  <section id="contact" class="py-5">
+    <h2 class="mb-3">Contact</h2>
+    <p class="text-muted">
+      For research collaborations or project inquiries — email
+      <a href="mailto:das.saumyadip.cse@gmail.com">das.saumyadip.cse@gmail.com</a>
+      or send a message below.
+    </p>
+
+    <div class="card shadow-sm border-0">
+      <div class="card-body p-4">
+        <form action="https://formspree.io/f/mzdadwra" method="POST">
+          <div class="row g-3">
+
+            <div class="col-md-6">
+              <label class="form-label fw-semibold">Full Name</label>
+              <input type="text" name="name" class="form-control" placeholder="Your name" required>
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label fw-semibold">Email</label>
+              <input type="email" name="email" class="form-control" placeholder="your@email.com" required>
+            </div>
+
+            <div class="col-12">
+              <label class="form-label fw-semibold">Subject</label>
+              <input type="text" name="subject" class="form-control" placeholder="Project / Collaboration / Question" required>
+            </div>
+
+            <div class="col-12">
+              <label class="form-label fw-semibold">Message</label>
+              <textarea name="message" class="form-control" rows="5" placeholder="Write your message..." required></textarea>
+            </div>
+
+            <input type="text" name="_gotcha" style="display:none">
+
+            <div class="col-12 d-flex gap-2 align-items-center">
+              <button type="submit" class="btn btn-primary px-4">Send Message</button>
+              <span class="text-muted small">Replies will be sent to your email.</span>
+            </div>
+
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<div class="text-center small text-muted mt-2">
+  Views: <span id="viewCount">—</span>
+</div>
+
+<footer class="bg-light py-4 mt-5">
+  <div class="container text-center small text-muted">
+    <div class="mb-2 social-icons">
+  <a class="btn btn-outline-secondary me-2"
+     href="https://github.com/saumyadip-das-2003"
+     target="_blank"
+     aria-label="GitHub"
+     title="Visit GitHub Profile">
+     <i class="fab fa-github"></i>
+  </a>
+
+  <a class="btn btn-outline-secondary me-2"
+     href="https://www.linkedin.com/in/saumyadip-sohom/"
+     target="_blank"
+     aria-label="LinkedIn"
+     title="Visit LinkedIn Profile">
+     <i class="fab fa-linkedin"></i>
+  </a>
+
+  <a class="btn btn-outline-secondary me-2"
+     href="https://www.researchgate.net/profile/Saumyadip-Das-2"
+     target="_blank"
+     aria-label="ResearchGate"
+     title="Visit ResearchGate Profile">
+     <i class="fab fa-researchgate"></i>
+  </a>
+
+  <a class="btn btn-outline-secondary me-2"
+     href="https://orcid.org/0009-0009-1130-2091"
+     target="_blank"
+     aria-label="ORCID"
+     title="Visit ORCID Profile">
+     <i class="fab fa-orcid"></i>
+  </a>
+
+  <a class="btn btn-outline-secondary"
+     href="https://scholar.google.com/citations?user=vCvfzOMAAAAJ&hl=en"
+     target="_blank"
+     aria-label="Google Scholar"
+     title="Visit Google Scholar Profile">
+     <i class="fas fa-graduation-cap"></i>
+  </a>
+</div>
+    © Saumyadip Das — Built for research and professional use.
+  </div>
+</footer>
+
+<!-- PDF Modal (Awards/Certificates) -->
+<div class="modal fade" id="pdfModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-xl modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Document Preview</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="ratio ratio-16x9">
+          <iframe id="pdfFrame" src="" frameborder="0" title="PDF preview"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Transcript Modal -->
+<div class="modal fade" id="transcriptModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-xl modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="transcriptModalLabel">Transcript</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" id="transcriptContent"></div>
+      <div class="modal-footer">
+        <a id="transcriptDownload" class="btn btn-primary" href="#" target="_blank" rel="noopener" style="display:none;">Download</a>
+        <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Video Modal -->
+<div class="modal fade" id="videoModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Video Portfolio</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="ratio ratio-16x9">
+          <iframe id="videoIframe" src="" title="Video Portfolio" frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+
+
+
+  // ✅ Certificates show more (MISSING)
+var certItems = Array.from(document.querySelectorAll('.cert-item'));
+var CERT_INITIAL = 8, CERT_INCREMENT = 4;
+var certVisible = CERT_INITIAL;
+
+function renderCerts() {
+  certItems.forEach(function (it, idx) {
+    it.style.display = idx < certVisible ? '' : 'none';
+  });
+
+  var btn = document.getElementById('certShowMore');
+  var txt = document.getElementById('certShowMoreText');
+  var cnt = document.getElementById('certShowMoreCount');
+
+  if (!btn) return;
+
+  if (certItems.length <= CERT_INITIAL) {
+    btn.style.display = 'none';
+    return;
+  }
+
+  btn.style.display = '';
+
+  if (certVisible < certItems.length) {
+    var left = certItems.length - certVisible;
+    if (txt) txt.textContent = 'Show more';
+    if (cnt) cnt.textContent = ' (' + Math.min(CERT_INCREMENT, left) + ' more)';
+  } else {
+    if (txt) txt.textContent = 'Show less';
+    if (cnt) cnt.textContent = '';
+  }
+}
+
+var certBtn = document.getElementById('certShowMore');
+if (certBtn) {
+  certBtn.addEventListener('click', function () {
+    if (certVisible < certItems.length) certVisible += CERT_INCREMENT;
+    else {
+      certVisible = CERT_INITIAL;
+      var sec = document.getElementById('certifications');
+      if (sec) sec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    renderCerts();
+  });
+}
+
+renderCerts();
+
+
+  // Smooth scroll
+  document.querySelectorAll('a[href^="/#"], a[href^="#"]').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      var href = this.getAttribute('href');
+      if (href && (href.startsWith('/#') || href.startsWith('#'))) {
+        e.preventDefault();
+        var id = href.split('#').pop();
+        var el = document.getElementById(id);
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+        var navEl = document.getElementById('nav');
+        var bs = (window.bootstrap && bootstrap.Collapse && navEl) ? bootstrap.Collapse.getInstance(navEl) : null;
+        if (bs) bs.hide();
+        setTimeout(function () { window.dispatchEvent(new Event('scroll')); }, 300);
+      }
+    });
+  });
+
+  // Active nav + shrink
+  var sections = document.querySelectorAll('section[id]');
+  var navbarEl = document.querySelector('.navbar');
+
+  function updateNav() {
+    var scrollPos = window.scrollY + 120;
+    sections.forEach(function (sec) {
+      if (sec.offsetTop <= scrollPos && (sec.offsetTop + sec.offsetHeight) > scrollPos) {
+        document.querySelectorAll('.nav-link').forEach(function (a) { a.classList.remove('active'); });
+        var link = document.querySelector('.nav-link[href="/#' + sec.id + '"]');
+        if (link) link.classList.add('active');
+      }
+    });
+
+    if (!navbarEl) return;
+    if (window.scrollY > 40) navbarEl.classList.add('nav-scrolled');
+    else navbarEl.classList.remove('nav-scrolled');
+  }
+  window.addEventListener('scroll', updateNav);
+  updateNav();
+
+  // ✅ Publications filter + show more (updated for C/J/P/S/T tags)
+  var buttons = document.querySelectorAll('[data-filter]');
+  var pubItems = Array.from(document.querySelectorAll('.pub-item'));
+  var PAGE_INITIAL = 4, PAGE_INCREMENT = 4;
+  var pubVisible = PAGE_INITIAL, currentFilter = 'all';
+
+  function renderPubs() {
+    var matching = pubItems.filter(function (it) {
+      if (currentFilter === 'all') return true;
+      var tags = (it.getAttribute('data-tags') || '').split(',').map(function(t){ return t.trim(); });
+      return tags.indexOf(currentFilter) !== -1;
+    });
+
+    matching.forEach(function (it, idx) {
+      it.style.display = idx < pubVisible ? '' : 'none';
+    });
+
+    pubItems.filter(function (it) { return matching.indexOf(it) === -1; })
+      .forEach(function (it) { it.style.display = 'none'; });
+
+    var btn = document.getElementById('pubShowMore');
+    if (!btn) return;
+
+    if (matching.length <= PAGE_INITIAL) btn.style.display = 'none';
+    else {
+      btn.style.display = '';
+      if (pubVisible < matching.length) {
+        var left = matching.length - pubVisible;
+        btn.textContent = 'Show more (' + Math.min(PAGE_INCREMENT, left) + ' more)';
+      } else {
+        btn.textContent = 'Show less';
+      }
+    }
+  }
+
+  buttons.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      buttons.forEach(function (b) { b.classList.remove('active'); });
+      this.classList.add('active');
+      currentFilter = this.getAttribute('data-filter') || 'all';
+      pubVisible = PAGE_INITIAL;
+      renderPubs();
+    });
+  });
+
+  var pubShowMoreBtn = document.getElementById('pubShowMore');
+  if (pubShowMoreBtn) {
+    pubShowMoreBtn.addEventListener('click', function () {
+      var matchingCount = pubItems.filter(function (it) {
+        if (currentFilter === 'all') return true;
+        var tags = (it.getAttribute('data-tags') || '').split(',').map(function(t){ return t.trim(); });
+        return tags.indexOf(currentFilter) !== -1;
+      }).length;
+
+      if (pubVisible < matchingCount) pubVisible += PAGE_INCREMENT;
+      else {
+        pubVisible = PAGE_INITIAL;
+        var list = document.getElementById('publications');
+        if (list) list.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+      renderPubs();
+    });
+  }
+  renderPubs();
+
+  // Projects show more (unchanged)
+  var projItems = Array.from(document.querySelectorAll('.project-item'));
+  var PROJ_INITIAL = 4, PROJ_INCREMENT = 4;
+  var projVisible = PROJ_INITIAL;
+
+  function renderProjects() {
+    projItems.forEach(function (it, idx) {
+      it.style.display = idx < projVisible ? '' : 'none';
+    });
+    var btn = document.getElementById('projShowMore');
+    if (!btn) return;
+
+    if (projItems.length <= PROJ_INITIAL) btn.style.display = 'none';
+    else {
+      btn.style.display = '';
+      if (projVisible < projItems.length) {
+        var left = projItems.length - projVisible;
+        btn.textContent = 'Show more (' + Math.min(PROJ_INCREMENT, left) + ' more)';
+      } else {
+        btn.textContent = 'Show less';
+      }
+    }
+  }
+
+  var projBtn = document.getElementById('projShowMore');
+  if (projBtn) {
+    projBtn.addEventListener('click', function () {
+      if (projVisible < projItems.length) projVisible += PROJ_INCREMENT;
+      else {
+        projVisible = PROJ_INITIAL;
+        var sec = document.getElementById('projects');
+        if (sec) sec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+      renderProjects();
+    });
+  }
+  renderProjects();
+
+  // Awards show more (unchanged)
+  var awardItems = Array.from(document.querySelectorAll('.award-item'));
+  var AWARD_INITIAL = 4, AWARD_INCREMENT = 4;
+  var awardVisible = AWARD_INITIAL;
+
+  function renderAwards() {
+    awardItems.forEach(function (it, idx) {
+      it.style.display = idx < awardVisible ? '' : 'none';
+    });
+    var btn = document.getElementById('awardShowMore');
+    if (!btn) return;
+
+    if (awardItems.length <= AWARD_INITIAL) btn.style.display = 'none';
+    else {
+      btn.style.display = '';
+      if (awardVisible < awardItems.length) {
+        var left = awardItems.length - awardVisible;
+        btn.textContent = 'Show more (' + Math.min(AWARD_INCREMENT, left) + ' more)';
+      } else {
+        btn.textContent = 'Show less';
+      }
+    }
+  }
+
+  var awardBtn = document.getElementById('awardShowMore');
+  if (awardBtn) {
+    awardBtn.addEventListener('click', function () {
+      if (awardVisible < awardItems.length) awardVisible += AWARD_INCREMENT;
+      else {
+        awardVisible = AWARD_INITIAL;
+        var sec = document.getElementById('awards');
+        if (sec) sec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+      renderAwards();
+    });
+  }
+  renderAwards();
+
+  // PDF modal open for awards + certs (unchanged)
+  document.querySelectorAll('.award-img, .cert-img').forEach(function (img) {
+    img.addEventListener('click', function () {
+      var pdf = this.getAttribute('data-pdf');
+      var frame = document.getElementById('pdfFrame');
+      if (frame) frame.src = pdf ? encodeURI(pdf) : '';
+      var modalEl = document.getElementById('pdfModal');
+      if (modalEl) new bootstrap.Modal(modalEl).show();
+    });
+  });
+
+  document.getElementById('pdfModal')?.addEventListener('hidden.bs.modal', function () {
+    var frame = document.getElementById('pdfFrame');
+    if (frame) frame.src = '';
+  });
+
+  // Transcript modal (unchanged)
+  document.querySelectorAll('.edu-transcript-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var pdf = this.getAttribute('data-pdf');
+      var pdfUrl = pdf ? encodeURI(pdf) : '';
+
+      var card = this.closest('.card');
+      var titleEl = card ? card.querySelector('.card-title') : null;
+      var title = titleEl ? titleEl.textContent : 'Transcript';
+
+      document.getElementById('transcriptModalLabel').textContent = title + ' — Transcript';
+      var content = document.getElementById('transcriptContent');
+      var download = document.getElementById('transcriptDownload');
+
+      if (pdf && pdf.trim()) {
+        content.innerHTML = '<div class="ratio ratio-16x9"><iframe src="' + pdfUrl + '" width="100%" height="600" frameborder="0">Loading…</iframe></div>';
+        download.href = pdfUrl;
+        download.style.display = '';
+      } else {
+        content.innerHTML = '<p class="text-muted">Transcript PDF not uploaded yet.</p>';
+        download.style.display = 'none';
+      }
+
+      new bootstrap.Modal(document.getElementById('transcriptModal')).show();
+    });
+  });
+
+  // Video modal (unchanged)
+  var videoModalEl = document.getElementById('videoModal');
+  if (videoModalEl) {
+    videoModalEl.addEventListener('show.bs.modal', function () {
+      var iframe = document.getElementById('videoIframe');
+      if (iframe) iframe.src = 'https://www.youtube.com/embed/-tJYN-eG1zk?rel=0';
+    });
+    videoModalEl.addEventListener('hidden.bs.modal', function () {
+      var iframe = document.getElementById('videoIframe');
+      if (iframe) iframe.src = '';
+    });
+  }
+
+  // Reveal animation
+  document.querySelectorAll('.reveal').forEach(function (el, i) {
+    setTimeout(function () { el.classList.add('visible'); }, 70 * i);
+  });
+
+});
+</script>
+
+<script>
+  (function () {
+    const NAMESPACE = "saumyadipdas-portfolio";
+    const KEY = (location.pathname || "home").replace(/\W+/g, "_");
+
+    fetch(`https://api.countapi.xyz/hit/${NAMESPACE}/${KEY}`)
+      .then(r => r.json())
+      .then(d => {
+        const el = document.getElementById("viewCount");
+        if (el) el.textContent = d.value ?? "0";
+      })
+      .catch(() => {
+        const el = document.getElementById("viewCount");
+        if (el) el.textContent = "—";
+      });
+  })();
+</script>
+
+</body>
+</html>
