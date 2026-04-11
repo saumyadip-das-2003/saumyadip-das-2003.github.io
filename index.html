@@ -433,6 +433,113 @@
     /* ============================================================
        BADGE / SOCIAL UTILS
     ============================================================ */
+
+    /* ── AI NEWS SIDEBAR ── */
+    #aiNewsSidebar {
+      position: fixed;
+      right: 0;
+      top: 60px;
+      width: 300px;
+      height: calc(100vh - 60px);
+      z-index: 1100;
+      display: flex;
+      flex-direction: column;
+      transition: transform .3s ease;
+    }
+    #aiNewsSidebar.collapsed { transform: translateX(100%); }
+    #aiSidebarInner {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      background: var(--card);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-left: 1px solid var(--line);
+      box-shadow: -4px 0 24px rgba(0,0,0,.10);
+    }
+    [data-theme="dark"] #aiSidebarInner {
+      box-shadow: -4px 0 24px rgba(0,0,0,.35);
+    }
+    #aiSidebarBody { scrollbar-width: thin; scrollbar-color: var(--line) transparent; }
+    #aiSidebarBody::-webkit-scrollbar { width: 3px; }
+    #aiSidebarBody::-webkit-scrollbar-thumb { background: var(--line); border-radius: 3px; }
+
+    .feed-source-section { border-bottom: 1px solid var(--line); }
+    .feed-source-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: .6rem 1rem;
+      cursor: pointer;
+      user-select: none;
+      background: transparent;
+      border: none;
+      width: 100%;
+      text-align: left;
+      transition: background .15s;
+    }
+    .feed-source-header:hover { background: var(--brand-soft); }
+    .feed-source-name {
+      font-size: .72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--brand);
+    }
+    .feed-source-count {
+      font-size: .6rem;
+      color: var(--muted);
+      background: var(--bg);
+      padding: 2px 6px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+    }
+    .feed-source-chevron {
+      font-size: .65rem;
+      color: var(--muted);
+      transition: transform .2s;
+      margin-left: 6px;
+    }
+    .feed-source-section.open .feed-source-chevron { transform: rotate(180deg); }
+    .feed-articles {
+      display: none;
+      flex-direction: column;
+      gap: 0;
+      padding: 0;
+    }
+    .feed-source-section.open .feed-articles { display: flex; }
+    .feed-article-link {
+      display: block;
+      padding: .55rem 1rem;
+      border-top: 1px solid var(--line);
+      text-decoration: none;
+      transition: background .12s;
+    }
+    .feed-article-link:hover { background: var(--brand-soft); }
+    .feed-article-title {
+      font-size: .78rem;
+      font-weight: 600;
+      color: var(--ink);
+      line-height: 1.35;
+      margin-bottom: 2px;
+    }
+    .feed-article-time {
+      font-size: .63rem;
+      color: var(--muted);
+    }
+
+    /* Push main content left when sidebar is open */
+    @media (min-width: 1200px) {
+      body.sidebar-open .page-inner { padding-right: 316px; }
+    }
+    @media (max-width: 1199px) {
+      #aiNewsSidebar { width: 280px; }
+      body.sidebar-open .page-inner { padding-right: 0; }
+    }
+    @media (max-width: 900px) {
+      #aiNewsSidebar { display: none !important; }
+    }
+
     .badge { border-radius: 999px; font-weight: 700; letter-spacing: -0.01em; }
     /* ── CUSTOM TOOLTIPS ── */
     .sd-tooltip { position: relative; }
@@ -662,7 +769,7 @@
     <style>
       .hero-split {
         display: grid;
-        grid-template-columns: 200px 1fr 280px;
+        grid-template-columns: 200px 1fr;
         gap: 2rem;
         align-items: start;
         padding-top: 1rem;
@@ -779,10 +886,8 @@
       }
       .hero-cta { display: flex; flex-wrap: wrap; gap: 10px; }
 
-      @media (max-width: 1100px) {
-        .hero-split { grid-template-columns: 200px 1fr; }
-        .hero-news { display: none; }
-        .hero-divider { display: none; }
+      @media (max-width: 700px) {
+        .hero-split { grid-template-columns: 1fr; }
       }
       @media (max-width: 700px) {
         .hero-split { grid-template-columns: 1fr; }
@@ -859,23 +964,41 @@
         </div>
       </div>
 
-      <!-- NEWS FEED COLUMN -->
-      <div class="hero-news" id="newsFeed">
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.75rem;">
-          <div style="font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--brand);">Latest in AI &amp; Research</div>
-          <div id="newsFeedStatus" style="font-size:.65rem;color:var(--muted);"></div>
-        </div>
-        <div id="newsFeedList" style="display:flex;flex-direction:column;gap:8px;">
-          <!-- Populated by JS -->
-          <div style="text-align:center;padding:2rem 0;color:var(--muted);font-size:.82rem;">
-            <i class="fas fa-spinner fa-spin" style="margin-bottom:6px;display:block;font-size:1.2rem;color:var(--brand);"></i>
-            Loading latest news…
-          </div>
-        </div>
-      </div>
-
     </div>
   </section>
+
+  <!-- ============================================================
+       AI NEWS SIDEBAR (fixed right panel)
+  ============================================================ -->
+  <div id="aiNewsSidebar">
+    <div id="aiSidebarInner">
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:.75rem 1rem .5rem;border-bottom:1px solid var(--line);">
+        <div style="font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--brand);">
+          <i class="fas fa-satellite-dish me-1"></i>AI &amp; Research Feed
+        </div>
+        <button id="sidebarToggle" title="Collapse sidebar"
+          style="background:none;border:none;cursor:pointer;color:var(--muted);font-size:.85rem;padding:2px 4px;border-radius:4px;">
+          <i class="fas fa-times" id="sidebarToggleIcon"></i>
+        </button>
+      </div>
+      <div id="aiSidebarBody" style="overflow-y:auto;flex:1;padding:.5rem 0;">
+        <!-- Source sections injected by JS -->
+        <div style="padding:2rem;text-align:center;color:var(--muted);font-size:.82rem;">
+          <i class="fas fa-spinner fa-spin" style="display:block;font-size:1.4rem;color:var(--brand);margin-bottom:.5rem;"></i>
+          Loading feeds…
+        </div>
+      </div>
+    </div>
+    <!-- Collapsed tab -->
+    <button id="sidebarOpenTab" title="Open AI Feed"
+      style="display:none;position:fixed;right:0;top:50%;transform:translateY(-50%);
+             background:var(--brand);color:#fff;border:none;cursor:pointer;
+             writing-mode:vertical-rl;text-orientation:mixed;
+             font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+             padding:.75rem .4rem;border-radius:8px 0 0 8px;z-index:1200;">
+      AI Feed
+    </button>
+  </div>
 
   <!-- ============================================================
        EDUCATION
@@ -1789,9 +1912,9 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   /* ── ACTIVE NAV + SCROLLED CLASS ── */
-  var sections = Array.from(document.querySelectorAll('section[id]'));
-  var navLinks = Array.from(document.querySelectorAll('.nav-link[href]'));
-  var navbarEl = document.querySelector('.navbar');
+  var allSections = Array.from(document.querySelectorAll('section[id]'));
+  var navLinks    = Array.from(document.querySelectorAll('.nav-link[href]'));
+  var navbarEl    = document.querySelector('.navbar');
 
   function setActiveLink(id) {
     navLinks.forEach(function(a){ a.classList.remove('active'); });
@@ -1799,28 +1922,50 @@ document.addEventListener('DOMContentLoaded', function () {
     if (link) link.classList.add('active');
   }
 
-  function updateNav() {
-    var scrollY = window.scrollY;
-    var navH    = navbarEl ? navbarEl.offsetHeight : 70;
-
-    /* Navbar scroll shadow */
-    if (navbarEl) {
-      if (scrollY > 40) navbarEl.classList.add('nav-scrolled');
-      else navbarEl.classList.remove('nav-scrolled');
-    }
-
-    /* Find the section whose top is closest to (but above) the navbar bottom */
-    var trigger = scrollY + navH + 20;
-    var activeId = sections[0] ? sections[0].id : 'home';
-    sections.forEach(function(sec) {
-      if (sec.offsetTop <= trigger) activeId = sec.id;
+  /* Use IntersectionObserver — fires when section enters/leaves viewport */
+  var currentActive = 'home';
+  if ('IntersectionObserver' in window) {
+    var navH = navbarEl ? navbarEl.offsetHeight + 10 : 80;
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          currentActive = entry.target.id;
+          setActiveLink(currentActive);
+        }
+      });
+    }, {
+      rootMargin: '-' + navH + 'px 0px -60% 0px',
+      threshold: 0
     });
-
-    setActiveLink(activeId);
+    allSections.forEach(function(sec) { observer.observe(sec); });
+  } else {
+    /* Fallback for old browsers */
+    function updateNavFallback() {
+      var navH = navbarEl ? navbarEl.offsetHeight : 70;
+      var midpoint = window.scrollY + navH + Math.floor(window.innerHeight * 0.3);
+      var best = null, bestDist = Infinity;
+      allSections.forEach(function(sec) {
+        var dist = Math.abs(sec.getBoundingClientRect().top);
+        if (sec.getBoundingClientRect().top <= navH + 40 && dist < bestDist) {
+          bestDist = dist;
+          best = sec.id;
+        }
+      });
+      if (best) setActiveLink(best);
+    }
+    window.addEventListener('scroll', updateNavFallback, { passive: true });
+    updateNavFallback();
   }
 
-  window.addEventListener('scroll', updateNav, { passive: true });
-  updateNav();
+  /* Navbar scroll shadow */
+  function updateNavShadow() {
+    if (!navbarEl) return;
+    if (window.scrollY > 40) navbarEl.classList.add('nav-scrolled');
+    else navbarEl.classList.remove('nav-scrolled');
+  }
+  window.addEventListener('scroll', updateNavShadow, { passive: true });
+  updateNavShadow();
+  setActiveLink('home');
 
   /* ── PUBLICATIONS FILTER + SHOW MORE ── */
   var filterBtns = document.querySelectorAll('[data-filter]');
@@ -2080,25 +2225,32 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   })();
 
-    /* ── NEWS FEED — live RSS via allorigins.win CORS proxy ── */
+    /* ── AI NEWS SIDEBAR ── */
   (function(){
-    var listEl   = document.getElementById('newsFeedList');
-    var statusEl = document.getElementById('newsFeedStatus');
-    if(!listEl) return;
+    var sidebar   = document.getElementById('aiNewsSidebar');
+    var body_el   = document.getElementById('aiSidebarBody');
+    var toggleBtn = document.getElementById('sidebarToggle');
+    var openTab   = document.getElementById('sidebarOpenTab');
+    var togIcon   = document.getElementById('sidebarToggleIcon');
+    if(!sidebar || !body_el) return;
 
-    var feeds = [
-      { url: 'https://www.marktechpost.com/feed/', label: 'MarkTechPost' },
-      { url: 'https://towardsdatascience.com/feed', label: 'Towards DS' },
-      { url: 'https://huggingface.co/blog/feed.xml', label: 'HuggingFace' },
-      { url: 'https://deepmind.google/blog/rss.xml', label: 'DeepMind' },
-      { url: 'https://blogs.microsoft.com/ai/feed/', label: 'Microsoft AI' }
+    /* Sources — each with an RSS URL, display name, and article count */
+    var sources = [
+      { name: 'MarkTechPost',         url: 'https://www.marktechpost.com/feed/',                    count: 8  },
+      { name: 'Towards Data Science', url: 'https://towardsdatascience.com/feed',                   count: 8  },
+      { name: 'HuggingFace Blog',     url: 'https://huggingface.co/blog/feed.xml',                  count: 8  },
+      { name: 'Google DeepMind',      url: 'https://deepmind.google/blog/rss.xml',                  count: 6  },
+      { name: 'Microsoft AI Blog',    url: 'https://blogs.microsoft.com/ai/feed/',                  count: 6  },
+      { name: 'MIT Tech Review',      url: 'https://www.technologyreview.com/feed/',                 count: 6  },
+      { name: 'The TLDR AI Newsletter',url:'https://tldr.tech/ai/rss',                              count: 6  },
+      { name: 'Papers With Code',     url: 'https://paperswithcode.com/rss',                        count: 8  }
     ];
 
     var PROXY = 'https://api.allorigins.win/get?url=';
-    var allItems = [];
-    var done = 0;
+    var loadedSections = {};
 
     function timeAgo(ds) {
+      if(!ds) return '';
       var d = new Date(ds);
       if(isNaN(d)) return '';
       var s = (Date.now() - d) / 1000;
@@ -2108,61 +2260,108 @@ document.addEventListener('DOMContentLoaded', function () {
       return d.toLocaleDateString('en-GB',{day:'numeric',month:'short'});
     }
 
-    function parseRSS(xml, feed) {
-      try {
-        var doc = new DOMParser().parseFromString(xml, 'text/xml');
-        Array.from(doc.querySelectorAll('item')).slice(0,4).forEach(function(item){
-          var t = (item.querySelector('title')||{}).textContent||'';
-          var l = (item.querySelector('link')||{}).textContent||
-                  (item.querySelector('link')||{}).getAttribute('href')||'';
-          var p = (item.querySelector('pubDate')||item.querySelector('published')||{}).textContent||'';
-          if(t && l) allItems.push({title:t.trim(), link:l.trim(), pubDate:p, src:feed.label});
-        });
-      } catch(e){}
-    }
+    /* Build skeleton sections immediately */
+    var skeletonHTML = '';
+    sources.forEach(function(src, idx) {
+      skeletonHTML +=
+        '<div class="feed-source-section" id="fss-' + idx + '">' +
+          '<button class="feed-source-header" onclick="toggleFeedSection(' + idx + ')">' +
+            '<div style="display:flex;align-items:center;gap:6px;">' +
+              '<span class="feed-source-name">' + src.name + '</span>' +
+              '<span class="feed-source-count" id="fsc-' + idx + '">loading…</span>' +
+            '</div>' +
+            '<i class="fas fa-chevron-down feed-source-chevron"></i>' +
+          '</button>' +
+          '<div class="feed-articles" id="fa-' + idx + '">' +
+            '<div style="padding:.6rem 1rem;color:var(--muted);font-size:.75rem;">' +
+              '<i class="fas fa-spinner fa-spin me-1"></i>Loading…</div>' +
+          '</div>' +
+        '</div>';
+    });
+    body_el.innerHTML = skeletonHTML;
+    /* Open first section by default */
+    var firstSec = document.getElementById('fss-0');
+    if(firstSec) firstSec.classList.add('open');
 
-    /* Curated fallback shown immediately and replaced if live loads */
-    var fallback = [
-      {title:'The Batch — Weekly AI Newsletter', link:'https://www.deeplearning.ai/the-batch/', src:'deeplearning.ai', pubDate:''},
-      {title:'Latest Papers on Agentic AI & LLMs', link:'https://paperswithcode.com/latest', src:'Papers With Code', pubDate:''},
-      {title:'Towards Data Science — Top Stories', link:'https://towardsdatascience.com/', src:'Towards DS', pubDate:''},
-      {title:'MIT Technology Review — AI', link:'https://www.technologyreview.com/topic/artificial-intelligence/', src:'MIT Tech Review', pubDate:''},
-      {title:'HuggingFace Blog — Models & Research', link:'https://huggingface.co/blog', src:'HuggingFace', pubDate:''},
-      {title:'Google DeepMind Research Updates', link:'https://deepmind.google/research/', src:'DeepMind', pubDate:''},
-      {title:'MarkTechPost — Daily AI Research News', link:'https://www.marktechpost.com/', src:'MarkTechPost', pubDate:''},
-      {title:'Microsoft AI Blog', link:'https://blogs.microsoft.com/ai/', src:'Microsoft AI', pubDate:''}
-    ];
+    /* Add to window scope for onclick */
+    window.toggleFeedSection = function(idx) {
+      var sec = document.getElementById('fss-' + idx);
+      if(sec) sec.classList.toggle('open');
+    };
 
-    function renderItems(items, label) {
-      var html = items.slice(0,10).map(function(item){
-        var t = item.title.length > 72 ? item.title.slice(0,72)+'…' : item.title;
-        var time = item.pubDate ? timeAgo(item.pubDate) : 'Resource';
-        return '<a class="news-card" href="'+item.link+'" target="_blank" rel="noopener">'+
-          '<div class="news-source">'+item.src+'</div>'+
-          '<div class="news-title">'+t+'</div>'+
-          '<div class="news-time">'+time+'</div></a>';
-      }).join('');
-      listEl.innerHTML = html;
-      if(statusEl) statusEl.textContent = label || '';
-    }
-
-    /* Show curated fallback immediately */
-    renderItems(fallback, 'Curated');
-
-    /* Then try to load live feeds */
-    feeds.forEach(function(feed){
-      fetch(PROXY + encodeURIComponent(feed.url), {signal: AbortSignal.timeout ? AbortSignal.timeout(6000) : undefined})
+    /* Load each feed */
+    sources.forEach(function(src, idx) {
+      fetch(PROXY + encodeURIComponent(src.url))
         .then(function(r){ return r.json(); })
-        .then(function(d){ if(d && d.contents) parseRSS(d.contents, feed); })
-        .catch(function(){})
-        .finally(function(){
-          done++;
-          if(done === feeds.length && allItems.length > 0) {
-            allItems.sort(function(a,b){ return new Date(b.pubDate)-new Date(a.pubDate); });
-            renderItems(allItems, 'Live');
-          }
+        .then(function(d){
+          if(!d || !d.contents) throw new Error('empty');
+          var doc = new DOMParser().parseFromString(d.contents, 'text/xml');
+          var items = Array.from(doc.querySelectorAll('item, entry')).slice(0, src.count);
+          if(!items.length) throw new Error('no items');
+
+          var articlesHTML = items.map(function(item) {
+            var title = (item.querySelector('title')||{}).textContent || '';
+            var link  = (item.querySelector('link')||{}).textContent ||
+                        (item.querySelector('link')||{}).getAttribute('href') || '';
+            /* Some feeds have <link> as an element with text, others as attribute */
+            if(!link.startsWith('http')) {
+              var linkEl = item.querySelector('link');
+              link = linkEl ? (linkEl.getAttribute('href') || linkEl.textContent || '') : '';
+            }
+            var pub   = (item.querySelector('pubDate')||item.querySelector('published')||{}).textContent || '';
+            title = title.trim().replace(/&amp;/g,'&').replace(/&lt;/g,'<').replace(/&gt;/g,'>');
+            var display = title.length > 70 ? title.slice(0,70) + '…' : title;
+            if(!title || !link) return '';
+            return '<a class="feed-article-link" href="' + link.trim() + '" target="_blank" rel="noopener">' +
+              '<div class="feed-article-title">' + display + '</div>' +
+              '<div class="feed-article-time">' + timeAgo(pub) + '</div>' +
+              '</a>';
+          }).filter(Boolean).join('');
+
+          var articleEl = document.getElementById('fa-' + idx);
+          var countEl   = document.getElementById('fsc-' + idx);
+          if(articleEl) articleEl.innerHTML = articlesHTML || '<div style="padding:.6rem 1rem;color:var(--muted);font-size:.75rem;">No articles found.</div>';
+          if(countEl)   countEl.textContent = items.length + ' articles';
+        })
+        .catch(function(){
+          /* Show fallback link for this source */
+          var articleEl = document.getElementById('fa-' + idx);
+          var countEl   = document.getElementById('fsc-' + idx);
+          var fallbackLinks = {
+            'MarkTechPost':          'https://www.marktechpost.com/',
+            'Towards Data Science':  'https://towardsdatascience.com/',
+            'HuggingFace Blog':      'https://huggingface.co/blog',
+            'Google DeepMind':       'https://deepmind.google/research/',
+            'Microsoft AI Blog':     'https://blogs.microsoft.com/ai/',
+            'MIT Tech Review':       'https://www.technologyreview.com/topic/artificial-intelligence/',
+            'The TLDR AI Newsletter':'https://tldr.tech/ai',
+            'Papers With Code':      'https://paperswithcode.com/latest'
+          };
+          var url = fallbackLinks[src.name] || '#';
+          if(articleEl) articleEl.innerHTML =
+            '<a class="feed-article-link" href="' + url + '" target="_blank" rel="noopener">' +
+            '<div class="feed-article-title">Visit ' + src.name + '</div>' +
+            '<div class="feed-article-time">Click to open</div></a>';
+          if(countEl) countEl.textContent = 'visit';
         });
     });
+
+    /* Sidebar toggle */
+    document.body.classList.add('sidebar-open');
+    if(toggleBtn) {
+      toggleBtn.addEventListener('click', function(){
+        sidebar.classList.add('collapsed');
+        document.body.classList.remove('sidebar-open');
+        if(openTab) openTab.style.display = '';
+      });
+    }
+    if(openTab) {
+      openTab.addEventListener('click', function(){
+        sidebar.classList.remove('collapsed');
+        document.body.classList.add('sidebar-open');
+        openTab.style.display = 'none';
+      });
+    }
   })();
 
 });
